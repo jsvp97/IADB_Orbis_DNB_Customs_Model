@@ -1,0 +1,303 @@
+
+==============================================================================
+MULTINATIONAL OWNERSHIP, MARKET POWER AND TRADE POLICY
+==============================================================================
+  --------------------------------------------------------------------------
+  param    value       kind       source
+  --------------------------------------------------------------------------
+  sigma    5.0         EXTERNAL   trade elasticity 4-6; Simonovska-Waugh ~4, Eaton-Kortum higher
+  eta      1.0         EXTERNAL   Cobb-Douglas across sectors; the Atkeson-Burstein outer nest
+  conduct  Cournot     EXTERNAL   quantity competition; Bertrand supported and reported alongside
+  delta    1/(sigma-1) EXTERNAL   set so the gravity distance elasticity of TRADE is exactly -1
+  nu       0.55        EXTERNAL   intermediate share of gross output, manufacturing; Caliendo-Parro
+  io_own   0.45        EXTERNAL   I-O tables are diagonal-heavy: own-sector inputs dominate
+  alpha    0.10-0.55   EXTERNAL   COMPLEXITY INDEX by sector. Not a cost share: see hq_cost
+  hq_cost  false       MODELLING  head-office services are a non-rival CAPABILITY, not a factor input
+  gamma    1.18        EXTERNAL   MP efficiency loss abroad; Ramondo-Rodriguez-Clare MP friction
+  theta_p  4.0         EXTERNAL   Pareto tail of firm capability; Gaubert-Itskhoki granular draws
+  fcost    0.0006      INTERNAL   market-access fixed cost, set to the SIZE of the export sample
+  zeta     1.5         INTERNAL   how the pool of potential parents scales with country size
+  mne_adv  0.0         NORMALISED MNE productivity edge NO LONGER NEEDED once hq_cost=false; was INTERNAL
+  slope    solved      INTERNAL   HQ capability gradient, set to the FACT 2 complexity gradient
+  z        2.2 / 1.0   NORMALISED advanced vs LAC productivity level; fixes relative wages
+  wage1    1.0         NORMALISED numeraire (Walras)
+  --------------------------------------------------------------------------
+  EXTERNAL values are standard magnitudes for this literature, NOT
+  transcriptions from specific tables. Verify each against the source
+  paper before publication -- they are collected here for that.
+
+==============================================================================
+PART A   ONE MARKET, AND WHY IT HAS EXACTLY ONE SOLUTION  [cournot]
+==============================================================================
+Cannibalisation is the mechanism: a parent's own varieties are perfect
+substitutes inside its own output aggregate, so expanding one depresses
+the others and the markup rises with the PARENT's total share. The same
+object mu(S_g) appears under quantity and price competition, which is why
+the solver takes mu as a parameter.
+
+  conduct     kappa     mu(0)       mu(0.5)     share frontier
+  cournot     4.000     1.250       2.500       0.548
+  bertrand    0.800     1.250       1.500       0.680
+
+  kappa is the coefficient on the S^2 term in profit, so the ownership
+  correction is proportional to it. Conduct changes the MAGNITUDE by a
+  factor of five and changes nothing structural.
+------------------------------------------------------------------------------
+MARKET-LEVEL UNIQUENESS (cournot): verifying each step of the proof
+------------------------------------------------------------------------------
+  STEP 1  revenue depends on own quantities only through X_g : 5.13e-16
+  STEP 2  revenue strictly CONCAVE in X      worst d2R/dX2 = -1.26e-02
+  STEP 3  cost strictly CONVEX in X          worst d2C/dX2 = +5.02e-02
+  STEP 4  no random deviation beats the solution: best gain +0.00e+00
+  STEP 5  psi strictly increasing                      : 0 / 60 fail
+  END     same market from 5 wildly different brackets : 5.11e-15
+
+
+The ownership decomposition (Proposition P2a)
+---------------------------------------------
+Pi_H/E = (1/sigma)[ thetabar + kappa ( thetabar*HHI + Cov_S(theta,S) ) ].
+A country-level ownership share misses exactly (E kappa/sigma) Cov.
+
+  home-owned profit matches the solver's own profits   : 3.36e-16
+  quadratic form vs exact  (0 iff L is linear in S)    : 3.17e-16
+  miss = (E kappa/sigma) Cov_S(theta,S)                : 1.34e-12
+
+  The middle line is zero under Cournot because the Lerner index is exactly
+  linear in the share there; under Bertrand it is the size of the
+  approximation, reported rather than assumed.
+
+==============================================================================
+PART B   ENTRY: IS THE EQUILIBRIUM UNIQUE, WITH INTERNALISATION?  [cournot]
+==============================================================================
+Brute force over EVERY configuration -- each parent free to choose any
+subset of its own plants -- keeping the Nash ones, where a deviation is
+scored on the RE-SOLVED market. This is the case Gaubert-Itskhoki's cutoff
+cannot handle and Yang resolves by imposing an entry order.
+
+  markets with a pure-strategy entry equilibrium  : 40 / 40
+    of those, UNIQUE                              : 40
+    of those, multiple                            : 0
+  solver issued its uniqueness CERTIFICATE        : 40 / 40
+  certificate issued where brute force found many : 0   <- must be 0
+  cheap solve already an exact Nash equilibrium   : 28 / 40
+  cheap solve survives nash_refine untouched      : 28 / 40
+
+  The certificate is what travels into the GE loop, where brute force is
+  unaffordable: the solver re-checks that the clearing function is
+  decreasing with exactly one sign change, market by market.
+
+The two conditions the theorem rests on
+---------------------------------------
+(A) Omega concave in own K   -> the best response is a cutoff on the
+    parent's OWN list, so internalisation is not an obstacle;
+(B) Omega_K falling in A     -> strategic substitutes.
+Both by numerical differentiation of Omega, using none of the algebra.
+
+  (A) concavity  violated   0 / 150 over all shares, 0 / 112 inside the frontier
+  (B) substitutes violated  38 / 150 over all shares, 0 / 112 inside the frontier
+
+
+  These are not assumptions. For Cournot with eta = 1 they have CLOSED
+  FORMS, and the closed forms are checked against the numbers above:
+
+  closed form vs numerical differentiation      : 4.35e-05
+  (A) violated at any share, sigma in 2..12     : 0
+  (B) violated at any share <= 1/2              : 0
+  slack at S = 1/2 equals 1/sigma, error        : 0.00e+00
+  'no parent above 1/2' fails for other eta or Bertrand : 0
+  worst slack across those cases                : 0.125
+
+  (A) is proved at EVERY share. (B) is proved at every share <= 1/2, with
+  slack exactly 1/sigma at the boundary. So the theorem's hypothesis is
+  "no parent holds more than half of any market" -- an economically
+  meaningful restriction that can be checked in the data, not a technical
+  assumption. It is sufficient, not necessary: uniqueness is found beyond it.
+
+==============================================================================
+PART C   GENERAL EQUILIBRIUM: DOES IT ADD UP, AND IS IT UNIQUE?  [cournot]
+==============================================================================
+
+Accounting, at ARBITRARY wages (not at the solution)
+----------------------------------------------------
+  revenue = factor + intermediates + tariffs + gross profit : 0.00e+00
+  wage bill = variable labour + fixed-cost labour           : 0.00e+00
+  Walras' law, sum_n w_n Z_n = 0, OFF equilibrium           : 7.76e-16
+  world income = world final expenditure                    : 4.66e-16
+  country budget X = wL + owned NET profit + tariffs        : 1.61e-16
+  fixed costs / gross profit / net profit, share of revenue : 0.002  0.406  0.404
+
+The price loop still contracts, because entry is frozen while it runs
+---------------------------------------------------------------------
+  observed modulus 0.550   against nu = 0.550   final gap 1.11e-11
+  Freezing the configuration is not a convenience: it is what keeps the
+  inner block the same provably convergent map the no-entry model had.
+
+Entry is invariant to a UNIFORM change in costs
+-----------------------------------------------
+  Shares, markups and profits are unchanged by a common cost factor, so no
+  entry margin should move. This is why the outer discrete loop behaves.
+    all costs x 0.50 : configuration unchanged? yes
+    all costs x 2.00 : configuration unchanged? yes
+
+Theorem 4: the two conditions behind wage uniqueness, machine-checked
+---------------------------------------------------------------------
+  Wage uniqueness is a theorem under (H1) no group above half of any market
+  -- the same one half as Theorem 2 -- and (H2) demand beats exposure. Both
+  are inequalities in objects the solver computes, so they are CHECKED. The
+  lemmas behind them are verified against numerical differentiation here.
+  (H2) cannot be dropped: wage_uniqueness.jl exhibits a counterexample.
+
+  LEMMA 3  d ln P / d ln w >= 0, min entry      : +9.033e-02
+  LEMMA 3  unit row sums, max error             : 1.33e-15
+  LEMMA 3  analytic vs numerical pass-through   : 9.66e-08
+  LEMMA 4  share response  -chi (lam_g - Lam)   : 1.48e-07
+  LEMMA 4  plant bill, three-term formula       : 1.37e-07
+  LEMMA 4  country wage bill  d ln W_n          : 7.50e-08
+  (H1) largest parent share / largest eps_mu    : 0.478 / 0.916
+  (H2) holds for 6 of 6 ordered pairs, min slack +0.1459
+  gross substitutes: 6 of 6 off-diagonals positive, worst +0.2060
+  index of this equilibrium is +1               : true
+  CONTRACTION: min M_nn +0.022, largest damping 1.023
+  CONTRACTION: min entry of (1-k)I+kM at k=0.25 : +0.0515
+  CONTRACTION: Birkhoff coefficient             : 0.8191  < 1, the solver's map contracts
+
+The solver's own map is a contraction -- uniqueness, constructively
+-------------------------------------------------------------------
+  Theorems 4 and 5 rule out a second equilibrium with a condition imported
+  from outside. This is the direct statement: the map the solver iterates,
+  w <- w (LD/L)^kappa, is homogeneous of degree one, its log-Jacobian
+  (1-kappa)I + kappa M has unit row sums by that homogeneity, and where it
+  is entrywise POSITIVE Birkhoff's theorem makes it a contraction in
+  Hilbert's projective metric. One contraction, one fixed point, and the
+  iteration converges to it from anywhere.
+
+  spread     pts      min M   min M_nn max damping   min A_k  Birkhoff
+  0.00         1    +0.0221    +0.0221     1.0226   +0.0515    0.8191
+  0.40        10    +0.0065    +0.0065     1.0065   +0.0458    0.8295
+  0.80        10    -0.0049    -0.0049     0.9951   +0.0409    0.8535
+  direct check on 12 pairs: worst observed ratio 0.6991 against the
+  certified bound 0.8485 -- bound respected: yes
+  The damping is not a numerical convenience: where labour demand is
+  elastic the UNDAMPED map is not monotone at all, and the model itself says
+  how much damping is needed. Here the largest admissible kappa is 0.995
+  and the solver uses 0.25. At the calibrated five-country economy the
+  requirement is 0.402 (quantities) and 0.390 (prices); with the
+  input-output block off it tightens to 0.273, where 0.15 would be safer.
+
+Uniqueness: same wages AND the same set of firms, from every start
+------------------------------------------------------------------
+  The theorem above holds the operating set fixed. This is the check it
+  cannot make, and the one that did not exist before entry: wages could
+  agree while a DIFFERENT SET OF FIRMS operated, which is the multiplicity
+  the entry order was invented to paper over.
+
+  random wage starts                              : 5
+  worst disagreement in equilibrium wages         : 2.01e-11
+  worst labour-market residual                    : 4.62e-12
+  runs where every market carried the certificate : 5 / 5
+  largest single-parent share anywhere            : 0.478  (frontier 0.548)
+  unresolved integer slots, worst run             : 0
+  DISTINCT ENTRY CONFIGURATIONS ACROSS THE STARTS : 1   <- must be 1
+
+  The same firms enter from every start -- not just the same wages, the same
+  market structure, which is the object entry was added to determine.
+
+==============================================================================
+PART D   THE SIX STYLIZED FACTS  [cournot]
+==============================================================================
+  potential plant-destination pairs : 608;  active 512 (84.2%);  unresolved 2
+
+FACT 1  multinationals are a large share of export value, and FOREIGN ones dominate
+-----------------------------------------------------------------------------------
+  model  total 0.631 = foreign 0.560 + domestic 0.071
+  data   total 0.46-0.74, foreign dominant, domestic 0.02-0.28
+  The LEVEL is one fitted parameter. The SPLIT is not: it comes from the
+  pool of potential parents scaling with country size, so poor countries
+  rarely breed a parent good enough to clear the multinational threshold.
+  With a uniform pool (zeta = 0) the model puts domestic at 0.245 and
+  contradicts the fact outright.
+
+FACT 2  foreign multinationals specialise in COMPLEX goods, domestic ones in simple
+-----------------------------------------------------------------------------------
+  model foreign  by sector: 0.33 0.70 0.65 0.66   gradient +0.63
+  model domestic by sector: 0.10 0.14 0.00 0.06   gradient -0.16
+  data  foreign  0.52 0.52 0.63 0.65 0.70   gradient +0.43
+  data  domestic 0.12 0.02 0.06 0.03 0.02   gradient negative
+  The FOREIGN half is reproduced and is the one that matters: it comes from
+  hq_gap, the statement that headquarter services are a capability a
+  stand-alone local firm cannot buy, and that complex goods need them most.
+  Without hq_gap the model gets it BACKWARDS (gradient -0.58), because a
+  foreign affiliate pays its parent's high wage on the alpha_k share and
+  the extensive margin amplifies that wrong-sign force.
+  THE DOMESTIC HALF IS NOT ROBUST and is reported, not claimed: it comes out
+  NEGATIVE in a four-country world and POSITIVE in a five-country one. A
+  domestic multinational is a LAC parent, so it escapes the hq_gap penalty
+  while still paying a low home wage on the alpha share -- the wrong-sign
+  force again, now working in its favour. The model pins down that domestic
+  multinationals are FEW (Fact 1), not where they specialise. Open item.
+
+FACT 3  parents come from a small set of countries -- GENERATED
+---------------------------------------------------------------
+  model parent-country HHI 0.396, top parent 0.525
+  data                0.130,            0.250
+  Nothing tells the model which countries host parents: the capability law
+  is identical everywhere. Concentration comes from a bigger pool having a
+  better maximum. It overshoots in a small world, as it must.
+
+FACT 4  grouping plants by parent RAISES measured concentration
+---------------------------------------------------------------
+  model  0.121 -> 0.121 -> 0.182   (x1.50)
+  data   0.192 -> 0.209 -> 0.215   (x1.12)
+  ORDERING REPRODUCED. It is a PREDICTION, not a target, and it is the reason
+  internalisation had to survive the entry rewrite: the whole uniqueness
+  theorem exists so that this fact could.
+  parents operating in >=2 countries: 14% of parents, 68% of value
+  data: parents with >100 affiliates are 9% of parents and 56% of value
+  The direction is right. The LEVEL is not comparable: the model's network
+  size runs 1..N countries, the data's runs 1..100+ affiliates worldwide.
+
+FACT 5  more multinationals, MORE exports by local firms -- THE ONE FAILURE
+---------------------------------------------------------------------------
+  non-MNE export value in sector 2: 0.0484 -> 0.0016   change -96.7%
+  data: POSITIVE. Saturated specification, +0.24 (intensive), +0.13 (extensive)
+  STILL NEGATIVE. Business stealing operates on the ENTRY margin too
+  and dominates the cheaper-inputs channel, so entry makes this fact WORSE.
+  Two candidate resolutions, and they are testable against each other:
+   (i) a genuine Javorcik spillover (the `spill` knob), which must now be
+       LARGER than the 0.15 the fixed-roster model needed; or
+  (ii) the empirical coefficient is contaminated: the fixed-effect ladder
+       has no destination x product x year term, so a market-level demand
+       shock raises multinational entry and local exports together.
+  Adding that fixed effect is the decisive test and it is cheap.
+
+FACT 6  distance is a weaker barrier for multinationals
+-------------------------------------------------------
+  ln distance                       -0.558      data -0.164
+  ln distance x MNE                 +0.909      data +0.046
+  ln distance x MNE, present there  +0.455      data +0.067
+  Falls out of d[l,n] running from the PRODUCTION country -- Tintelnot's
+  export platforms. Signs and ordering right; magnitudes too large, and
+  note the data's own -0.164 is an order of magnitude below any gravity
+  estimate, which is a specification smell on the empirical side.
+
+==============================================================================
+SCORECARD
+==============================================================================
+  #   fact                                                verdict
+  ----------------------------------------------------------------------------------
+  1   MNEs a large share of exports, foreign >> domestic  TARGET (level) + GENERATED (split)
+  2   foreign in complex goods, domestic in simple        TARGET (foreign half); domestic half NOT robust
+  3   parents from a small set of countries               GENERATED
+  4   grouping by parent raises concentration             GENERATED -- prediction, not target
+  5   MNE presence raises local firms' exports            FAILS -- worse with entry
+  6   distance a weaker barrier for MNEs                  GENERATED, magnitudes too large
+  ----------------------------------------------------------------------------------
+  THREE parameters are internally calibrated: the fixed cost to the SIZE
+  of the export sample, the capability gap to Fact 2, and the pool scaling
+  zeta to Fact 1's foreign/domestic split. The multinational productivity
+  edge used to be a fourth; with head-office services a capability rather
+  than a factor input it is no longer needed and is set to zero.
+  Facts 3, 4 and 6 are out-of-sample. Fact 5 is the one outright
+  contradiction, and it belongs in the abstract rather than a footnote.
+
+Total 5.3 min

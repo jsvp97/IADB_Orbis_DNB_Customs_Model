@@ -1,0 +1,53 @@
+
+==============================================================================
+A CONTINUUM CERTIFICATE FOR WAGE UNIQUENESS -- INTERVAL ARITHMETIC
+==============================================================================
+  Model: nu = 0 capability baseline (hq_cost = false), Cournot, eta = 1,
+  entry configuration frozen at the solution, country 1 the numeraire.
+  Method: centered form -- exact value at each subbox center plus an
+  interval gradient bound times the radius -- so the enclosure error
+  shrinks QUADRATICALLY with the subdivision.
+  cache stale; re-solving
+  solving the nu = 0 GE with entry (one-off; result is cached)...
+  solved in 0.2 min, gap 8.88e-16
+
+==============================================================================
+VALIDATION: the interval machinery against the model's own numbers
+==============================================================================
+  income X contained: true   wage bill W contained: true
+  M vs the model's finite differences: max gap 1.44e-10
+  M row sums (homogeneity): 1.000000  1.000000  1.000000  1.000000  1.000000
+  analytic gradient of M vs finite differences: max gap 1.07e-07
+  VALIDATION PASSED
+
+==============================================================================
+THE CERTIFICATE: uniform bounds over the whole box, by spread
+==============================================================================
+  spread rho: every ln w_n (n >= 2) ranges over +- rho/2 around ln w0_n;
+  s^4 subboxes, centered form per subbox, bounds hulled.
+  minGS = lower bound of every off-diagonal of M over the box;
+  minA  = lower bound of every entry of (1-k)I + kM at k = 0.25;
+  tau   = certified contraction factor, min(Dobrushin, Birkhoff).
+  A row with tau < 1 is a THEOREM about the continuum: that box holds
+  at most one equilibrium with this entry configuration.
+
+  The damping used is kappa = 0.15, the value Section 31.2 of CLAUDE.md
+  itself recommends at nu = 0 (the fixed points of Psi_kappa are the same
+  equilibria for every kappa, so the uniqueness conclusion is unchanged).
+
+  spread      s  boxes      minGS     minMnn       minA  Dobrushin   Birkhoff   certified
+  0.00        1      1    +0.3650    -2.6691    +0.0548     0.5136     0.7263   YES  (0.1 s)
+  0.02        1      1    +0.3153    -2.7701    +0.0473     0.5653     0.7579   YES  (3.9 s)
+  0.05        2     16    +0.2728    -2.8586    +0.0409     0.6103     0.7848   YES  (62.6 s)
+  0.10        3     81    +0.1636    -3.0833    +0.0245     0.7100     0.8557   YES  (317.0 s)
+  0.15        4    256    +0.1061    -3.2430    +0.0159     0.7825     0.9079   YES  (999.6 s)
+  0.20        5    625    +0.0911    -3.3626    +0.0137     0.8239     0.9245   YES  (2436.0 s)
+  0.30        6   1296    +0.0397    -4.2920    +0.0060     0.9002     0.9650   YES  (5071.2 s)
+
+[killed]
+
+  [run stopped here by hand: the spread-0.40 row (s = 8, 4096 subboxes) needs
+   several further hours and the machine was needed. Certified through spread
+   0.30: the continuum of wage vectors within +-15% (log) of the solution
+   contains exactly the one equilibrium the solver found, entry configuration
+   frozen, kappa = 0.15. Re-run `julia interval_certificate.jl` to extend.]

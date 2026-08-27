@@ -1,0 +1,29 @@
+
+============================================================================
+FACT 5: THE LAMBDA-MARGIN OUTSIDE SUPPLIER  (the CLAUDE.md 35 diagnosis, tested)
+============================================================================
+  Cost-side spillovers cannot flip Fact 5 because with fixed market spending
+  entry is zero-sum in value (35). This adds the missing margin: a large
+  rest-of-world supplier in every market (row_L > 0), so sample exporters hold
+  only the in-sample absorption share lambda and business stealing from entry
+  falls mostly on the outside supply. Spillovers to locals then have someone
+  to take share FROM. Sample draws are bit-for-bit identical with ROW on.
+
+  data target: POSITIVE (+0.087 intensive / +0.061 extensive, saturated FE)
+  row_L   spill   fspill      no extra   with extra   change %  pairs0  pairs1
+  0.0     0.00    0.00         0.04840      0.00162      -96.7      19       1
+  12.0    0.00    0.00         0.05026      0.01447      -71.2      16       7
+  12.0    0.15    0.00         0.08804      0.04404      -50.0      23      16
+  12.0    0.00    0.50         0.05651      0.02143      -62.1      24      22
+  12.0    0.15    0.50         0.09597      0.05510      -42.6      33      36
+  12.0    0.15    1.00         0.10095      0.05746      -43.1      43      47
+  12.0    0.30    0.50         0.13927      0.09704      -30.3      40      44
+  24.0    0.15    0.50         0.09671      0.06131      -36.6      31      32
+
+  Facts and uniqueness diagnostics with the outside supplier on:
+  row=12.0  Fact1 0.572 (f 0.348) grad2 +0.30 HHI 0.277 top 0.389 Fact4  1.60 | minGS +0.0461 resid 7
+
+Total 158.6 min
+row_L   spill  fspill    no extra  with extra  change%  pairs0 pairs1  lambda
+48.0    0.15   0.50      0.09498     0.06835    -28.0      24     32   0.138
+96.0    0.15   0.50      0.09559     0.07318    -23.4      20     29   0.091

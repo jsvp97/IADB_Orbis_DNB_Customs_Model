@@ -1,0 +1,27 @@
+
+============================================================================
+FACT 5: THE FIXED-COST SPILLOVER  (the mechanism the 2026-08-26 test demands)
+============================================================================
+  The saturated empirical test says Fact 5 is REAL at half size (+0.087
+  intensive). The productivity spillover cannot flip the model's sign because
+  business stealing works on the ENTRY margin (30.5). This one works on that
+  margin directly: multinational presence in a (country, sector) lowers LOCAL
+  plants' market-access fixed cost,  F *= (1 + n_mne)^(-fspill).
+
+  data target: POSITIVE (+0.087 intensive / +0.061 extensive, saturated FE)
+  fspill   spill        no extra   with extra   change %   pairs0   pairs1
+  0.00     0.00          0.04840      0.00162      -96.7       19        1
+  0.25     0.00          0.05429      0.00596      -89.0       25        7
+  0.50     0.00          0.05696      0.00893      -84.3       29       15
+  0.75     0.00          0.05950      0.01084      -81.8       34       24
+  1.00     0.00          0.06047      0.01173      -80.6       36       32
+  1.50     0.00          0.06098      0.01204      -80.2       36       36
+  0.50     0.15          0.08250      0.02201      -73.3       34       25
+  1.00     0.15          0.08464      0.02444      -71.1       36       36
+
+  If a row turns the change positive, re-check Facts 1-4 and the uniqueness
+  diagnostics at that point before adopting anything:
+  fspill=0.50  Fact1 0.676 (f 0.533) grad2 +0.41 HHI 0.272 Fact4  1.94 | minGS +0.1541 resid 3
+  fspill=1.00  Fact1 0.673 (f 0.531) grad2 +0.41 HHI 0.272 Fact4  1.94 | minGS +0.1569 resid 0
+
+Total 54.8 min

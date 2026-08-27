@@ -1,0 +1,8 @@
+fixed    LAC exp.   parents    parent cty hhi_aff  hhi_par  ratio   MNE sh
+0.00600  6          6          2          0.555    0.555    1.00    0.91
+0.00200  31         24         3          0.148    0.207    1.40    0.72
+0.00060  59         43         4          0.080    0.121    1.51    0.64
+0.00020  71         53         4          0.071    0.107    1.51    0.62
+0.00005  72         54         4          0.070    0.106    1.51    0.62
+
+data, for reference: parent-country HHI 0.130, affiliate->parent HHI x1.12

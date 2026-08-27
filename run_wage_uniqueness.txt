@@ -1,0 +1,159 @@
+
+============================================================================
+PART 1  THE MARKUP CHANNEL, IN CLOSED FORM
+============================================================================
+  A group's factor bill moves with E S / mu(S); the between-group term of
+  LEMMA 4 has the gross-substitutes sign exactly when eps_mu(S) <= 1.
+  Closed form, Cournot eta = 1:  mu = sigma/[(sigma-1)(1-S)], so
+  eps_mu = S/(1-S) < 1  <=>  S < 1/2. THE SAME HALF AS THEOREM 2.
+
+  conduct   sigma  eta    eps_mu<1 up to  entry frontier (Thm 2)
+  cournot   5.0    1.0    0.500           0.548
+  cournot   5.0    1.5    0.858           0.936
+  cournot   8.0    1.0    0.500           0.532
+  cournot   3.0    1.0    0.500           0.572
+  bertrand  5.0    1.0    0.691           0.680
+  bertrand  5.0    1.5    0.790           0.776
+  bertrand  8.0    1.0    0.739           0.708
+  bertrand  3.0    1.0    0.634           0.660
+
+  eps_markup is the exact closed form S mu'(S)/mu(S), not a difference.
+  closed form vs numerical differentiation        : 8.58e-10
+
+============================================================================
+PART 2  THE CALIBRATED ECONOMY: LEMMAS CHECKED, HYPOTHESES EVALUATED
+============================================================================
+  Every analytic step of LEMMA 3 and LEMMA 4 is checked against numerical
+  differentiation of the solved model, the same discipline Theorem 2 gets
+  from verify_conditions_analytic().
+
+  conduct = cournot   wages = [1.0, 1.09289, 0.36445, 0.36128, 0.3305]  (labour-market gap 5.9e-12)
+  LEMMA 3  d ln P / d ln w >= 0, min entry      : +3.832e-02
+  LEMMA 3  unit row sums, max error             : 1.33e-15
+  LEMMA 3  analytic vs numerical pass-through   : 8.97e-08
+  LEMMA 4  share response  -chi (lam_g - Lam)   : 1.63e-07
+  LEMMA 4  plant bill, three-term formula       : 1.62e-07
+  LEMMA 4  country wage bill  d ln W_n          : 8.72e-08
+  (H1) largest parent share / largest eps_mu    : 0.297 / 0.423
+  (H2) holds for 20 of 20 ordered pairs, min slack +0.0094
+  gross substitutes: 20 of 20 off-diagonals positive, worst +0.1516
+  index of this equilibrium is +1               : true
+  CONTRACTION: min M_nn -1.492, largest damping 0.401
+  CONTRACTION: min entry of (1-k)I+kM at k=0.25 : +0.0379
+  CONTRACTION: Birkhoff coefficient             : 0.8149  < 1, the solver's map contracts
+
+  conduct = bertrand  wages = [1.0, 1.06604, 0.34352, 0.34036, 0.31482]  (labour-market gap 1.5e-15)
+  LEMMA 3  d ln P / d ln w >= 0, min entry      : +3.800e-02
+  LEMMA 3  unit row sums, max error             : 2.44e-15
+  LEMMA 3  analytic vs numerical pass-through   : 8.73e-08
+  LEMMA 4  share response  -chi (lam_g - Lam)   : 1.61e-07
+  LEMMA 4  plant bill, three-term formula       : 1.58e-07
+  LEMMA 4  country wage bill  d ln W_n          : 1.16e-07
+  (H1) largest parent share / largest eps_mu    : 0.365 / 0.162
+  (H2) holds for 18 of 20 ordered pairs, min slack -0.0195
+  gross substitutes: 20 of 20 off-diagonals positive, worst +0.1449
+  index of this equilibrium is +1               : true
+  CONTRACTION: min M_nn -1.577, largest damping 0.388
+  CONTRACTION: min entry of (1-k)I+kM at k=0.25 : +0.0362
+  CONTRACTION: Birkhoff coefficient             : 0.8153  < 1, the solver's map contracts
+
+============================================================================
+PART 3  HOW FAR DOES THE THEOREM REACH?
+============================================================================
+  Gross substitutes on the set of wage vectors whose SPREAD -- the log gap
+  between the highest and lowest relative wage -- is at most 2R implies at
+  most ONE equilibrium of spread at most R. (H1) and (H2) are sufficient
+  for gross substitutes, so they are conservative: the last two columns
+  show how much room the sufficient condition gives up.
+
+  conduct   spread       pts    H1 slack    H2 slack min M offdg GS fails
+  cournot   0.00           1     +0.5767     +0.0094     +0.1516        0
+  cournot   0.15          20     +0.5748     -0.0077     +0.1466        0
+  cournot   0.30          20     +0.5615     -0.0222     +0.1413        0
+  cournot   0.50          20     +0.5502     -0.0601     +0.1369        0
+  cournot   0.80          20     +0.5393     -0.0724     +0.1119        0
+  bertrand  0.00           1     +0.8377     -0.0195     +0.1449        0
+  bertrand  0.15          20     +0.8297     -0.0449     +0.1396        0
+  bertrand  0.30          20     +0.8187     -0.0632     +0.1336        0
+  bertrand  0.50          20     +0.8101     -0.1118     +0.1163        0
+  bertrand  0.80          20     +0.8074     -0.1250     +0.1024        0
+
+============================================================================
+PART 4  THE COUNTEREXAMPLE: GROSS SUBSTITUTES IS NOT A THEOREM HERE
+============================================================================
+  Three countries, one sector. Country 1 has local firms. Country 2 owns
+  parents whose ONLY plants are in country 3, so every euro country 2 earns
+  is a head-office payment for production abroad. Raise w_3: those parents
+  get dearer, lose share to country 1, and country 2's wage bill FALLS.
+  Every design below has enough local rivals that NO parent holds more than
+  a third of any market, so (H1) is satisfied throughout and cannot be what
+  fails. The maxS column is the largest parent share over ALL markets.
+
+  design                                            M[3,2] min offdg  H2 slack    maxS   index
+   14 rivals in 1, 10 in 3, alpha 0.15, 3 parents   -0.2192   -1.4288   -1.4288   0.177      +1
+   10 rivals in 1,  6 in 3, alpha 0.30, 2 parents   -0.3096   -0.8270   -0.8270   0.248      +1
+   10 rivals in 1,  6 in 3, alpha 0.50, 2 parents   -0.3546   -0.3920   -0.4482   0.293      +1
+   10 rivals in 1,  6 in 3, alpha 0.80, 2 parents   +0.0975   +0.0565   -0.3362   0.308      +1
+    6 rivals in 1,  3 in 3, alpha 0.30, 2 parents   -0.2694   -0.6344   -0.6344   0.291      +1
+   10 rivals in 1,  6 in 3, alpha 0.30, Bertrand    -0.5030   -1.2263   -1.2263   0.325      +1
+   10 rivals in 1,  6 in 3, alpha 0.30, nu = 0.55   -0.1145   -0.5116   -0.5116   0.227      +1
+
+  READING. The largest parent share anywhere is 0.33, so (H1) is satisfied at
+  every one of these -- and gross substitutes fails at six of the seven. It is
+  (H2), the head-office exposure condition, that is doing the work, and the
+  counterexample is what proves it cannot be dropped.
+
+  Note the alpha pattern, which is the opposite of the obvious guess: the
+  failure is WORST at alpha = 0.15 and DISAPPEARS by alpha = 0.80. A large
+  head-office share is not the problem. The problem is a country whose whole
+  income is a thin slice of firms whose costs are set by one other country.
+
+============================================================================
+PART 5  WHAT DISTINGUISHES THE CALIBRATION FROM THE COUNTEREXAMPLE
+============================================================================
+  psi[n,m] = share of country n's labour income paid by plants tied to
+  country m, as host or as parent. The counterexample drives it to ONE.
+
+  calibrated economy, cournot:
+    0.000  0.132  0.134  0.151  0.090
+    0.082  0.000  0.056  0.189  0.011
+    0.212  0.164  0.000  0.147  0.039
+    0.149  0.253  0.040  0.000  0.034
+    0.157  0.209  0.110  0.167  0.000
+    largest bilateral exposure = 0.2534
+
+  calibrated economy, bertrand:
+    0.000  0.143  0.146  0.182  0.107
+    0.086  0.000  0.057  0.219  0.013
+    0.244  0.193  0.000  0.187  0.052
+    0.157  0.314  0.046  0.000  0.045
+    0.166  0.225  0.121  0.190  0.000
+    largest bilateral exposure = 0.3139
+
+  counterexample economy:
+    0.000  0.000  0.000
+    0.000  0.000  1.000
+    0.000  0.532  0.000
+    largest bilateral exposure = 1.0000
+
+============================================================================
+PART 6  WHERE GROSS SUBSTITUTES FAILS, IS THE EQUILIBRIUM STILL UNIQUE?
+============================================================================
+  Gross substitutes is sufficient, not necessary. The weaker requirement is
+  that every equilibrium have INDEX +1 -- sign det of the reduced Jacobian
+  equal to (-1)^(N-1). Walras' law makes the wage bills the left null vector
+  of I - M, so every diagonal cofactor of I - M is proportional to a wage
+  bill: THE INDEX DOES NOT DEPEND ON WHICH COUNTRY IS THE NUMERAIRE. Below,
+  random economies from the family in PART 4, each solved from 25 dispersed
+  starts.
+
+  economies solved                                    : 50
+  gross substitutes FAILS at the equilibrium in       : 34
+  index differs from +1 in                            : 0
+  index depends on the choice of numeraire in         : 0
+  MULTIPLE equilibria found in                        : 0
+
+  So the failure of gross substitutes is real but it is not fatal: the
+  index condition, which is all uniqueness actually needs, survives it.
+  Theorem 4 proves the sufficient condition; this is the evidence that the
+  necessary one is much weaker, and it is the honest limit of the result.

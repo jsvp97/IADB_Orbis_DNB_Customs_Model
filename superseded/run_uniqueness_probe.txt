@@ -1,0 +1,36 @@
+==========================================================================
+PART 1  WHEN DOES A GROUP'S WAGE BILL RISE WITH ITS MARKET SHARE?
+==========================================================================
+  Bill proportional to S/mu(S); rises iff eps_mu(S) < 1.
+  conduct    sigma  eta    threshold     entry frontier (Thm 2)
+  cournot    5.0    1.0    0.501         0.548
+  cournot    5.0    1.5    0.858         0.936
+  cournot    8.0    1.0    0.501         0.532
+  cournot    3.0    1.0    0.501         0.572
+  bertrand   5.0    1.0    0.691         0.680
+  bertrand   5.0    1.5    0.790         0.776
+  bertrand   8.0    1.0    0.739         0.708
+  bertrand   3.0    1.0    0.634         0.660
+
+  Closed form, Cournot eta=1: mu = sigma/[(sigma-1)(1-S)], so eps_mu = S/(1-S),
+  which is < 1 exactly when S < 1/2. THE SAME ONE-HALF THRESHOLD AS THEOREM 2.
+
+==========================================================================
+PART 2  IS GROSS SUBSTITUTES SATISFIED AT THE SOLVED EQUILIBRIUM?
+==========================================================================
+  conduct = cournot
+    off-diagonals d LD_n/d ln w_m (n != m): 20 of 20 are POSITIVE
+    most negative off-diagonal            : +0.0999
+    diagonals d LD_n/d ln w_n             : 5 of 5 NEGATIVE
+    homogeneity check, max |row sum|      : 1.78e-10
+    reduced Jacobian: det = +4.9864e+00, eigenvalues all negative-real? true
+
+  conduct = bertrand
+    off-diagonals d LD_n/d ln w_m (n != m): 20 of 20 are POSITIVE
+    most negative off-diagonal            : +0.0915
+    diagonals d LD_n/d ln w_n             : 5 of 5 NEGATIVE
+    homogeneity check, max |row sum|      : 2.11e-10
+    reduced Jacobian: det = +4.7105e+00, eigenvalues all negative-real? true
+
+  READING. Gross substitutes means every off-diagonal is POSITIVE. Where that
+  holds at every equilibrium, uniqueness follows by a standard index argument.

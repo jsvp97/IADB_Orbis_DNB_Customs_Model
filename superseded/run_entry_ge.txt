@@ -1,0 +1,170 @@
+
+==============================================================================
+PART A   DOES THE GENERAL EQUILIBRIUM STILL ADD UP WITH ENTRY?
+==============================================================================
+Fixed costs are real resources. They have to appear as factor payments
+AND be subtracted from distributed profits. If either half were missing,
+Walras' law would break. Checked at ARBITRARY wages, not at the solution.
+
+  revenue = factor + intermediates + tariffs + gross profit : 2.96e-16
+  wage bill = variable labour + fixed-cost labour           : 6.63e-16
+  Walras' law, sum_n w_n Z_n = 0, OFF equilibrium           : 2.21e-16
+  world income = world final expenditure                    : 0.00e+00
+  country budget X = wL + owned NET profit + tariffs        : 1.03e-16
+
+  fixed costs as a share of revenue                        : 0.009
+  gross profit share of revenue                            : 0.276
+  profit NET of entry costs, share of revenue              : 0.267
+  entry passes to settle the configuration                 : 2
+  inner price-loop iterations in total                     : 53
+  entry configuration cycled                               : no
+  slots where a firm would still like to move              : 1 / 432
+
+  The last line is the integer problem, reported rather than hidden.
+  Entry is discrete, so a profile of integers need not have an exact
+  fixed point; when it does not, what is left is a handful of marginal
+  plants. PART F shows that residue shrinking as the economy is scaled
+  up, which is the sense in which it does not matter.
+
+==============================================================================
+PART C   DOES THE PRICE LOOP STILL CONTRACT ONCE ENTRY IS INSIDE IT?
+==============================================================================
+The loop is arranged so the answer is yes by construction: the entry
+configuration is FROZEN while prices iterate, so the inner map is exactly
+the one the no-entry model proved is a contraction of modulus max nu.
+Measured below, alongside the discrete outer loop, which has no proof.
+
+  INNER loop, entry frozen: observed modulus        : 0.550
+  nu, the modulus the contraction proof guarantees  : 0.550
+  price gap after 40 passes                         : 8.54e-11
+
+  OUTER loop, entry free: passes to settle          : 3
+  OUTER loop, entry free: cycled                    : no
+  ... over how many of the 432 affiliate-market slots : 0
+
+  Uniform-cost invariance, the reason the outer loop behaves. Scale EVERY
+  delivered cost by a common factor and re-solve entry. Shares, markups
+  and profits are all unchanged, so no margin should move:
+    all costs x 0.50 : entry configuration unchanged? yes
+    all costs x 0.80 : entry configuration unchanged? yes
+    all costs x 1.25 : entry configuration unchanged? yes
+    all costs x 2.00 : entry configuration unchanged? yes
+
+  Confirmed. Only RELATIVE cost changes move entry, and the I-O loop moves
+  costs largely in common. What is left over is integer, not chaotic:
+  the cycle above involves a couple of marginal plants, and PART F sizes it.
+
+==============================================================================
+PART B   IS THE GENERAL EQUILIBRIUM WITH ENTRY UNIQUE?
+==============================================================================
+Market-level uniqueness is a theorem, and every market carries its own
+certificate. GE uniqueness is not proved -- gross substitutes can fail with
+variable markups -- so it is tested the only honest way: many random wage
+starts, spread wide, all solved to the same place. A match between two
+FAILURES would not count, so the residual is reported too.
+
+The line that could not be checked before is the last one. Wages could
+agree while a DIFFERENT SET OF FIRMS was operating; that would be exactly
+the multiplicity the entry order was invented to paper over.
+
+  random wage starts                              : 8
+  worst disagreement in equilibrium wages         : 0.00e+00
+  worst labour-market residual at those solutions : 1.55e-15
+  runs ending with an unresolved integer margin   : 0
+  unresolved slots, worst run                     : 0
+
+  runs where EVERY market carried the certificate : 8 / 8
+  largest single-parent share anywhere            : 0.199  (frontier 0.548)
+  DISTINCT ENTRY CONFIGURATIONS ACROSS THE STARTS : 1   <- must be 1
+
+  The same firms enter from every start. Not just the same wages -- the same
+  market structure, which is the object entry was added to determine.
+
+==============================================================================
+PART D   WHAT ENTRY BUYS: THE STYLIZED FACTS
+==============================================================================
+A separate economy from the audit one, with FOUR sectors so the
+complexity gradient is measurable. Every parent has a POTENTIAL plant in
+every country; nothing says which ones exist -- entry does.
+
+  fixed cost f_k               : 0.0006  (pinned by the export sample)
+  MNE productivity edge        : 0.10  (1.11x)
+  HQ capability slope          : 1.20
+
+  potential affiliate-destination pairs : 672
+  of which active in equilibrium        : 498  (74.1%)
+  entry rate, foreign-owned plants      : 0.889
+  unresolved integer slots              : 3 / 672
+
+  FACT 1  MNEs are a large share of LAC export value
+    model 0.631      data 0.47-0.74      <- calibration target
+    The LEVEL is still one fitted parameter. What entry changes is that
+    the parameter now works on the EXTENSIVE margin: it decides which
+    foreign plants exist, not just how much they sell.
+
+  FACT 3  parents come from a few countries -- GENERATED. The capability
+          law is identical in every country and the origin of each
+          potential parent is drawn uniformly, so nothing tells the model
+          which countries should host parents.
+    parent-country HHI  model 0.314   data 0.130
+    top parent country  model 0.414   data 0.250
+
+  FACT 4  grouping affiliates by parent RAISES measured concentration.
+          The ORDERING is a prediction, not a target -- and it is the
+          reason internalisation had to survive the entry rewrite.
+    affiliate 0.112  ->  parent x country 0.112  ->  parent 0.154  (x1.37)
+    data      0.192 ->                  0.209 ->        0.215  (x1.12)
+    ORDERING REPRODUCED with the entry margin open.
+
+  FACT 2  foreign ownership rises with complexity (alpha_k rising in k).
+    foreign share by sector : 0.16 0.26 0.33 0.27
+    gradient on alpha_k     : +0.26      data +0.43
+    capability slope used   : 1.20
+    Entry makes this fact HARDER, not easier: a foreign affiliate pays its
+    parent's wage on the alpha share, parents sit in high-wage countries,
+    and the extensive margin amplifies that wrong-sign force. The slope is
+    a calibration target, so this is a fitted number, not a prediction.
+
+==============================================================================
+PART E   FACT 5, WITH THE ENTRY MARGIN OPEN
+==============================================================================
+The model's one outright contradiction. A fixed roster of firms predicts
+that adding multinationals CUTS local exporters' value, 42% in the
+previous pass; the data say it raises them. Entry is the untested
+channel: multinationals buy inputs locally, which lowers the price index,
+which lets more local firms clear their own entry cutoff. Does the
+extensive margin flip the sign?
+
+                                            no extra MNE    +12 MNEs
+  non-MNE export value, sector 2                  0.1720      0.0144
+  active local plant-market pairs, sector 2           86          48
+  overall entry rate                               0.644       0.554
+
+  change in non-MNE export value: -91.6%   (data: positive; fixed roster: -42%)
+
+  STILL NEGATIVE. Entry softens the contradiction but does not reverse
+  it; the number above is what the spillover would still have to
+  overturn. Report it as such rather than as a fix.
+
+==============================================================================
+PART F   THE INTEGER PROBLEM, AND WHY IT DOES NOT MATTER
+==============================================================================
+Entry is a choice over whole plants, so an exact fixed point in integers
+need not exist. This is not specific to our model -- it is the standard
+integer problem of free entry -- but it should be sized rather than
+asserted away. Scale the economy up and watch the unresolved margin fall
+as a share of the market.
+
+  firms     potential   active        unresolved    unresolved share
+  80        320         242           1             0.0031
+  160       640         369           0             0.0000
+  320       1280        582           3             0.0023
+  480       1920        768           2             0.0010
+
+  The unresolved margin is a fixed handful of marginal plants, so its
+  SHARE of the market falls roughly like 1/n. In the limit it vanishes,
+  which is the usual sense in which integer entry is innocuous. The point
+  worth keeping is that this residue is a NEAR-MISS on existence, not a
+  multiplicity: nothing here requires choosing between equilibria.
+
+Total 36.7 min

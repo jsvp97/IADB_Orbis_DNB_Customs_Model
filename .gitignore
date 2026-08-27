@@ -1,0 +1,16 @@
+# LaTeX build artifacts (PDFs are committed; the aux chain is not)
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.synctex.gz
+
+# regenerable solver cache (rebuilt by interval_certificate.jl on first run)
+interval_cache.txt
+
+# third-party journal articles: kept locally, not redistributed
+docs/papers/
+
+# OS noise
+Thumbs.db
+.DS_Store

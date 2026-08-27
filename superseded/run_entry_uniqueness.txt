@@ -1,0 +1,77 @@
+==============================================================================
+PART 1   THE TWO CONDITIONS BEHIND THE THEOREM
+==============================================================================
+  CONDITION A  Omega strictly concave in own K  : violated 0 / 400  (worst -9.85e-19)
+  CONDITION B  Omega_K strictly falling in A    : violated 101 / 400  (worst +7.22e-01)
+
+  Shares are drawn across the WHOLE range (0.02 to 0.96), including
+  shares no parent in this model ever reaches. Restricted to shares
+  below the frontier reported next -- the theorem's actual hypothesis:
+    CONDITION A violated 0 / 300      CONDITION B violated 1 / 300
+
+  sigma    eta      frontier (this model)   frontier (sharper notion)
+  5.0      1.0      0.548                   0.532
+  5.0      1.5      0.936                   0.652
+  5.0      2.5      1.000                   0.624
+  4.0      1.0      0.556                   0.536
+  8.0      1.0      0.532                   0.524
+  3.0      1.0      0.572                   0.540
+
+  READING. Concavity holds everywhere; it is unconditional. Strategic
+  substitutability does not: past a share of about one half, Cournot
+  profit is convex enough in the share that a parent's marginal value
+  of capability RISES as the market aggregate grows. So the theorem carries a
+  hypothesis with real content -- NO SINGLE PARENT HOLDS MORE THAN
+  ABOUT HALF OF A MARKET -- rather than being free. It is checked at
+  the solution, market by market, not assumed. The frontier is a
+  SUFFICIENT condition: PART 3 finds uniqueness beyond it too.
+
+==============================================================================
+PART 3   IS THE ENTRY EQUILIBRIUM UNIQUE, WITH INTERNALISATION?
+==============================================================================
+Brute force over EVERY configuration -- each parent choosing any subset of
+its own affiliates -- keeping the Nash ones, where a deviation is scored on
+the RE-SOLVED market equilibrium. This is the case Gaubert-Itskhoki's
+cutoff cannot handle and Yang resolves by imposing an order.
+
+  markets with a pure-strategy entry equilibrium  : 120 / 120
+    of those, UNIQUE                              : 120
+    of those, multiple                            : 0
+  solver returned an answer                       : 120
+  solver issued its uniqueness CERTIFICATE        : 120
+  certificate issued where brute force found many : 0   <- must be 0
+
+  The cheap solve uses the model's entry condition (aggregate taken as
+  given). Brute force uses the sharper one (every deviation re-solves the
+  market). How far apart are they?
+    cheap answer already an exact Nash equilibrium : 82 / 120
+    cheap answer survives nash_refine untouched    : 82 / 120
+    after one refinement it is an exact Nash eq.   : 120 / 120
+
+  READING. Brute force is the referee: it enumerates every configuration
+  with parents internalising and checks each deviation on the re-solved
+  equilibrium. It finds ONE equilibrium every time -- which is the claim
+  that matters, and the claim the old order-selection device was there to
+  paper over. The certificate is what the model can carry into a GE loop,
+  where brute force is not affordable.
+
+==============================================================================
+PART 4   IS THE BEST RESPONSE MONOTONE IN THE AGGREGATE?
+==============================================================================
+K*(A) must be non-increasing for every parent, and sum_g S_g(A) decreasing.
+Tested on the exact discrete subset problem the solver solves.
+
+  K*(A) NOT non-increasing, over the whole grid : 193 / 1200  (worst rise +3.23e+01)
+  ... restricted to shares inside the frontier  : 0 / 1200
+  markets where sum_g S_g(A) is NOT decreasing   : 0 / 200
+
+  The grid runs over six orders of magnitude in A, so most of it sits far
+  outside anything the model visits: at the low end a single parent owns
+  the market outright, which is exactly where condition B lapses. Inside
+  the frontier the monotonicity is clean, and the object the solver
+  actually relies on -- the clearing function -- is decreasing everywhere.
+
+  Compare with the earlier pass, which found the Gaubert-Itskhoki condition
+  violated in 226/300 cases once parents internalised. That condition mixes
+  a firm's own effect with its rivals'. Separated, the own effect is
+  concavity and the rival effect is substitutability, and each behaves.
