@@ -243,8 +243,10 @@ and the third is non-negative exactly when $S\le\frac12$. At $S=\frac12$ its val
 exactly $\boxed{1/\sigma}$ --- so at $\sigma=5$ the condition is 20\% from binding.
 
 \begin{theorem}[The entry outcome is unique]\label{t:entry}
-Under Assumption~\ref{a:mu}, if in every market no group's share exceeds one half, the
-entry equilibrium is unique. No order of moves, no selection rule, and groups still
+Under Assumption~\ref{a:mu}, if no group's share exceeds one half in any market on the
+region between candidate outcomes (the exact frontier is $0.545$ at $\sigma=5$; the
+computed solution sits at $\approx0.30$), and payoff ties are absent (generic), there
+is at most one entry outcome. No order of moves, no selection rule, and groups still
 compete with themselves.
 \end{theorem}
 
@@ -366,8 +368,8 @@ solver iterates. It is homogeneous of degree one, so it acts on the projective s
 vectors, and its log-Jacobian $(1-\kappa)I+\kappa M$ has unit row sums by that homogeneity.
 Where that matrix is entrywise positive --- gross substitutes off the diagonal, and
 $\kappa<1/(1-\min_n M_{nn})$ on it --- Birkhoff's theorem makes $\Psi_\kappa$ a strict
-contraction in Hilbert's metric. \textbf{One contraction, one fixed point, and the algorithm
-converges to it from any start in the region where the positivity holds} --- that
+contraction in Hilbert's metric. \textbf{One contraction, hence at most one fixed point
+in the region; the algorithm converges to it whenever its iterates stay there} --- the
 positivity is checked, not proved in general, which is the honest qualifier; but in the
 $\nu=0$ version it is now \emph{computer-certified on the continuum} of every wage
 vector within $\pm15\%$ (log) of the solution, by outward-rounded interval arithmetic,
@@ -419,11 +421,17 @@ under both conducts. Largest group share at the solution: $0.344$ (quantities), 
 2 & foreign firms in complex goods & $+0.42$ & $+0.43$ & fitted; \emph{local half unresolved}\\
 3 & parents from few countries & $0.273$ & $0.130$ & \textbf{produced}, overshoots\\
 4 & grouping by owner raises concentration & $\times1.94$ & $\times1.12$ & \textbf{produced} --- a prediction\\
-5 & MNEs present $\Rightarrow$ local exports & $-100\%$ & positive & \textbf{fails}, worse with entry\\
+5 & MNEs present $\Rightarrow$ local exports & $+46\%^{\dagger}$ & positive & \textbf{positive in the $\lambda$ config.}; fails in core\\
 6 & distance matters less for MNEs & $-0.52/{+}0.70$ & $-0.16/{+}0.05$ & \textbf{produced}, too large\\
 \bottomrule
 \end{tabular}
 \end{center}
+
+\noindent {\footnotesize $^{\dagger}$In the six-fact $\lambda$ configuration
+(\texttt{julia mne\_model.jl lambda}: outside supplier at $\lambda\approx0.07$ plus
+two spillovers to single-plant locals, fitted); there Fact~1 is $0.49$
+($0.39/0.11$), Fact~4 improves to $\times1.67$, and one sign inside Fact~6 flips.
+The core calibration gives $-97\%$ and keeps the failure visible.}
 
 \noindent Three parameters are fitted (entry cost to the \emph{number of exporters};
 head-office disadvantage to Fact 2's gradient; pool scaling to Fact 1's split), so Facts 3,
@@ -442,10 +450,14 @@ leaves $-80\%$, because with market spending fixed, entry is zero-sum in value. 
 mechanism must instead expand the origin's \emph{penetration} of the destination
 market against a rest-of-world supply --- the $\lambda$ margin of the measurement
 operator. That outside supplier is now built into the general equilibrium (uniqueness
-untouched), and it works: it is the first channel to move the fact at first order, the
-\emph{extensive} margin flips to the data's sign, and at the data's $\lambda\approx0.09$
-the response moves from $\approx-2.9$ to $\approx-0.2$ per log-unit of international
-presence, against the measured $+0.087$. What remains is a joint recalibration with
-the margin on --- the model's next task.
+untouched, and the largest group share \emph{falls}), and with it the fact turns
+\textbf{positive on both margins}: at $\lambda\approx0.07$ --- sample exporters
+holding $7\%$ of their destination markets, as in the data --- with the two spillovers
+accruing to single-plant locals, the response is $+46\%$ at the experiment's dose,
+magnitude within a factor of three of the saturated estimate. This \emph{six-fact
+configuration} costs three additional fitted parameters and one flipped sign inside
+Fact~6, and is reported beside the core calibration, not silently in its place; the
+remaining discipline is to identify $\lambda$ from measured absorption shares rather
+than from Fact~5 itself.
 
 \end{document}

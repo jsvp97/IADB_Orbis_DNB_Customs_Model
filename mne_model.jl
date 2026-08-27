@@ -2176,7 +2176,8 @@ function world_economy(rng; N = 5, K = 4, n_rich = 2, eta = 1.0, conduct = :cour
                        n_dom = 6, n_pot_par = 18, theta_par = 4.0, zeta = 1.5,
                        mne_adv = 0.0, adv_slope = 1.2, hq_gap = 1.3,
                        nu = 0.55, io_own = 0.45, fscale = 0.0006, gamma_mp = 1.18,
-                       spill = 0.0, fspill = 0.0, extra_mne_sector = 0, extra_n = 10,
+                       spill = 0.0, fspill = 0.0, spill_fringe = false,
+                       extra_mne_sector = 0, extra_n = 10,
                        hq_cost = false, tariff = 0.0,
                        row_L = 0.0, row_z = 2.2, row_ndom = 18, row_dist = 2.5)
     alpha = collect(range(0.10, 0.55, length = K))
@@ -2225,13 +2226,24 @@ function world_economy(rng; N = 5, K = 4, n_rich = 2, eta = 1.0, conduct = :cour
     # Knowledge spillover (Javorcik 2004), off by default: a local firm's
     # productivity rises with the number of multinational plants in its own
     # country and sector. This is the channel Fact 5 would need.
+    # `spill_fringe = true` restricts BOTH spillovers to single-plant local
+    # firms -- the non-multinational locals that Fact 5 is actually about
+    # (Aitken-Hanson-Harrison 1997 measure exporting spillovers onto exactly
+    # that population). Without the restriction the boost also lands on
+    # domestic multinationals' home plants and, at spillover sizes large
+    # enough to carry Fact 5, inverts Fact 1's foreign/domestic split.
+    nplants = Dict{Int,Int}()
+    for a in eachindex(par); nplants[par[a]] = get(nplants, par[a], 0) + 1; end
+    # (default 1: the rest-of-world fringe is appended AFTER this count is
+    #  taken, and every one of its firms is single-plant by construction)
+    eligible(a) = hq[a] == loc[a] && (!spill_fringe || get(nplants, par[a], 1) == 1)
     if spill != 0.0
         cnt = Dict{Tuple{Int,Int},Int}()
         for a in eachindex(par)
             hq[a] != loc[a] && (cnt[(loc[a], sec[a])] = get(cnt,(loc[a],sec[a]),0) + 1)
         end
         for a in eachindex(par)
-            hq[a] == loc[a] || continue
+            eligible(a) || continue
             phi[a] *= (1.0 + get(cnt, (loc[a], sec[a]), 0))^spill
         end
     end
@@ -2296,7 +2308,7 @@ function world_economy(rng; N = 5, K = 4, n_rich = 2, eta = 1.0, conduct = :cour
             hq[a] != loc[a] && (cntf[(loc[a], sec[a])] = get(cntf, (loc[a], sec[a]), 0) + 1)
         end
         for a in eachindex(par)
-            hq[a] == loc[a] || continue
+            eligible(a) || continue
             fmult[a] = (1.0 + get(cntf, (loc[a], sec[a]), 0))^(-fspill)
         end
     end
@@ -2642,12 +2654,26 @@ function run_ge(level, conduct)
 end
 
 # ---------------------------------------------------------------------------
-"""The six facts, on one calibrated economy."""
-function run_facts(level, conduct; hq_cost = false)
-    banner("PART D   THE SIX STYLIZED FACTS  [$conduct]")
+"""
+The six facts, on one calibrated economy.
+
+`lambda = true` runs the SIX-FACT CONFIGURATION (CLAUDE.md 38): the rest-of-world
+outside supplier (`row_L`, so sample exporters hold the in-sample absorption share
+lambda ~ 0.11 of each market, as in the data) plus the two measured spillovers
+(`spill` = Javorcik productivity, `fspill` = Aitken-Hanson-Harrison export
+infrastructure). It is the first configuration in which FACT 5 comes out with the
+data's sign on both margins; the core calibration (`lambda = false`) remains the
+default everywhere else and keeps Fact 5 as the honest failure.
+"""
+function run_facts(level, conduct; hq_cost = false, lambda = false)
+    banner("PART D   THE SIX STYLIZED FACTS  [$conduct]" *
+           (lambda ? "  [six-fact lambda configuration]" : ""))
+    lamkw = lambda ? (row_L = 192.0, spill = 0.17, fspill = 0.50,
+                      spill_fringe = true) : NamedTuple()
     kw = (N = level == :quick ? 4 : 5, K = 4, n_rich = 2, conduct = conduct,
           n_dom = 6, n_pot_par = level == :quick ? 14 : 18,
-          zeta = 1.5, hq_gap = 1.3, mne_adv = 0.0, adv_slope = 1.2, fscale = 0.0006, hq_cost = hq_cost)
+          zeta = 1.5, hq_gap = 1.3, mne_adv = 0.0, adv_slope = 1.2, fscale = 0.0006,
+          hq_cost = hq_cost, lamkw...)
     m, aux = world_economy(MersenneTwister(20260819); kw...)
     r  = solve_ge_entry(m; certify = true)
     b  = m.base; lac = aux.lac
@@ -2831,8 +2857,9 @@ function main()
     args = lowercase(join(ARGS, " "))
     level = occursin("quick", args) ? :quick : :normal
     conduct = occursin("bertrand", args) ? :bertrand : :cournot
-    what = occursin("core", args)  ? :core  : occursin("entry", args) ? :entry :
-           occursin("ge", args)    ? :ge    : occursin("facts", args) ? :facts : :all
+    what = occursin("core", args)   ? :core   : occursin("entry", args) ? :entry :
+           occursin("lambda", args) ? :lambda :
+           occursin("ge", args)     ? :ge     : occursin("facts", args) ? :facts : :all
     t0 = time()
     banner("MULTINATIONAL OWNERSHIP, MARKET POWER AND TRADE POLICY")
     print_calibration()
@@ -2841,6 +2868,7 @@ function main()
     (what == :all || what == :entry) && run_entry(level, conduct)
     (what == :all || what == :ge)    && run_ge(level, conduct)
     (what == :all || what == :facts) && (res = run_facts(level, conduct))
+    what == :lambda && (res = run_facts(level, conduct; lambda = true))
     what == :all && scorecard(res)
     @printf("\nTotal %.1f min\n", (time()-t0)/60)
 end

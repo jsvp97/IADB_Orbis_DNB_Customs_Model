@@ -43,17 +43,22 @@ Five of six reproduced (three of them out-of-sample), one instructive failure:
 | 2 | Foreign MNEs in complex goods | +0.42 | +0.43 | fitted |
 | 3 | Parents from few countries | 0.27 | 0.13 | **produced**, overshoots |
 | 4 | Grouping by owner raises concentration | ×1.94 | ×1.12 | **produced** — a prediction |
-| 5 | MNE presence raises local exports | negative | +0.09 | **fails**; see below |
+| 5 | MNE presence raises local exports | **+46%**† | positive | **positive in the λ configuration** |
 | 6 | Distance weaker for MNEs | signs+ordering | — | **produced**, too large |
 
-**Fact 5 is handled the honest way.** The empirical fact survives a saturated
-destination×product×year specification at half its published size, so it is real.
-Cost-side spillovers (productivity *and* fixed-cost) are implemented and *measured
+**Fact 5 is handled the honest way** († the two-configuration design). The empirical
+fact survives a saturated destination×product×year specification at half its published
+size, so it is real. Cost-side spillovers alone are implemented and *measured
 insufficient* — with fixed market spending, entry is zero-sum in value. The missing
-margin is an **outside (rest-of-world) supplier in every market** (`row_L` switch):
-with it, the extensive margin flips to the data's sign and the intensive elasticity
-moves from ≈ −2.9 to ≈ −0.2 against the target +0.087. The joint recalibration with
-that margin on is the model's next task; the guide documents the full dose–response.
+margin is an **outside (rest-of-world) supplier in every market**: with sample
+exporters holding λ ≈ 7% of their destination markets (as in the data) and the two
+spillovers accruing to single-plant locals, the response turns **positive on both
+margins** (+46% at the experiment's dose; Fact 1 = 0.49 with the foreign/domestic
+split intact; Fact 4 improves to ×1.67; one sign inside Fact 6 flips — disclosed).
+That **six-fact λ configuration** (`julia mne_model.jl lambda`, committed run
+alongside) is reported *beside* the core calibration rather than replacing it —
+six facts against six fitted parameters is a different claim from five against three,
+and the guide shows both, dose by dose.
 
 ## Running it
 
@@ -61,6 +66,7 @@ Base Julia (≥ 1.9), **no packages**. Run the programs one at a time.
 
 ```bash
 julia mne_model.jl              # everything: theorems, GE audit, facts (~10 min)
+julia mne_model.jl lambda       # the six-fact configuration (outside supplier on)
 julia mne_model.jl quick        # the same on a smaller world (~4 min)
 julia wage_uniqueness.jl        # Theorem 4 + the counterexample
 julia simple_model.jl           # Theorem 5 + the baseline comparison

@@ -1,0 +1,106 @@
+
+==============================================================================
+MULTINATIONAL OWNERSHIP, MARKET POWER AND TRADE POLICY
+==============================================================================
+  --------------------------------------------------------------------------
+  param    value       kind       source
+  --------------------------------------------------------------------------
+  sigma    5.0         EXTERNAL   trade elasticity 4-6; Simonovska-Waugh ~4, Eaton-Kortum higher
+  eta      1.0         EXTERNAL   Cobb-Douglas across sectors; the Atkeson-Burstein outer nest
+  conduct  Cournot     EXTERNAL   quantity competition; Bertrand supported and reported alongside
+  delta    1/(sigma-1) EXTERNAL   set so the gravity distance elasticity of TRADE is exactly -1
+  nu       0.55        EXTERNAL   intermediate share of gross output, manufacturing; Caliendo-Parro
+  io_own   0.45        EXTERNAL   I-O tables are diagonal-heavy: own-sector inputs dominate
+  alpha    0.10-0.55   EXTERNAL   COMPLEXITY INDEX by sector. Not a cost share: see hq_cost
+  hq_cost  false       MODELLING  head-office services are a non-rival CAPABILITY, not a factor input
+  gamma    1.18        EXTERNAL   MP efficiency loss abroad; Ramondo-Rodriguez-Clare MP friction
+  theta_p  4.0         EXTERNAL   Pareto tail of firm capability; Gaubert-Itskhoki granular draws
+  fcost    0.0006      INTERNAL   market-access fixed cost, set to the SIZE of the export sample
+  zeta     1.5         INTERNAL   how the pool of potential parents scales with country size
+  mne_adv  0.0         NORMALISED MNE productivity edge NO LONGER NEEDED once hq_cost=false; was INTERNAL
+  slope    solved      INTERNAL   HQ capability gradient, set to the FACT 2 complexity gradient
+  z        2.2 / 1.0   NORMALISED advanced vs LAC productivity level; fixes relative wages
+  wage1    1.0         NORMALISED numeraire (Walras)
+  --------------------------------------------------------------------------
+  EXTERNAL values are standard magnitudes for this literature, NOT
+  transcriptions from specific tables. Verify each against the source
+  paper before publication -- they are collected here for that.
+
+==============================================================================
+PART D   THE SIX STYLIZED FACTS  [cournot]  [six-fact lambda configuration]
+==============================================================================
+  potential plant-destination pairs : 1692;  active 950 (56.1%);  unresolved 2
+
+FACT 1  multinationals are a large share of export value, and FOREIGN ones dominate
+-----------------------------------------------------------------------------------
+  model  total 0.493 = foreign 0.387 + domestic 0.105
+  data   total 0.46-0.74, foreign dominant, domestic 0.02-0.28
+  The LEVEL is one fitted parameter. The SPLIT is not: it comes from the
+  pool of potential parents scaling with country size, so poor countries
+  rarely breed a parent good enough to clear the multinational threshold.
+  With a uniform pool (zeta = 0) the model puts domestic at 0.245 and
+  contradicts the fact outright.
+
+FACT 2  foreign multinationals specialise in COMPLEX goods, domestic ones in simple
+-----------------------------------------------------------------------------------
+  model foreign  by sector: 0.15 0.70 0.42 0.54   gradient +0.58
+  model domestic by sector: 0.01 0.03 0.25 0.31   gradient +0.73
+  data  foreign  0.52 0.52 0.63 0.65 0.70   gradient +0.43
+  data  domestic 0.12 0.02 0.06 0.03 0.02   gradient negative
+  The FOREIGN half is reproduced and is the one that matters: it comes from
+  hq_gap, the statement that headquarter services are a capability a
+  stand-alone local firm cannot buy, and that complex goods need them most.
+  Without hq_gap the model gets it BACKWARDS (gradient -0.58), because a
+  foreign affiliate pays its parent's high wage on the alpha_k share and
+  the extensive margin amplifies that wrong-sign force.
+  THE DOMESTIC HALF IS NOT ROBUST and is reported, not claimed: it comes out
+  NEGATIVE in a four-country world and POSITIVE in a five-country one. A
+  domestic multinational is a LAC parent, so it escapes the hq_gap penalty
+  while still paying a low home wage on the alpha share -- the wrong-sign
+  force again, now working in its favour. The model pins down that domestic
+  multinationals are FEW (Fact 1), not where they specialise. Open item.
+
+FACT 3  parents come from a small set of countries -- GENERATED
+---------------------------------------------------------------
+  model parent-country HHI 0.287, top parent 0.418
+  data                0.130,            0.250
+  Nothing tells the model which countries host parents: the capability law
+  is identical everywhere. Concentration comes from a bigger pool having a
+  better maximum. It overshoots in a small world, as it must.
+
+FACT 4  grouping plants by parent RAISES measured concentration
+---------------------------------------------------------------
+  model  0.077 -> 0.077 -> 0.129   (x1.67)
+  data   0.192 -> 0.209 -> 0.215   (x1.12)
+  ORDERING REPRODUCED. It is a PREDICTION, not a target, and it is the reason
+  internalisation had to survive the entry rewrite: the whole uniqueness
+  theorem exists so that this fact could.
+  parents operating in >=2 countries: 9% of parents, 29% of value
+  data: parents with >100 affiliates are 9% of parents and 56% of value
+  The direction is right. The LEVEL is not comparable: the model's network
+  size runs 1..N countries, the data's runs 1..100+ affiliates worldwide.
+
+FACT 5  more multinationals, MORE exports by local firms -- THE ONE FAILURE
+---------------------------------------------------------------------------
+  non-MNE export value in sector 2: 0.1863 -> 0.2712   change +45.5%
+  data: POSITIVE. Saturated specification, +0.24 (intensive), +0.13 (extensive)
+  SIGN FLIPPED -- entry does what the intensive margin could not.
+  Two candidate resolutions, and they are testable against each other:
+   (i) a genuine Javorcik spillover (the `spill` knob), which must now be
+       LARGER than the 0.15 the fixed-roster model needed; or
+  (ii) the empirical coefficient is contaminated: the fixed-effect ladder
+       has no destination x product x year term, so a market-level demand
+       shock raises multinational entry and local exports together.
+  Adding that fixed effect is the decisive test and it is cheap.
+
+FACT 6  distance is a weaker barrier for multinationals
+-------------------------------------------------------
+  ln distance                       -0.487      data -0.164
+  ln distance x MNE                 +0.592      data +0.046
+  ln distance x MNE, present there  -0.390      data +0.067
+  Falls out of d[l,n] running from the PRODUCTION country -- Tintelnot's
+  export platforms. Signs and ordering right; magnitudes too large, and
+  note the data's own -0.164 is an order of magnitude below any gravity
+  estimate, which is a specification smell on the empirical side.
+
+Total 15.5 min

@@ -300,4 +300,4 @@ SCORECARD
   Facts 3, 4 and 6 are out-of-sample. Fact 5 is the one outright
   contradiction, and it belongs in the abstract rather than a footnote.
 
-Total 259.3 min
+Total 9.1 min
