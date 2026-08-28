@@ -1,5 +1,10 @@
 # Multinational Ownership, Market Power, and Trade Policy — the model
 
+**Sebastián Velásquez Palacios · Christian Volpe Martincus**
+*Inter-American Development Bank — Trade and Integration*
+Repository maintained by Sebastián Velásquez Palacios. Working draft — please do not
+circulate or cite without the authors' permission.
+
 A static general-equilibrium model of multinational production with **large firms**
 (markups rise with a group's market share), **firm-level ownership**, and
 **endogenous entry**, built to confront six stylized facts measured in matched
@@ -12,7 +17,16 @@ country-level calculation is exactly the covariance between ownership and firm s
 (an identity, measured in our data at **+10% for the United States** and sign-varying
 across owners).
 
-*Coauthors: Sebastián Velásquez Palacios and Christian Volpe Martincus (IDB).*
+## Sixty seconds for a first visit
+
+1. Read [`docs/model_summary.pdf`](docs/model_summary.pdf) — the model in seven
+   equations, each tagged with where it comes from, plus the two uniqueness theorems
+   and the six facts. Three pages.
+2. Skim any `run_*.txt` — every number in the documents has a committed program
+   output behind it, produced by the exact code in this repository.
+3. If something looks too good, open [`CLAUDE.md`](CLAUDE.md): the project's lab
+   notebook records every dead end, every struck result, and every trap alongside
+   the successes — deliberately, so a reader can audit how each number was reached.
 
 ## Read this first
 
@@ -20,7 +34,7 @@ across owners).
 |---|---|
 | [`docs/model_guide.pdf`](docs/model_guide.pdf) | **The full model, 45 pp.** Every central equation carries the same three-part gloss — *what it says / why we model it this way / where it comes from* — every proof is written out, and everything only checked numerically is collected in one section rather than left to be discovered. |
 | [`docs/model_summary.pdf`](docs/model_summary.pdf) | The 5-page condensed companion. |
-| [`CLAUDE.md`](CLAUDE.md) | The complete working record: every decision, every dead end, every trap, section by section. §0 is a one-screen current-state briefing. |
+| [`CLAUDE.md`](CLAUDE.md) | The lab notebook: every decision, every dead end, every struck result, section by section — kept deliberately, because a struck number beats a deleted one. §0 is a one-screen current-state briefing. |
 | [`docs/derivations.md`](docs/derivations.md) | The terse algebra. |
 
 ## What is proved
@@ -107,3 +121,13 @@ superseded/               The historical record: entry prototypes, the
 The empirical pipeline (Stata/Python, firm-level data) lives in a separate
 repository: [`IADB_Orbis_DNB_Customs_Final`](https://github.com/jsvp97/IADB_Orbis_DNB_Customs_Final).
 The three reference papers cited throughout are not redistributed here.
+
+## Status and citation
+
+Work in progress (2026). If you refer to this work, please cite:
+
+> Velásquez Palacios, S. and C. Volpe Martincus (2026). *Multinational Ownership,
+> Market Power, and the Measurement of Foreign Profits.* Inter-American Development
+> Bank, working draft.
+
+Questions and comments are welcome — open an issue or contact the maintainer.

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Working draft. If you refer to this work, please cite it as below and contact the authors before circulating."
+title: "Multinational Ownership, Market Power, and the Measurement of Foreign Profits"
+type: software
+authors:
+  - family-names: "Velásquez Palacios"
+    given-names: "Sebastián"
+    affiliation: "Inter-American Development Bank"
+  - family-names: "Volpe Martincus"
+    given-names: "Christian"
+    affiliation: "Inter-American Development Bank"
+year: 2026
+url: "https://github.com/jsvp97/IADB_Orbis_DNB_Customs_Model"
+abstract: >-
+  A general-equilibrium model of multinational production with large firms
+  (owner-level markups), firm-level ownership, and endogenous entry, with
+  uniqueness theorems, a computer-assisted continuum certificate for the wage
+  layer, and six stylized facts measured in matched Orbis/D&B-customs data
+  for ten Latin American origin countries.
