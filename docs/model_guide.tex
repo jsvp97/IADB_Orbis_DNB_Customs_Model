@@ -41,39 +41,45 @@ what each equation says, where it comes from,\\
 and proofs that the model has exactly one solution}
 \author{Sebasti\'an Vel\'asquez Palacios \and Christian Volpe Martincus\\[2pt]
 \normalsize Inter-American Development Bank}
+\author{Sebasti\'an Vel\'asquez Palacios \and Christian Volpe Martincus\\[2pt]
+\normalsize Inter-American Development Bank}
 \date{\today\ --- working draft, please do not circulate}
 
 \begin{document}
 \maketitle
+
+\begin{abstract}
+\noindent How much of the profit that multinational firms earn in a market belongs
+to the country that sets policy toward it? We build a general-equilibrium model of
+multinational production in which markups rise with an ownership group's market
+share, ownership is recorded firm by firm, and the set of operating factories is an
+equilibrium outcome. The model has exactly one solution under stated, checked
+conditions: the market game and the entry game are proved unique, and the wage layer
+is certified on a continuum of wage vectors by interval arithmetic. The central
+result is an identity: the standard country-level calculation of foreign profit errs
+by exactly the covariance between ownership and firm size --- measured at $+10\%$
+for the United States in matched Orbis/D\&B--customs data for ten Latin American
+countries, and sign-varying across owners. The model confronts six stylized facts of
+multinational exporting and reproduces them, three out of sample.
+\end{abstract}
 
 \begin{keypoint}
 \textbf{How this document is organised.} Every central equation is followed by three
 short paragraphs, always in the same order: \emph{what it says} in ordinary words,
 \emph{why we model it this way} rather than some other way, and \emph{where it comes
 from} in the literature. Every symbol is defined before it is used, and all of them
-are collected in one table in Section~\ref{sec:notation}.
-
-\smallskip
-Nothing is left as ``it can be shown''. Where a claim is \emph{proved}, the proof is
-written out. Where a claim is only \emph{checked numerically}, it says so in those
-words, and every such claim is collected in Section~\ref{sec:notproved} rather than
-left for a reader to discover.
-
-\smallskip
-\textbf{Part~I} sets out the question, the notation, and a table showing which piece
-of the model comes from which paper. \textbf{Part~II} builds the model equation by
-equation. \textbf{Part~III} proves the model has a solution and that it is the only
-one. \textbf{Part~IV} derives the result the model was built to produce.
-\textbf{Part~V} compares model and data fact by fact. \textbf{Part~VI} states the
-limits.
+are collected in Appendix~\ref{sec:notation}. Nothing is left as ``it can be
+shown'': where a claim is proved, the proof is written out; where a claim is only
+checked numerically, it says so in those words, and every such claim is collected in
+Section~\ref{sec:notproved}.
 \end{keypoint}
 
 \tableofcontents
 
 \newpage
-\part{The question, the notation, and the sources}
+\section{Introduction}
+\label{sec:intro}
 
-\section{The question}
 
 A group of developing countries sells goods abroad. Much of what they sell is shipped
 not by local firms but by subsidiaries of large international groups whose head
@@ -84,12 +90,12 @@ We want to answer one question: \emph{how much of the profit earned in those mar
 ends up belonging to the country that sets the tariff?}
 
 The obvious way to answer it is to take total profit and multiply by the share of the
-firms that the country owns. Part~IV proves that this is wrong, shows the direction of
+firms that the country owns. Section~\ref{sec:result} proves that this is wrong, shows the direction of
 the error, and gives a formula for its exact size. Getting that formula requires a
 model with three specific features, and Section~\ref{sec:three} explains why each one
 is unavoidable.
 
-\section{Three features the model must have, and why each is unavoidable}
+\subsection{Three features the model must have}
 \label{sec:three}
 
 \begin{enumerate}
@@ -115,114 +121,9 @@ ownership but no entry margin or tariff question; the quantitative multinational
 benchmarks (Ramondo--Rodr\'iguez-Clare 2013; Tintelnot 2017) have constant or no markups,
 so ownership is irrelevant in them by construction. Combining the three features creates
 a technical problem --- models with multi-factory firms and entry usually admit many
-possible outcomes --- and Part~III is devoted to solving it.
+possible outcomes --- and Section~\ref{part:proofs} is devoted to solving it.
 
-\section{The six facts the model is asked to explain}
-\label{sec:facts}
-
-These are referred to throughout by number, so they are stated here once. They come
-from firm-level customs records matched to ownership data for ten Latin American
-origin countries, 2006--2022. Part~V compares each one with the model.
-
-\begin{center}
-\begin{tabular}{cp{11.6cm}}
-\toprule
-\# & The pattern in the data\\
-\midrule
-1 & International firms account for a large share of export value --- between 46\% and
-74\% depending on the country --- and the great majority of that is \emph{foreign}
-owned rather than locally owned.\\
-\addlinespace
-2 & Foreign-owned firms are concentrated in \emph{complex} products; locally-owned
-international firms are concentrated in simple and primary goods.\\
-\addlinespace
-3 & The parent firms come from a small handful of countries.\\
-\addlinespace
-4 & Counting each factory as a separate firm understates how concentrated markets are.
-Grouping factories by their ultimate owner raises measured concentration --- and export
-value is dominated by a few very large groups.\\
-\addlinespace
-5 & In markets where more international firms are present, \emph{local} firms export
-more, not less.\\
-\addlinespace
-6 & Distance discourages exports less for international firms than for others, and
-least of all for a firm that already has a factory in the destination country.\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\noindent Facts 3, 4 and 6 are not used to choose any parameter, so the model's
-agreement with them is a genuine prediction. Fact 5 is the one the model gets wrong,
-and Section~\ref{sec:fact5} says so plainly.
-
-
-\section{Notation: every symbol used in this document}
-\label{sec:notation}
-
-\begin{center}
-\small
-\begin{longtable}{ll p{8.4cm}}
-\toprule
-\textbf{Symbol} & \textbf{Name} & \textbf{Meaning}\\
-\midrule
-\endfirsthead
-\toprule
-\textbf{Symbol} & \textbf{Name} & \textbf{Meaning}\\
-\midrule
-\endhead
-\multicolumn{3}{l}{\emph{Indices}}\\
-$n$ & destination & the country where a good is sold\\
-$\ell$ & host & the country where a good is produced\\
-$h$ & home & the country where the owning group has its head office\\
-$k$ & sector & one product category\\
-$i$ or $a$ & factory & one production plant, in one country, in one sector\\
-$g$ & group & the firm that ultimately owns a set of factories\\
-\midrule
-\multicolumn{3}{l}{\emph{Demand}}\\
-$\sigma_k$ & inner elasticity & how readily buyers switch between goods \emph{within} sector $k$\\
-$\eta$ & outer elasticity & how readily buyers switch \emph{away from} a sector altogether; $\sigma_k>\eta\ge1$\\
-$\beta_k$ & taste weight & share of final spending going to sector $k$\\
-$E$ & market size & total spending in one (destination, sector) market\\
-$P_{nk}$ & price index & cost of one unit of sector $k$'s bundle in country $n$\\
-\midrule
-\multicolumn{3}{l}{\emph{Competition}}\\
-$S_g$ & group share & group $g$'s share of sales in a market, adding up all its factories\\
-$\mu(S)$ & markup & price divided by marginal cost; rises with $S_g$\\
-$L(S)$ & margin & profit per unit of sales, $L=1-1/\mu$\\
-$\kappa$ & profit curvature & how sharply profit rises with size; the central result is proportional to it\\
-$\Pi_g$ & profit & group $g$'s profit in a market, before entry costs\\
-$\mathrm{HHI}$ & concentration & $\sum_g S_g^2$, the standard concentration index\\
-\midrule
-\multicolumn{3}{l}{\emph{The two objects that make the model tractable}}\\
-$K_g$ & \textbf{strength} & $\sum_{i\in g}c_i^{1-\sigma}$: group $g$'s entire position in one number\\
-$A$ & market index & $\sum_i p_i^{1-\sigma}$: all a group needs to know about its rivals\\
-$\psi(S)$ & share map & $S\mu(S)^{\sigma-1}$; converts strength into share, $S_g=\psi^{-1}(K_g/A)$\\
-$\Omega(K;A)$ & entry payoff & a group's profit written as a function of its own strength\\
-\midrule
-\multicolumn{3}{l}{\emph{Costs and technology}}\\
-$c_{a,n}$ & delivered cost & cost of making one unit at factory $a$ and getting it to $n$\\
-$\varphi_a$ & productivity & how efficient factory $a$ is\\
-$w_n$ & wage & wage in country $n$; one country's wage is the unit of account\\
-$\alpha_k$ & complexity & head-office intensity of sector $k$; enters productivity, not cost\\
-$\nu_k$ & input share & fraction of costs spent on goods bought from other firms\\
-$\omega_{k'k}$ & input mix & share of sector $k$'s input bill spent on sector $k'$; sums to one over $k'$\\
-$\gamma_{h\ell}$ & distance-from-HQ penalty & efficiency loss from producing away from head office\\
-$d_{\ell n}$ & shipping cost & cost of moving goods from $\ell$ to $n$\\
-$t_{\ell n k}$ & tariff & tariff on sector $k$ goods moving from $\ell$ to $n$\\
-$F_{a,n}$ & entry cost & fixed cost for factory $a$ to sell into market $n$\\
-$f_k$ & entry-cost scale & the size of that fixed cost in sector $k$\\
-\midrule
-\multicolumn{3}{l}{\emph{Countries and ownership}}\\
-$L_n$ & workforce & number of workers in country $n$, all of whom must be employed\\
-$X_n$ & income & total income of country $n$\\
-$\theta_{gn}$ & ownership & fraction of group $g$ owned by country $n$; sums to one over $n$\\
-$\bar\theta$ & average ownership & sales-weighted average of $\theta_g$ in a market\\
-$\zeta$ & pool scaling & how fast the number of possible groups grows with country size\\
-\bottomrule
-\end{longtable}
-\end{center}
-
-\section{Where every piece of the model comes from}
+\subsection{Related literature: where every piece of the model comes from}
 \label{sec:provenance}
 
 \says{Almost none of the machinery is new, and it is worth saying in two paragraphs
@@ -286,11 +187,11 @@ Two layers of competition: goods compete closely inside a sector, loosely across
 sectors &
 Atkeson and Burstein (2008) &
 Makes a firm's markup depend on its size. With one layer only, every firm charges the
-same markup and Part~IV has nothing to say.\\
+same markup and Section~\ref{sec:result} has nothing to say.\\
 \addlinespace
 The markup depends on the \emph{group's} total share, not the individual factory's &
 The same two-layer logic, extended here to multi-factory international groups &
-The central mechanism, which we call \emph{cannibalisation}. Everything in Part~IV
+The central mechanism, which we call \emph{cannibalisation}. Everything in Section~\ref{sec:result}
 follows from it.\\
 \addlinespace
 Producing away from head office is less efficient ($\gamma_{h\ell}$) &
@@ -326,7 +227,7 @@ Produces Facts~1 and 3 without assuming that rich countries breed better firms.\
 Groups with several factories choosing \emph{which set} to operate &
 Yang (2023) &
 The market structure --- a few large groups plus many small local firms --- and the
-multiplicity problem Part~III solves.\\
+multiplicity problem Section~\ref{part:proofs} solves.\\
 \addlinespace
 International firms may raise local firms' \emph{productivity} &
 Javorcik (2004) &
@@ -370,7 +271,7 @@ mechanism or a determinate prediction.}\\
 \end{longtable}
 \end{center}
 
-\section{What is new here}
+\subsection{Contributions}
 
 Two things, stated precisely so that neither is oversold.
 
@@ -389,9 +290,50 @@ checkable in data (Theorem~\ref{thm:entry}).
 \end{enumerate}
 
 \newpage
-\part{The model, equation by equation}
+\section{Six Stylized Facts}
+\label{sec:factsstate}
+\label{sec:facts}
 
-\section{The setting}
+These are referred to throughout by number, so they are stated here once. They come
+from firm-level customs records matched to ownership data for ten Latin American
+origin countries, 2006--2022. Section~\ref{sec:quant} compares each one with the model.
+
+\begin{center}
+\begin{tabular}{cp{11.6cm}}
+\toprule
+\# & The pattern in the data\\
+\midrule
+1 & International firms account for a large share of export value --- between 46\% and
+74\% depending on the country --- and the great majority of that is \emph{foreign}
+owned rather than locally owned.\\
+\addlinespace
+2 & Foreign-owned firms are concentrated in \emph{complex} products; locally-owned
+international firms are concentrated in simple and primary goods.\\
+\addlinespace
+3 & The parent firms come from a small handful of countries.\\
+\addlinespace
+4 & Counting each factory as a separate firm understates how concentrated markets are.
+Grouping factories by their ultimate owner raises measured concentration --- and export
+value is dominated by a few very large groups.\\
+\addlinespace
+5 & In markets where more international firms are present, \emph{local} firms export
+more, not less.\\
+\addlinespace
+6 & Distance discourages exports less for international firms than for others, and
+least of all for a firm that already has a factory in the destination country.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Facts 3, 4 and 6 are not used to choose any parameter, so the model's
+agreement with them is a genuine prediction. Fact 5 is the one the model gets wrong,
+and Section~\ref{sec:fact5} says so plainly.
+
+\newpage
+\section{Model}
+\label{sec:model}
+
+\subsection{Set-up}
 
 There are $N$ countries and $K$ sectors. A \textbf{market} is one (destination,
 sector) pair: one product sold in one country. Inside a market, several
@@ -403,7 +345,7 @@ Throughout, ``a firm's market share'' means the \emph{group's} share, adding up 
 its factories in that market. That single choice is the heart of the model, and the
 next section explains why.
 
-\section{The mechanism: a group competes with itself}
+\subsection{The mechanism: a group competes with itself}
 \label{sec:cannibal}
 
 Suppose a group owns two factories selling into the same market, and expands one of
@@ -431,7 +373,7 @@ is also the reason the model cannot use the standard trade workhorse, in which a
 firms charge the same markup no matter how large they are.
 \end{keypoint}
 
-\section{Equation 1: the markup}
+\subsection{The markup}
 
 \begin{align}
   \text{quantity competition:}\quad  \frac{1}{\mu(S)} &= 1 - \frac{1-S}{\sigma} - \frac{S}{\eta},
@@ -474,7 +416,7 @@ All the model requires is that a group \emph{internalises competition between it
 factories}. That is true under quantity competition and under price competition alike.
 In both cases the group charges one markup over each factory's cost, and in both cases
 that markup depends on the group's total share and nothing else. So every proof in
-Part~III is written for a general $\mu(\cdot)$ satisfying
+Section~\ref{part:proofs} is written for a general $\mu(\cdot)$ satisfying
 Assumption~\ref{as:mu} below, and the program runs both. The books balance to the same
 precision either way (Section~\ref{sec:accounting}), and the uniqueness condition is
 in fact \emph{looser} under price competition.
@@ -490,11 +432,11 @@ $\mu(0)=\sigma/(\sigma-1)$ and $\sigma>\eta\ge1$.
 
 \says{This is cannibalisation written formally: bigger groups charge more. If it
 failed, large firms would charge \emph{less} than small ones, which is backwards, and
-every proof in Part~III would collapse. Both \eqref{eq:muC} and \eqref{eq:muB} satisfy
+every proof in Section~\ref{part:proofs} would collapse. Both \eqref{eq:muC} and \eqref{eq:muB} satisfy
 it whenever $\sigma>\eta$, which simply says goods within a sector are better
 substitutes for each other than for goods outside it.}
 
-\section{Equation 2: profit}
+\subsection{Profit}
 
 \begin{equation}
   \Pi_g \;=\; \underbrace{E\,S_g}_{\text{sales}}\;\times\;\underbrace{L(S_g)}_{\text{margin}},
@@ -527,7 +469,7 @@ linearity of $L$ under quantity competition is a property of \eqref{eq:muC} and 
 what makes Proposition~\ref{prop:main} an exact identity rather than an
 approximation.}
 
-\subsection{\texorpdfstring{$\kappa$}{kappa}: the one number that sets the size of the result}
+\subsubsection{\texorpdfstring{$\kappa$}{kappa}: the one number that sets the size of the result}
 \label{sec:kappa}
 
 \begin{center}
@@ -542,7 +484,7 @@ at $\sigma=5,\ \eta=1$ & $4.00$ & $0.80$\\
 \end{center}
 
 \says{$\kappa$ measures how sharply profit rises with size. The entire ownership
-correction in Part~IV is proportional to it, so the choice of how firms compete
+correction in Section~\ref{sec:result} is proportional to it, so the choice of how firms compete
 changes the \emph{size} of the headline number by a factor of five --- while changing
 nothing structural.}
 
@@ -553,7 +495,7 @@ Second, the factory-level concentration it implies is closer to what the data sh
 Price competition is fully supported and every headline is available under it, so a
 reader sees a range rather than a single number chosen for convenience.}
 
-\section{Equation 3: shares add up}
+\subsection{Market clearing}
 
 \begin{equation}
   \sum_g S_g \;=\; 1 .
@@ -565,7 +507,7 @@ statement, but it is the equation that \emph{determines} the market outcome: giv
 strong each group is, \eqref{eq:clearing} is one equation that pins down the single
 number $A$ defined next, and every price, share and profit follows from $A$.}
 
-\section{Equation 4: strength, and the map from strength to share}
+\subsection{Strength, and the map from strength to share}
 
 Combining Equation~1 with the definition of a market share gives, for \emph{any}
 markup function,
@@ -602,13 +544,13 @@ inside} that number --- it is not an extra complication layered on top. And what
 its rivals are doing, all the group needs to know about them is one number, $A$.
 
 So a market containing hundreds of factories is really a problem in \emph{one}
-unknown. This is why Part~III can prove things that would otherwise be out of reach,
+unknown. This is why Section~\ref{part:proofs} can prove things that would otherwise be out of reach,
 and why the program solves the whole world economy in minutes.
 \end{keypoint}
 
 \why{Writing the model in terms of $K_g$ rather than in terms of individual factories
 is not a computational trick; it is what makes the entry problem tractable. In
-Part~III a group choosing which of $n$ factories to operate looks like a choice among
+Section~\ref{part:proofs} a group choosing which of $n$ factories to operate looks like a choice among
 $2^n$ combinations. Because only $K_g$ matters, it collapses to a choice of a single
 number, and Theorem~\ref{thm:entry} follows.}
 
@@ -616,7 +558,7 @@ number, and Theorem~\ref{thm:entry} follows.}
 demand and is implicit in Atkeson and Burstein (2008). Naming it and using it as the
 state variable for the \emph{entry} problem is what is new here.}
 
-\section{Equation 5: what things cost}
+\subsection{Technology and delivered costs}
 
 A factory $a$ whose group is headquartered in $h$, which produces in $\ell$ and sells
 to $n$ in sector $k$, has delivered cost
@@ -649,7 +591,7 @@ office.
 Finally $\varphi_a$ is how good the factory is; a higher $\varphi_a$ means lower cost,
 and it is where the group's head office shows up --- see the next paragraph.}
 
-\subsection{Where the head office is, and why it is not in the cost equation}
+\subsubsection{Where the head office is, and why it is not in the cost equation}
 \label{sec:hqchoice}
 
 \says{A group's head office is what makes its factories good. It is not a shipment of
@@ -695,7 +637,7 @@ Helpman (2004), used here on the capability side rather than the cost side. The 
 capability draw and the size-dependent pool of potential parents are Gaubert and
 Itskhoki (2021); groups choosing \emph{sets} of production locations is Yang (2023).}
 
-\section{Equation 6: the cost of getting into a market}
+\subsection{Entry costs}
 
 \begin{equation}
   F_{a,n}=f_k\;\underbrace{w_\ell}_{\text{same labour mix as production}}
@@ -723,7 +665,7 @@ there.}
 potential entrants by cost, and the idea that the \emph{number} of possible firms
 scales with country size, are Gaubert and Itskhoki (2021).}
 
-\section{Equation 7: who owns the profits}
+\subsection{Ownership and income}
 
 \begin{equation}
   X_n \;=\; \underbrace{w_nL_n}_{\text{wages}}
@@ -753,33 +695,10 @@ in the market.}
 
 \from{Cross-border ownership entering national income is Brecher and Bhagwati (1981)
 and the literature following it. What is different here is that $\theta$ varies
-\emph{firm by firm} rather than being one number per country --- and Part~IV shows
+\emph{firm by firm} rather than being one number per country --- and Section~\ref{sec:result} shows
 that this distinction changes the answer.}
 
-\section{Definition of equilibrium}
-
-\begin{definition}[Equilibrium]\label{def:eq}
-An equilibrium is a set of wages $\{w_n\}$, price indices $\{P_{nk}\}$, market sizes
-$\{E_{nk}\}$, incomes $\{X_n\}$, a set of operating factories, and quantities, such
-that
-\begin{enumerate}[label=(\roman*)]
-\item every group maximises its profit in every market, taking rivals' behaviour as
-given;
-\item shares add up to one in every market, equation~\eqref{eq:clearing};
-\item no group wishes to open or close a factory, given equation~\eqref{eq:fixed};
-\item price indices are consistent with the costs they generate, via
-equation~\eqref{eq:cost};
-\item every worker is employed in every country;
-\item each country's budget balances, equation~\eqref{eq:income}.
-\end{enumerate}
-\end{definition}
-
-\noindent Condition (v) for one country is implied by the others together with
-budget balance, so one wage can be fixed as the unit of account. Part~III shows that
-(i)--(iv) each have exactly one solution, and that (v)--(vi) have a solution which is
-verified to be unique.
-
-\section{Where the possible firms come from}
+\subsection{The pool of potential firms}
 \label{sec:pool}
 
 Firms are not written down by hand. Two rules generate them.
@@ -810,8 +729,31 @@ Section~\ref{sec:fact2} that is instructive rather than embarrassing.}
 the head-office-input logic of Antr\`as (2003) and Antr\`as and Helpman (2004),
 applied on the cost side.}
 
+\subsection{Equilibrium}
+
+\begin{definition}[Equilibrium]\label{def:eq}
+An equilibrium is a set of wages $\{w_n\}$, price indices $\{P_{nk}\}$, market sizes
+$\{E_{nk}\}$, incomes $\{X_n\}$, a set of operating factories, and quantities, such
+that
+\begin{enumerate}[label=(\roman*)]
+\item every group maximises its profit in every market, taking rivals' behaviour as
+given;
+\item shares add up to one in every market, equation~\eqref{eq:clearing};
+\item no group wishes to open or close a factory, given equation~\eqref{eq:fixed};
+\item price indices are consistent with the costs they generate, via
+equation~\eqref{eq:cost};
+\item every worker is employed in every country;
+\item each country's budget balances, equation~\eqref{eq:income}.
+\end{enumerate}
+\end{definition}
+
+\noindent Condition (v) for one country is implied by the others together with
+budget balance, so one wage can be fixed as the unit of account. Section~\ref{part:proofs} shows that
+(i)--(iv) each have exactly one solution, and that (v)--(vi) have a solution which is
+verified to be unique.
+
 \newpage
-\part{Existence and uniqueness}
+\section{Existence and Uniqueness of Equilibrium}
 \label{part:proofs}
 
 \begin{keypoint}
@@ -842,7 +784,7 @@ problems, each with a single solution:
 \end{center}
 \end{keypoint}
 
-\section{Layer 1: one market}
+\subsection{One market}
 
 \says{We show that a market with any number of firms has exactly one outcome. The
 argument is short because of Equation~4: the whole market reduces to one number, $A$,
@@ -927,9 +869,9 @@ so each is unique too. Existence is constructive, and Lemma~\ref{lem:br} confirm
 result is a genuine equilibrium in which no group wishes to deviate.
 \end{proof}
 
-\section{Layer 2: which factories operate}
+\subsection{Entry: which factories operate}
 
-\subsection{The problem}
+\subsubsection{The problem}
 
 Each group chooses which of its possible factories to run in a given market. Write a
 choice as a set $T$ of factories, with
@@ -957,7 +899,7 @@ in the market can be genuinely indeterminate. That is the problem this section s
 and Section~\ref{sec:whyhard} explains why the two standard fixes are unavailable
 here.}
 
-\subsection{Why the two standard fixes do not work here}
+\subsubsection{Why the two standard fixes do not work here}
 \label{sec:whyhard}
 
 \begin{itemize}
@@ -973,7 +915,7 @@ predicted market structure would then be a property of the chosen order rather t
 the model --- fatal when market structure is the object being explained.
 \end{itemize}
 
-\subsection{The resolution: separate the firm's own effect from its rivals'}
+\subsubsection{The resolution: separate the firm's own effect from its rivals'}
 
 The requirement that fails asks whether an entrant's extra profit falls as the
 \emph{total} number of firms rises. That question mixes two different things: what a
@@ -1190,7 +1132,7 @@ enumerating \emph{every} combination, letting each group choose any set of its o
 factories, and evaluating each deviation on a fully re-solved market. In 120 of 120
 randomly drawn markets exactly one outcome survived, never more.}
 
-\section{Layers 3 and 4: input prices and incomes}
+\subsection{Input prices and incomes}
 
 \begin{proposition}[Input prices]\label{prop:prices}
 Given wages and a set of operating factories, input prices have exactly one solution,
@@ -1232,7 +1174,7 @@ inverse and the solution is unique. The income system follows the same argument,
 profits and tariffs are proper fractions of sales.
 \end{proof}
 
-\section{Layer 5: wages}
+\subsection{Wages}
 
 \begin{theorem}[Equilibrium wages exist]\label{thm:exist}
 Hold the set of operating factories fixed, and write $z(w)$ for the vector of
@@ -1257,7 +1199,7 @@ producing there becomes arbitrarily cheap relative to anywhere else, so demand f
 labour grows without bound. These are the standard conditions guaranteeing existence.
 \end{proof}
 
-\subsection{What uniqueness of wages would require}
+\subsubsection{What uniqueness of wages would require}
 \label{sec:wageunique}
 
 \says{Existence is the easy half. To get uniqueness the usual route is to show that
@@ -1309,7 +1251,7 @@ If gross substitutes holds at every wage vector of spread at most $2R$, there is
 most one equilibrium of spread at most $R$.
 \end{corollary}
 
-\subsection{Lemma 3: a wage rise raises every price index, by less than one for one}
+\subsubsection{Lemma 3: a wage rise raises every price index, by less than one for one}
 
 \says{This is the workhorse, and it is unconditional. Three things were supposed to
 make this model's price indices behave badly: markups that move with market share,
@@ -1374,7 +1316,7 @@ proportion. In particular every factory's cost change $\hat c_a$ also lies betwe
 zero and one.
 \end{corollary}
 
-\subsection{Lemma 4: what a factory's wage bill does when costs move}
+\subsubsection{Lemma 4: what a factory's wage bill does when costs move}
 
 \begin{lemma}[Decomposition]\label{lem:decomp}
 Let $V_a$ be what factory $a$, owned by group $g$, spends on labour and head-office
@@ -1426,7 +1368,7 @@ a race between the first term of Lemma~\ref{lem:decomp}, which is positive becau
 wage rise anywhere makes the world's markets bigger in money terms, and the residual
 exposure in the third. That race is the theorem's second hypothesis.
 
-\subsection{Theorem 4: when the wage vector is unique}
+\subsubsection{Theorem 4: when the wage vector is unique}
 
 Fix an ordered pair of countries $n\neq m$ and consider raising $w_m$ alone. Let
 $\lambda_a=\hat c_a$, $\lambda_g=\hat c_g$ and $\Lambda_{n'k}=\hat P_{n'k}$ be the
@@ -1489,7 +1431,7 @@ $2.2\times10^{-7}$, the three-term decomposition of Lemma~\ref{lem:decomp} to
 $2.1\times10^{-7}$, and the implied country wage bill to $1.4\times10^{-7}$ --- the
 error of the difference quotient itself.}
 
-\subsection{The second hypothesis cannot be dropped}
+\subsubsection{The second hypothesis cannot be dropped}
 \label{sec:wagecounter}
 
 \says{An honest theorem says what it rules out. Assumption~\ref{ass:H2} is not a
@@ -1528,7 +1470,7 @@ head-office share is not the problem. The problem is a country whose entire inco
 thin slice of firms whose costs are set by one other country --- income \emph{concentrated}
 on a single foreign partner.
 
-\subsection{A version of the model in which the second hypothesis is not needed}
+\subsubsection{A version of the model in which the second hypothesis is not needed}
 \label{sec:simple}
 
 \says{Assumption~\ref{ass:H2} is the one with a counterexample, and the counterexample
@@ -1625,7 +1567,7 @@ $0$ of $340$. The exception is $\sigma=12$, far outside the calibrated range, wh
 income effect bites at $3$ of $36$: Assumption~\ref{ass:H1} alone is not sufficient
 in general, and that is what the previous remark says.}
 
-\subsection{Uniqueness the constructive way: the model's own tâtonnement contracts}
+\subsubsection{Uniqueness the constructive way: the model's own tâtonnement contracts}
 \label{sec:contraction}
 
 \says{Everything so far rules out a second equilibrium by importing a condition from
@@ -1753,7 +1695,7 @@ vectors and applying the solver's map to both, the Hilbert distance shrank by a 
 of at most $0.429$, comfortably inside the certified bound of $0.872$, in every one of
 the pairs tried.}
 
-\subsection{How far the theorem reaches, and what is still only checked}
+\subsubsection{How far the theorem reaches, and what is still only checked}
 
 Two things are still evidence rather than proof, and both are stated rather than
 buried.
@@ -1787,7 +1729,7 @@ them. So the counterexample kills the standard \emph{argument}, not the
 \emph{conclusion}.
 \end{enumerate}
 
-\section{The model really is in general equilibrium}
+\subsection{The model really is in general equilibrium}
 \label{sec:accounting}
 
 \says{``General equilibrium'' means nothing leaks. Every euro of sales is somebody's
@@ -1817,7 +1759,7 @@ real resources, so they must appear \emph{both} as somebody's wage income \emph{
 a deduction from the profits handed to owners. Omit either half and the adding-up
 condition fails.
 
-\section{What is \emph{not} proved, and what was done instead}
+\subsection{What is \emph{not} proved, and what was done instead}
 \label{sec:notproved}
 
 Everything that is checked numerically rather than proved is collected here --- the
@@ -1825,7 +1767,7 @@ two headline items below, plus the smaller ones flagged in place (the entry lemm
 for $\eta\neq1$ and price competition, and the away-from-equilibrium grids) --- so
 none of it is left for a reader to find.
 
-\subsection{That equilibrium wages are unique \emph{without conditions}}
+\subsubsection{That equilibrium wages are unique \emph{without conditions}}
 
 That they exist is proved (Theorem~\ref{thm:exist}). That there is only one set of them
 is proved three ways, all of them conditional on something that is \emph{checked} rather
@@ -1898,7 +1840,7 @@ all ten produce \textbf{the same set of operating firms}. Wages could in princip
 while a different market structure prevailed, which is exactly the ambiguity
 Theorem~\ref{thm:entry} rules out market by market.
 
-\subsection{That an exact whole-number entry solution always exists}
+\subsubsection{That an exact whole-number entry solution always exists}
 
 Factories come in whole numbers, so an exact solution in whole numbers need not exist.
 This is the classical integer problem of entry models, not something peculiar to this
@@ -1926,14 +1868,15 @@ slots out of 1050 under quantity competition and 1 out of 1050 under price compe
 \begin{keypoint}
 The distinction to insist on: this is a \textbf{near-miss on existence, not several
 possible answers}. At no point does the model require choosing between two outcomes.
-That is what Part~III was for.
+That is what Section~\ref{part:proofs} was for.
 \end{keypoint}
 
 \newpage
-\part{The result}
+\section{Ownership and the Measurement of Foreign Profits}
+\label{sec:result}
 \label{sec:main}
 
-\section{The result in words, before any algebra}
+\subsection{The result in words, before any algebra}
 
 You want to know how much of the profit earned in a foreign market belongs to your
 country. The natural calculation --- and the only one possible without firm-by-firm
@@ -1951,7 +1894,7 @@ fraction of the \emph{big} ones. If the firms your country owns are larger than
 average, the simple calculation \emph{understates} your share --- by exactly the
 extent to which ownership and size go together.
 
-\section{The result in symbols}
+\subsection{The result in symbols}
 
 Let $\theta_g$ be the fraction of group $g$ owned by the country in question. In a
 market with total spending $E$, that country's share of the profit is
@@ -2012,7 +1955,7 @@ requires knowing which \emph{particular} firms a country owns and how big each o
 The prior literature listed in Section~\ref{sec:provenance} used country-level shares
 throughout, so this term was invisible to it.}
 
-\subsection{The object, measured in the data}
+\subsubsection{The object, measured in the data}
 \label{sec:covmeasured}
 
 The decomposition has now been computed in the matched customs--ownership data. A
@@ -2077,7 +2020,7 @@ approximation, and the gap, so the size of the approximation is measured rather 
 assumed.
 \end{keypoint}
 
-\section{Why constant markups make the question disappear}
+\subsection{Why constant markups make the question disappear}
 
 \begin{proposition}[Ownership irrelevance]\label{prop:irrelevance}
 If all firms charge the same markup then $\kappa=0$, the second and third terms of
@@ -2104,7 +2047,7 @@ the question of Section~1 is invisible inside them. This is not a criticism of t
 work --- it is a statement about what a model must contain for this particular question
 to be well posed.}
 
-\section{A result that runs against the original hypothesis}
+\subsection{Ownership and the optimal tariff: a result that runs against the original hypothesis}
 \label{sec:tariff}
 
 \begin{keypoint}
@@ -2216,9 +2159,10 @@ question than re-deriving a known result with better data --- and it is the ques
 this model is equipped to answer.}
 
 \newpage
-\part{Model and data}
+\section{Quantification: Calibration and the Six Facts}
+\label{sec:quant}
 
-\section{Which numbers were chosen, and how}
+\subsection{Calibration}
 \label{sec:calibration}
 
 \begin{center}
@@ -2267,7 +2211,7 @@ unnecessary when head-office services became a capability rather than a purchase
 input, and is set to zero. Facts 3, 4 and 6 are therefore out-of-sample.
 \end{keypoint}
 
-\subsection{Adding entry pins down a parameter that used to float free}
+\subsubsection{Adding entry pins down a parameter that used to float free}
 
 Facts 2, 3 and 4 are all measured on the firms that \emph{export}. Without entry every
 factory exported by construction, so that group was rich whatever the parameters, and
@@ -2292,9 +2236,9 @@ $f$ & exporters & groups & home countries & concentration, factory $\to$ group\\
 that used to be arbitrary is now tied to something directly countable: how many firms
 actually export.}
 
-\section{Fact by fact}
+\subsection{Fact by fact}
 
-\subsection{Fact 1: international firms are a large share of exports, and foreign ones dominate}
+\subsubsection{Fact 1: international firms are a large share of exports, and foreign ones dominate}
 \label{sec:fact1}
 
 \begin{center}
@@ -2316,7 +2260,7 @@ become international. With pools of equal size everywhere the model puts locally
 international firms at $0.245$ --- \emph{larger} than foreign --- flatly contradicting
 the data.
 
-\subsection{Fact 2: foreign firms specialise in complex products}
+\subsubsection{Fact 2: foreign firms specialise in complex products}
 \label{sec:fact2}
 
 \begin{center}
@@ -2352,7 +2296,7 @@ the wrong-sign force again, now working in its favour. What the model does pin d
 that locally-owned international firms are \emph{few} (Fact 1), not what they
 specialise in. This is an open problem.
 
-\subsection{Fact 3: parent firms come from a handful of countries}
+\subsubsection{Fact 3: parent firms come from a handful of countries}
 
 \begin{center}
 \begin{tabular}{lcc}
@@ -2380,7 +2324,7 @@ total; about half of foreign-owned export value has no recorded parent at all. A
 ownership figure entering a table needs conduits reassigned to the true controlling
 owner first.
 
-\subsection{Fact 4: grouping factories by their owner raises measured concentration}
+\subsubsection{Fact 4: grouping factories by their owner raises measured concentration}
 
 \begin{center}
 \begin{tabular}{lccc}
@@ -2394,7 +2338,7 @@ data  & 0.192 & 0.209 & 0.215 \quad($\times1.12$)\\
 \end{center}
 
 \begin{keypoint}
-\textbf{This is the fact Part~III exists to protect.} The \emph{ordering} is a
+\textbf{This is the fact Section~\ref{part:proofs} exists to protect.} The \emph{ordering} is a
 prediction, not a matched moment. It requires markups to depend on the \emph{group's}
 share --- cannibalisation --- and cannibalisation is exactly what the standard fix for
 multiplicity cannot accommodate. Had the model taken that fix, this fact would have
@@ -2409,7 +2353,7 @@ the largest category in the data. The direction is right; the \emph{level} is no
 comparable, because the model counts countries while the data count affiliates
 worldwide.
 
-\subsection{Fact 5: where there are more international firms, local firms export more}
+\subsubsection{Fact 5: where there are more international firms, local firms export more}
 \label{sec:fact5}
 
 \begin{center}
@@ -2564,7 +2508,7 @@ origins. It enters as an ordinary country --- labour, income, budget balance ---
 the accounting identities and every uniqueness theorem carry over without
 modification.}
 
-\subsection{Fact 6: distance matters less for international firms}
+\subsubsection{Fact 6: distance matters less for international firms}
 
 \begin{center}
 \begin{tabular}{lcc}
@@ -2585,7 +2529,7 @@ the data is an order of magnitude smaller than any standard gravity estimate, wh
 suggests a problem on the empirical side: the regression has no firm-level controls, so
 the interaction is contaminated by which firms select into which markets.
 
-\section{Scorecard}
+\subsection{Scorecard}
 
 \begin{center}
 \begin{tabular}{clc}
@@ -2616,9 +2560,9 @@ silently replacing it: six facts against six fitted parameters is a different cl
 from five facts against three, and the reader should see both.
 
 \newpage
-\part{Limits, and what to do next}
+\section{Discussion: Limits and Next Steps}
 
-\section{What this model does not do}
+\subsection{What this model does not do}
 
 \begin{itemize}
 \item \textbf{Fact 5 needs the outside supplier.} The fact survives the saturated
@@ -2649,7 +2593,7 @@ sufficient-statistic formula for $dW/dt$ remains to be derived in the entry mode
 sources for this document. The references have.
 \end{itemize}
 
-\section{What to do next, in order --- and what is already done}
+\subsection{What to do next, in order --- and what is already done}
 
 \begin{enumerate}
 \item \textbf{Where multinational exports go is now measured}, and it settles the
@@ -2678,34 +2622,7 @@ sufficient-statistic formula for $dW/dt$ in the entry model.
 \end{enumerate}
 
 \newpage
-\appendix
-\part*{Appendix}
-\addcontentsline{toc}{part}{Appendix}
-
-\section{Summary of the model's equations}
-
-For reference, the model in one page. Every symbol is defined in
-Section~\ref{sec:notation}.
-
-\begin{center}
-\begin{tabular}{clp{7.2cm}}
-\toprule
-Eq. & Statement & What it determines\\
-\midrule
-\eqref{eq:muC}--\eqref{eq:muB} & $\mu(S_g)$ & the markup a group charges, rising with its own share\\
-\eqref{eq:profit} & $\Pi_g=E\,S_g\,L(S_g)$ & the group's profit before entry costs\\
-\eqref{eq:clearing} & $\sum_g S_g=1$ & pins down the market index $A$\\
-\eqref{eq:psiinv} & $S_g=\psi^{-1}(K_g/A)$ & each group's share, from its strength and market toughness\\
-\eqref{eq:cost} & $c_{a,n}$ & what one unit costs to make and deliver\\
-\eqref{eq:fixed} & $F_{a,n}$ & the fixed cost of selling into a market; determines who enters\\
-\eqref{eq:income} & $X_n$ & each country's income, including profits it owns\\
-\eqref{eq:decomp} & $\Pi_H/E$ & the share of foreign profit accruing to one country\\
-\eqref{eq:error} & $(E\kappa/\sigma)\mathrm{Cov}(\theta,S)$ & what a country-level ownership share misses\\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\section{References}
+\section*{References}
 \label{sec:refs}
 
 Years and outlets checked against the published sources.
@@ -2766,6 +2683,101 @@ Evidence.'' \emph{Journal of International Economics} 92(1), 34--50.
 Evidence from the Cement Industry.'' Working paper (R\&R, \emph{JPE: Macroeconomics}).
 \end{itemize}
 
+\newpage
+\appendix
+\part*{Appendix}
+
+\section{Notation: every symbol used in this document}
+\label{sec:notation}
+
+\begin{center}
+\small
+\begin{longtable}{ll p{8.4cm}}
+\toprule
+\textbf{Symbol} & \textbf{Name} & \textbf{Meaning}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Symbol} & \textbf{Name} & \textbf{Meaning}\\
+\midrule
+\endhead
+\multicolumn{3}{l}{\emph{Indices}}\\
+$n$ & destination & the country where a good is sold\\
+$\ell$ & host & the country where a good is produced\\
+$h$ & home & the country where the owning group has its head office\\
+$k$ & sector & one product category\\
+$i$ or $a$ & factory & one production plant, in one country, in one sector\\
+$g$ & group & the firm that ultimately owns a set of factories\\
+\midrule
+\multicolumn{3}{l}{\emph{Demand}}\\
+$\sigma_k$ & inner elasticity & how readily buyers switch between goods \emph{within} sector $k$\\
+$\eta$ & outer elasticity & how readily buyers switch \emph{away from} a sector altogether; $\sigma_k>\eta\ge1$\\
+$\beta_k$ & taste weight & share of final spending going to sector $k$\\
+$E$ & market size & total spending in one (destination, sector) market\\
+$P_{nk}$ & price index & cost of one unit of sector $k$'s bundle in country $n$\\
+\midrule
+\multicolumn{3}{l}{\emph{Competition}}\\
+$S_g$ & group share & group $g$'s share of sales in a market, adding up all its factories\\
+$\mu(S)$ & markup & price divided by marginal cost; rises with $S_g$\\
+$L(S)$ & margin & profit per unit of sales, $L=1-1/\mu$\\
+$\kappa$ & profit curvature & how sharply profit rises with size; the central result is proportional to it\\
+$\Pi_g$ & profit & group $g$'s profit in a market, before entry costs\\
+$\mathrm{HHI}$ & concentration & $\sum_g S_g^2$, the standard concentration index\\
+\midrule
+\multicolumn{3}{l}{\emph{The two objects that make the model tractable}}\\
+$K_g$ & \textbf{strength} & $\sum_{i\in g}c_i^{1-\sigma}$: group $g$'s entire position in one number\\
+$A$ & market index & $\sum_i p_i^{1-\sigma}$: all a group needs to know about its rivals\\
+$\psi(S)$ & share map & $S\mu(S)^{\sigma-1}$; converts strength into share, $S_g=\psi^{-1}(K_g/A)$\\
+$\Omega(K;A)$ & entry payoff & a group's profit written as a function of its own strength\\
+\midrule
+\multicolumn{3}{l}{\emph{Costs and technology}}\\
+$c_{a,n}$ & delivered cost & cost of making one unit at factory $a$ and getting it to $n$\\
+$\varphi_a$ & productivity & how efficient factory $a$ is\\
+$w_n$ & wage & wage in country $n$; one country's wage is the unit of account\\
+$\alpha_k$ & complexity & head-office intensity of sector $k$; enters productivity, not cost\\
+$\nu_k$ & input share & fraction of costs spent on goods bought from other firms\\
+$\omega_{k'k}$ & input mix & share of sector $k$'s input bill spent on sector $k'$; sums to one over $k'$\\
+$\gamma_{h\ell}$ & distance-from-HQ penalty & efficiency loss from producing away from head office\\
+$d_{\ell n}$ & shipping cost & cost of moving goods from $\ell$ to $n$\\
+$t_{\ell n k}$ & tariff & tariff on sector $k$ goods moving from $\ell$ to $n$\\
+$F_{a,n}$ & entry cost & fixed cost for factory $a$ to sell into market $n$\\
+$f_k$ & entry-cost scale & the size of that fixed cost in sector $k$\\
+\midrule
+\multicolumn{3}{l}{\emph{Countries and ownership}}\\
+$L_n$ & workforce & number of workers in country $n$, all of whom must be employed\\
+$X_n$ & income & total income of country $n$\\
+$\theta_{gn}$ & ownership & fraction of group $g$ owned by country $n$; sums to one over $n$\\
+$\bar\theta$ & average ownership & sales-weighted average of $\theta_g$ in a market\\
+$\zeta$ & pool scaling & how fast the number of possible groups grows with country size\\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\addcontentsline{toc}{part}{Appendix}
+
+\section{Summary of the model's equations}
+
+For reference, the model in one page. Every symbol is defined in
+Section~\ref{sec:notation}.
+
+\begin{center}
+\begin{tabular}{clp{7.2cm}}
+\toprule
+Eq. & Statement & What it determines\\
+\midrule
+\eqref{eq:muC}--\eqref{eq:muB} & $\mu(S_g)$ & the markup a group charges, rising with its own share\\
+\eqref{eq:profit} & $\Pi_g=E\,S_g\,L(S_g)$ & the group's profit before entry costs\\
+\eqref{eq:clearing} & $\sum_g S_g=1$ & pins down the market index $A$\\
+\eqref{eq:psiinv} & $S_g=\psi^{-1}(K_g/A)$ & each group's share, from its strength and market toughness\\
+\eqref{eq:cost} & $c_{a,n}$ & what one unit costs to make and deliver\\
+\eqref{eq:fixed} & $F_{a,n}$ & the fixed cost of selling into a market; determines who enters\\
+\eqref{eq:income} & $X_n$ & each country's income, including profits it owns\\
+\eqref{eq:decomp} & $\Pi_H/E$ & the share of foreign profit accruing to one country\\
+\eqref{eq:error} & $(E\kappa/\sigma)\mathrm{Cov}(\theta,S)$ & what a country-level ownership share misses\\
+\bottomrule
+\end{tabular}
+\end{center}
+
 \section{Reproducing everything}
 
 One program, nothing to install beyond the language itself: \texttt{mne\_model.jl}
@@ -2778,7 +2790,7 @@ correspondingly named part of this document.
 \texttt{core} & one market: Theorem~\ref{thm:market} and Proposition~\ref{prop:main}\\
 \texttt{entry} & Theorem~\ref{thm:entry}: the closed forms and the brute-force check\\
 \texttt{ge} & the accounting checks, existence, and the uniqueness protocol\\
-\texttt{facts} & the six facts of Part~V\\
+\texttt{facts} & the six facts of Section~\ref{sec:quant}\\
 \texttt{bertrand} & all of the above under price competition\\
 \texttt{quick} & everything on a smaller world, in a few minutes\\
 \bottomrule
