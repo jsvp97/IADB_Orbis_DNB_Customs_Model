@@ -34,57 +34,31 @@ The obvious answer --- total profit times the share of firms owned --- is wrong,
 Proposition~\ref{p:main} gives the exact error. Getting there needs three things at
 once: markups that rise with firm size, multinational production, and entry. Each is
 standard; the combination, plus ownership recorded \emph{firm by firm}, is not.
+Section~2 sets out the model, Section~3 derives the measurement result, Section~4
+states what is proved about uniqueness, and Section~5 confronts the six facts.
 
 \section{Model}
 
-A \emph{market} is one product in one country. Factories $i$ sell into it; each
-belongs to a \emph{group} $g$ that may own factories in several countries. $S_g$ is
-the group's share of market sales; $\sigma>\eta\ge1$ are the elasticities of
-substitution within and across markets.
+\subsection{Set-Up}
 
-\paragraph{1. The markup.} A group expanding one factory also steals sales from its
-\emph{own} other factories, and it counts that loss. So the bigger the group, the more
-it holds back:
-\begin{equation}
-\underbrace{\frac{1}{\mu(S)}=1-\frac{1-S}{\sigma}-\frac{S}{\eta}}_{\text{quantity competition}}
-\qquad\qquad
-\underbrace{\mu(S)=\frac{\sigma-(\sigma-\eta)S}{\sigma-(\sigma-\eta)S-1}}_{\text{price competition}}
-\label{e:mu}
-\end{equation}
-Both rise from $\sigma/(\sigma-1)$ at $S=0$ toward $\eta/(\eta-1)$ at $S=1$; every
-result below holds for \emph{any} increasing $\mu$, so how firms compete is a
-parameter, not a commitment.
-\src{Atkeson and Burstein (2008), with the markup moved from the factory to the
-\emph{owner} --- the internalisation Yang (2023) calls cannibalisation.}
+\paragraph{Agents and markets.} There are $N$ countries and $K$ sectors; a
+\emph{market} is one sector in one destination country. Three kinds of actors: a
+representative \emph{household} in each country, which supplies labour $L_n$
+inelastically and spends its income across markets (Cobb--Douglas weights $\beta_k$
+across sectors, CES within a market with elasticity $\sigma$; substitution across
+markets is $\eta$, with $\sigma>\eta\ge1$); \emph{ownership groups} $g$ ---
+multinational parents with a potential factory in every country, and single-factory
+local firms --- each headquartered somewhere and owned by countries in shares
+$\theta_{gn}$; and the \emph{factories} they operate, which produce differentiated
+varieties and sell them across borders. The pool of potential parents grows with
+country size, while the capability distribution they draw from is identical
+everywhere --- so rich countries host more parents only because more draws have a
+better maximum.
+\src{The two-tier demand is Atkeson and Burstein (2008); the granular pool of
+parents is Gaubert and Itskhoki (2021).}
 
-\paragraph{2. Profit.} With margin $L(S)\equiv1-1/\mu(S)$ and market spending $E$:
-\begin{equation}
-\Pi_g=E\,S_g\,L(S_g)
-\;\;=\;\;\frac{E}{\sigma}\,S_g\bigl(1+\kappa S_g\bigr)\ \text{under quantities},
-\qquad \kappa\equiv\frac{\sigma}{\eta}-1 .
-\label{e:profit}
-\end{equation}
-Profit rises \emph{faster} than size; the $S^2$ term is the entire content of the
-paper. Conduct only scales it ($\kappa=4.0$ quantities vs $0.8$ prices at
-$\sigma=5,\eta=1$).
-\src{The closed form is exact under Cournot with $\eta=1$; the linear margin
-$L=(1+\kappa S)/\sigma$ is what makes Proposition~\ref{p:main} an identity.}
-
-\paragraph{3. One market, one unknown.} With $K_g\equiv\sum_{i\in g}c_i^{1-\sigma}$
-(the group's \emph{strength}, $c_i$ = delivered cost), $A\equiv\sum_j p_j^{1-\sigma}$
-(how \emph{tough} the market is), and $\psi(S)\equiv S\,\mu(S)^{\sigma-1}$:
-\begin{equation}
-\boxed{\;S_g=\psi^{-1}\!\left(K_g/A\right),\qquad \textstyle\sum_g S_g=1.\;}
-\label{e:share}
-\end{equation}
-However many factories a group owns, its whole position is one number, $K_g$ ---
-cannibalisation is already inside it --- and all it needs to know about rivals is
-$A$. A market with hundreds of factories is a problem in one unknown; that is what
-makes the theorems possible.
-\src{This model (the reduction is what the uniqueness proofs stand on).}
-
-\paragraph{4. Costs.} Factory $a$ (head office $h$, located in $\ell$, selling to $n$,
-sector $k$):
+\paragraph{Technology and delivered costs.} Factory $a$ (head office $h$, located in
+$\ell$, selling to $n$, sector $k$) delivers at unit cost
 \begin{equation}
 c_{a,n}=\frac{1}{\varphi_a}\,
 \underbrace{w_\ell^{1-\nu_k}}_{\text{wages}}
@@ -97,22 +71,21 @@ c_{a,n}=\frac{1}{\varphi_a}\,
 Labour and inputs are bought where the factory sits; shipping is counted from the
 factory, so one plant serves many countries. Being a multinational shows up in
 $\varphi_a$: head-office services are a non-rival \emph{capability} (complexity
-$\alpha_k$ penalises stand-alone locals and rewards group capability), never a foreign
-wage inside a domestic cost --- the choice that decides whether the model has one
-solution, and improves the fit besides.
+$\alpha_k$ penalises stand-alone locals and rewards group capability), never a
+foreign wage inside a domestic cost --- the choice that decides whether the model has
+one solution, and improves the fit besides.
 \src{$\gamma_{h\ell}$: Ramondo--Rodr\'iguez-Clare (2013), measured by Head--Mayer
-(2019). Shipping from the factory and the fixed cost below: Tintelnot (2017).
-Inputs: Caliendo--Parro (2015). $\alpha_k$: Antr\`as (2003), Antr\`as--Helpman (2004),
-used on the capability side.}
+(2019). Shipping from the factory: Tintelnot (2017). Inputs: Caliendo--Parro (2015).
+$\alpha_k$: Antr\`as (2003), Antr\`as--Helpman (2004), used on the capability side.}
 
-\paragraph{5. Entry.} Serving market $n$ costs $F_{a,n}=f_k\,w_\ell$ per period, paid
-in the same labour as production --- so entry costs are real resources, they appear in
+\paragraph{Entry.} Serving market $n$ costs $F_{a,n}=f_k\,w_\ell$ per period, paid in
+the same labour as production --- so entry costs are real resources, they appear in
 labour demand, and distributed profits are net of them. Which factories exist is an
 outcome, not a list.
-\src{Tintelnot (2017); the granular pool of potential parents, growing with country
-size, is Gaubert--Itskhoki (2021).}
+\src{Tintelnot (2017).}
 
-\paragraph{6. Income.} With $\theta_{gn}$ the share of group $g$ owned by country $n$:
+\paragraph{Ownership and income.} With $\theta_{gn}$ the share of group $g$ owned by
+country $n$,
 \begin{equation}
 X_n=\underbrace{w_nL_n}_{\text{wages}}
 +\underbrace{\textstyle\sum_g\theta_{gn}\bigl(\Pi_g-\text{entry costs}_g\bigr)}_{\text{profits owned, net}}
@@ -125,7 +98,66 @@ $\theta$ varies firm by firm rather than being one number per country.
 Orbis/D\&B--customs records for ten Latin American origins; nothing in the prior
 literature carries it.}
 
-\paragraph{7. The answer.} For a country $H$ owning shares $\theta_g$, with
+\paragraph{Timing.} The model is static. Within the period: capability draws are
+realised; given wages, prices and market sizes, each group chooses which factories
+operate in which markets; the operating factories compete in every market; and wages,
+incomes and price indices adjust until all markets clear. Nothing is sequential in
+equilibrium.
+
+\subsection{Markets: Markups, Profits, and Shares}
+
+\paragraph{The mechanism and the markup.} A group expanding one factory also steals
+sales from its \emph{own} other factories, and it counts that loss. So the bigger the
+group, the more it holds back:
+\begin{equation}
+\underbrace{\frac{1}{\mu(S)}=1-\frac{1-S}{\sigma}-\frac{S}{\eta}}_{\text{quantity competition}}
+\qquad\qquad
+\underbrace{\mu(S)=\frac{\sigma-(\sigma-\eta)S}{\sigma-(\sigma-\eta)S-1}}_{\text{price competition}}
+\label{e:mu}
+\end{equation}
+where $S_g$ is the group's share of market sales. Both forms rise from
+$\sigma/(\sigma-1)$ at $S=0$ toward $\eta/(\eta-1)$ at $S=1$; every result below holds
+for \emph{any} increasing $\mu$, so how firms compete is a parameter, not a
+commitment.
+\src{Atkeson and Burstein (2008), with the markup moved from the factory to the
+\emph{owner} --- the internalisation Yang (2023) calls cannibalisation.}
+
+\paragraph{Profit.} With margin $L(S)\equiv1-1/\mu(S)$ and market spending $E$:
+\begin{equation}
+\Pi_g=E\,S_g\,L(S_g)
+\;\;=\;\;\frac{E}{\sigma}\,S_g\bigl(1+\kappa S_g\bigr)\ \text{under quantities},
+\qquad \kappa\equiv\frac{\sigma}{\eta}-1 .
+\label{e:profit}
+\end{equation}
+Profit rises \emph{faster} than size; the $S^2$ term is the entire content of the
+paper. Conduct only scales it ($\kappa=4.0$ quantities vs $0.8$ prices at
+$\sigma=5,\eta=1$).
+
+\paragraph{One market, one unknown.} With $K_g\equiv\sum_{i\in g}c_i^{1-\sigma}$ (the
+group's \emph{strength}), $A\equiv\sum_j p_j^{1-\sigma}$ (how \emph{tough} the market
+is), and $\psi(S)\equiv S\,\mu(S)^{\sigma-1}$:
+\begin{equation}
+\boxed{\;S_g=\psi^{-1}\!\left(K_g/A\right),\qquad \textstyle\sum_g S_g=1.\;}
+\label{e:share}
+\end{equation}
+However many factories a group owns, its whole position is one number, $K_g$ ---
+cannibalisation is already inside it --- and all it needs to know about rivals is
+$A$. A market with hundreds of factories is a problem in one unknown; that is what
+makes the theorems possible.
+
+\subsection{General Equilibrium}
+
+An equilibrium is a set of wages, price indices, market sizes, incomes, an active set
+of factories, and quantities such that every group best-responds in every market,
+shares sum to one, no group wants to open or close a factory, price indices are
+consistent with costs, every worker is employed, and every country's budget balances.
+One labour-market condition is redundant by Walras' law, so one wage is the
+numeraire. All accounting identities hold to $10^{-15}$ in the program, at wages far
+from equilibrium.
+
+\section{The Measurement Result}
+
+For a country $H$ owning shares $\theta_g$ in a market, with
 $\bar\theta=\sum_g S_g\theta_g$ and $\mathrm{Cov}(\theta,S)=\sum_g\theta_gS_g^2
 -\bar\theta\,\mathrm{HHI}$:
 
@@ -149,8 +181,8 @@ fraction of the \emph{big} ones. With constant markups ($\kappa=0$) the correcti
 vanishes --- which is why the standard workhorse models cannot host the question.
 \textbf{Measured in our data} (market = destination$\times$product$\times$year, group
 = ultimate parent): the country-level calculation understates the United States'
-stake by $10\%$, overstates Argentina's and Peru's by $24$--$30\%$ --- the sign varies
-owner by owner, which no country-level share can express.
+stake by $10\%$, overstates Argentina's and Peru's by $24$--$30\%$ --- the sign
+varies owner by owner, which no country-level share can express.
 
 \section{Existence and Uniqueness}
 
@@ -205,7 +237,7 @@ grid points. What is \emph{not} available is an unconditional theorem, for a sta
 reason: the one channel that can break the condition is the ordinary income effect,
 which is this paper's own subject. A counterexample and the full honesty ledger are
 in the guide. Ten dispersed starts reach the same wages \emph{and the same set of
-operating firms}; every accounting identity holds to $10^{-15}$ away from equilibrium.
+operating firms}.
 
 \section{Quantification: The Six Facts}
 
@@ -246,7 +278,7 @@ reader should see both.
 \bigskip
 \noindent\emph{Everything here is one file, base Julia, no packages
 (\texttt{mne\_model.jl}); every number above has a committed run behind it. The full
-document --- every proof written out, every choice justified where it is made, and a
+paper --- every proof written out, every choice justified where it is made, and a
 provenance table naming the source of each component --- is \texttt{model\_guide.pdf}.}
 
 \end{document}
