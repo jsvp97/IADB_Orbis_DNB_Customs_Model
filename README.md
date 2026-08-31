@@ -1,9 +1,8 @@
 # Multinational Ownership, Market Power, and Trade Policy — the model
 
-**Sebastián Velásquez Palacios · Christian Volpe Martincus**
-*Inter-American Development Bank — Trade and Integration*
-Repository maintained by Sebastián Velásquez Palacios. Working draft — please do not
-circulate or cite without the authors' permission.
+*Inter-American Development Bank — Trade and Integration.*
+Working draft — please do not circulate or cite without permission. Repository
+maintained by Sebastián Velásquez Palacios; author list to be added at circulation.
 
 A static general-equilibrium model of multinational production with **large firms**
 (markups rise with a group's market share), **firm-level ownership**, and
@@ -124,10 +123,10 @@ The three reference papers cited throughout are not redistributed here.
 
 ## Status and citation
 
-Work in progress (2026). If you refer to this work, please cite:
+Work in progress (2026). Please do not cite yet — the author list will be added when
+the draft circulates:
 
-> Velásquez Palacios, S. and C. Volpe Martincus (2026). *Multinational Ownership,
-> Market Power, and the Measurement of Foreign Profits.* Inter-American Development
-> Bank, working draft.
+> *Multinational Ownership, Market Power, and the Measurement of Foreign Profits.*
+> Inter-American Development Bank, working draft, 2026.
 
 Questions and comments are welcome — open an issue or contact the maintainer.

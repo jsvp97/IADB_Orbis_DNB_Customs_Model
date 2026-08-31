@@ -39,10 +39,6 @@
 \large A general equilibrium model with large firms and entry:\\
 what each equation says, where it comes from,\\
 and proofs that the model has exactly one solution}
-\author{Sebasti\'an Vel\'asquez Palacios \and Christian Volpe Martincus\\[2pt]
-\normalsize Inter-American Development Bank}
-\author{Sebasti\'an Vel\'asquez Palacios \and Christian Volpe Martincus\\[2pt]
-\normalsize Inter-American Development Bank}
 \date{\today\ --- working draft, please do not circulate}
 
 \begin{document}
@@ -333,7 +329,9 @@ and Section~\ref{sec:fact5} says so plainly.
 \section{Model}
 \label{sec:model}
 
-\subsection{Set-up}
+\subsection{Model Set-Up}
+
+\paragraph{Agents and markets.}
 
 There are $N$ countries and $K$ sectors. A \textbf{market} is one (destination,
 sector) pair: one product sold in one country. Inside a market, several
@@ -345,7 +343,190 @@ Throughout, ``a firm's market share'' means the \emph{group's} share, adding up 
 its factories in that market. That single choice is the heart of the model, and the
 next section explains why.
 
-\subsection{The mechanism: a group competes with itself}
+\paragraph{Groups, factories, and the pool of potential parents.}
+\label{sec:pool}
+
+Firms are not written down by hand. Two rules generate them.
+
+\begin{enumerate}
+\item \textbf{Larger countries draw from a larger pool.} The number of \emph{possible}
+groups headquartered in a country grows with the size of that country, at a rate
+governed by $\zeta$. Crucially, \textbf{the distribution of ability they draw from is
+identical in every country}. Nothing assumes rich countries breed better firms.
+\item \textbf{Head-office capability cannot be purchased.} A stand-alone local firm
+--- one with no parent group --- is at a disadvantage, and that disadvantage is larger
+in sectors with a higher $\alpha_k$.
+\end{enumerate}
+
+\says{Rule 1 says rich countries end up with better firms for a purely statistical
+reason: \emph{draw more times and your best draw is better}. Rule 2 says a firm
+without a parent group is worse at exactly the things complex products require.}
+
+\why{Both rules were adopted because the model failed without them, which is the only
+respectable reason to adopt anything. With pools of equal size everywhere, the model
+produced as many international groups headquartered in the developing countries as in
+the rich ones --- the opposite of one of the sharpest patterns in the data
+(Section~\ref{sec:fact1}). With no head-office disadvantage, the model got the pattern
+across product types \emph{exactly backwards}, for a reason set out in
+Section~\ref{sec:fact2} that is instructive rather than embarrassing.}
+
+\from{Rule 1 is the granular-firms mechanism of Gaubert and Itskhoki (2021). Rule 2 is
+the head-office-input logic of Antr\`as (2003) and Antr\`as and Helpman (2004),
+applied on the cost side.}
+
+\paragraph{Technology and delivered costs.}
+
+A factory $a$ whose group is headquartered in $h$, which produces in $\ell$ and sells
+to $n$ in sector $k$, has delivered cost
+\begin{equation}
+  c_{a,n}=\frac{1}{\varphi_a}\,
+  \underbrace{w_\ell^{\,1-\nu_k}}_{\text{(i) wages, host only}}\,
+  \underbrace{\bigl(P^{\text{IO}}_{\ell k}\bigr)^{\nu_k}}_{\text{(ii) inputs}}\,
+  \underbrace{\gamma_{h\ell}}_{\text{(iii) distance from HQ}}\,
+  \underbrace{d_{\ell n}}_{\text{(iv) shipping}}\,
+  \underbrace{(1+t_{\ell n k})}_{\text{(v) tariff}},
+  \label{eq:cost}
+\end{equation}
+where $P^{\text{IO}}_{\ell k}=\prod_{k'}P_{\ell k'}^{\,\omega_{k'k}}$ is the price of
+the bundle of inputs sector $k$ buys, at the prices prevailing in the country where
+the factory sits. In the calibration $d_{\ell n}=\mathrm{dist}_{\ell n}^{\,1/(\sigma-1)}$,
+which makes the model's gravity elasticity of \emph{trade} with respect to distance
+exactly $-1$, the central estimate of the gravity literature --- so the model's own
+gravity regression is a free diagnostic rather than a target (it returns $-0.93$).
+
+\says{Read the five pieces in turn.
+\textbf{(i)} Workers are hired where the factory is, at the host wage $w_\ell$.
+\textbf{(ii)} A fraction $\nu_k$ of costs is goods bought from other firms, at the
+prices prevailing where the factory is.
+\textbf{(iii)} Producing away from head office is less efficient by a factor
+$\gamma_{h\ell}$, which equals one at home. \emph{This} is where being multinational
+changes costs.
+\textbf{(iv)} Shipping is counted from where the good is \emph{made}, not from head
+office.
+\textbf{(v)} Then the tariff.
+Finally $\varphi_a$ is how good the factory is; a higher $\varphi_a$ means lower cost,
+and it is where the group's head office shows up --- see the next paragraph.}
+
+\paragraph{Where the head office is, and why it is not in the cost equation.}
+\label{sec:hqchoice}
+
+\says{A group's head office is what makes its factories good. It is not a shipment of
+services that each factory buys at its parent's wage. That distinction sounds like
+hair-splitting and it is not: it decides whether the model has one equilibrium.}
+
+Head-office services enter through $\varphi_a$, not through the cost bundle. The
+sector's \emph{complexity} $\alpha_k$ --- head-office intensity, rising across
+sectors --- does two things, both in the productivity draw:
+\begin{itemize}
+\item a stand-alone local firm, one with no parent group, carries a penalty
+$e^{-\text{hq\_gap}\,\alpha_k}$, because head-office capability is exactly what it
+cannot buy at arm's length;
+\item a group's capability is scaled by $(1+\text{adv\_slope}\,\alpha_k)$, because
+complex goods are where capability pays.
+\end{itemize}
+
+\why{The alternative --- $\alpha_k$ as the share of cost paid at the \emph{parent's}
+wage, so that a subsidiary abroad literally pays $w_h^{\alpha_k}w_\ell^{1-\alpha_k}$
+--- is the Antr\`as headquarter input, it is supported in the code
+(\texttt{hq\_cost = true}), and every result is reported under both. It is not the
+baseline, for three reasons, all of them measured rather than argued:
+\begin{enumerate}
+\item it is the \emph{sole} mechanism behind the counterexample to gross substitutes
+in Section~\ref{sec:wagecounter}; switching it off buys Theorem~\ref{thm:simple};
+\item it puts a wrong-sign force on Fact~2. A subsidiary pays its parent's \emph{high}
+wage precisely in the sectors where $\alpha_k$ is large, so the wage channel pushes
+foreign shares \emph{down} in complex goods --- against the fact. Removing it moves the
+Fact~2 gradient from $+0.33$ to $+0.42$, against a target of $+0.43$;
+\item with it removed the fitted multinational productivity edge is no longer needed at
+all, so three internally calibrated parameters become two.
+\end{enumerate}
+A referee is entitled to ask which version is right. The honest answer is that both
+are in the literature, that the choice matters for tractability and for one fact, and
+that the paper shows both.}
+
+\from{$\gamma_{h\ell}$ is Ramondo and Rodr\'iguez-Clare (2013), and is measured for the
+car industry by Head and Mayer (2019). Counting $d_{\ell n}$ from the production
+country --- so that one factory can serve many markets --- is Tintelnot (2017). The
+input bundle with weights $\nu_k$ and $\omega_{k'k}$ follows Caliendo and Parro (2015).
+$\alpha_k$ as the index of head-office intensity is Antr\`as (2003) and Antr\`as and
+Helpman (2004), used here on the capability side rather than the cost side. The Pareto
+capability draw and the size-dependent pool of potential parents are Gaubert and
+Itskhoki (2021); groups choosing \emph{sets} of production locations is Yang (2023).}
+
+\paragraph{Entry costs.}
+
+\begin{equation}
+  F_{a,n}=f_k\;\underbrace{w_\ell}_{\text{same labour mix as production}}
+  \;\times\;\underbrace{f^{\mathrm{dist}}_{\ell n}}_{\text{distance multiplier}},
+  \label{eq:fixed}
+\end{equation}
+where $f^{\mathrm{dist}}_{\ell n}\ge1$ optionally scales the cost of serving a
+distant market and equals one everywhere in the baseline calibration.
+
+\says{Selling into a market costs something fixed each period, regardless of how much
+is sold --- registration, a distribution network, marketing. A factory operates in a
+market only if the profit it earns there covers this cost. This is the equation that
+makes \emph{which factories exist} an outcome of the model instead of an assumption.}
+
+\why{The detail that matters is that $F$ is paid with the \emph{same mix of labour as
+production}. This does three jobs at once. (1) It keeps the model unchanged if every
+wage is multiplied by the same number, so treating one country's wage as the unit of
+account is legitimate. (2) It makes entry costs \emph{real resources}, so they appear
+as somebody's wage income. (3) It means the profits handed to owners are profits
+\emph{after} the cost of entering. Drop any one of the three and the accounting in
+Section~\ref{sec:accounting} stops adding up --- which is precisely why we check it
+there.}
+
+\from{A fixed cost of serving each market is Tintelnot (2017). The ranking of
+potential entrants by cost, and the idea that the \emph{number} of possible firms
+scales with country size, are Gaubert and Itskhoki (2021).}
+
+\paragraph{Ownership and income.}
+
+\begin{equation}
+  X_n \;=\; \underbrace{w_nL_n}_{\text{wages}}
+  \;+\;\underbrace{\sum_g \theta_{gn}\bigl(\Pi_g-\text{entry costs}_g\bigr)}_{\text{profits owned, net}}
+  \;+\;\underbrace{T_n}_{\text{tariff revenue}} ,
+  \qquad
+  T_n=\sum_{k}\sum_{a}\frac{t_{\ell nk}}{1+t_{\ell nk}}\,
+      \frac{r_{a,nk}}{\mu_{g(a)}},
+  \label{eq:income}
+\end{equation}
+with $r_{a,nk}$ factory $a$'s sales in market $(n,k)$ --- duties are levied on customs
+value, i.e.\ on sales \emph{deflated by the markup}, which is why high-markup suppliers
+yield little revenue per unit of distortion. $T_n=0$ in the baseline (no tariffs are
+imposed in the calibration; the object exists for the policy experiments).
+
+\says{A country's income is what its workers earn, plus its share of the profits of
+every group in the world \emph{after} those groups have paid their entry costs, plus
+the tariffs it collects. $\theta_{gn}$ is the fraction of group $g$ owned by country
+$n$; for each group these fractions add up to one across countries.}
+
+\why{This is the equation the whole paper is about. Profits are earned where factories
+sell, but they are \emph{received} where owners live, and $\theta$ is what separates
+the two. In the baseline, $\theta$ assigns each group entirely to the country of its
+ultimate parent, which is what firm-level ownership data identify. Note that profits
+are net of entry costs: an owner receives what is left after the firm has paid to be
+in the market.}
+
+\from{Cross-border ownership entering national income is Brecher and Bhagwati (1981)
+and the literature following it. What is different here is that $\theta$ varies
+\emph{firm by firm} rather than being one number per country --- and Section~\ref{sec:result} shows
+that this distinction changes the answer.}
+
+\paragraph{Timing.} The model is static. Within the period: the pool of
+potential groups and every capability draw are realised; given wages, price indices
+and market sizes, each group chooses which of its factories operate in which markets
+(the entry game of Section~\ref{part:proofs}); the operating factories then compete
+--- quantities or prices --- in every market, and production, pricing and trade
+occur; and wages, incomes and price indices adjust so that every market in
+Definition~\ref{def:eq} clears. Nothing is sequential in equilibrium --- the order
+here is the order in which the pieces are easiest to understand, and the order in
+which the program solves them.
+
+\subsection{Markets: Markups, Profits, and Shares}
+
+\paragraph{The mechanism: a group competes with itself.}
 \label{sec:cannibal}
 
 Suppose a group owns two factories selling into the same market, and expands one of
@@ -373,7 +554,7 @@ is also the reason the model cannot use the standard trade workhorse, in which a
 firms charge the same markup no matter how large they are.
 \end{keypoint}
 
-\subsection{The markup}
+\paragraph{The markup.}
 
 \begin{align}
   \text{quantity competition:}\quad  \frac{1}{\mu(S)} &= 1 - \frac{1-S}{\sigma} - \frac{S}{\eta},
@@ -436,7 +617,7 @@ every proof in Section~\ref{part:proofs} would collapse. Both \eqref{eq:muC} and
 it whenever $\sigma>\eta$, which simply says goods within a sector are better
 substitutes for each other than for goods outside it.}
 
-\subsection{Profit}
+\paragraph{Profit.}
 
 \begin{equation}
   \Pi_g \;=\; \underbrace{E\,S_g}_{\text{sales}}\;\times\;\underbrace{L(S_g)}_{\text{margin}},
@@ -469,7 +650,7 @@ linearity of $L$ under quantity competition is a property of \eqref{eq:muC} and 
 what makes Proposition~\ref{prop:main} an exact identity rather than an
 approximation.}
 
-\subsubsection{\texorpdfstring{$\kappa$}{kappa}: the one number that sets the size of the result}
+\paragraph{\texorpdfstring{$\kappa$}{kappa}: the one number that sets the size of the result.}
 \label{sec:kappa}
 
 \begin{center}
@@ -495,7 +676,7 @@ Second, the factory-level concentration it implies is closer to what the data sh
 Price competition is fully supported and every headline is available under it, so a
 reader sees a range rather than a single number chosen for convenience.}
 
-\subsection{Market clearing}
+\paragraph{Market clearing.}
 
 \begin{equation}
   \sum_g S_g \;=\; 1 .
@@ -507,7 +688,7 @@ statement, but it is the equation that \emph{determines} the market outcome: giv
 strong each group is, \eqref{eq:clearing} is one equation that pins down the single
 number $A$ defined next, and every price, share and profit follows from $A$.}
 
-\subsection{Strength, and the map from strength to share}
+\paragraph{Strength, and the map from strength to share.}
 
 Combining Equation~1 with the definition of a market share gives, for \emph{any}
 markup function,
@@ -558,178 +739,7 @@ number, and Theorem~\ref{thm:entry} follows.}
 demand and is implicit in Atkeson and Burstein (2008). Naming it and using it as the
 state variable for the \emph{entry} problem is what is new here.}
 
-\subsection{Technology and delivered costs}
-
-A factory $a$ whose group is headquartered in $h$, which produces in $\ell$ and sells
-to $n$ in sector $k$, has delivered cost
-\begin{equation}
-  c_{a,n}=\frac{1}{\varphi_a}\,
-  \underbrace{w_\ell^{\,1-\nu_k}}_{\text{(i) wages, host only}}\,
-  \underbrace{\bigl(P^{\text{IO}}_{\ell k}\bigr)^{\nu_k}}_{\text{(ii) inputs}}\,
-  \underbrace{\gamma_{h\ell}}_{\text{(iii) distance from HQ}}\,
-  \underbrace{d_{\ell n}}_{\text{(iv) shipping}}\,
-  \underbrace{(1+t_{\ell n k})}_{\text{(v) tariff}},
-  \label{eq:cost}
-\end{equation}
-where $P^{\text{IO}}_{\ell k}=\prod_{k'}P_{\ell k'}^{\,\omega_{k'k}}$ is the price of
-the bundle of inputs sector $k$ buys, at the prices prevailing in the country where
-the factory sits. In the calibration $d_{\ell n}=\mathrm{dist}_{\ell n}^{\,1/(\sigma-1)}$,
-which makes the model's gravity elasticity of \emph{trade} with respect to distance
-exactly $-1$, the central estimate of the gravity literature --- so the model's own
-gravity regression is a free diagnostic rather than a target (it returns $-0.93$).
-
-\says{Read the five pieces in turn.
-\textbf{(i)} Workers are hired where the factory is, at the host wage $w_\ell$.
-\textbf{(ii)} A fraction $\nu_k$ of costs is goods bought from other firms, at the
-prices prevailing where the factory is.
-\textbf{(iii)} Producing away from head office is less efficient by a factor
-$\gamma_{h\ell}$, which equals one at home. \emph{This} is where being multinational
-changes costs.
-\textbf{(iv)} Shipping is counted from where the good is \emph{made}, not from head
-office.
-\textbf{(v)} Then the tariff.
-Finally $\varphi_a$ is how good the factory is; a higher $\varphi_a$ means lower cost,
-and it is where the group's head office shows up --- see the next paragraph.}
-
-\subsubsection{Where the head office is, and why it is not in the cost equation}
-\label{sec:hqchoice}
-
-\says{A group's head office is what makes its factories good. It is not a shipment of
-services that each factory buys at its parent's wage. That distinction sounds like
-hair-splitting and it is not: it decides whether the model has one equilibrium.}
-
-Head-office services enter through $\varphi_a$, not through the cost bundle. The
-sector's \emph{complexity} $\alpha_k$ --- head-office intensity, rising across
-sectors --- does two things, both in the productivity draw:
-\begin{itemize}
-\item a stand-alone local firm, one with no parent group, carries a penalty
-$e^{-\text{hq\_gap}\,\alpha_k}$, because head-office capability is exactly what it
-cannot buy at arm's length;
-\item a group's capability is scaled by $(1+\text{adv\_slope}\,\alpha_k)$, because
-complex goods are where capability pays.
-\end{itemize}
-
-\why{The alternative --- $\alpha_k$ as the share of cost paid at the \emph{parent's}
-wage, so that a subsidiary abroad literally pays $w_h^{\alpha_k}w_\ell^{1-\alpha_k}$
---- is the Antr\`as headquarter input, it is supported in the code
-(\texttt{hq\_cost = true}), and every result is reported under both. It is not the
-baseline, for three reasons, all of them measured rather than argued:
-\begin{enumerate}
-\item it is the \emph{sole} mechanism behind the counterexample to gross substitutes
-in Section~\ref{sec:wagecounter}; switching it off buys Theorem~\ref{thm:simple};
-\item it puts a wrong-sign force on Fact~2. A subsidiary pays its parent's \emph{high}
-wage precisely in the sectors where $\alpha_k$ is large, so the wage channel pushes
-foreign shares \emph{down} in complex goods --- against the fact. Removing it moves the
-Fact~2 gradient from $+0.33$ to $+0.42$, against a target of $+0.43$;
-\item with it removed the fitted multinational productivity edge is no longer needed at
-all, so three internally calibrated parameters become two.
-\end{enumerate}
-A referee is entitled to ask which version is right. The honest answer is that both
-are in the literature, that the choice matters for tractability and for one fact, and
-that the paper shows both.}
-
-\from{$\gamma_{h\ell}$ is Ramondo and Rodr\'iguez-Clare (2013), and is measured for the
-car industry by Head and Mayer (2019). Counting $d_{\ell n}$ from the production
-country --- so that one factory can serve many markets --- is Tintelnot (2017). The
-input bundle with weights $\nu_k$ and $\omega_{k'k}$ follows Caliendo and Parro (2015).
-$\alpha_k$ as the index of head-office intensity is Antr\`as (2003) and Antr\`as and
-Helpman (2004), used here on the capability side rather than the cost side. The Pareto
-capability draw and the size-dependent pool of potential parents are Gaubert and
-Itskhoki (2021); groups choosing \emph{sets} of production locations is Yang (2023).}
-
-\subsection{Entry costs}
-
-\begin{equation}
-  F_{a,n}=f_k\;\underbrace{w_\ell}_{\text{same labour mix as production}}
-  \;\times\;\underbrace{f^{\mathrm{dist}}_{\ell n}}_{\text{distance multiplier}},
-  \label{eq:fixed}
-\end{equation}
-where $f^{\mathrm{dist}}_{\ell n}\ge1$ optionally scales the cost of serving a
-distant market and equals one everywhere in the baseline calibration.
-
-\says{Selling into a market costs something fixed each period, regardless of how much
-is sold --- registration, a distribution network, marketing. A factory operates in a
-market only if the profit it earns there covers this cost. This is the equation that
-makes \emph{which factories exist} an outcome of the model instead of an assumption.}
-
-\why{The detail that matters is that $F$ is paid with the \emph{same mix of labour as
-production}. This does three jobs at once. (1) It keeps the model unchanged if every
-wage is multiplied by the same number, so treating one country's wage as the unit of
-account is legitimate. (2) It makes entry costs \emph{real resources}, so they appear
-as somebody's wage income. (3) It means the profits handed to owners are profits
-\emph{after} the cost of entering. Drop any one of the three and the accounting in
-Section~\ref{sec:accounting} stops adding up --- which is precisely why we check it
-there.}
-
-\from{A fixed cost of serving each market is Tintelnot (2017). The ranking of
-potential entrants by cost, and the idea that the \emph{number} of possible firms
-scales with country size, are Gaubert and Itskhoki (2021).}
-
-\subsection{Ownership and income}
-
-\begin{equation}
-  X_n \;=\; \underbrace{w_nL_n}_{\text{wages}}
-  \;+\;\underbrace{\sum_g \theta_{gn}\bigl(\Pi_g-\text{entry costs}_g\bigr)}_{\text{profits owned, net}}
-  \;+\;\underbrace{T_n}_{\text{tariff revenue}} ,
-  \qquad
-  T_n=\sum_{k}\sum_{a}\frac{t_{\ell nk}}{1+t_{\ell nk}}\,
-      \frac{r_{a,nk}}{\mu_{g(a)}},
-  \label{eq:income}
-\end{equation}
-with $r_{a,nk}$ factory $a$'s sales in market $(n,k)$ --- duties are levied on customs
-value, i.e.\ on sales \emph{deflated by the markup}, which is why high-markup suppliers
-yield little revenue per unit of distortion. $T_n=0$ in the baseline (no tariffs are
-imposed in the calibration; the object exists for the policy experiments).
-
-\says{A country's income is what its workers earn, plus its share of the profits of
-every group in the world \emph{after} those groups have paid their entry costs, plus
-the tariffs it collects. $\theta_{gn}$ is the fraction of group $g$ owned by country
-$n$; for each group these fractions add up to one across countries.}
-
-\why{This is the equation the whole paper is about. Profits are earned where factories
-sell, but they are \emph{received} where owners live, and $\theta$ is what separates
-the two. In the baseline, $\theta$ assigns each group entirely to the country of its
-ultimate parent, which is what firm-level ownership data identify. Note that profits
-are net of entry costs: an owner receives what is left after the firm has paid to be
-in the market.}
-
-\from{Cross-border ownership entering national income is Brecher and Bhagwati (1981)
-and the literature following it. What is different here is that $\theta$ varies
-\emph{firm by firm} rather than being one number per country --- and Section~\ref{sec:result} shows
-that this distinction changes the answer.}
-
-\subsection{The pool of potential firms}
-\label{sec:pool}
-
-Firms are not written down by hand. Two rules generate them.
-
-\begin{enumerate}
-\item \textbf{Larger countries draw from a larger pool.} The number of \emph{possible}
-groups headquartered in a country grows with the size of that country, at a rate
-governed by $\zeta$. Crucially, \textbf{the distribution of ability they draw from is
-identical in every country}. Nothing assumes rich countries breed better firms.
-\item \textbf{Head-office capability cannot be purchased.} A stand-alone local firm
---- one with no parent group --- is at a disadvantage, and that disadvantage is larger
-in sectors with a higher $\alpha_k$.
-\end{enumerate}
-
-\says{Rule 1 says rich countries end up with better firms for a purely statistical
-reason: \emph{draw more times and your best draw is better}. Rule 2 says a firm
-without a parent group is worse at exactly the things complex products require.}
-
-\why{Both rules were adopted because the model failed without them, which is the only
-respectable reason to adopt anything. With pools of equal size everywhere, the model
-produced as many international groups headquartered in the developing countries as in
-the rich ones --- the opposite of one of the sharpest patterns in the data
-(Section~\ref{sec:fact1}). With no head-office disadvantage, the model got the pattern
-across product types \emph{exactly backwards}, for a reason set out in
-Section~\ref{sec:fact2} that is instructive rather than embarrassing.}
-
-\from{Rule 1 is the granular-firms mechanism of Gaubert and Itskhoki (2021). Rule 2 is
-the head-office-input logic of Antr\`as (2003) and Antr\`as and Helpman (2004),
-applied on the cost side.}
-
-\subsection{Equilibrium}
+\subsection{General Equilibrium}
 
 \begin{definition}[Equilibrium]\label{def:eq}
 An equilibrium is a set of wages $\{w_n\}$, price indices $\{P_{nk}\}$, market sizes
