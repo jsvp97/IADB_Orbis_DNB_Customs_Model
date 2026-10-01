@@ -73,6 +73,9 @@ simple_model.jl         Theorem 5 + the simplification -> run_simple_model.txt
 experiments.jl          the one-off grids behind §29–§30 (spillover, nu, adv_slope)
 interval_certificate.jl the CONTINUUM certificate (§32): outward-rounded interval
                         arithmetic + centred forms -> run_interval_certificate.txt
+docs/model_section.tex  THE PAPER'S MODEL SECTION (2026-10-01, §38): written in the
+                        "Model_Linkages" format, model only, no quantification.
+                        10 pp main + 5 pp appendix. Being revised paragraph by paragraph.
 docs/                   model_guide.pdf (the paper-shaped document), model_summary.pdf
                         (5 pp), derivations.md, entry_options.md, papers/ (the three
                         reference PDFs)
@@ -3313,3 +3316,44 @@ Fact 1 = 0.572 (foreign 0.348) — inside the data range but lower; Fact 2 gradi
 margin as baseline means a joint recalibration (fcost, hq_gap, zeta, row_L against
 the six facts plus measured λ) — that is the next substantive session, not this one.
 `row_L` stays OFF in the baseline until then.
+
+---
+
+# 38. MODEL SECTION REWRITTEN IN PAPER FORM, AND A REVIEW PASS (2026-10-01)
+
+`docs/model_section.tex` (+ .pdf): the model as Section 1 of a paper, in the format of
+the local `Example_model_Linkages_New.pdf` (recoverable from commit d7e6198). Model
+only: no facts, calibration, quantification or literature review. Structure: 1.1 Set-Up
+(agents, household, technology, head-office capability, pool, trade, MNCs and entry,
+profit repatriation, timing); 1.2 Market Structure (demand, competition, cannibalization,
+profits, entry); 1.3 GE (market sizes, labor, definition, existence/uniqueness layer by
+layer, algorithm); 1.4 Comparative statics. Appendix A–D has every proof.
+
+**New result in 1.4 (Prop. "Response of owned profits"), verified numerically
+(200 random Cournot eta=1 markets, error 1.2e-07 = finite-difference error):**
+dPi^H/E = ((sigma-1)/sigma) varpi_j chat_j sum_{h!=j} S_h Lam_h [theta_h(1+2 kappa S_h)
+- theta_j(1+2 kappa S_j)]. The RESPONSE of owned profits to a cost shock is weighted by
+S Lam, not S^2: the ownership-weighted HHI governs the level (P2a), not the response
+(P2b). Own-price pass-through rho_j = 1-(sigma-1) eps_mu Lam_j (1-varpi_j) also verified
+(3.3e-07).
+
+**Review findings (open, not fixed in code):**
+1. TARIFF BASE. Code levies t on MARGINAL cost (revenue t*a*q = t r/(mu(1+t))), not on
+   the exporter's price (t r/(1+t)). Allocations are identical (same consumer price);
+   only the split of t(mu-1)aq between treasury and firm differs. The guide's claim that
+   this is "customs value" is wrong. Affects the §36 tariff-welfare numbers, not the
+   facts (tariffs are zero there). Model section describes what the code does + footnote.
+2. JOINT UNIQUENESS IS NOT PROVED. Entry is unique given wages; wages are unique given
+   the active set; the joint fixed point is only checked numerically. The guide's
+   Theorem 6 text says "operating set by Theorem 2" and then freezes it — inconsistent.
+3. ENTRY NOTION. Groups internalize A when setting quantities but take A as given at
+   entry. Theorem 2 is for that notion only; the attribution to Gaubert-Itskhoki is
+   unverified and was dropped from the section.
+4. eta>1 with nu>0 is internally inconsistent (markup uses eta, IO demand is
+   Cobb-Douglas). Harmless at eta=1; section imposes eta=1 whenever nu>0.
+5. Spillovers (spill, fspill) are counted over the POTENTIAL MNE roster, not active
+   plants. Left OUT of the model section pending a decision; a referee will object.
+6. Existence proof (Prop. 4) needed a corrected boundary argument: markups need not stay
+   bounded as w_n->0 (eta=1), but 1-S_g falls like c^((sigma-1)/sigma), so labor demand
+   still diverges.
+
