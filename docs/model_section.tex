@@ -109,22 +109,27 @@ spending, so a market does not expand when its price index falls; the case $\eta
 used only without intermediates.}
 
 \paragraph{Production technology.} Labor is the only primary factor. A plant in sector
-$k$ located in $\ell$ combines labor with a bundle of intermediate inputs purchased in
-$\ell$. Its unit cost of production is
+$k$ located in $\ell$ combines labor with a bundle of intermediate inputs. Writing
+$h_i\equiv h(g(i))$ for the headquarters country of plant $i$, its unit cost of
+production is
 \begin{equation}
   c_i=\frac{1}{\varphi_i}\,w_\ell^{\,1-\nu_k}\,\bigl(P^{\IO}_{\ell k}\bigr)^{\nu_k}\,
-  \gamma_{h(g)\ell},
+  \gamma_{h_i\ell},
   \qquad
   P^{\IO}_{\ell k}=\prod_{k'\in\cK}P_{\ell k'}^{\,\omega_{k'k}},
   \label{eq:cost}
 \end{equation}
 where $w_\ell$ is the wage, $\nu_k\in[0,1)$ is the share of intermediates in costs,
 and $\omega_{k'k}\ge0$, with $\sum_{k'}\omega_{k'k}=1$, is the share of sector $k$'s
-intermediate spending that falls on sector $k'$ \citep{CaliendoParro2015}. The term
+intermediate spending that falls on sector $k'$ \citep{CaliendoParro2015}; the
+constant of the Cobb--Douglas cost function is absorbed into $\varphi_i$. The term
 $\gamma_{h\ell}\ge1$, with $\gamma_{hh}=1$, is the efficiency loss from producing away
-from headquarters \citep{RamondoRodriguezClare2013,HeadMayer2019}. Inputs are bought
-where the plant operates and at the prices prevailing there, so the entry of plants
-into a country lowers the input costs of every producer located in it.
+from headquarters \citep{RamondoRodriguezClare2013,HeadMayer2019}. Intermediates are
+bought in the markets $(\ell,k')$ of the country where the plant operates, which
+include imported varieties and are subject to that country's tariffs. At given wages,
+the entry of a plant into a market lowers its price index and hence the input costs of
+every producer located in that country; in general equilibrium the same entry also
+raises local labor demand, and the net effect on costs depends on both.
 
 \paragraph{Head-office capability.} The productivity of plant $i$ combines a location,
 a plant and a group component,
