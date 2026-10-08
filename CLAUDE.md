@@ -3357,3 +3357,13 @@ S Lam, not S^2: the ownership-weighted HHI governs the level (P2a), not the resp
    bounded as w_n->0 (eta=1), but 1-S_g falls like c^((sigma-1)/sigma), so labor demand
    still diverges.
 
+**Paragraph-by-paragraph rewrite of `docs/model_section.tex` (started 2026-10-08).**
+Agreed so far: Agents (parent groups G^P / stand-alone firms G^S; MNE status is an
+equilibrium outcome; single-sector groups justified in a footnote; parent groups live
+in N^P, countries outside host only stand-alone firms -- covers the lambda ROW);
+Representative household; Production technology; Head-office capability (eq. 5 now
+exempts stand-alone firms outside N^P from the delta^S penalty, matching the code's
+ROW fringe). Open note for Quantification: with vartheta = 4 and sigma = 5,
+phi^(sigma-1) has infinite mean under the Pareto law; harmless with a finite pool, but
+the model has no well-defined many-groups limit at these values.
+

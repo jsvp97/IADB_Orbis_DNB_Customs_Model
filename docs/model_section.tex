@@ -137,28 +137,33 @@ a plant and a group component,
   \varphi_i=z_\ell\,e^{u_i}\times
   \begin{cases}
     \exp\bigl[(1+\delta^P\alpha_k)\,x_g\bigr] & \text{if } g\in\cG^P,\\[2pt]
-    \exp\bigl[-\delta^S\alpha_k\bigr] & \text{if } g\in\cG^S,
+    \exp\bigl[-\delta^S\alpha_k\bigr] & \text{if } g\in\cG^S,\ h(g)\in\cN^P,\\[2pt]
+    1 & \text{if } g\in\cG^S,\ h(g)\notin\cN^P,
   \end{cases}
   \label{eq:productivity}
 \end{equation}
-where $z_\ell>0$ is the productivity of location $\ell$, common to all plants there;
-$u_i$ is an idiosyncratic plant draw, normal with mean zero and independent across
-plants; $x_g\ge0$ is the capability of parent group $g$, with $e^{x_g}$ Pareto
-with unit lower bound and shape $\vartheta$; and $\alpha_k\in[0,1]$ indexes the
-head-office intensity, or complexity, of sector $k$
+where $z_\ell>0$ is the productivity of location $\ell$, common to all plants there
+whatever their owner; $u_i$ is an idiosyncratic plant draw, normal with mean zero and
+independent across plants; $x_g\ge0$ is the capability of parent group $g$, with
+$e^{x_g}$ Pareto with unit lower bound and shape $\vartheta$; and $\alpha_k\in[0,1]$
+indexes the head-office intensity, or complexity, of sector $k$
 \citep{Antras2003,AntrasHelpman2004}. Head-office services (management, technology,
 brands) are a non-rival capability of the group that all of its plants share, so they
 enter productivity rather than the cost of inputs. A stand-alone firm has no access to
 them, and its productivity falls short by a factor that grows with complexity at rate
-$\delta^S\ge0$. A parent group's capability is worth more in complex sectors, at rate
-$\delta^P\ge0$. The complexity index $\alpha_k$ appears only in
-\eqref{eq:productivity}.\footnote{The common alternative treats head-office services
-as a factor input bought at the parent's wage, so that the labor term in
-\eqref{eq:cost} becomes $(w_{h}^{\alpha_k}w_\ell^{1-\alpha_k})^{1-\nu_k}$
-\citep{Antras2003}. A plant abroad then pays a foreign wage, which links factor
-markets across countries and can overturn the substitutability of labor across
-countries on which uniqueness of wages rests (Appendix~\ref{app:hqinput}). The model
-with that specification is otherwise unchanged.}
+$\delta^S\ge0$. A parent group's capability is worth more in complex sectors: in sector
+$k$ the group component $e^{(1+\delta^P\alpha_k)x_g}$ is Pareto with shape
+$\vartheta/(1+\delta^P\alpha_k)$, so the distribution of capability has a thicker tail
+where complexity is higher. Stand-alone firms in countries outside $\cN^P$ stand in for
+all supply from those countries, multinational or not, and carry no penalty. The
+complexity index $\alpha_k$ appears only in \eqref{eq:productivity}.\footnote{The
+common alternative treats head-office services as a factor input bought at the
+parent's wage, so that the labor term in \eqref{eq:cost} becomes
+$(w_{h}^{\alpha_k}w_\ell^{1-\alpha_k})^{1-\nu_k}$ and the fixed cost \eqref{eq:fixed} is
+paid in the same mix of labor \citep{Antras2003}. A plant abroad then pays a foreign
+wage, which links factor markets across countries and can overturn the
+substitutability of labor across countries on which uniqueness of wages rests
+(Appendix~\ref{app:hqinput}).}
 
 \paragraph{Pool of potential groups.} The set of potential groups is drawn before
 any decision is taken. Each country--sector pair $(n,k)$ has a given number $M^S_{nk}$
