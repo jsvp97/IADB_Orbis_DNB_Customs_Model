@@ -48,18 +48,28 @@ Appendix.
 
 \paragraph{Agents.} There is a finite set of countries $\cN=\{1,\dots,N\}$ and a
 finite set of sectors $\cK=\{1,\dots,K\}$. Each country $n$ is inhabited by a
-representative household that supplies $L_n$ units of labor inelastically and holds
-claims on the profits of firms. Production takes place in plants. Every plant belongs
-to exactly one group $g\in\cG$, which we identify with its global ultimate parent,
-and every group has a headquarters country $h(g)$. Groups are of two types. A
-\emph{multinational group} $g\in\cG^M$ operates in a single sector $k(g)$ and has one
-potential plant in every country, its headquarters country included. A \emph{local
-firm} $g\in\cG^D$ has a single potential plant, located in $h(g)$. We index plants by
-$i$, write $g(i)$, $\ell(i)$ and $k(i)$ for the group, the location and the sector of
-plant $i$, and let $\cP_g$ be the set of potential plants of group $g$. Each plant
-produces one differentiated variety. A \emph{market} is a destination--sector pair
-$(n,k)$, and any plant in sector $k$, wherever it is located, can sell in market
-$(n,k)$.
+representative household that supplies $L_n$ units of labor inelastically and owns
+shares in firms. Production takes place in plants, and every plant belongs to exactly
+one group $g\in\cG$, which we identify with its global ultimate parent. Each group has
+a headquarters country $h(g)$ and operates in a single sector
+$k(g)$.\footnote{This restriction is without loss for behavior. Marginal costs are
+constant and fixed costs are specific to each plant--market pair, so a group's
+decisions separate across markets (Section~\ref{sec:market}). A group active in
+several sectors is equivalent to several single-sector groups with the same owners;
+what the restriction rules out is a capability shared across sectors.} Groups are of
+two types. A \emph{parent group} $g\in\cG^P$ is headquartered in a country of a set
+$\cN^P\subseteq\cN$ and has one potential plant in every country of $\cN^P$, its
+headquarters country included. A \emph{stand-alone firm} $g\in\cG^S$ has a single
+potential plant, located in $h(g)$; countries outside $\cN^P$ host only stand-alone
+firms. We index plants by $i$, write $g(i)$ and $\ell(i)$ for the group and the
+location of plant $i$ and $k(i)=k(g(i))$ for its sector, and let $\cP_g$ be the set of
+potential plants of group $g$. Each plant produces one differentiated variety and can
+sell it in any country. A \emph{market} is a destination--sector pair $(n,k)$.
+Whether a group is multinational is an equilibrium outcome: a group is multinational if
+its active plants are located in more than one country, an active plant located outside
+its group's headquarters country is a foreign affiliate, and the home plant of a
+multinational group is a domestic multinational. A stand-alone firm is never
+multinational.
 
 \paragraph{Representative household.} The household in country $n$ has nested CES
 preferences,
@@ -120,22 +130,22 @@ a plant and a group component,
 \begin{equation}
   \varphi_i=z_\ell\,e^{u_i}\times
   \begin{cases}
-    \exp\bigl[(1+\delta^M\alpha_k)\,x_g\bigr] & \text{if } g\in\cG^M,\\[2pt]
-    \exp\bigl[-\delta^L\alpha_k\bigr] & \text{if } g\in\cG^D,
+    \exp\bigl[(1+\delta^P\alpha_k)\,x_g\bigr] & \text{if } g\in\cG^P,\\[2pt]
+    \exp\bigl[-\delta^S\alpha_k\bigr] & \text{if } g\in\cG^S,
   \end{cases}
   \label{eq:productivity}
 \end{equation}
 where $z_\ell>0$ is the productivity of location $\ell$, common to all plants there;
 $u_i$ is an idiosyncratic plant draw, normal with mean zero and independent across
-plants; $x_g\ge0$ is the capability of multinational group $g$, with $e^{x_g}$ Pareto
+plants; $x_g\ge0$ is the capability of parent group $g$, with $e^{x_g}$ Pareto
 with unit lower bound and shape $\vartheta$; and $\alpha_k\in[0,1]$ indexes the
 head-office intensity, or complexity, of sector $k$
 \citep{Antras2003,AntrasHelpman2004}. Head-office services (management, technology,
 brands) are a non-rival capability of the group that all of its plants share, so they
-enter productivity rather than the cost of inputs. A local firm has no access to them,
-and its productivity falls short by a factor that grows with complexity at rate
-$\delta^L\ge0$. A multinational's capability is worth more in complex sectors, at
-rate $\delta^M\ge0$. The complexity index $\alpha_k$ appears only in
+enter productivity rather than the cost of inputs. A stand-alone firm has no access to
+them, and its productivity falls short by a factor that grows with complexity at rate
+$\delta^S\ge0$. A parent group's capability is worth more in complex sectors, at rate
+$\delta^P\ge0$. The complexity index $\alpha_k$ appears only in
 \eqref{eq:productivity}.\footnote{The common alternative treats head-office services
 as a factor input bought at the parent's wage, so that the labor term in
 \eqref{eq:cost} becomes $(w_{h}^{\alpha_k}w_\ell^{1-\alpha_k})^{1-\nu_k}$
@@ -145,10 +155,10 @@ countries on which uniqueness of wages rests (Appendix~\ref{app:hqinput}). The m
 with that specification is otherwise unchanged.}
 
 \paragraph{Pool of potential groups.} The set of potential groups is drawn before
-any decision is taken. Each country--sector pair $(n,k)$ has a given number $M^D_{nk}$
-of potential local firms. There are $M^M$ potential multinational groups, each with a
-given sector; the headquarters country of each is drawn independently with
-probability proportional to $L_hz_h^{\zeta}$, $\zeta\ge0$, and the capability $x_g$
+any decision is taken. Each country--sector pair $(n,k)$ has a given number $M^S_{nk}$
+of potential stand-alone firms. There are $M^P$ potential parent groups, each with a
+given sector; the headquarters country of each is drawn independently from $\cN^P$
+with probability proportional to $L_hz_h^{\zeta}$, $\zeta\ge0$, and the capability $x_g$
 is drawn from the same distribution whatever the headquarters. Larger and more
 productive countries therefore host more potential parents, and their best parents
 are better only because more draws are taken there \citep{GaubertItskhoki2021}.
@@ -185,9 +195,9 @@ appears as wage income, and leaves the model homogeneous of degree one in wages.
 Marginal costs are constant and fixed costs are specific to each plant--market pair,
 so a group's problem separates across destinations: in each market $(n,k(g))$ the
 group chooses the subset $T_{g,n}\subseteq\cP_g$ of its plants that serve $n$. A
-multinational can serve a market from a plant at home, from a plant in the
-destination, from a plant in a third country, or from several at once; a local firm
-decides only whether to serve $n$. A plant operates if it serves at least one market.
+parent group can serve a market from a plant at home, from a plant in the
+destination, from a plant in a third country, or from several at once; a stand-alone
+firm decides only whether to serve $n$. A plant operates if it serves at least one market.
 Which affiliates exist, and where each of them sells, is thus an equilibrium outcome,
 in the spirit of the multi-plant location problem of \citet{Yang2023}.
 
@@ -339,7 +349,7 @@ delivers at least as much strength at no greater fixed cost. These efficient set
 a chain, ordered by strength and by cost together, so the group's choice amounts to how
 far to climb a ladder that runs from small and cheap to large and expensive. The entry
 decision is a cutoff, as in \citet{GaubertItskhoki2021}, but a cutoff on the group's
-own list of plants rather than on a ranking of firms. A local firm has a ladder with a
+own list of plants rather than on a ranking of firms. A stand-alone firm has a ladder with a
 single rung.
 
 \begin{definition}[Entry equilibrium in a market]\label{def:entry}
