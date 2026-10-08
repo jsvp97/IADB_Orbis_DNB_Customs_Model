@@ -79,11 +79,10 @@ preferences,
   C_{nk}=\Bigl[\sum_{i\in\cA_{nk}}q_{i,n}^{(\sigma_k-1)/\sigma_k}\Bigr]^{\sigma_k/(\sigma_k-1)},
   \label{eq:utility}
 \end{equation}
-where $\cA_{nk}$ is the set of plants active in market $(n,k)$, $q_{i,n}$ is the
-quantity of plant $i$'s variety sold in $n$, $\beta_k>0$ with $\sum_k\beta_k=1$, and
-$\sigma_k>\eta\ge1$: varieties within a sector are closer substitutes than goods in
-different sectors, and $\eta=1$ is the Cobb--Douglas case. The associated price
-indices are
+where $\cA_{nk}$ is the set of plants active in market $(n,k)$, $\beta_k>0$ with
+$\sum_k\beta_k=1$, and $\sigma_k>\eta\ge1$: varieties within a sector are closer
+substitutes than goods in different sectors. The case $\eta=1$ is the Cobb--Douglas
+limit. The associated price indices are
 \begin{equation}
   P_{nk}=\Bigl[\sum_{i\in\cA_{nk}}p_{i,n}^{1-\sigma_k}\Bigr]^{1/(1-\sigma_k)},
   \qquad
@@ -91,11 +90,11 @@ indices are
   \label{eq:priceindex}
 \end{equation}
 The household spends its income $X_n$, allocates the share
-$\beta_kP_{nk}^{1-\eta}/P_n^{1-\eta}$ of it to sector $k$, and attains real income
-$X_n/P_n$. Firms buy intermediate inputs as the same sectoral composites (below), so
+$\beta_kP_{nk}^{1-\eta}/P_n^{1-\eta}$ of it to sector $k$, and its welfare is real
+income $X_n/P_n$. Firms buy intermediate inputs as the same sectoral composites (below), so
 all purchases of sector-$k$ varieties in country $n$, by households and by firms, are
-aggregated by $C_{nk}$. Writing $E_{nk}$ for total spending on sector $k$ in country
-$n$, demand for the variety of plant $i$ is
+aggregated by $C_{nk}$. Writing $q_{i,n}$ for the total quantity of plant $i$'s
+variety sold in $n$ and $E_{nk}$ for total spending on sector $k$ in $n$, demand is
 \begin{equation}
   q_{i,n}=p_{i,n}^{-\sigma_k}\,P_{nk}^{\sigma_k-1}E_{nk}.
   \label{eq:demand}
@@ -105,7 +104,9 @@ Market sizes $E_{nk}$ are determined in general equilibrium (Section~\ref{sec:ge
 so the upper-tier elasticity of intermediate demand is one. When intermediates are
 used ($\nu_k>0$ below) we therefore set $\eta=1$, so that final and intermediate
 demand share the same upper-tier elasticity and the markup in \eqref{eq:markupC}
-is the one firms actually face. The case $\eta>1$ is used only without intermediates.}
+is the one firms face. With $\eta=1$, spending on each sector is a fixed share of total
+spending, so a market does not expand when its price index falls; the case $\eta>1$ is
+used only without intermediates.}
 
 \paragraph{Production technology.} Labor is the only primary factor. A plant in sector
 $k$ located in $\ell$ combines labor with a bundle of intermediate inputs purchased in
