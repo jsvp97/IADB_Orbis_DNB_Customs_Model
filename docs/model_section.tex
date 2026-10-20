@@ -470,9 +470,11 @@ costs scale together, entry decisions are unchanged when all wages are scaled by
 common factor, so wages are determined up to scale. By Walras' law one labor-market
 condition is implied by the others, and we set $w_1=1$.
 
-\paragraph{Existence and uniqueness.} Given wages, the model solves as a sequence of
-nested problems, and we establish existence and uniqueness layer by layer. The first
-two layers are single markets.
+\paragraph{Existence and uniqueness.} We establish existence and uniqueness layer by
+layer: the equilibrium of a single market given its active plants; entry into a single
+market; input prices given wages and active plants; market sizes and incomes given
+prices; and wages given active plants. The joint determination of wages and active
+plants is discussed at the end of this subsection.
 
 \begin{proposition}[One market]\label{prop:market}
 Under Assumption~\ref{as:mu}, for any active set containing at least two groups and
@@ -484,12 +486,13 @@ rises, so the sum of shares is a strictly decreasing function of a single number
 equals one exactly once. Each group's profit is strictly concave in its own quantities,
 so the first-order conditions identify the unique best response.
 
-Entry is harder. Each entry raises $A$ and lowers the value of entering for everyone
-else, and discrete games of this kind typically have several equilibria. The usual
-remedy, ranking entrants by cost and letting the most efficient enter first, requires
-that every entrant be a separate firm; once a group can add one of its own plants, an
-entry raises its share instead of lowering it and the ranking argument fails. Fixing an
-order of moves restores uniqueness only by selecting among equilibria. We instead
+Entry is harder. Each entry makes the market more competitive and lowers the value of
+entering for everyone else, and discrete games of this kind typically have several
+equilibria. The usual remedy is to rank entrants by cost and let the most efficient
+enter first. This requires that every entrant be a separate firm: once a group can
+operate several plants, the value of each plant depends on which other plants of the
+same group operate, and the ranking no longer applies. Fixing an order of moves
+restores uniqueness only by selecting one equilibrium among several. We instead
 separate the effect of a group's strength on its own payoff from the effect of its
 rivals. Write $\Omega_K$ and $\Omega_{KA}$ for the partial derivatives of $\Omega$.
 
@@ -498,9 +501,10 @@ Consider quantity competition with $\eta=1$ and $\sigma\ge2$.
 \begin{enumerate}[label=(\alph*)]
 \item $\Omega(K;A)$ is strictly concave in $K$ at every share.
 \item $\Omega_{KA}<0$ whenever the group's share is at most one half.
-\item Suppose that no group's share exceeds one half at any strength profile between two
-candidate equilibria, and that no group is indifferent between two rungs of its ladder.
-Then a market has at most one entry equilibrium.
+\item Suppose that, for any two candidate equilibria, no group would hold more than
+half of the market if it operated the plants it chooses in one of them while facing the
+aggregate of the other, and that no group is indifferent between two rungs of its
+ladder. Then a market has at most one entry equilibrium.
 \end{enumerate}
 \end{theorem}
 
@@ -510,11 +514,11 @@ imply that each group's optimal strength falls as $A$ rises, while $A$ rises wit
 group's strength, so two equilibria with different aggregates cannot both exist. No
 order of entry is imposed and groups continue to internalize competition among their
 own plants. The hypothesis has economic content and can be checked: no single group
-holds more than half of a market. It is sufficient rather than necessary; at exactly
-one half, the expression whose sign gives (b) still equals $1/\sigma$. The proof
-covers quantity competition with $\eta=1$. For price competition and for $\eta>1$ we
-have verified numerically that the same one-half condition suffices, but we do not
-have a proof. Existence is a separate matter: entry is chosen in whole plants, so an
+holds more than half of a market. It is sufficient rather than necessary, since at a
+share of exactly one half the expression whose sign gives (b) still equals $1/\sigma$.
+The proof covers quantity competition with $\eta=1$; numerical checks suggest that the
+same condition suffices under price competition and for $\eta>1$, but we have no proof.
+Existence is a separate matter: entry is chosen in whole plants, so an
 exact equilibrium in pure strategies need not exist (Appendix~\ref{app:nash}).
 
 The remaining layers take active sets as given.
@@ -902,19 +906,25 @@ $S=\frac12$ the expression equals $(\sigma-1)/\sigma-(\sigma-2)/\sigma=1/\sigma$
 \paragraph{B.3 Proof of Theorem~\ref{thm:entry}(c).} \emph{Step 1: the ladder.} Since
 $\Omega_K>0$, a set $T$ is optimal only if no $T'$ has $K(T')\ge K(T)$ and
 $\Phi(T')\le\Phi(T)$ with one inequality strict. The remaining efficient sets can be
-ordered so that $K$ and $\Phi$ rise together. \emph{Step 2: single crossing.} For two
-rungs with $K_1<K_2$, let
-$\Delta(A)=\int_{K_1}^{K_2}\Omega_K(K;A)\,dK-[\Phi_2-\Phi_1]$ be the net gain from the
-larger one. Under the hypothesis, $\Omega_{KA}<0$ on $[K_1,K_2]$, so $\Delta$ is
-strictly decreasing in $A$. Hence if the larger rung is preferred at some $A'$, it is
-preferred at every $A<A'$, and with no ties the optimal strength $K^*_g(A)$ is
-non-increasing in $A$ \citep{MilgromShannon1994}. \emph{Step 3: the aggregate.} Given
-strengths, the aggregate $A(\{K_g\})$ solving \eqref{eq:clearing} is strictly
-increasing in each $K_g$: raising $K_j$ at a given $A$ raises the left side, which is
-strictly decreasing in $A$. \emph{Step 4.} Suppose $(A,\{K_g\})$ and $(A',\{K'_g\})$
-are equilibria with $A<A'$. By Step 2, $K'_g=K^*_g(A')\le K^*_g(A)=K_g$ for all $g$,
-so by Step 3, $A'=A(\{K'_g\})\le A(\{K_g\})=A$, a contradiction. Equilibria with the same
-aggregate have the same strengths, and with no ties the same active sets. \qed
+ordered so that $K$ and $\Phi$ rise together. \emph{Step 2: single crossing.} Take
+$A<A'$ and two rungs with $K_1<K_2$, and let
+$\Delta(x)=\int_{K_1}^{K_2}\Omega_K(K;x)\,dK-[\Phi_2-\Phi_1]$ be the net gain from the
+larger rung at aggregate $x$. The share $\psi^{-1}(K/x)$ rises with $K$ and falls with
+$x$, so on $[K_1,K_2]\times[A,A']$ it is largest at $(K_2,A)$. If
+$\psi^{-1}(K_2/A)\le\frac12$, part (b) gives $\Omega_{KA}<0$ throughout, and $\Delta$
+is strictly decreasing on $[A,A']$. \emph{Step 3: the aggregate.} Given strengths, the
+aggregate $A(\{K_g\})$ solving \eqref{eq:clearing} is strictly increasing in each $K_g$:
+raising $K_j$ at a given $A$ raises the left side, which is strictly decreasing in $A$.
+\emph{Step 4.} Suppose $(A,\{K_g\})$ and $(A',\{K'_g\})$ are equilibria with $A<A'$,
+and suppose $K'_g>K_g$ for some $g$. Apply Step 2 with $K_1=K_g$ and $K_2=K'_g$: by the
+hypothesis, group $g$ would hold at most half of the market with the plants it chooses
+at $A'$ while facing $A$, so $\psi^{-1}(K'_g/A)\le\frac12$ and $\Delta$ is strictly
+decreasing on $[A,A']$. Optimality at $A'$ gives $\Delta(A')\ge0$, hence $\Delta(A)>0$,
+so at $A$ the group strictly prefers $K'_g$ to $K_g$, contradicting optimality at $A$.
+Hence $K'_g\le K_g$ for every $g$ \citep[the single-crossing argument of][]{MilgromShannon1994},
+and by Step 3, $A'=A(\{K'_g\})\le A(\{K_g\})=A$, a contradiction. Equilibria with the
+same aggregate have the same best responses, and with no ties the same active sets.
+\qed
 
 \paragraph{B.4 The notion of entry equilibrium and existence.}
 \label{app:nash}
