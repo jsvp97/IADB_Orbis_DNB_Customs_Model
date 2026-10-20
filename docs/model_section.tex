@@ -394,10 +394,13 @@ A group with $|\cP_g|$ potential plants chooses among $2^{|\cP_g|}$ sets. Becaus
 $\Omega$ is strictly increasing in $K$, a set can be optimal only if no other set
 delivers at least as much strength at no greater fixed cost. These efficient sets form
 a chain, ordered by strength and by cost together, so the group's choice amounts to how
-far to climb a ladder that runs from small and cheap to large and expensive. The entry
-decision is a cutoff, as in \citet{GaubertItskhoki2021}, but a cutoff on the group's
-own list of plants rather than on a ranking of firms. A stand-alone firm has a ladder with a
-single rung.
+far to climb a ladder that runs from small and cheap to large and expensive. A
+stand-alone firm has a ladder with a single rung. When a group's plants pay the same
+fixed cost to serve the market, the efficient sets are nested: each rung adds the plant
+with the next-lowest delivered cost, and the group's choice is a cutoff on its own list
+of plants, the within-group analogue of the cutoff in \citet{GaubertItskhoki2021}. When
+fixed costs differ across its plants, the rungs need not be nested, but the ladder
+remains ordered by strength and cost.
 
 \begin{definition}[Entry equilibrium in a market]\label{def:entry}
 Given delivered costs $\{c_i\}$, fixed costs $\{F_{i,n}\}$ and spending $E$, an entry
@@ -407,10 +410,14 @@ equilibrium is a collection of active sets $\{T_g\}$ and an aggregate $A$ such t
 \end{definition}
 
 \noindent Groups take the competitiveness of the market as given when they decide
-which plants to operate, although they internalize their effect on $A$ when they set
-quantities. This is the notion implicit in a free-entry condition: the entry margin is
-evaluated at the prevailing degree of competition. Appendix~\ref{app:nash} discusses
-the stronger notion in which every deviation is evaluated on the re-solved market.
+which plants to operate, although they take into account their effect on $A$ when they
+set quantities. Each group thus evaluates entry at the prevailing degree of competition,
+as a free-entry condition does. The difference from a notion in which groups anticipate
+how their entry changes $A$ matters only for groups with large shares, and it vanishes
+as a group's share goes to zero. We adopt this notion because it turns each group's
+entry problem into the choice of one number given one number, which is what delivers
+uniqueness in Section~\ref{sec:ge}. Appendix~\ref{app:nash} discusses the stronger
+notion in which a group evaluates every deviation on the re-solved market.
 
 \subsection{General Equilibrium}
 \label{sec:ge}
