@@ -229,10 +229,13 @@ jointly \citep{Tintelnot2017}. Separability is what allows the entry problem to 
 solved market by market in Section~\ref{sec:market}.}
 
 \paragraph{Profit repatriation.} Country $n$ owns a share $\theta_{gn}\ge0$ of group
-$g$, with $\sum_n\theta_{gn}=1$. The profit of the group net of fixed costs,
+$g$, with $\sum_n\theta_{gn}=1$. Groups maximize their own profits whoever owns them:
+ownership determines where profits are spent, not how groups price or which markets
+they enter. The profit of a group net of fixed costs,
 $\Pi_g=\sum_n\bigl[\Pi_{g,n}-\sum_{i\in T_{g,n}}F_{i,n}\bigr]$, where $\Pi_{g,n}$ is
 its variable profit in market $(n,k(g))$ (Section~\ref{sec:market}), is paid to its
-owners in proportion to $\theta_{gn}$, wherever it is earned. Income in country $n$ is
+owners in proportion to $\theta_{gn}$, wherever it is earned. Tariff revenue is rebated
+lump sum to the household of the country that collects it. Income in country $n$ is
 \begin{equation}
   X_n=w_nL_n+\sum_{g\in\cG}\theta_{gn}\,\Pi_g+T_n,
   \qquad
@@ -241,12 +244,13 @@ owners in proportion to $\theta_{gn}$, wherever it is earned. Income in country 
 \end{equation}
 Profits are earned where groups sell and received where their owners reside, and
 $\theta$ is what separates the two. A natural benchmark assigns each group to the
-country of its ultimate parent, $\theta_{gn}=\mathbf 1\{n=h(g)\}$, which is what parent
-identity in firm-level data identifies; the results below hold for any ownership
-matrix.\footnote{Income includes the profits of the groups a country owns wherever
-they produce and sell, so trade need not balance country by country. World income
-equals world final spending, which follows from \eqref{eq:income}, \eqref{eq:spending}
-and \eqref{eq:labor} by Walras' law.}
+country of its ultimate parent, $\theta_{gn}=\mathbf 1\{n=h(g)\}$; nothing in the
+definition of equilibrium requires this form. Since a group can always choose to serve
+no market, its net profit is non-negative in equilibrium.\footnote{Income includes the
+profits of the groups a country owns, wherever they produce and sell, so trade need not
+balance country by country. Adding \eqref{eq:income} across countries and using
+\eqref{eq:spending} and \eqref{eq:labor} shows that world income equals world final
+spending. This is Walras' law, and it makes one labor-market condition redundant.}
 
 \paragraph{Timing.} The model is static. First, the pool of potential groups and all
 productivity draws are realized. Second, given wages, price indices and market sizes,
