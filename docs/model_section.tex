@@ -601,7 +601,7 @@ demand. With intermediates, the same bound holds provided the cost of each plant
 country $n$ rises by no more than the smaller of its group's average cost and the
 market's price index, a condition that is vacuous when $\nu_k=0$.
 
-Three limits of these results should be stated plainly. First, each layer is unique
+These results have three limits. First, each layer is unique
 given the layers it takes as given, which does not make the joint equilibrium of
 wages and active sets unique: active sets change discretely with wages, and
 Theorem~\ref{thm:wages} holds them fixed. Second, an exact entry equilibrium in whole
@@ -611,9 +611,10 @@ head-office services are a factor input it can fail at an equilibrium
 \eqref{eq:gsbound} can still turn negative, because a country whose groups lose profits
 when a foreign wage rises spends less. That income effect is the ownership channel the
 model is built to study, and removing it would remove the object of interest. The
-conditions of Theorems~\ref{thm:entry} and~\ref{thm:wages} and of
-Proposition~\ref{prop:gs} are inequalities in objects the model computes, and we check
-them at the computed equilibrium in the quantification.
+conditions of Theorem~\ref{thm:wages} and Proposition~\ref{prop:gs} are inequalities in
+objects the model computes, and the conclusion of Theorem~\ref{thm:entry}, a single
+solution of \eqref{eq:clearing} in each market, can be verified market by market; we
+report these checks with the quantification.
 
 \paragraph{Solution algorithm.} The structure above maps into nested loops. Given an
 aggregate $A$, each group's share solves the scalar equation \eqref{eq:sharemap}, and
@@ -623,13 +624,16 @@ response at a given $A$ is found by scanning its ladder of efficient sets, and $
 again found by bisection. Given wages and active sets, price indices are obtained by
 iterating on \eqref{eq:cost}--\eqref{eq:priceindex}, which is a contraction, and
 market sizes and incomes by one linear solve. Wages are updated by the tâtonnement of
-Theorem~\ref{thm:wages}, followed by Newton steps once close to the solution. An outer
-loop updates active sets: at the equilibrium wages for the current configuration, the
-groups with the largest gains from changing their sets do so, and the procedure repeats
-until no group wishes to move. When no exact fixed point in whole plants exists, the
-algorithm returns the configuration with the fewest groups wishing to move and reports
-how many do. Moving only the groups with the largest gains changes the path of the
-algorithm, not its fixed points, and does not amount to an order of entry.
+Theorem~\ref{thm:wages}, with a step within the bound in condition (ii), followed by
+Newton steps once close to the solution. An outer loop updates active sets: at the
+equilibrium wages for the current configuration, the groups with the largest gains from
+changing their sets do so, and the procedure repeats until no group wishes to move.
+Moving only the groups with the largest gains changes the path of the algorithm, not
+its fixed points, and does not amount to an order of entry. The outer loop is not
+guaranteed to converge. When it does not reach a configuration in which no group wishes
+to move, it returns the configuration with the fewest such groups and reports how many
+there are. Because the joint equilibrium is not known to be unique, we solve from
+several starting wage vectors and compare the configurations reached.
 
 \subsection{Comparative Statics}
 \label{sec:cs}
