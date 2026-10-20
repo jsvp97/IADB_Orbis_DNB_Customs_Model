@@ -165,14 +165,18 @@ wage, which links factor markets across countries and can overturn the
 substitutability of labor across countries on which uniqueness of wages rests
 (Appendix~\ref{app:hqinput}).}
 
-\paragraph{Pool of potential groups.} The set of potential groups is drawn before
-any decision is taken. Each country--sector pair $(n,k)$ has a given number $M^S_{nk}$
-of potential stand-alone firms. There are $M^P$ potential parent groups, each with a
-given sector; the headquarters country of each is drawn independently from $\cN^P$
-with probability proportional to $L_hz_h^{\zeta}$, $\zeta\ge0$, and the capability $x_g$
-is drawn from the same distribution whatever the headquarters. Larger and more
-productive countries therefore host more potential parents, and their best parents
-are better only because more draws are taken there \citep{GaubertItskhoki2021}.
+\paragraph{Pool of potential groups.} The set of potential groups is drawn once,
+before any decision is taken, and the equilibrium is computed for a given draw. Each
+country--sector pair $(n,k)$ has a given number $M^S_{nk}$ of potential stand-alone
+firms, and each sector $k$ has a given number $M^P_k$ of potential parent groups. The
+headquarters country of each potential parent group is drawn independently from
+$\cN^P$ with probability proportional to $L_hz_h^{\zeta}$, with $\zeta\ge0$, and its
+capability $x_g$ is drawn from the same distribution whatever its headquarters. Larger
+and more productive countries therefore host more potential parents, and their best
+parents tend to be better only because more draws are taken there
+\citep{GaubertItskhoki2021}. Because each market contains a finite number of groups,
+the draw of the pool matters for outcomes, and every equilibrium object below is
+conditional on it.
 
 \paragraph{Trade.} Shipping goods from $\ell$ to $n$ entails an iceberg cost
 $d_{\ell n}\ge1$, with $d_{nn}=1$. Trade costs are incurred from the country where the
