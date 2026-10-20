@@ -531,8 +531,9 @@ unique solution of the linear system \eqref{eq:income}, \eqref{eq:spending}.
 \end{proposition}
 
 \begin{proposition}[Existence of wages]\label{prop:exist}
-Fix active sets and suppose every country hosts at least one active plant. Then there
-exist wages that clear every labor market.
+Fix active sets, suppose every country hosts at least one active plant, and suppose
+fixed costs are small enough that every country's income is positive at all wages.
+Then there exist wages that clear every labor market.
 \end{proposition}
 
 \noindent Uniqueness of wages is the last layer and the most delicate. Let
@@ -543,8 +544,8 @@ $n\neq j$: a rise in any other country's wage raises country $n$'s wage bill. Th
 next lemma is the building block, and it holds without conditions.
 
 \begin{lemma}[Cost pass-through]\label{lem:pass}
-Fix active sets. The matrix $\partial\ln P/\partial\ln w$, with rows indexed by
-markets, is non-negative and its rows sum to one.
+Fix active sets. At any wage vector, the matrix $\partial\ln P/\partial\ln w$, with
+rows indexed by markets, is non-negative and its rows sum to one.
 \end{lemma}
 
 \noindent A rise in one country's wage raises every price index in the world by a
@@ -565,17 +566,18 @@ metric, which is unchanged when either vector is rescaled.
 
 \begin{theorem}[Wages]\label{thm:wages}
 Fix active sets. Let $D$ be a set of wage vectors that is convex in logarithms, and
-suppose that on $D$ (i) $M_{nj}>0$ for all $n\neq j$, and (ii)
-$\lambda<1/(1-\min_n M_{nn})$. Then there is $\tau<1$ such that
+suppose that (i) $M_{nj}(w)>0$ for all $n\neq j$ and every $w\in D$, and (ii)
+$\lambda\,[1-M_{nn}(w)]<1$ for every $n$ and every $w\in D$. Then there is $\tau<1$ such that
 $d_H(\Psi(w),\Psi(w'))\le\tau\,d_H(w,w')$ for all $w,w'\in D$. Hence $D$ contains at
 most one equilibrium wage vector up to scale, and if $\Psi$ maps $D$ into itself the
 algorithm converges to it from any starting point in $D$.
 \end{theorem}
 
-\noindent Condition (ii) is not a numerical convenience. Labor demand is elastic, so
-$M_{nn}$ is negative and the undamped map ($\lambda=1$) is not order-preserving; the
-model itself bounds the admissible step. Condition (i) is the substantive one, and the
-next result gives conditions under which it holds.
+\noindent Since every row of $M$ sums to one, gross substitutes implies $M_{nn}<1$.
+When labor demand is elastic, $M_{nn}$ is negative, and the undamped map ($\lambda=1$)
+is not order-preserving; condition (ii) says how much damping restores the property,
+and the bound comes from the model rather than from numerical convenience. Condition
+(i) is the substantive one, and the next result gives conditions under which it holds.
 
 \begin{proposition}[Gross substitutes]\label{prop:gs}
 Suppose $\nu_k=0$ and $\eta=1$, and that no group's share exceeds one half in any market
@@ -595,9 +597,9 @@ foreign wage can lower country $n$'s wage bill only by shrinking the markets in 
 its plants sell; every reallocation of sales between plants and between groups
 favors country $n$. The one-half condition is the same as in
 Theorem~\ref{thm:entry}: it is what signs the effect of variable markups on factor
-demand. With intermediates, the same bound holds provided a plant's input prices do not
-rise by more than its group's average cost, a condition that is vacuous when
-$\nu_k=0$.
+demand. With intermediates, the same bound holds provided the cost of each plant paying
+country $n$ rises by no more than the smaller of its group's average cost and the
+market's price index, a condition that is vacuous when $\nu_k=0$.
 
 Three limits of these results should be stated plainly. First, each layer is unique
 given the layers it takes as given, which does not make the joint equilibrium of
