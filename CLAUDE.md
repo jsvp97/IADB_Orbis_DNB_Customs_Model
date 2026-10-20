@@ -3338,11 +3338,14 @@ S Lam, not S^2: the ownership-weighted HHI governs the level (P2a), not the resp
 (3.3e-07).
 
 **Review findings (open, not fixed in code):**
-1. TARIFF BASE. Code levies t on MARGINAL cost (revenue t*a*q = t r/(mu(1+t))), not on
-   the exporter's price (t r/(1+t)). Allocations are identical (same consumer price);
-   only the split of t(mu-1)aq between treasury and firm differs. The guide's claim that
-   this is "customs value" is wrong. Affects the §36 tariff-welfare numbers, not the
-   facts (tariffs are zero there). Model section describes what the code does + footnote.
+1. TARIFF BASE — RESOLVED 2026-10-20: KEEP the code's convention. The tariff is a
+   proportional wedge on delivered cost (revenue t*a*q). A duty on the exporter's price
+   would give a group whose plants face DIFFERENT tariffs a plant-specific markup
+   (FOC: p_i/(1+t_i) = c_i d / [rho + (1/sigma-1/eta)(1+t_i) S~_g]), destroying the
+   common-markup / K_g structure every theorem uses. The two coincide in prices only
+   when all of a group's plants serving n face the same tariff, and then differ only in
+   how t(mu-1)cdq is split between treasury and firm. The guide's "customs value" wording
+   is wrong. The §36 welfare numbers depend on this convention: say so when using them.
 2. JOINT UNIQUENESS IS NOT PROVED. Entry is unique given wages; wages are unique given
    the active set; the joint fixed point is only checked numerically. The guide's
    Theorem 6 text says "operating set by Theorem 2" and then freezes it — inconsistent.
@@ -3366,4 +3369,5 @@ exempts stand-alone firms outside N^P from the delta^S penalty, matching the cod
 ROW fringe). Open note for Quantification: with vartheta = 4 and sigma = 5,
 phi^(sigma-1) has infinite mean under the Pareto law; harmless with a finite pool, but
 the model has no well-defined many-groups limit at these values.
-
+Also agreed: Pool of potential groups; Trade (t > -1, ownership-blind tariffs, wedge-on-cost
+convention justified in a footnote).

@@ -182,19 +182,25 @@ conditional on it.
 $d_{\ell n}\ge1$, with $d_{nn}=1$. Trade costs are incurred from the country where the
 good is produced, not from headquarters, so a single plant can serve several
 destinations, including third markets, as an export platform \citep{Tintelnot2017}.
-Country $n$ levies an ad valorem tariff $t_{\ell nk}\ge0$ on sector-$k$ goods produced
-in $\ell$, with $t_{nnk}=0$. The delivered marginal cost of plant $i$ in market $(n,k)$
-is
+Country $n$ levies a tariff $t_{\ell nk}>-1$ on sector-$k$ goods produced in $\ell$,
+with $t_{nnk}=0$; negative values are import subsidies. Tariffs depend on where a good
+is produced, not on who owns the plant that produces it, so a country's tariffs also
+fall on the foreign affiliates of the groups its residents own. We model the tariff as
+a proportional wedge on the cost of delivering the good. The delivered marginal cost of
+plant $i$ in market $(n,k)$ is
 \begin{equation}
-  c_{i,n}=c_i\,d_{\ell n}\,(1+t_{\ell nk}),\qquad \ell=\ell(i).
+  c_{i,n}=c_i\,d_{\ell n}\,(1+t_{\ell nk}),\qquad \ell=\ell(i),
   \label{eq:delivered}
 \end{equation}
-The tariff is levied on the value of shipments at marginal cost, so country $n$
-collects $t_{\ell nk}\,c_i d_{\ell n}q_{i,n}$ on the sales of plant
-$i$.\footnote{Because markups are multiplicative, the price paid in $n$ is the same as
-under a duty levied on the exporter's price $p_{i,n}/(1+t_{\ell nk})$. The two
-specifications differ only in how the wedge $t_{\ell nk}(\mu-1)c_id_{\ell n}q_{i,n}$ is
-divided between the treasury of $n$ and the group.}
+and country $n$ collects $t_{\ell nk}\,c_i d_{\ell n}q_{i,n}$ on the sales of plant
+$i$.\footnote{A duty levied instead on the exporter's price $p_{i,n}/(1+t_{\ell nk})$
+yields the same prices whenever all the plants a group uses to serve $n$ face the same
+tariff, and differs from \eqref{eq:delivered} only in how the wedge
+$t_{\ell nk}(\mu-1)c_id_{\ell n}q_{i,n}$ is divided between the treasury of $n$ and the
+group. When a group serves $n$ from origins that face different tariffs, a duty on the
+exporter's price makes the group's markup differ across its plants, and the property
+that a group's markup depends only on its total share (Section~\ref{sec:market}) is
+lost. Specification \eqref{eq:delivered} preserves it.}
 
 \paragraph{Multinational corporations and entry.} A plant that serves market $(n,k)$
 pays a fixed cost
