@@ -422,23 +422,25 @@ notion in which a group evaluates every deviation on the re-solved market.
 \subsection{General Equilibrium}
 \label{sec:ge}
 
-\paragraph{Market sizes.} Let $V_{i,m}\equiv a_i\,d_{\ell(i)m}\,q_{i,m}$ be the
-variable cost of plant $i$ in serving market $m$, exclusive of tariffs. By
-Proposition~\ref{prop:markup}, $V_{i,m}=r_{i,m}/[\mu\,(1+t)]$, where $r_{i,m}$ is the
-revenue of the plant in that market. Spending on market $(n,k)$ is final spending by
-households plus intermediate purchases by every plant located in $n$, wherever it sells,
+\paragraph{Market sizes.} Let $V_{i,n'}\equiv a_i\,d_{\ell(i)n'}\,q_{i,n'}$ be the
+variable cost of plant $i$ in serving country $n'$, exclusive of tariffs. By
+Proposition~\ref{prop:markup}, $V_{i,n'}=r_{i,n'}/[\mu_{g(i)}(1+t_{\ell(i)n'k})]$, where
+$r_{i,n'}$ is the plant's revenue in that market and $\mu_{g(i)}$ its group's markup
+there. Spending on market $(n,k)$ is final spending by households plus intermediate
+purchases by every plant located in $n$, wherever it sells:
 \begin{equation}
   E_{nk}=\frac{\beta_kP_{nk}^{1-\eta}}{P_n^{1-\eta}}\,X_n
-  +\sum_{k'\in\cK}\omega_{kk'}\,\nu_{k'}\sum_{m\in\cN}
-   \sum_{i\in\cA_{mk'}:\,\ell(i)=n}V_{i,m}.
+  +\sum_{k'\in\cK}\omega_{kk'}\,\nu_{k'}\sum_{n'\in\cN}
+   \sum_{i\in\cA_{n'k'}:\,\ell(i)=n}V_{i,n'}.
   \label{eq:spending}
 \end{equation}
+Fixed costs are paid in labor only and generate no purchases of inputs.
 
-\paragraph{Labor market.} The wage bill of country $n$ pays for the labor used in
-production and the labor used to serve markets,
+\paragraph{Labor market.} In each country, labor demanded for production and for
+serving markets equals the labor supplied:
 \begin{equation}
-  w_nL_n=\sum_{k\in\cK}(1-\nu_k)\sum_{m\in\cN}\sum_{i\in\cA_{mk}:\,\ell(i)=n}V_{i,m}
-  \;+\;\sum_{m\in\cN}\sum_{i\in\cA_{mk(i)}:\,\ell(i)=n}F_{i,m}.
+  w_nL_n=\sum_{k\in\cK}(1-\nu_k)\sum_{n'\in\cN}\sum_{i\in\cA_{n'k}:\,\ell(i)=n}V_{i,n'}
+  \;+\;\sum_{n'\in\cN}\sum_{i:\,\ell(i)=n,\ i\in T_{g(i),n'}}F_{i,n'}.
   \label{eq:labor}
 \end{equation}
 
@@ -571,12 +573,12 @@ next result gives conditions under which it holds.
 Suppose $\nu_k=0$ and $\eta=1$, and that no group's share exceeds one half in any market
 under quantity competition. Then for $n\neq j$,
 \begin{equation}
-  M_{nj}\;\ge\;\bar E^{(j)}_n\equiv\sum_{i,m}b^n_{i,m}\,
-  \frac{\partial\ln E_{m k(i)}}{\partial\ln w_j},
+  M_{nj}\;\ge\;\bar E^{(j)}_n\equiv\sum_{i,n'}b^n_{i,n'}\,
+  \frac{\partial\ln E_{n'k(i)}}{\partial\ln w_j},
   \label{eq:gsbound}
 \end{equation}
-where $b^n_{i,m}$ is the share of country $n$'s wage bill paid by plant $i$ out of
-its variable costs in market $m$. Labor is a gross substitute whenever
+where $b^n_{i,n'}$ is the share of country $n$'s wage bill paid by plant $i$ out of
+its variable costs in country $n'$. Labor is a gross substitute whenever
 $\bar E^{(j)}_n>0$.
 \end{proposition}
 
@@ -940,7 +942,7 @@ $T(\ln P+x\mathbf 1)\le T(\ln P)+(\max_k\nu_k)\,x\mathbf 1$ for $x\ge0$, so by
 Blackwell's sufficient conditions $T$ is a contraction in the sup norm with modulus
 $\max_k\nu_k<1$. \emph{(b)} Given shares and markups, the second term of
 \eqref{eq:spending} is linear in market sizes, $E=\mathcal E X+BE$, where $B\ge0$ and
-the column of $B$ for market $(m,k')$ sums to $\nu_{k'}\sum_i s_i/[\mu(1+t)]\le\nu_{k'}<1$.
+the column of $B$ for market $(n',k')$ sums to $\nu_{k'}\sum_i s_i/[\mu(1+t)]\le\nu_{k'}<1$.
 So $\rho(B)<1$ and $E=(I-B)^{-1}\mathcal EX$. Variable profits and tariff revenue are
 linear in $E$, so \eqref{eq:income} reads $X=wL-\theta'\Phi+\mathcal MX$ with
 $\mathcal M\ge0$. Summing over countries, $\mathbf 1'\mathcal MX$ equals world
@@ -983,7 +985,7 @@ N^s\ge0$, and $\partial\ln P/\partial\ln w=(I-\mathcal N)^{-1}\Gamma\ge0$ with r
 $(I-\mathcal N)^{-1}(\mathbf 1-\nu)=\mathbf 1$. \qed
 
 \paragraph{C.4 A decomposition of factor payments.} Let $V_i$ be plant $i$'s variable
-cost in a market $(m,k)$, with tariffs fixed. Since $V_i=r_i/[\mu_g(1+t)]$,
+cost in a market $(n',k)$, with tariffs fixed. Since $V_i=r_i/[\mu_g(1+t)]$,
 $\hat V_i=\hat E+\hat s_i-\hat\mu_g$, with $\hat s_i=(1-\sigma)(\hat c_i+\hat\mu_g-\hat
 P)$ and $\hat\mu_g=\varepsilon_\mu\hat S_g$. Using C.3 and
 $(\sigma-1)=(\sigma-1)\Lambda_g[1+(\sigma-1)\varepsilon_\mu]$,
@@ -1007,7 +1009,7 @@ $\Lambda_g\le1$ give $0\le\chi\le\sigma-1$, so the last two terms of
 \eqref{eq:vdecomp} equal $(\sigma-1)\hat c_g-\chi(\hat c_g-\hat P)$. If $\hat c_g\ge\hat
 P$ this is at least $(\sigma-1)\hat P$; otherwise both parts are non-negative. In either
 case it is at least $(\sigma-1)\min\{\hat c_g,\hat P\}\ge0$, so $\hat V_i\ge\hat E$.
-Weighting by $b^n_{i,m}$ and adding the fixed-cost part, whose response is zero,
+Weighting by $b^n_{i,n'}$ and adding the fixed-cost part, whose response is zero,
 gives \eqref{eq:gsbound}. \qed
 
 \paragraph{C.6 Gross substitutes and uniqueness.} The following classical argument
