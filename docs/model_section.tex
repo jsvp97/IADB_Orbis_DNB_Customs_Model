@@ -232,7 +232,7 @@ solved market by market in Section~\ref{sec:market}.}
 $g$, with $\sum_n\theta_{gn}=1$. Groups maximize their own profits whoever owns them:
 ownership determines where profits are spent, not how groups price or which markets
 they enter. The profit of a group net of fixed costs,
-$\Pi_g=\sum_n\bigl[\Pi_{g,n}-\sum_{i\in T_{g,n}}F_{i,n}\bigr]$, where $\Pi_{g,n}$ is
+$\Pi_g=\sum_n\bigl[\pi_{g,n}-\sum_{i\in T_{g,n}}F_{i,n}\bigr]$, where $\pi_{g,n}$ is
 its variable profit in market $(n,k(g))$ (Section~\ref{sec:market}), is paid to its
 owners in proportion to $\theta_{gn}$, wherever it is earned. Tariff revenue is rebated
 lump sum to the household of the country that collects it. Income in country $n$ is
@@ -290,7 +290,7 @@ given price wins a small share.
 \paragraph{Competition.} Groups are the strategic agents. Each group chooses the
 quantities of all of its plants that serve the market, taking as given the quantities
 of other groups and the overall demand for the sector, which is the level of spending
-$E$ when $\eta=1$. It maximizes its variable profit $\Pi_g=\sum_{i\in T_g}(p_i-c_i)q_i$.
+$E$ when $\eta=1$. It maximizes its variable profit $\pi_g=\sum_{i\in T_g}(p_i-c_i)q_i$.
 
 \begin{proposition}[Markups]\label{prop:markup}
 Under quantity competition, the first-order conditions of group $g$ are
@@ -364,19 +364,21 @@ market is the value of $A$ at which shares add up to one,
   \label{eq:clearing}
 \end{equation}
 
-\paragraph{Profits.} Variable profit is $\Pi_g=E\,S_g\,m(S_g)$, where
+\paragraph{Profits.} Variable profit is $\pi_g=E\,S_g\,m(S_g)$, where
 $m(S)\equiv1-1/\mu(S)$ is the Lerner index. Under quantity competition
 \eqref{eq:markupC} makes the Lerner index linear in the share,
 $m(S)=(1+\kappa S)/\sigma$ with $\kappa\equiv\sigma/\eta-1$, so that
 \begin{equation}
-  \Pi_g=\frac{E}{\sigma}\bigl(S_g+\kappa S_g^2\bigr).
+  \pi_g=\frac{E}{\sigma}\bigl(S_g+\kappa S_g^2\bigr).
   \label{eq:profit}
 \end{equation}
 Under price competition the Lerner index $1/\varepsilon(S)$ is not linear, and
 $\kappa=(\sigma-\eta)/\sigma$ is the slope of its first-order expansion. Profits rise
 more than proportionally with the share, because a larger group both sells more and
-earns more on each unit sold. The curvature $\kappa$ sets the size of every ownership
-result in Section~\ref{sec:cs}; with constant markups $\kappa=0$.
+earns more on each unit sold. The curvature $\kappa$ governs the ownership results of
+Section~\ref{sec:cs}, and with constant markups $\kappa=0$. Linearity is what makes the
+ownership decomposition of Section~\ref{sec:cs} exact rather than approximate, and it is
+the main reason we take quantity competition as the baseline.
 
 \paragraph{Entry.} A group's plant set matters for its profit only through its
 strength. Let $K(T)=\sum_{i\in T}c_i^{1-\sigma}$ and $\Phi(T)=\sum_{i\in T}F_{i,n}$ be
@@ -562,11 +564,11 @@ next result gives conditions under which it holds.
 Suppose $\nu_k=0$ and $\eta=1$, and that no group's share exceeds one half in any market
 under quantity competition. Then for $n\neq j$,
 \begin{equation}
-  M_{nj}\;\ge\;\bar E^{(j)}_n\equiv\sum_{i,m}\pi^n_{i,m}\,
+  M_{nj}\;\ge\;\bar E^{(j)}_n\equiv\sum_{i,m}b^n_{i,m}\,
   \frac{\partial\ln E_{m k(i)}}{\partial\ln w_j},
   \label{eq:gsbound}
 \end{equation}
-where $\pi^n_{i,m}$ is the share of country $n$'s wage bill paid by plant $i$ out of
+where $b^n_{i,m}$ is the share of country $n$'s wage bill paid by plant $i$ out of
 its variable costs in market $m$. Labor is a gross substitute whenever
 $\bar E^{(j)}_n>0$.
 \end{proposition}
@@ -650,12 +652,12 @@ not passive: a tariff on one group raises the shares, markups and prices of the 
 
 \paragraph{Ownership and the level of profit income.} Consider a country $H$ with
 ownership shares $\theta_g\equiv\theta_{gH}$, and its profit income from a market,
-$\Pi^H=\sum_g\theta_g\Pi_g$.
+$\pi^H=\sum_g\theta_g\pi_g$.
 
 \begin{proposition}[Ownership-weighted concentration]\label{prop:ownership}
 Under quantity competition,
 \begin{equation}
-  \frac{\Pi^H}{E}=\frac{1}{\sigma}\Bigl[\bar\theta
+  \frac{\pi^H}{E}=\frac{1}{\sigma}\Bigl[\bar\theta
   +\kappa\bigl(\bar\theta\cdot\mathrm{HHI}+\mathrm{Cov}_S(\theta,S)\bigr)\Bigr],
   \label{eq:decomp}
 \end{equation}
@@ -663,7 +665,7 @@ where $\bar\theta=\sum_gS_g\theta_g$ is the sales-weighted ownership share,
 $\mathrm{HHI}=\sum_gS_g^2$, and
 $\mathrm{Cov}_S(\theta,S)=\sum_g\theta_gS_g^2-\bar\theta\cdot\mathrm{HHI}$. A
 calculation that applies the aggregate ownership share to total profit,
-$\bar\theta\sum_g\Pi_g$, misses exactly $(E\kappa/\sigma)\,\mathrm{Cov}_S(\theta,S)$.
+$\bar\theta\sum_g\pi_g$, misses exactly $(E\kappa/\sigma)\,\mathrm{Cov}_S(\theta,S)$.
 \end{proposition}
 
 \noindent The first term is what a model with constant markups delivers: ownership
@@ -692,7 +694,7 @@ profit income, not through its level, and the two are governed by different stat
 Under quantity competition with $\eta=1$, holding active sets and spending fixed, a
 change in the delivered costs of group $j$ alone changes country $H$'s profit income by
 \begin{equation}
-  \frac{d\Pi^H}{E}=\frac{\sigma-1}{\sigma}\,\varpi_j\,\hat c_j
+  \frac{d\pi^H}{E}=\frac{\sigma-1}{\sigma}\,\varpi_j\,\hat c_j
   \sum_{h\neq j}S_h\Lambda_h\Bigl[\theta_h\bigl(1+2\kappa S_h\bigr)
   -\theta_j\bigl(1+2\kappa S_j\bigr)\Bigr].
   \label{eq:response}
@@ -853,8 +855,8 @@ $\mathcal S(A)=1$ has exactly one solution, and every other variable is a functi
 \subsection{Entry}
 \label{app:entry}
 
-\paragraph{B.1 Two elasticities.} Let $G(S)\equiv\Pi'(S)/\psi'(S)$, where
-$\Pi(S)=ES\,m(S)$, and define $\varepsilon_G=SG'/G$ and $\varepsilon_\psi=S\psi'/\psi$.
+\paragraph{B.1 Two elasticities.} Let $G(S)\equiv\pi'(S)/\psi'(S)$, where
+$\pi(S)=ES\,m(S)$, and define $\varepsilon_G=SG'/G$ and $\varepsilon_\psi=S\psi'/\psi$.
 Differentiating $\psi(S)=K/A$ gives $\partial S/\partial K=1/(A\psi')$ and
 $\partial S/\partial A=-\psi/(A\psi')$. Hence $\Omega_K=G(S)/A>0$,
 $\Omega_{KK}=G'(S)/(A^2\psi'(S))$, and
@@ -867,7 +869,7 @@ $\Omega_{KA}<0$ if and only if $\varepsilon_G+\varepsilon_\psi>0$.
 
 \paragraph{B.2 Proof of Theorem~\ref{thm:entry}(a)--(b).} With $\eta=1$,
 $\mu(S)=\sigma/[(\sigma-1)(1-S)]$. Set $E=1$, $a\equiv2(\sigma-1)$ and
-$b\equiv\sigma-2\ge0$. Then $\Pi'(S)=(1+aS)/\sigma$ and
+$b\equiv\sigma-2\ge0$. Then $\pi'(S)=(1+aS)/\sigma$ and
 $\psi'(S)=C(1-S)^{-\sigma}(1+bS)$ with $C=[\sigma/(\sigma-1)]^{\sigma-1}$, so
 \[
   \varepsilon_G(S)=S\,f(S),\qquad
@@ -998,7 +1000,7 @@ $\Lambda_g\le1$ give $0\le\chi\le\sigma-1$, so the last two terms of
 \eqref{eq:vdecomp} equal $(\sigma-1)\hat c_g-\chi(\hat c_g-\hat P)$. If $\hat c_g\ge\hat
 P$ this is at least $(\sigma-1)\hat P$; otherwise both parts are non-negative. In either
 case it is at least $(\sigma-1)\min\{\hat c_g,\hat P\}\ge0$, so $\hat V_i\ge\hat E$.
-Weighting by $\pi^n_{i,m}$ and adding the fixed-cost part, whose response is zero,
+Weighting by $b^n_{i,m}$ and adding the fixed-cost part, whose response is zero,
 gives \eqref{eq:gsbound}. \qed
 
 \paragraph{C.6 Gross substitutes and uniqueness.} The following classical argument
@@ -1060,20 +1062,20 @@ Under quantity competition with $\eta=1$, $\varepsilon_\mu=S/(1-S)$, which gives
 stated $\Lambda_g$. \qed
 
 \paragraph{D.2 Proof of Proposition~\ref{prop:ownership}.} With $m(S)=(1+\kappa
-S)/\sigma$, $\Pi^H/E=\sigma^{-1}\sum_g\theta_gS_g(1+\kappa S_g)
+S)/\sigma$, $\pi^H/E=\sigma^{-1}\sum_g\theta_gS_g(1+\kappa S_g)
 =\sigma^{-1}[\bar\theta+\kappa\sum_g\theta_gS_g^2]$, and
 $\sum_g\theta_gS_g^2=\bar\theta\cdot\mathrm{HHI}+\mathrm{Cov}_S(\theta,S)$ by
 definition. Total profit is the case $\theta_g\equiv1$,
-$\sum_g\Pi_g/E=(1+\kappa\,\mathrm{HHI})/\sigma$, using $\sum_gS_g=1$. Subtracting
-$\bar\theta\sum_g\Pi_g$ from $\Pi^H$ leaves $(E\kappa/\sigma)\mathrm{Cov}_S(\theta,S)$.
+$\sum_g\pi_g/E=(1+\kappa\,\mathrm{HHI})/\sigma$, using $\sum_gS_g=1$. Subtracting
+$\bar\theta\sum_g\pi_g$ from $\pi^H$ leaves $(E\kappa/\sigma)\mathrm{Cov}_S(\theta,S)$.
 Corollary~\ref{cor:irrelevance} is the case $\kappa=0$. \qed
 
 \paragraph{D.3 Proof of Proposition~\ref{prop:response}.} By \eqref{eq:profit},
-$d\Pi_g=(E/\sigma)(1+2\kappa S_g)\,dS_g$. Let $Z=\sum_hS_h\Lambda_h$, so
+$d\pi_g=(E/\sigma)(1+2\kappa S_g)\,dS_g$. Let $Z=\sum_hS_h\Lambda_h$, so
 $\varpi_j=S_j\Lambda_j/Z$. From D.1,
 $dS_j=-(\sigma-1)S_j\Lambda_j(1-\varpi_j)\hat c_j=-(\sigma-1)\varpi_j\hat c_j\sum_{h\neq
 j}S_h\Lambda_h$ and $dS_h=(\sigma-1)\varpi_jS_h\Lambda_h\hat c_j$ for $h\neq j$.
-Substituting into $d\Pi^H=\sum_g\theta_gd\Pi_g$ and collecting terms gives
+Substituting into $d\pi^H=\sum_g\theta_gd\pi_g$ and collecting terms gives
 \eqref{eq:response}. \qed
 
 \paragraph{D.4 Proof of Corollary~\ref{cor:entry}.} Monotonicity in $A$ is Step 2 of
