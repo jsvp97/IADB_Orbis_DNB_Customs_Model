@@ -288,9 +288,9 @@ how competitive the market is: it is large when rivals charge low prices, and th
 given price wins a small share.
 
 \paragraph{Competition.} Groups are the strategic agents. Each group chooses the
-quantities of all of its plants serving the market, taking as given the quantities of
-other groups and the level of spending, and maximizes variable profit
-$\Pi_g=\sum_{i\in T_g}(p_i-c_i)q_i$.
+quantities of all of its plants that serve the market, taking as given the quantities
+of other groups and the overall demand for the sector, which is the level of spending
+$E$ when $\eta=1$. It maximizes its variable profit $\Pi_g=\sum_{i\in T_g}(p_i-c_i)q_i$.
 
 \begin{proposition}[Markups]\label{prop:markup}
 Under quantity competition, the first-order conditions of group $g$ are
@@ -304,18 +304,24 @@ $\varepsilon(S)=\sigma-(\sigma-\eta)S$.
 \end{proposition}
 
 \noindent Both are the markups of \citet{AtkesonBurstein2008}, evaluated at the share
-of the group rather than of the plant. All results below rely only on the following
-property, which both satisfy whenever $\sigma>\eta$.
+of the group rather than of the plant, and both satisfy the following property whenever
+$\sigma>\eta$.
 
 \begin{assumption}\label{as:mu}
 $\mu$ is continuously differentiable and strictly increasing on $[0,1)$, with
 $\mu(0)=\sigma/(\sigma-1)$.
 \end{assumption}
 
-\noindent We take quantity competition as the baseline and report where conclusions
-depend on it.\footnote{When $\eta=1$ the markup in \eqref{eq:markupC} is unbounded as
-$S\to1$, so a market served by a single group has no equilibrium. We restrict attention
-to configurations in which at least two groups are active in every market.}
+\noindent The existence and uniqueness results for a single market, for input prices
+and for wages use only Assumption~\ref{as:mu}. The results on entry and on profit income
+use the form of the markup under quantity competition, and we say so where they do. We
+take quantity competition as the baseline.\footnote{When $\eta=1$ the markup in
+\eqref{eq:markupC} is unbounded as $S\to1$, so a market served by a single group has no
+equilibrium. Such a configuration is never an entry equilibrium as long as a second
+group can serve the market and the market's spending exceeds that group's fixed cost:
+facing a monopolist's unbounded price, the entrant would earn profits close to the
+market's spending. We therefore consider only configurations in which at least two
+groups are active in every market.}
 
 \paragraph{Cannibalization across multinational affiliates.} When a group expands one
 of its plants, the sector price index falls and every variety in the market loses
