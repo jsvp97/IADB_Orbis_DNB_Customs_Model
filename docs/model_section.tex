@@ -385,7 +385,7 @@ strength. Let $K(T)=\sum_{i\in T}c_i^{1-\sigma}$ and $\Phi(T)=\sum_{i\in T}F_{i,
 the strength and the fixed cost of a set $T\subseteq\cP_g$. Given $A$, serving the
 market with $T$ yields
 \begin{equation}
-  V_g(T;A)=\Omega\bigl(K(T);A\bigr)-\Phi(T),
+  U_g(T;A)=\Omega\bigl(K(T);A\bigr)-\Phi(T),
   \qquad
   \Omega(K;A)\equiv E\,\psi^{-1}(K/A)\,m\bigl(\psi^{-1}(K/A)\bigr).
   \label{eq:entrypayoff}
@@ -405,7 +405,7 @@ remains ordered by strength and cost.
 \begin{definition}[Entry equilibrium in a market]\label{def:entry}
 Given delivered costs $\{c_i\}$, fixed costs $\{F_{i,n}\}$ and spending $E$, an entry
 equilibrium is a collection of active sets $\{T_g\}$ and an aggregate $A$ such that
-(i) each $T_g$ maximizes $V_g(\cdot\,;A)$ over subsets of $\cP_g$, and (ii) $A$ solves
+(i) each $T_g$ maximizes $U_g(\cdot\,;A)$ over subsets of $\cP_g$, and (ii) $A$ solves
 \eqref{eq:clearing} with $K_g=K(T_g)$.
 \end{definition}
 
@@ -572,7 +572,7 @@ $d_H(w,w')=\max_n\ln(w_n/w'_n)-\min_n\ln(w_n/w'_n)$ denote Hilbert's projective
 metric, which is unchanged when either vector is rescaled.
 
 \begin{theorem}[Wages]\label{thm:wages}
-Fix active sets. Let $D$ be a set of wage vectors that is convex in logarithms, and
+Fix active sets. Let $D$ be a compact set of wage vectors that is convex in logarithms, and
 suppose that (i) $M_{nj}(w)>0$ for all $n\neq j$ and every $w\in D$, and (ii)
 $\lambda\,[1-M_{nn}(w)]<1$ for every $n$ and every $w\in D$. Then there is $\tau<1$ such that
 $d_H(\Psi(w),\Psi(w'))\le\tau\,d_H(w,w')$ for all $w,w'\in D$. Hence $D$ contains at
@@ -583,8 +583,10 @@ algorithm converges to it from any starting point in $D$.
 \noindent Since every row of $M$ sums to one, gross substitutes implies $M_{nn}<1$.
 When labor demand is elastic, $M_{nn}$ is negative, and the undamped map ($\lambda=1$)
 is not order-preserving; condition (ii) says how much damping restores the property,
-and the bound comes from the model rather than from numerical convenience. Condition
-(i) is the substantive one, and the next result gives conditions under which it holds.
+and the bound comes from the model rather than from numerical convenience. Uniqueness
+itself needs only condition (i): by a classical argument, gross substitutes on $D$ rules
+out a second equilibrium in $D$ (Appendix C.6). Condition (ii) is what the algorithm
+needs to converge. Condition (i) is the substantive one, and the next result gives conditions under which it holds.
 
 \begin{proposition}[Gross substitutes]\label{prop:gs}
 Suppose $\nu_k=0$ and $\eta=1$, and that no group's share exceeds one half in any market
@@ -828,6 +830,10 @@ Milgrom, Paul, and Chris Shannon. ``Monotone Comparative Statics.''
 Ramondo, Natalia, and Andr\'es Rodr\'iguez-Clare. ``Trade, Multinational Production,
 and the Gains from Openness.'' \emph{Journal of Political Economy} 121(2): 273--322,
 2013.
+
+\bibitem[Seneta(2006)]{Seneta2006}
+Seneta, Eugene. \emph{Non-negative Matrices and Markov Chains}. Revised printing.
+Springer, 2006.
 
 \bibitem[Tintelnot(2017)]{Tintelnot2017}
 Tintelnot, Felix. ``Global Production with Export Platforms.'' \emph{Quarterly Journal
@@ -1092,28 +1098,34 @@ Weighting by $b^n_{i,n'}$ and adding the fixed-cost part, whose response is zero
 gives \eqref{eq:gsbound}. \qed
 
 \paragraph{C.6 Gross substitutes and uniqueness.} The following classical argument
-is included for completeness. \emph{If $M_{nj}>0$ for $n\neq j$ at
-every point of a set $D$ that is convex in logarithms, $D$ contains at most one
-equilibrium up to scale.} Let $w,w^*\in D$ be non-proportional equilibria, scale $w^*$
-so that $w^*\le w$ with equality at some $n_0$, and move from $w^*$ to $w$ along the
-segment in logarithms. Every wage other than $w_{n_0}$ weakly rises and at least one
-strictly rises, so $W_{n_0}$ strictly rises while $w_{n_0}$ does not, and
+shows that condition (i) of Theorem~\ref{thm:wages} alone gives uniqueness. Suppose
+$M_{nj}>0$ for $n\neq j$ at every point of a set $D$ that is convex in logarithms.
+Since $M$ is homogeneous of degree zero in wages, the same holds at every rescaling of a
+point of $D$, and the set of these rescalings is still convex in logarithms. Let
+$w,w^*\in D$ be non-proportional equilibria. Scale $w^*$ so that $w^*\le w$ with
+equality at some $n_0$, and move from $w^*$ to $w$ along the segment in logarithms.
+Every wage other than $w_{n_0}$ weakly rises and at least one strictly rises, so
+$W_{n_0}$ strictly rises while $w_{n_0}$ does not. Then
 $z_{n_0}(w)>z_{n_0}(w^*)=0$, a contradiction.
 
-\paragraph{C.7 Proof of Theorem~\ref{thm:wages}.} In logarithms $\Psi$ becomes a map
+\paragraph{C.7 Proof of Theorem~\ref{thm:wages}.} In logarithms, $\Psi$ becomes a map
 with Jacobian $(1-\lambda)I+\lambda M$, whose rows sum to one. Its off-diagonal entries
-are positive by (i) and its diagonal entries are positive by (ii), so it is a strictly
-positive stochastic matrix at every point of $D$. In logarithms $d_H$ is the oscillation
+are positive by (i) and its diagonal entries by (ii), so it is a strictly positive
+stochastic matrix at every point of $D$. In logarithms, $d_H$ is the oscillation
 seminorm $\mathrm{osc}(x)=\max_nx_n-\min_nx_n$. By the mean value theorem in integral
 form, the difference between the images of two points is $\bar A$ times the difference
 between the points, where $\bar A$ is the average of the Jacobian along the segment
 joining them, which stays in $D$. The contraction coefficient of a stochastic matrix in
 the oscillation seminorm, $\delta(A)=\frac12\max_{i,j}\|A_{i\cdot}-A_{j\cdot}\|_1$, is
-convex in $A$, so $\delta(\bar A)\le\sup_D\delta$, and for a strictly positive matrix
-$\delta(A)\le\tanh(\Delta(A)/4)<1$, where
-$\Delta(A)=\max_{i,j,k,l}\ln(A_{ik}A_{jl}/A_{jk}A_{il})$ \citep{Birkhoff1957}. Taking
-$\tau=\sup_D\tanh(\Delta/4)$ gives the contraction. Two fixed points in $D$ would
-contradict it; convergence additionally needs the iterates to stay in $D$. \qed
+convex in $A$, so $\delta(\bar A)\le\sup_D\delta$. For a strictly positive stochastic
+matrix, $\delta(A)\le\tanh(\Delta(A)/4)<1$, where
+$\Delta(A)=\max_{i,j,k,l}\ln(A_{ik}A_{jl}/A_{jk}A_{il})$
+\citep{Birkhoff1957,Seneta2006}. Since $D$ is compact and $M$ is continuous, $\Delta$ is
+bounded on $D$, and $\tau=\sup_D\tanh(\Delta/4)<1$ gives the contraction. A fixed point
+of $\Psi$ up to scale, $\Psi(w)=cw$, has $W_n=c^{1/\lambda}w_nL_n$ for every $n$. Walras'
+law then forces $c=1$, so it is an equilibrium. Two such points in $D$ would contradict
+the contraction. If $\Psi$ maps $D$ into itself, the iterates converge by the
+contraction mapping theorem, since $D$ is compact. \qed
 
 \paragraph{C.8 Head-office services as a factor input.}
 \label{app:hqinput}
@@ -1121,7 +1133,8 @@ Suppose instead that the labor term in \eqref{eq:cost} is
 $(w_h^{\alpha_k}w_\ell^{1-\alpha_k})^{1-\nu_k}$, so that country $h$ is paid the share
 $\alpha_k$ of the labor bill of every plant its groups run. All plants of a group
 report to the same headquarters, so country $h$ receives the share $\alpha_k$ of the
-group's whole bill in the market, and the within-group term of \eqref{eq:vdecomp}
+group's whole bill in the market. When the group's plants serving a market face the
+same tariff, as in the example below, the within-group term of \eqref{eq:vdecomp}
 averages to zero over the group. Consider a country $n$ whose labor income consists
 only of head-office payments from groups whose plants are all located in a single
 country $j$, with $\nu_k=0$. Raising $w_j$ raises those groups' costs by $\hat
@@ -1134,7 +1147,9 @@ $(\sigma-1)(1-\alpha_k)$ exceeds the growth of the markets they serve, although 
 group is near one half of any market. The failure is worst when $\alpha_k$ is
 small: a large head-office share ties the group's cost to its own country's wage and
 insulates it from $w_j$. What breaks gross substitutes is a country whose income is
-concentrated on firms whose costs are set by a single foreign country.
+concentrated on firms whose costs are set by a single foreign country. The argument
+holds at any wage vector at which these groups are small, including the equilibrium
+one.
 
 \subsection{Comparative Statics}
 \label{app:cs}

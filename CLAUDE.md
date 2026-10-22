@@ -3385,3 +3385,11 @@ Proof: cheapest plant in an outside market; share <= 1/2 -> bounded markup; shar
 -> 1/mu >= c (K_h/K_g)^(1/sigma), so W/w grows like w^(-1/sigma). For nu > 0 the
 dominant-group case needs a lower bound on input prices that is not available:
 EXISTENCE WITH INTERMEDIATES IS OPEN, stated as such in the section.
+C.4-C.8 reviewed (2026-10-22): C.4, C.5 confirmed. Entry value renamed V_g(T;A) ->
+U_g(T;A) (clashed with plant variable cost V_i). C.6 (ABH) now cited from the main text:
+UNIQUENESS OF WAGES NEEDS ONLY GROSS SUBSTITUTES on D; the damping condition (ii) is for
+convergence only. Theorem 6 now requires D COMPACT (otherwise no uniform tau < 1); C.7
+adds the Walras step (projective fixed point Psi(w) = c w forces c = 1) and cites Seneta
+(2006, ch. 3) for delta(A) <= tanh(Delta/4) -- exact theorem number unverified. C.8: the
+within-group term averages to zero only when a group's plants in a market face the same
+tariff.
