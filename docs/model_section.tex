@@ -100,13 +100,10 @@ variety sold in $n$ and $E_{nk}$ for total spending on sector $k$ in $n$, demand
   \label{eq:demand}
 \end{equation}
 Market sizes $E_{nk}$ are determined in general equilibrium (Section~\ref{sec:ge}).%
-\footnote{Intermediate inputs are combined across sectors with Cobb--Douglas weights,
-so the upper-tier elasticity of intermediate demand is one. When intermediates are
-used ($\nu_k>0$ below) we therefore set $\eta=1$, so that final and intermediate
-demand share the same upper-tier elasticity and the markup in \eqref{eq:markupC}
-is the one firms face. With $\eta=1$, spending on each sector is a fixed share of total
-spending, so a market does not expand when its price index falls; the case $\eta>1$ is
-used only without intermediates.}
+\footnote{Intermediates are combined across sectors with Cobb--Douglas weights, so
+when they are used ($\nu_k>0$ below) we set $\eta=1$: final and intermediate demand
+then share the same upper-tier elasticity, and the markup in \eqref{eq:markupC} is the
+one firms face. The case $\eta>1$ is used only without intermediates.}
 
 \paragraph{Production technology.} Labor is the only primary factor. A plant in sector
 $k$ located in $\ell$ combines labor with a bundle of intermediate inputs. Writing
@@ -126,10 +123,8 @@ constant of the Cobb--Douglas cost function is absorbed into $\varphi_i$. The te
 $\gamma_{h\ell}\ge1$, with $\gamma_{hh}=1$, is the efficiency loss from producing away
 from headquarters \citep{RamondoRodriguezClare2013,HeadMayer2019}. Intermediates are
 bought in the markets $(\ell,k')$ of the country where the plant operates, which
-include imported varieties and are subject to that country's tariffs. At given wages,
-the entry of a plant into a market lowers its price index and hence the input costs of
-every producer located in that country; in general equilibrium the same entry also
-raises local labor demand, and the net effect on costs depends on both.
+include imported varieties and are subject to that country's tariffs, so the entry of
+a plant into a market lowers the input costs of every producer located in that country.
 
 \paragraph{Head-office capability.} The productivity of plant $i$ combines a location,
 a plant and a group component,
@@ -151,18 +146,15 @@ indexes the head-office intensity, or complexity, of sector $k$
 brands) are a non-rival capability of the group that all of its plants share, so they
 enter productivity rather than the cost of inputs. A stand-alone firm has no access to
 them, and its productivity falls short by a factor that grows with complexity at rate
-$\delta^S\ge0$. A parent group's capability is worth more in complex sectors: in sector
-$k$ the group component $e^{(1+\delta^P\alpha_k)x_g}$ is Pareto with shape
-$\vartheta/(1+\delta^P\alpha_k)$, so the distribution of capability has a thicker tail
-where complexity is higher. Stand-alone firms in countries outside $\cN^P$ stand in for
+$\delta^S\ge0$. A parent group's capability is worth more in complex sectors: its
+group component is Pareto with shape $\vartheta/(1+\delta^P\alpha_k)$, with a thicker
+tail where complexity is higher. Stand-alone firms in countries outside $\cN^P$ stand in for
 all supply from those countries, multinational or not, and carry no penalty. The
 complexity index $\alpha_k$ appears only in \eqref{eq:productivity}.\footnote{The
-common alternative treats head-office services as a factor input bought at the
-parent's wage, so that the labor term in \eqref{eq:cost} becomes
-$(w_{h}^{\alpha_k}w_\ell^{1-\alpha_k})^{1-\nu_k}$ and the fixed cost \eqref{eq:fixed} is
-paid in the same mix of labor \citep{Antras2003}. A plant abroad then pays a foreign
-wage, which links factor markets across countries and can overturn the
-substitutability of labor across countries on which uniqueness of wages rests
+common alternative treats head-office services as labor bought at the parent's wage,
+so that the labor term in \eqref{eq:cost} becomes
+$(w_{h}^{\alpha_k}w_\ell^{1-\alpha_k})^{1-\nu_k}$ \citep{Antras2003}. This can overturn
+the substitutability of labor across countries on which uniqueness of wages rests
 (Appendix~\ref{app:hqinput}).}
 
 \paragraph{Pool of potential groups.} The set of potential groups is drawn once,
@@ -174,9 +166,8 @@ $\cN^P$ with probability proportional to $L_hz_h^{\zeta}$, with $\zeta\ge0$, and
 capability $x_g$ is drawn from the same distribution whatever its headquarters. Larger
 and more productive countries therefore host more potential parents, and their best
 parents tend to be better only because more draws are taken there
-\citep{GaubertItskhoki2021}. Because each market contains a finite number of groups,
-the draw of the pool matters for outcomes, and every equilibrium object below is
-conditional on it.
+\citep{GaubertItskhoki2021}. Because each market contains finitely many groups, the
+draw matters for outcomes.
 
 \paragraph{Trade.} Shipping goods from $\ell$ to $n$ entails an iceberg cost
 $d_{\ell n}\ge1$, with $d_{nn}=1$. Trade costs are incurred from the country where the
@@ -193,14 +184,10 @@ plant $i$ in market $(n,k)$ is
   \label{eq:delivered}
 \end{equation}
 and country $n$ collects $t_{\ell nk}\,a_i d_{\ell n}q_{i,n}$ on the sales of plant
-$i$.\footnote{A duty levied instead on the exporter's price $p_{i,n}/(1+t_{\ell nk})$
-yields the same prices whenever all the plants a group uses to serve $n$ face the same
-tariff, and differs from \eqref{eq:delivered} only in how the wedge
-$t_{\ell nk}(\mu-1)a_id_{\ell n}q_{i,n}$ is divided between the treasury of $n$ and the
-group. When a group serves $n$ from origins that face different tariffs, a duty on the
-exporter's price makes the group's markup differ across its plants, and the property
-that a group's markup depends only on its total share (Section~\ref{sec:market}) is
-lost. Specification \eqref{eq:delivered} preserves it.}
+$i$.\footnote{A duty on the exporter's price yields the same prices when all the plants a
+group uses to serve $n$ face the same tariff. When they do not, it makes the group's
+markup differ across its plants, and the property that a group's markup depends only on
+its total share (Section~\ref{sec:market}) is lost.}
 
 \paragraph{Multinational corporations and entry.} A plant that serves market $(n,k)$
 pays a fixed cost
@@ -222,11 +209,9 @@ from a plant in a third country, or from several at once; a stand-alone firm dec
 only whether to serve $n$. A plant operates if it serves at least one market, so which
 affiliates exist, and where each of them sells, is an equilibrium outcome. This is a
 simplified version of the multi-plant location problem of
-\citet{Yang2023}.\footnote{With a plant-level setup cost, opening a plant to serve one
-market would lower the cost of serving others from it, linking a group's choices across
-markets and turning its problem into a combinatorial one over locations and markets
-jointly \citep{Tintelnot2017}. Separability is what allows the entry problem to be
-solved market by market in Section~\ref{sec:market}.}
+\citet{Yang2023}.\footnote{A plant-level setup cost would link a group's choices across markets and
+turn its problem into a combinatorial one over locations and markets jointly
+\citep{Tintelnot2017}.}
 
 \paragraph{Profit repatriation.} Country $n$ owns a share $\theta_{gn}\ge0$ of group
 $g$, with $\sum_n\theta_{gn}=1$. Groups maximize their own profits whoever owns them:
@@ -246,24 +231,17 @@ Profits are earned where groups sell and received where their owners reside, and
 $\theta$ is what separates the two. A natural benchmark assigns each group to the
 country of its ultimate parent, $\theta_{gn}=\mathbf 1\{n=h(g)\}$; nothing in the
 definition of equilibrium requires this form. Since a group can always choose to serve
-no market, its net profit is non-negative in equilibrium.\footnote{Income includes the
-profits of the groups a country owns, wherever they produce and sell, so trade need not
-balance country by country. Adding \eqref{eq:income} across countries and using
-\eqref{eq:spending} and \eqref{eq:labor} shows that world income equals world final
-spending. This is Walras' law, and it makes one labor-market condition redundant.}
+no market, its net profit is non-negative in equilibrium. Because income includes the
+profits of the groups a country owns, wherever they produce and sell, trade need not
+balance country by country.
 
-\paragraph{Timing.} The model is static and all choices are made simultaneously. The
-pool of potential groups and all productivity draws are realized first. Given them,
-each group chooses which of its plants serve each market of its sector and how much
-each plant sells there, and households choose their consumption. Groups take wages,
-input prices and market sizes as given. When they choose quantities, they take into
-account their effect on the price index of the market; when they choose which plants
-operate, they take as given how competitive each market is, as summarized by the
-aggregate $A_{nk}$ of Section~\ref{sec:market}. Section~\ref{sec:market} states this
-entry notion precisely, and Appendix~\ref{app:nash} compares it with a two-stage game in
-which groups anticipate how their entry changes competition. In equilibrium, every
-choice is optimal given these objects, and the objects are those generated by the
-choices.
+\paragraph{Timing.} The model is static. The pool of potential groups and all
+productivity draws are realized first. Then, simultaneously, groups choose which of
+their plants serve each market and how much each sells, and households choose their
+consumption. Groups take wages, input prices and market sizes as given. They take into
+account their effect on a market's price index when they set quantities, but take the
+competitiveness of the market as given when they choose which plants operate
+(Section~\ref{sec:market}).
 
 \subsection{Market Structure}
 \label{sec:market}
@@ -312,16 +290,13 @@ $\mu$ is continuously differentiable and strictly increasing on $[0,1)$, with
 $\mu(0)=\sigma/(\sigma-1)$.
 \end{assumption}
 
-\noindent The existence and uniqueness results for a single market, for input prices
-and for wages use only Assumption~\ref{as:mu}. The results on entry and on profit income
-use the form of the markup under quantity competition, and we say so where they do. We
-take quantity competition as the baseline.\footnote{When $\eta=1$ the markup in
-\eqref{eq:markupC} is unbounded as $S\to1$, so a market served by a single group has no
-equilibrium. Such a configuration is never an entry equilibrium as long as a second
-group can serve the market and the market's spending exceeds that group's fixed cost:
-facing a monopolist's unbounded price, the entrant would earn profits close to the
-market's spending. We therefore consider only configurations in which at least two
-groups are active in every market.}
+\noindent The results for a single market and for input prices use only
+Assumption~\ref{as:mu}; the others use the specific form of the markup, and we say so
+where they do. We take quantity competition as the baseline.\footnote{When $\eta=1$ the
+markup \eqref{eq:markupC} is unbounded as $S\to1$, so a market served by a single group
+has no equilibrium. This is never an entry equilibrium if a second group can serve the
+market and its spending exceeds that group's fixed cost, so we consider only
+configurations with at least two active groups in every market.}
 
 \paragraph{Cannibalization across multinational affiliates.} When a group expands one
 of its plants, the sector price index falls and every variety in the market loses
@@ -376,9 +351,8 @@ Under price competition the Lerner index $1/\varepsilon(S)$ is not linear, and
 $\kappa=(\sigma-\eta)/\sigma$ is the slope of its first-order expansion. Profits rise
 more than proportionally with the share, because a larger group both sells more and
 earns more on each unit sold. The curvature $\kappa$ governs the ownership results of
-Section~\ref{sec:cs}, and with constant markups $\kappa=0$. Linearity is what makes the
-ownership decomposition of Section~\ref{sec:cs} exact rather than approximate, and it is
-the main reason we take quantity competition as the baseline.
+Section~\ref{sec:cs}. It is zero with constant markups, and its linearity under quantity
+competition, which makes those results exact, is the main reason for our baseline.
 
 \paragraph{Entry.} A group's plant set matters for its profit only through its
 strength. Let $K(T)=\sum_{i\in T}c_i^{1-\sigma}$ and $\Phi(T)=\sum_{i\in T}F_{i,n}$ be
@@ -409,15 +383,12 @@ equilibrium is a collection of active sets $\{T_g\}$ and an aggregate $A$ such t
 \eqref{eq:clearing} with $K_g=K(T_g)$.
 \end{definition}
 
-\noindent Groups take the competitiveness of the market as given when they decide
-which plants to operate, although they take into account their effect on $A$ when they
-set quantities. Each group thus evaluates entry at the prevailing degree of competition,
-as a free-entry condition does. The difference from a notion in which groups anticipate
-how their entry changes $A$ matters only for groups with large shares, and it vanishes
-as a group's share goes to zero. We adopt this notion because it turns each group's
+\noindent Groups thus evaluate entry at the prevailing degree of competition, as in a
+free-entry condition, while taking into account their effect on $A$ when they set
+quantities. The difference from a notion in which groups anticipate how their entry
+changes $A$ matters only for groups with large shares. Our notion turns each group's
 entry problem into the choice of one number given one number, which is what delivers
-uniqueness in Section~\ref{sec:ge}. Appendix~\ref{app:nash} discusses the stronger
-notion in which a group evaluates every deviation on the re-solved market.
+uniqueness in Section~\ref{sec:ge}; Appendix~\ref{app:nash} discusses the stronger one.
 
 \subsection{General Equilibrium}
 \label{sec:ge}
@@ -447,21 +418,12 @@ serving markets equals the labor supplied:
 \begin{definition}[Equilibrium]\label{def:eq}
 An equilibrium consists of wages $\{w_n\}$, price indices $\{P_{nk}\}$, market sizes
 $\{E_{nk}\}$, incomes $\{X_n\}$, active sets $\{T_{g,n}\}$, and prices and quantities
-$\{p_{i,n},q_{i,n}\}$ such that
-\begin{enumerate}[label=(\roman*)]
-\item households maximize \eqref{eq:utility} given their income;
-\item in every market, each group's quantities (prices, under price competition)
-maximize its variable profit given its rivals', so that prices satisfy
-Proposition~\ref{prop:markup};
-\item in every market, quantities satisfy demand \eqref{eq:demand} and shares satisfy
-\eqref{eq:clearing};
-\item in every market, the active sets and the aggregate form an entry equilibrium
-(Definition~\ref{def:entry}), with fixed costs \eqref{eq:fixed};
-\item costs \eqref{eq:cost}--\eqref{eq:delivered} are evaluated at the price indices
-\eqref{eq:priceindex} that they generate;
-\item market sizes satisfy \eqref{eq:spending} and incomes satisfy \eqref{eq:income};
-\item labor markets clear, \eqref{eq:labor}.
-\end{enumerate}
+$\{p_{i,n},q_{i,n}\}$ such that households maximize \eqref{eq:utility}; in every market,
+prices satisfy Proposition~\ref{prop:markup}, quantities satisfy \eqref{eq:demand}, and
+the active sets and the aggregate form an entry equilibrium (Definition~\ref{def:entry});
+costs \eqref{eq:cost}--\eqref{eq:delivered} are evaluated at the price indices
+\eqref{eq:priceindex} that they generate; market sizes and incomes satisfy
+\eqref{eq:spending} and \eqref{eq:income}; and labor markets clear, \eqref{eq:labor}.
 \end{definition}
 
 \noindent All prices, costs, fixed costs and incomes are homogeneous of degree one in
@@ -470,11 +432,9 @@ costs scale together, entry decisions are unchanged when all wages are scaled by
 common factor, so wages are determined up to scale. By Walras' law one labor-market
 condition is implied by the others, and we set $w_1=1$.
 
-\paragraph{Existence and uniqueness.} We establish existence and uniqueness layer by
-layer: the equilibrium of a single market given its active plants; entry into a single
-market; input prices given wages and active plants; market sizes and incomes given
-prices; and wages given active plants. The joint determination of wages and active
-plants is discussed at the end of this subsection.
+\paragraph{Existence and uniqueness.} We proceed layer by layer: one market given its
+active plants; entry into one market; input prices, market sizes and incomes given
+wages and active plants; and wages given active plants.
 
 \begin{proposition}[One market]\label{prop:market}
 Under Assumption~\ref{as:mu}, for any active set containing at least two groups and
@@ -486,15 +446,12 @@ rises, so the sum of shares is a strictly decreasing function of a single number
 equals one exactly once. Each group's profit is strictly concave in its own quantities,
 so the first-order conditions identify the unique best response.
 
-Entry is harder. Each entry makes the market more competitive and lowers the value of
-entering for everyone else, and discrete games of this kind typically have several
-equilibria. The usual remedy is to rank entrants by cost and let the most efficient
-enter first. This requires that every entrant be a separate firm: once a group can
-operate several plants, the value of each plant depends on which other plants of the
-same group operate, and the ranking no longer applies. Fixing an order of moves
-restores uniqueness only by selecting one equilibrium among several. We instead
-separate the effect of a group's strength on its own payoff from the effect of its
-rivals. Write $\Omega_K$ and $\Omega_{KA}$ for the partial derivatives of $\Omega$.
+Entry is harder. Each entry lowers the value of entering for everyone else, and
+discrete games of this kind typically have several equilibria. Ranking entrants by cost
+restores uniqueness only when every entrant is a separate firm, and fixing an order of
+moves does so only by selecting one equilibrium. We instead separate the effect of a
+group's strength on its own payoff from the effect of its rivals. Write $\Omega_K$ and
+$\Omega_{KA}$ for the partial derivatives of $\Omega$.
 
 \begin{theorem}[Entry]\label{thm:entry}
 Consider quantity competition with $\eta=1$ and $\sigma\ge2$.
@@ -508,18 +465,17 @@ ladder. Then a market has at most one entry equilibrium.
 \end{enumerate}
 \end{theorem}
 
-\noindent Part (a) says that strength has diminishing returns for the group itself,
-and part (b) that strength is worth less in a more competitive market. Together they
-imply that each group's optimal strength falls as $A$ rises, while $A$ rises with every
-group's strength, so two equilibria with different aggregates cannot both exist. No
-order of entry is imposed and groups continue to internalize competition among their
-own plants. The hypothesis has economic content and can be checked: no single group
-holds more than half of a market. It is sufficient rather than necessary, since at a
-share of exactly one half the expression whose sign gives (b) still equals $1/\sigma$.
-The proof covers quantity competition with $\eta=1$; numerical checks suggest that the
-same condition suffices under price competition and for $\eta>1$, but we have no proof.
-Existence is a separate matter: entry is chosen in whole plants, so an
-exact equilibrium in pure strategies need not exist (Appendix~\ref{app:nash}).
+\noindent Part (a) says that strength has diminishing returns for the group, and part
+(b) that it is worth less in a more competitive market. Together they imply that each
+group's optimal strength falls as $A$ rises, while $A$ rises with every group's strength,
+so two equilibria with different aggregates cannot both exist. No order of entry is
+imposed, and groups still internalize competition among their own plants. The
+hypothesis, that no group holds more than half of a market, can be checked, and it is
+sufficient rather than necessary: at a share of one half the expression whose sign
+gives (b) still equals $1/\sigma$. Numerical checks suggest that it also suffices under
+price competition and for $\eta>1$, but we have no proof. Because entry is chosen in
+whole plants, an exact equilibrium in pure strategies need not exist
+(Appendix~\ref{app:nash}).
 
 The remaining layers take active sets as given.
 
@@ -540,9 +496,6 @@ least a fraction $\epsilon>0$ of its labor income at all wages. Then there exist
 that clear every labor market.
 \end{proposition}
 
-\noindent With intermediate inputs the argument at the boundary of the wage space does
-not go through as it stands, and we have not proved existence in that case.
-
 \noindent Uniqueness of wages is the last layer and the most delicate. Let
 $W_n(w)$ be the wage bill of country $n$ implied by \eqref{eq:labor} at wages $w$, and
 $M_{nj}\equiv\partial\ln W_n/\partial\ln w_j$. Homogeneity makes every row of $M$ sum
@@ -555,9 +508,7 @@ Fix active sets. At any wage vector, the matrix $\partial\ln P/\partial\ln w$, w
 rows indexed by markets, is non-negative and its rows sum to one.
 \end{lemma}
 
-\noindent A rise in one country's wage raises every price index in the world by a
-proportion between zero and one, whatever the markups and the input--output structure.
-At each step of the argument the response is a weighted average of responses one step
+\noindent At each step the response is a weighted average of responses one step
 down: a plant's cost averages wages and input prices, and a market's price index
 averages the cost changes of the groups in it, with weights that variable markups
 change but cannot make negative.
@@ -581,12 +532,11 @@ algorithm converges to it from any starting point in $D$.
 \end{theorem}
 
 \noindent Since every row of $M$ sums to one, gross substitutes implies $M_{nn}<1$.
-When labor demand is elastic, $M_{nn}$ is negative, and the undamped map ($\lambda=1$)
-is not order-preserving; condition (ii) says how much damping restores the property,
-and the bound comes from the model rather than from numerical convenience. Uniqueness
-itself needs only condition (i): by a classical argument, gross substitutes on $D$ rules
-out a second equilibrium in $D$ (Appendix C.6). Condition (ii) is what the algorithm
-needs to converge. Condition (i) is the substantive one, and the next result gives conditions under which it holds.
+When labor demand is elastic, $M_{nn}<0$ and the undamped map ($\lambda=1$) is not
+order-preserving; condition (ii), which comes from the model, says how much damping
+restores the property. Uniqueness itself needs only condition (i): by a classical
+argument, gross substitutes on $D$ rules out a second equilibrium in $D$
+(Appendix~C.6). The next result gives conditions under which (i) holds.
 
 \begin{proposition}[Gross substitutes]\label{prop:gs}
 Suppose $\nu_k=0$ and $\eta=1$, and that no group's share exceeds one half in any market
@@ -610,39 +560,28 @@ demand. With intermediates, the same bound holds provided the cost of each plant
 country $n$ rises by no more than the smaller of its group's average cost and the
 market's price index, a condition that is vacuous when $\nu_k=0$.
 
-These results have three limits. First, each layer is unique
-given the layers it takes as given, which does not make the joint equilibrium of
-wages and active sets unique: active sets change discretely with wages, and
-Theorem~\ref{thm:wages} holds them fixed. Second, an exact entry equilibrium in whole
-plants may fail to exist. Third, gross substitutes is not a theorem of the model. When
-head-office services are a factor input it can fail at an equilibrium
-(Appendix~\ref{app:hqinput}), and with capability alone the demand term in
-\eqref{eq:gsbound} can still turn negative, because a country whose groups lose profits
-when a foreign wage rises spends less. That income effect is the ownership channel the
-model is built to study, and removing it would remove the object of interest. The
-conditions of Theorem~\ref{thm:wages} and Proposition~\ref{prop:gs} are inequalities in
-objects the model computes, and the conclusion of Theorem~\ref{thm:entry}, a single
-solution of \eqref{eq:clearing} in each market, can be verified market by market; we
-report these checks with the quantification.
+These results have three limits. First, each layer is unique given the layers it
+takes as given, which does not make the joint equilibrium of wages and active sets
+unique: active sets change discretely with wages, and Theorem~\ref{thm:wages} holds them
+fixed. Second, existence is not guaranteed everywhere: an exact entry equilibrium in
+whole plants may fail to exist, and with intermediate inputs we have not proved that
+market-clearing wages exist. Third,
+gross substitutes is not a theorem of the model. It can fail when head-office services
+are a factor input (Appendix~\ref{app:hqinput}), and with capability alone the demand
+term in \eqref{eq:gsbound} can still turn negative, because a country whose groups lose
+profits when a foreign wage rises spends less. That income effect is the ownership
+channel the model is built to study. The conditions of all three results can be checked
+at the computed solution, and we report these checks with the quantification.
 
-\paragraph{Solution algorithm.} The structure above maps into nested loops. Given an
-aggregate $A$, each group's share solves the scalar equation \eqref{eq:sharemap}, and
-the market solves \eqref{eq:clearing} by safeguarded Newton steps on $\ln A$, which
-never leave a bracket that contains the unique root. With entry, each group's best
-response at a given $A$ is found by scanning its ladder of efficient sets, and $A$ is
-again found by bisection. Given wages and active sets, price indices are obtained by
-iterating on \eqref{eq:cost}--\eqref{eq:priceindex}, which is a contraction, and
-market sizes and incomes by one linear solve. Wages are updated by the tâtonnement of
-Theorem~\ref{thm:wages}, with a step within the bound in condition (ii), followed by
-Newton steps once close to the solution. An outer loop updates active sets: at the
-equilibrium wages for the current configuration, the groups with the largest gains from
-changing their sets do so, and the procedure repeats until no group wishes to move.
-Moving only the groups with the largest gains changes the path of the algorithm, not
-its fixed points, and does not amount to an order of entry. The outer loop is not
-guaranteed to converge. When it does not reach a configuration in which no group wishes
-to move, it returns the configuration with the fewest such groups and reports how many
-there are. Because the joint equilibrium is not known to be unique, we solve from
-several starting wage vectors and compare the configurations reached.
+\paragraph{Solution algorithm.} The layers above map into nested loops. Each market
+is solved for $A$ from \eqref{eq:clearing}; with entry, each group's best response at a
+given $A$ is found by scanning its ladder. Given wages and active sets, price indices
+come from iterating the contraction of Proposition~\ref{prop:prices} and incomes from
+one linear solve, and wages are updated by the tâtonnement $\Psi$ with a step that
+satisfies condition (ii). An outer loop lets the groups with the largest gains change
+their plant sets until no group wishes to move. This loop is not guaranteed to converge
+and the joint equilibrium is not known to be unique, so we solve from several starting
+points (Appendix~\ref{app:algo}).
 
 \subsection{Comparative Statics}
 \label{sec:cs}
@@ -674,17 +613,15 @@ cost increase $\hat c_j$, and every rival $h$ gains share,
 $d\ln S_h=(\sigma-1)\Lambda_h\varpi_j\hat c_j$, and raises its price.
 \end{proposition}
 
-\noindent Three features distinguish this from the limit of small groups, which is
-monopolistic competition and where $\Lambda_g=1$, $\varpi_g=S_g$ and $\rho_j=1$. Large
-groups absorb part of a cost increase in their markup, so pass-through $\rho_j$ falls
-with the group's share. Since $\Lambda_g$ falls with size, $\varpi_g<S_g$ for the larger
-groups in a market, and the price index moves by less than their share would suggest.
-And rivals are not passive: a cost increase for one group raises the shares, markups
-and prices of the others. Because tariffs depend on where goods are produced, a tariff
-on goods from $\ell$ raises $\hat c_g$ only by the share of group $g$'s sales in the
-market that comes from its plants in $\ell$. A group able to serve the market from
-several countries is therefore partly shielded, while a stand-alone exporter from $\ell$
-bears the tariff in full.
+\noindent In the limit of small groups, which is monopolistic competition,
+$\Lambda_g=1$, $\varpi_g=S_g$ and $\rho_j=1$. Large groups instead absorb part of a cost
+increase in their markup, so pass-through falls with the group's share; the price index
+moves by less than their share would suggest, since $\varpi_g<S_g$ for the larger
+groups; and a cost increase for one group raises the shares, markups and prices of its
+rivals. Because tariffs depend on where goods are produced, a tariff on goods from
+$\ell$ raises $\hat c_g$ only by the share of group $g$'s sales that comes from its
+plants in $\ell$: a group able to serve the market from several countries is partly
+shielded, while a stand-alone exporter from $\ell$ bears the tariff in full.
 
 \paragraph{Ownership and the level of profit income.} Consider a country $H$ with
 ownership shares $\theta_g\equiv\theta_{gH}$, and its profit income from a market,
@@ -707,28 +644,19 @@ exactly $(E\kappa/\sigma)\,\mathrm{Cov}_S(\theta,S)$.
 
 \noindent The first term is what a model with constant markups delivers: ownership
 times revenue over $\sigma$. The second is an ownership-weighted Herfindahl index. Its
-component $\bar\theta\cdot\mathrm{HHI}$ can be built from a country's ownership share in
-the market and a concentration index. The covariance cannot: it requires knowing which
-groups a country owns and how large each one is. Because profits are convex in shares,
-two countries with the same share of a market's sales earn different profits if one
-owns the large groups and the other the small ones. The decomposition is an identity,
-exact under quantity competition, where the Lerner index is linear; under price
-competition it is the leading term of an expansion. It concerns variable profit: a
-country's net profit income from the market also subtracts its share of the fixed costs
-that the groups it owns pay to serve it. Summed over markets with spending weights, the
-same algebra splits the economy-wide correction into a covariance across markets between
+component $\bar\theta\cdot\mathrm{HHI}$ can be built from a country's ownership share and
+a concentration index; the covariance cannot, since it requires knowing which groups a
+country owns and how large each one is. Because profits are convex in shares, two
+countries with the same share of a market's sales earn different profits if one owns
+the large groups and the other the small ones. With constant markups, as under
+monopolistic competition, $\kappa=0$ and a country's profit income is its ownership
+share times total profit, whatever the distribution of ownership across groups; that
+benchmark lies outside the oligopoly model, where $\kappa=\sigma/\eta-1>0$. The
+decomposition is exact under quantity competition and a first-order approximation under
+price competition. It concerns variable profit, before the fixed costs that a country's
+groups pay to serve the market. Summed over markets with spending weights, the same
+algebra splits the economy-wide correction into a covariance across markets between
 ownership shares and concentration, and the average of the covariances within markets.
-
-\begin{corollary}[Constant markups]\label{cor:irrelevance}
-If markups were constant, as under monopolistic competition, the Lerner index would be
-$1/\sigma$ and $\kappa=0$. A country's profit income from a market would then equal its
-aggregate ownership share times total profit, whatever the distribution of ownership
-across groups.
-\end{corollary}
-
-\noindent The corollary concerns the level of income given $\bar\theta$. It does not
-say that the distribution of ownership is irrelevant for how income responds to policy,
-which is the subject of the next result.
 
 \paragraph{Ownership and the response of profit income.} The effect of a policy on a
 country's welfare depends on how its profit income changes, not on its level, and the
@@ -748,16 +676,14 @@ change in the delivered costs of group $j$ alone changes country $H$'s profit in
 \noindent A cost increase for group $j$ alone, for example a tariff on goods from a
 country from which only $j$ serves the market, reallocates sales from $j$ to its rivals
 in proportion to $S_h\Lambda_h$, and each unit of share is worth $\theta(1+2\kappa S)$ to
-country $H$, up to the common factor $E/\sigma$. The country gains when the rivals it
-owns are worth more to it at the margin than the group whose costs rose. Two
-differences from Proposition~\ref{prop:ownership} matter. The weights are
-$S_h\Lambda_h$ rather than $S_h^2$, and $\Lambda_h$ falls with size, so large groups
-count for less in the response than in the level. And the response compares the
-ownership of the affected group with that of its rivals, weighted by how much each
-responds, rather than through the sales-weighted covariance that governs the level. The
-ownership-weighted Herfindahl index measures the stake a country has in a market; it is
-not, by itself, a sufficient statistic for how that stake responds to a tariff, and in
-general equilibrium the response also runs through wages, entry and market sizes.
+country $H$, up to the factor $E/\sigma$. The country gains when the rivals it owns are
+worth more to it at the margin than the group whose costs rose. The weights are
+$S_h\Lambda_h$ rather than $S_h^2$, so large groups count for less in the response than
+in the level, and what matters is the ownership of the affected group relative to its
+rivals, not the covariance that governs the level. The ownership-weighted Herfindahl
+index measures a country's stake in a market but is not a sufficient statistic for how
+that stake responds to a tariff; in general equilibrium the response also runs through
+wages, entry and market sizes.
 
 \paragraph{Entry.} The proof of Theorem~\ref{thm:entry} delivers monotone comparative
 statics for each group's choice.
@@ -769,24 +695,19 @@ $E$ fixed, provided the group's share would not exceed one half with any of its 
 the aggregates compared.
 \end{corollary}
 
-\noindent These are properties of each group's best response. A more competitive market
-leads a group to climb fewer rungs of its ladder, and a larger market to climb more.
-Since every rung is a set of plants, these responses determine which affiliates operate.
-In the market's entry equilibrium they combine with the fact that $A$ rises with every
-group's strength, and through \eqref{eq:spending} and \eqref{eq:labor} they feed back
-into market sizes and wages.
+\noindent A more competitive market leads a group to climb fewer rungs of its ladder,
+and a larger market to climb more. Since every rung is a set of plants, these responses
+determine which affiliates operate, and through \eqref{eq:spending} and \eqref{eq:labor}
+they feed back into market sizes and wages.
 
-\paragraph{Wages and prices.} Lemma~\ref{lem:pass} is also a comparative statics
-result. With active sets fixed, a rise in country $j$'s wage raises every price index,
-in every country and sector, by a proportion between zero and one, and an equal
-proportional rise in all wages raises every price index in the same proportion. A wage
-change therefore propagates through the input--output structure and through markups,
-but neither can reverse its sign or amplify it beyond one for one. Who gains from a fall
-in $j$'s wage depends on ownership. The fall lowers the costs of every group with plants
-in $j$, and part of the gain accrues as profit to the owners of those groups, wherever
-they reside. A policy that lowers a foreign wage can therefore raise the income of the
-country that owns the plants located there, which is the channel through which
-ownership enters the evaluation of trade policy in general equilibrium.
+\paragraph{Wages and prices.} By Lemma~\ref{lem:pass}, with active sets fixed, a rise in
+country $j$'s wage raises every price index by a proportion between zero and one: the
+input--output structure and markups propagate a wage change but cannot reverse or
+amplify it. Who gains from a fall in $j$'s wage depends on ownership. The fall lowers
+the costs of every group with plants in $j$, and part of the gain accrues as profit to
+the owners of those groups, wherever they reside. A policy that lowers a foreign wage
+can therefore raise the income of the country that owns the plants located there, which
+is how ownership enters the evaluation of trade policy in general equilibrium.
 
 \setlength{\bibsep}{1pt}
 \begin{thebibliography}{99}
@@ -1174,8 +1095,7 @@ $\sum_g\theta_gS_g^2=\bar\theta\cdot\mathrm{HHI}+\mathrm{Cov}_S(\theta,S)$ by
 definition. Total profit is the case $\theta_g\equiv1$,
 $\sum_g\pi_g/E=(1+\kappa\,\mathrm{HHI})/\sigma$, using $\sum_gS_g=1$. Subtracting
 $\bar\theta\sum_g\pi_g$ from $\pi^H$ leaves $(E\kappa/\sigma)\mathrm{Cov}_S(\theta,S)$.
-Corollary~\ref{cor:irrelevance} is the case $\kappa=0$, which lies outside the
-oligopoly model, where $\kappa=\sigma/\eta-1>0$. \qed
+The constant-markup benchmark is the case $\kappa=0$. \qed
 
 \paragraph{D.3 Proof of Proposition~\ref{prop:response}.} By \eqref{eq:profit},
 $d\pi_g=(E/\sigma)(1+2\kappa S_g)\,dS_g$. Let $Z=\sum_hS_h\Lambda_h$, so
@@ -1191,5 +1111,29 @@ increasing in $K$, so for two rungs with $K_1<K_2$ the net gain
 $E[\tilde\Omega(K_2;A)-\tilde\Omega(K_1;A)]-[\Phi_2-\Phi_1]$ is strictly increasing in
 $E$. So as $E$ rises, no rung below the group's current choice can become optimal,
 and the chosen strength does not fall. \qed
+
+\subsection{Solution Algorithm}
+\label{app:algo}
+
+\paragraph{E.1 Markets and entry.} Given an aggregate $A$, each group's share solves
+the scalar equation \eqref{eq:sharemap}, and the market solves \eqref{eq:clearing} by
+safeguarded Newton steps on $\ln A$, which never leave a bracket that contains the
+unique root. With entry, each group's best response at a given $A$ is found by scanning
+its ladder of efficient sets, and $A$ is found by bisection.
+
+\paragraph{E.2 Prices, incomes and wages.} Given wages and active sets, price indices
+are obtained by iterating on \eqref{eq:cost}--\eqref{eq:priceindex}, and market sizes
+and incomes by one linear solve. Wages are updated by the tâtonnement of
+Theorem~\ref{thm:wages}, with a step within the bound in condition (ii), followed by
+Newton steps once close to the solution.
+
+\paragraph{E.3 Active sets.} At the equilibrium wages for the current configuration,
+the groups with the largest gains from changing their sets do so, and the procedure
+repeats until no group wishes to move. Moving only the groups with the largest gains
+changes the path of the algorithm, not its fixed points, and does not amount to an
+order of entry. When the loop does not reach a configuration in which no group wishes
+to move, it returns the configuration with the fewest such groups and reports how many
+there are. Because the joint equilibrium is not known to be unique, we solve from
+several starting wage vectors and compare the configurations reached.
 
 \end{document}

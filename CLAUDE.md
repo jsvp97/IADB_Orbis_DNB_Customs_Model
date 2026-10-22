@@ -3393,3 +3393,12 @@ adds the Walras step (projective fixed point Psi(w) = c w forces c = 1) and cite
 (2006, ch. 3) for delta(A) <= tanh(Delta/4) -- exact theorem number unverified. C.8: the
 within-group term averages to zero only when a group's plants in a market face the same
 tariff.
+Appendix D reviewed and the main text trimmed to 10 pages (2026-10-22). D: Prop.
+Incidence's rho_j is the group's SALES-WEIGHTED AVERAGE pass-through; the response
+formula (Prop. 8) holds under Cournot for ANY eta (verified eta in (1,3), 2.4e-07), so
+the eta = 1 restriction was dropped; the constant-markup "corollary" is a benchmark
+OUTSIDE the model (kappa = sigma/eta - 1 > 0 always) and is now a sentence. Trim: the
+solution-algorithm details moved to a new Appendix E; the equilibrium definition is in
+prose; footnotes shortened. Fixed a false claim found while trimming: wage results do
+NOT use only Assumption 1 (existence and gross substitutes use the specific markup).
+Main text ends on p. 10; appendix 6 pp. Remaining: final style pass.
