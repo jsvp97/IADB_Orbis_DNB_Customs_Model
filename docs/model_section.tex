@@ -668,9 +668,9 @@ Holding active sets and spending fixed,
   d\ln P=\sum_g\varpi_g\,\hat c_g .
   \label{eq:incidence}
 \end{equation}
-If only group $j$'s costs change, its price rises by the fraction
-$\rho_j=1-(\sigma-1)\varepsilon_\mu(S_j)\Lambda_j(1-\varpi_j)\in(0,1]$ of the cost
-increase, and every rival $h$ gains share,
+If only group $j$'s costs change, its sales-weighted average price rises by the fraction
+$\rho_j=1-(\sigma-1)\varepsilon_\mu(S_j)\Lambda_j(1-\varpi_j)\in(0,1]$ of its average
+cost increase $\hat c_j$, and every rival $h$ gains share,
 $d\ln S_h=(\sigma-1)\Lambda_h\varpi_j\hat c_j$, and raises its price.
 \end{proposition}
 
@@ -720,8 +720,10 @@ same algebra splits the economy-wide correction into a covariance across markets
 ownership shares and concentration, and the average of the covariances within markets.
 
 \begin{corollary}[Constant markups]\label{cor:irrelevance}
-If $\kappa=0$, a country's profit income from a market equals its aggregate ownership
-share times total profit, whatever the distribution of ownership across groups.
+If markups were constant, as under monopolistic competition, the Lerner index would be
+$1/\sigma$ and $\kappa=0$. A country's profit income from a market would then equal its
+aggregate ownership share times total profit, whatever the distribution of ownership
+across groups.
 \end{corollary}
 
 \noindent The corollary concerns the level of income given $\bar\theta$. It does not
@@ -733,7 +735,7 @@ country's welfare depends on how its profit income changes, not on its level, an
 two are governed by different statistics.
 
 \begin{proposition}[Response of owned profits]\label{prop:response}
-Under quantity competition with $\eta=1$, holding active sets and spending fixed, a
+Under quantity competition, holding active sets and spending fixed, a
 change in the delivered costs of group $j$ alone changes country $H$'s profit income by
 \begin{equation}
   \frac{d\pi^H}{E}=\frac{\sigma-1}{\sigma}\,\varpi_j\,\hat c_j
@@ -1158,8 +1160,9 @@ one.
 the market step of C.3, with the active sets and $E$ fixed. If only $j$'s costs change,
 $d\ln P=\varpi_j\hat c_j$, so $d\ln S_j=-(\sigma-1)\Lambda_j(1-\varpi_j)\hat c_j$ and,
 for $h\neq j$, $d\ln S_h=(\sigma-1)\Lambda_h\varpi_j\hat c_j$. Prices are
-$p_i=\mu(S_g)c_i$, so $d\ln p_i=\hat c_i+\varepsilon_\mu(S_g)\,d\ln S_g$, which gives
-$\rho_j$ for group $j$ and a positive price change for every rival. Since
+$p_i=\mu(S_g)c_i$, so $d\ln p_i=\hat c_i+\varepsilon_\mu(S_g)\,d\ln S_g$, Averaging over
+group $j$'s plants with weights $s_i/S_j$ gives $\rho_j\hat c_j$, and every rival's
+price rises. Since
 $(\sigma-1)\varepsilon_\mu\Lambda_j<1$ and $1-\varpi_j\in[0,1)$, $\rho_j\in(0,1]$.
 Under quantity competition with $\eta=1$, $\varepsilon_\mu=S/(1-S)$, which gives the
 stated $\Lambda_g$. \qed
@@ -1171,7 +1174,8 @@ $\sum_g\theta_gS_g^2=\bar\theta\cdot\mathrm{HHI}+\mathrm{Cov}_S(\theta,S)$ by
 definition. Total profit is the case $\theta_g\equiv1$,
 $\sum_g\pi_g/E=(1+\kappa\,\mathrm{HHI})/\sigma$, using $\sum_gS_g=1$. Subtracting
 $\bar\theta\sum_g\pi_g$ from $\pi^H$ leaves $(E\kappa/\sigma)\mathrm{Cov}_S(\theta,S)$.
-Corollary~\ref{cor:irrelevance} is the case $\kappa=0$. \qed
+Corollary~\ref{cor:irrelevance} is the case $\kappa=0$, which lies outside the
+oligopoly model, where $\kappa=\sigma/\eta-1>0$. \qed
 
 \paragraph{D.3 Proof of Proposition~\ref{prop:response}.} By \eqref{eq:profit},
 $d\pi_g=(E/\sigma)(1+2\kappa S_g)\,dS_g$. Let $Z=\sum_hS_h\Lambda_h$, so
@@ -1185,6 +1189,7 @@ Substituting into $d\pi^H=\sum_g\theta_gd\pi_g$ and collecting terms gives
 B.3. For spending, $\Omega(K;A)=E\,\tilde\Omega(K;A)$ with $\tilde\Omega$ strictly
 increasing in $K$, so for two rungs with $K_1<K_2$ the net gain
 $E[\tilde\Omega(K_2;A)-\tilde\Omega(K_1;A)]-[\Phi_2-\Phi_1]$ is strictly increasing in
-$E$, and the larger rung, once preferred, remains preferred as $E$ rises. \qed
+$E$. So as $E$ rises, no rung below the group's current choice can become optimal,
+and the chosen strength does not fall. \qed
 
 \end{document}
