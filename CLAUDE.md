@@ -3406,3 +3406,9 @@ Style pass (2026-10-22): eleven sentences fixed (four ambiguous referents, plus 
 "is what", semicolon triads, a grand closing line). Six redundant sentences cut to keep
 the main text at 10 pages; it now ends on the LAST LINE of p. 10 -- zero slack, so any
 addition to the main text needs an equal cut. Appendix prose not given the same pass.
+Appendix style pass (2026-10-22): fixed three errors introduced by earlier edits -- the
+C.4 decomposition was numbered "(A.1)" (now tagged (C.4)); E.2 cited the range "(4)-(2)";
+B.4 and C.1 pointed at a moved section and a renamed proof step. C.6 now cites Arrow,
+Block and Hurwicz (1959) and MWG Section 17.F (section number not checked against the
+book). Model section review COMPLETE; wages-with-intermediates existence deferred to the
+Quantification section by Sebastian's decision.
