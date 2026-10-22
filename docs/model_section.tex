@@ -36,8 +36,8 @@
 
 We develop a static general equilibrium model of multinational production in which
 the strategic agent is the ownership group. A group can operate plants in several
-countries, chooses which of its plants serve each market, and takes into account
-when it sets quantities that its own plants compete with one another. Markups
+countries, chooses which of its plants serve each market, and, when it sets
+quantities, takes into account that its own plants compete with one another. Markups
 therefore depend on the group's total share of the market rather than on the share of
 any single plant. Profits are paid to the countries that own each group, and ownership
 is recorded group by group rather than country by country. Proofs are in the
@@ -166,11 +166,10 @@ $\cN^P$ with probability proportional to $L_hz_h^{\zeta}$, with $\zeta\ge0$, and
 capability $x_g$ is drawn from the same distribution whatever its headquarters. Larger
 and more productive countries therefore host more potential parents, and their best
 parents tend to be better only because more draws are taken there
-\citep{GaubertItskhoki2021}. Because each market contains finitely many groups, the
-draw matters for outcomes.
+\citep{GaubertItskhoki2021}.
 
 \paragraph{Trade.} Shipping goods from $\ell$ to $n$ entails an iceberg cost
-$d_{\ell n}\ge1$, with $d_{nn}=1$. Trade costs are incurred from the country where the
+$d_{\ell n}\ge1$, with $d_{nn}=1$. Trade costs run from the country where the
 good is produced, not from headquarters, so a single plant can serve several
 destinations, including third markets, as an export platform \citep{Tintelnot2017}.
 Country $n$ levies a tariff $t_{\ell nk}>-1$ on sector-$k$ goods produced in $\ell$,
@@ -228,7 +227,7 @@ lump sum to the household of the country that collects it. Income in country $n$
   \label{eq:income}
 \end{equation}
 Profits are earned where groups sell and received where their owners reside, and
-$\theta$ is what separates the two. A natural benchmark assigns each group to the
+$\theta$ links the two. A natural benchmark assigns each group to the
 country of its ultimate parent, $\theta_{gn}=\mathbf 1\{n=h(g)\}$; nothing in the
 definition of equilibrium requires this form. Since a group can always choose to serve
 no market, its net profit is non-negative in equilibrium. Because income includes the
@@ -294,7 +293,7 @@ $\mu(0)=\sigma/(\sigma-1)$.
 Assumption~\ref{as:mu}; the others use the specific form of the markup, and we say so
 where they do. We take quantity competition as the baseline.\footnote{When $\eta=1$ the
 markup \eqref{eq:markupC} is unbounded as $S\to1$, so a market served by a single group
-has no equilibrium. This is never an entry equilibrium if a second group can serve the
+has no equilibrium. Such a configuration is never an entry equilibrium if a second group can serve the
 market and its spending exceeds that group's fixed cost, so we consider only
 configurations with at least two active groups in every market.}
 
@@ -331,8 +330,7 @@ Under Assumption~\ref{as:mu} the map $\psi$ is strictly increasing, so
 $S_g=\psi^{-1}(K_g/A)$: the share of a group depends only on its strength relative to
 the competitiveness of the market. However many plants a group runs, and in however
 many countries, its position in the market is summarized by one number, $K_g$, and all
-it needs to know about its rivals is $A$. This holds under price competition as well,
-since only the form of $\mu$ changes. Given the active plants, the equilibrium of the
+it needs to know about its rivals is $A$. Given the active plants, the equilibrium of the
 market is the value of $A$ at which shares add up to one,
 \begin{equation}
   \sum_{g}\psi^{-1}\!\left(\frac{K_g}{A}\right)=1 .
@@ -351,8 +349,9 @@ Under price competition the Lerner index $1/\varepsilon(S)$ is not linear, and
 $\kappa=(\sigma-\eta)/\sigma$ is the slope of its first-order expansion. Profits rise
 more than proportionally with the share, because a larger group both sells more and
 earns more on each unit sold. The curvature $\kappa$ governs the ownership results of
-Section~\ref{sec:cs}. It is zero with constant markups, and its linearity under quantity
-competition, which makes those results exact, is the main reason for our baseline.
+Section~\ref{sec:cs}. It is zero with constant markups. Under quantity competition the
+Lerner index is linear, which makes those results exact; this is the main reason for our
+baseline.
 
 \paragraph{Entry.} A group's plant set matters for its profit only through its
 strength. Let $K(T)=\sum_{i\in T}c_i^{1-\sigma}$ and $\Phi(T)=\sum_{i\in T}F_{i,n}$ be
@@ -386,9 +385,9 @@ equilibrium is a collection of active sets $\{T_g\}$ and an aggregate $A$ such t
 \noindent Groups thus evaluate entry at the prevailing degree of competition, as in a
 free-entry condition, while taking into account their effect on $A$ when they set
 quantities. The difference from a notion in which groups anticipate how their entry
-changes $A$ matters only for groups with large shares. Our notion turns each group's
-entry problem into the choice of one number given one number, which is what delivers
-uniqueness in Section~\ref{sec:ge}; Appendix~\ref{app:nash} discusses the stronger one.
+changes $A$ matters only for groups with large shares. This notion turns each group's
+entry problem into the choice of one number given one number, and this is what delivers
+uniqueness in Section~\ref{sec:ge}. Appendix~\ref{app:nash} discusses the alternative.
 
 \subsection{General Equilibrium}
 \label{sec:ge}
@@ -405,7 +404,6 @@ purchases by every plant located in $n$, wherever it sells:
    \sum_{i\in\cA_{n'k'}:\,\ell(i)=n}V_{i,n'}.
   \label{eq:spending}
 \end{equation}
-Fixed costs are paid in labor only and generate no purchases of inputs.
 
 \paragraph{Labor market.} In each country, labor demanded for production and for
 serving markets equals the labor supplied:
@@ -477,8 +475,6 @@ price competition and for $\eta>1$, but we have no proof. Because entry is chose
 whole plants, an exact equilibrium in pure strategies need not exist
 (Appendix~\ref{app:nash}).
 
-The remaining layers take active sets as given.
-
 \begin{proposition}[Prices and incomes]\label{prop:prices}
 Fix wages and active sets. (a) The price indices are the unique fixed point of
 \eqref{eq:priceindex} combined with \eqref{eq:cost}--\eqref{eq:delivered}, and
@@ -508,7 +504,7 @@ Fix active sets. At any wage vector, the matrix $\partial\ln P/\partial\ln w$, w
 rows indexed by markets, is non-negative and its rows sum to one.
 \end{lemma}
 
-\noindent At each step the response is a weighted average of responses one step
+\noindent In the proof, each response is a weighted average of responses one step
 down: a plant's cost averages wages and input prices, and a market's price index
 averages the cost changes of the groups in it, with weights that variable markups
 change but cannot make negative.
@@ -555,7 +551,7 @@ $\bar E^{(j)}_n>0$.
 foreign wage can lower country $n$'s wage bill only by shrinking the markets in which
 its plants sell; every reallocation of sales between plants and between groups
 favors country $n$. The one-half condition is the same as in
-Theorem~\ref{thm:entry}: it is what signs the effect of variable markups on factor
+Theorem~\ref{thm:entry}: it signs the effect of variable markups on factor
 demand. With intermediates, the same bound holds provided the cost of each plant paying
 country $n$ rises by no more than the smaller of its group's average cost and the
 market's price index, a condition that is vacuous when $\nu_k=0$.
@@ -570,8 +566,8 @@ gross substitutes is not a theorem of the model. It can fail when head-office se
 are a factor input (Appendix~\ref{app:hqinput}), and with capability alone the demand
 term in \eqref{eq:gsbound} can still turn negative, because a country whose groups lose
 profits when a foreign wage rises spends less. That income effect is the ownership
-channel the model is built to study. The conditions of all three results can be checked
-at the computed solution, and we report these checks with the quantification.
+channel the model is built to study. The hypotheses of Theorems~\ref{thm:entry} and
+\ref{thm:wages} and of Proposition~\ref{prop:gs} can be checked at the computed solution, and we report these checks with the quantification.
 
 \paragraph{Solution algorithm.} The layers above map into nested loops. Each market
 is solved for $A$ from \eqref{eq:clearing}; with entry, each group's best response at a
@@ -615,10 +611,10 @@ $d\ln S_h=(\sigma-1)\Lambda_h\varpi_j\hat c_j$, and raises its price.
 
 \noindent In the limit of small groups, which is monopolistic competition,
 $\Lambda_g=1$, $\varpi_g=S_g$ and $\rho_j=1$. Large groups instead absorb part of a cost
-increase in their markup, so pass-through falls with the group's share; the price index
-moves by less than their share would suggest, since $\varpi_g<S_g$ for the larger
-groups; and a cost increase for one group raises the shares, markups and prices of its
-rivals. Because tariffs depend on where goods are produced, a tariff on goods from
+increase in their markup, so pass-through falls with the group's share, and since
+$\varpi_g<S_g$ for the larger groups, the price index moves by less than their share
+would suggest. Rivals are not passive either: a cost increase for one group raises their
+shares, markups and prices. Because tariffs depend on where goods are produced, a tariff on goods from
 $\ell$ raises $\hat c_g$ only by the share of group $g$'s sales that comes from its
 plants in $\ell$: a group able to serve the market from several countries is partly
 shielded, while a stand-alone exporter from $\ell$ bears the tariff in full.
@@ -658,9 +654,8 @@ groups pay to serve the market. Summed over markets with spending weights, the s
 algebra splits the economy-wide correction into a covariance across markets between
 ownership shares and concentration, and the average of the covariances within markets.
 
-\paragraph{Ownership and the response of profit income.} The effect of a policy on a
-country's welfare depends on how its profit income changes, not on its level, and the
-two are governed by different statistics.
+\paragraph{Ownership and the response of profit income.} Welfare depends on how profit
+income responds to policy, and the response is governed by a different statistic.
 
 \begin{proposition}[Response of owned profits]\label{prop:response}
 Under quantity competition, holding active sets and spending fixed, a
@@ -685,8 +680,7 @@ index measures a country's stake in a market but is not a sufficient statistic f
 that stake responds to a tariff; in general equilibrium the response also runs through
 wages, entry and market sizes.
 
-\paragraph{Entry.} The proof of Theorem~\ref{thm:entry} delivers monotone comparative
-statics for each group's choice.
+\paragraph{Entry.} The proof of Theorem~\ref{thm:entry} also gives comparative statics.
 
 \begin{corollary}[Entry responses]\label{cor:entry}
 Under quantity competition with $\eta=1$, the strength a group chooses is
@@ -700,14 +694,12 @@ and a larger market to climb more. Since every rung is a set of plants, these re
 determine which affiliates operate, and through \eqref{eq:spending} and \eqref{eq:labor}
 they feed back into market sizes and wages.
 
-\paragraph{Wages and prices.} By Lemma~\ref{lem:pass}, with active sets fixed, a rise in
-country $j$'s wage raises every price index by a proportion between zero and one: the
-input--output structure and markups propagate a wage change but cannot reverse or
-amplify it. Who gains from a fall in $j$'s wage depends on ownership. The fall lowers
+\paragraph{Wages and prices.} By Lemma~\ref{lem:pass}, input--output links and markups
+propagate a wage change across price indices but cannot reverse or amplify it. Who gains from a fall in $j$'s wage depends on ownership. The fall lowers
 the costs of every group with plants in $j$, and part of the gain accrues as profit to
 the owners of those groups, wherever they reside. A policy that lowers a foreign wage
-can therefore raise the income of the country that owns the plants located there, which
-is how ownership enters the evaluation of trade policy in general equilibrium.
+can therefore raise the income of the country that owns the plants located there. This
+is the general-equilibrium channel through which ownership matters for trade policy.
 
 \setlength{\bibsep}{1pt}
 \begin{thebibliography}{99}

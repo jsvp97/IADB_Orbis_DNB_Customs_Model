@@ -3402,3 +3402,7 @@ solution-algorithm details moved to a new Appendix E; the equilibrium definition
 prose; footnotes shortened. Fixed a false claim found while trimming: wage results do
 NOT use only Assumption 1 (existence and gross substitutes use the specific markup).
 Main text ends on p. 10; appendix 6 pp. Remaining: final style pass.
+Style pass (2026-10-22): eleven sentences fixed (four ambiguous referents, plus tics:
+"is what", semicolon triads, a grand closing line). Six redundant sentences cut to keep
+the main text at 10 pages; it now ends on the LAST LINE of p. 10 -- zero slack, so any
+addition to the main text needs an equal cut. Appendix prose not given the same pass.
