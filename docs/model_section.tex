@@ -690,20 +690,25 @@ Under quantity competition,
 \end{equation}
 where $\bar\theta=\sum_gS_g\theta_g$ is the sales-weighted ownership share,
 $\mathrm{HHI}=\sum_gS_g^2$, and
-$\mathrm{Cov}_S(\theta,S)=\sum_g\theta_gS_g^2-\bar\theta\cdot\mathrm{HHI}$. A
-calculation that applies the aggregate ownership share to total profit,
-$\bar\theta\sum_g\pi_g$, misses exactly $(E\kappa/\sigma)\,\mathrm{Cov}_S(\theta,S)$.
+$\mathrm{Cov}_S(\theta,S)=\sum_g\theta_gS_g^2-\bar\theta\cdot\mathrm{HHI}$ is the
+covariance between ownership and share computed with sales weights. A calculation that
+applies $\bar\theta$ to total profit in the market, $\bar\theta\sum_g\pi_g$, misses
+exactly $(E\kappa/\sigma)\,\mathrm{Cov}_S(\theta,S)$.
 \end{proposition}
 
 \noindent The first term is what a model with constant markups delivers: ownership
 times revenue over $\sigma$. The second is an ownership-weighted Herfindahl index. Its
-component $\bar\theta\cdot\mathrm{HHI}$ can be built from an aggregate ownership share
-and a published concentration index. The covariance between ownership and size cannot:
-it requires knowing which groups a country owns and how large each one is. Because
-profits are convex in shares, what matters for a country's profit income is not what
-fraction of firms it owns but what fraction of the large ones. The decomposition is an
-identity. It is exact under quantity competition, where the Lerner index is linear; under
-price competition it is the leading term of an expansion.
+component $\bar\theta\cdot\mathrm{HHI}$ can be built from a country's ownership share in
+the market and a concentration index. The covariance cannot: it requires knowing which
+groups a country owns and how large each one is. Because profits are convex in shares,
+two countries with the same share of a market's sales earn different profits if one
+owns the large groups and the other the small ones. The decomposition is an identity,
+exact under quantity competition, where the Lerner index is linear; under price
+competition it is the leading term of an expansion. It concerns variable profit: a
+country's net profit income from the market also subtracts its share of the fixed costs
+that the groups it owns pay to serve it. Summed over markets with spending weights, the
+same algebra splits the economy-wide correction into a covariance across markets between
+ownership shares and concentration, and the average of the covariances within markets.
 
 \begin{corollary}[Constant markups]\label{cor:irrelevance}
 If $\kappa=0$, a country's profit income from a market equals its aggregate ownership
