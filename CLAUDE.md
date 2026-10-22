@@ -1781,7 +1781,7 @@ proof is machine-checked, not just typed. It runs inside `julia mne_model.jl ent
 | entry | generic (integer problem, sized) | **proved** (Thm 2) |
 | I–O prices | **proved** | **proved** (contraction, Banach) |
 | spending and incomes | **proved** | **proved** (linear, rho(B) < 1) |
-| wages | **proved** (Thm 3: continuity + homogeneity + Walras + boundary) | **proved** (Thm 4, §27) under two CHECKED conditions |
+| wages | ~~proved (Thm 3)~~ **proved only for nu = 0, eta = 1, under irreducibility** -- the old boundary argument was wrong; see §38 | **proved** (Thm 4, §27) under two CHECKED conditions |
 
 ~~The only unproved uniqueness is the wage vector~~ — **superseded 2026-08-20 by
 Theorem 4, §27.** Wage uniqueness now has a proof, conditional on (H1) no group above
@@ -3371,3 +3371,17 @@ phi^(sigma-1) has infinite mean under the Pareto law; harmless with a finite poo
 the model has no well-defined many-groups limit at these values.
 Also agreed: Pool of potential groups; Trade (t > -1, ownership-blind tariffs, wedge-on-cost
 convention justified in a footnote).
+
+**Appendix C review (2026-10-22).** C.1(a) and C.3 confirmed. Two real gaps fixed:
+(1) Prop. "Prices and incomes" (b) needs NON-NEGATIVE tariffs: with import subsidies the
+spending-matrix column sums can exceed nu and the income matrix has negative entries,
+so rho < 1 is no longer implied (system still linear; unique iff I-B, I-M nonsingular).
+(2) EXISTENCE OF WAGES WAS NOT PROVED as stated. The old boundary argument handled only
+one wage going to zero, claimed spending stays positive in every market (false for the
+vanishing country's own market), and used a too-weak hypothesis. Rewritten: proved for
+nu = 0, eta = 1, non-negative tariffs, under McKenzie-style IRREDUCIBILITY (every proper
+subset of countries has a plant selling outside it) and incomes >= eps * labor income.
+Proof: cheapest plant in an outside market; share <= 1/2 -> bounded markup; share > 1/2
+-> 1/mu >= c (K_h/K_g)^(1/sigma), so W/w grows like w^(-1/sigma). For nu > 0 the
+dominant-group case needs a lower bound on input prices that is not available:
+EXISTENCE WITH INTERMEDIATES IS OPEN, stated as such in the section.

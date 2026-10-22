@@ -526,15 +526,22 @@ The remaining layers take active sets as given.
 \begin{proposition}[Prices and incomes]\label{prop:prices}
 Fix wages and active sets. (a) The price indices are the unique fixed point of
 \eqref{eq:priceindex} combined with \eqref{eq:cost}--\eqref{eq:delivered}, and
-iteration converges to it at rate $\max_k\nu_k$. (b) Market sizes and incomes are the
-unique solution of the linear system \eqref{eq:income}, \eqref{eq:spending}.
+iteration converges to it at rate $\max_k\nu_k$. (b) If tariffs are non-negative, market
+sizes and incomes are the unique solution of the linear system \eqref{eq:income},
+\eqref{eq:spending}.
 \end{proposition}
 
 \begin{proposition}[Existence of wages]\label{prop:exist}
-Fix active sets, suppose every country hosts at least one active plant, and suppose
-fixed costs are small enough that every country's income is positive at all wages.
-Then there exist wages that clear every labor market.
+Fix active sets, and suppose that $\nu_k=0$, $\eta=1$ and tariffs are non-negative.
+Suppose also that (i) no set of countries is cut off from the rest: for every proper
+subset $Z$ of countries, some plant located in $Z$ is active in a market of a country
+outside $Z$; and (ii) fixed costs are small enough that every country's income is at
+least a fraction $\epsilon>0$ of its labor income at all wages. Then there exist wages
+that clear every labor market.
 \end{proposition}
+
+\noindent With intermediate inputs the argument at the boundary of the wage space does
+not go through as it stands, and we have not proved existence in that case.
 
 \noindent Uniqueness of wages is the last layer and the most delicate. Let
 $W_n(w)$ be the wage bill of country $n$ implied by \eqref{eq:labor} at wages $w$, and
@@ -988,41 +995,66 @@ summing to $\nu_k$. Hence $T$ is monotone and
 $T(\ln P+x\mathbf 1)\le T(\ln P)+(\max_k\nu_k)\,x\mathbf 1$ for $x\ge0$, so by
 Blackwell's sufficient conditions $T$ is a contraction in the sup norm with modulus
 $\max_k\nu_k<1$. \emph{(b)} Given shares and markups, the second term of
-\eqref{eq:spending} is linear in market sizes, $E=\mathcal E X+BE$, where $B\ge0$ and
-the column of $B$ for market $(n',k')$ sums to $\nu_{k'}\sum_i s_i/[\mu(1+t)]\le\nu_{k'}<1$.
-So $\rho(B)<1$ and $E=(I-B)^{-1}\mathcal EX$. Variable profits and tariff revenue are
-linear in $E$, so \eqref{eq:income} reads $X=wL-\theta'\Phi+\mathcal MX$ with
+\eqref{eq:spending} is linear in market sizes, $E=\mathcal EX+BE$, where $B\ge0$ and
+the column of $B$ for market $(n',k')$ sums to $\nu_{k'}\sum_i s_i/[\mu(1+t)]$. This is
+below $\nu_{k'}<1$ when tariffs are non-negative, since markups exceed one. So
+$\rho(B)<1$ and $E=(I-B)^{-1}\mathcal EX\ge0$. Variable profits and tariff revenue are
+linear in $E$ and, with non-negative tariffs, non-negative. Let $\Phi_g$ be group $g$'s
+total fixed costs. Then \eqref{eq:income} reads $X=wL-\theta'\Phi+\mathcal MX$ with
 $\mathcal M\ge0$. Summing over countries, $\mathbf 1'\mathcal MX$ equals world
 spending minus intermediate purchases minus the variable wage bill, that is world final
 spending minus the variable wage bill; since every unit of spending generates a positive
 variable wage bill when $\nu_k<1$, each column of $\mathcal M$ sums to less than one,
 $\rho(\mathcal M)<1$, and $X=(I-\mathcal M)^{-1}(wL-\theta'\Phi)$ is the unique
-solution. \qed
+solution. With import subsidies the system is still linear, and it has a unique
+solution whenever $I-B$ and $I-\mathcal M$ are non-singular, which can be checked
+directly. \qed
 
-\paragraph{C.2 Proof of Proposition~\ref{prop:exist}.} Let
-$z_n(w)=W_n(w)/w_n-L_n$ be excess demand for labor. By
+\paragraph{C.2 Proof of Proposition~\ref{prop:exist}.} Normalize wages to the unit
+simplex and let $z_n(w)=W_n(w)/w_n-L_n$ be excess demand for labor. By
 Propositions~\ref{prop:market}--\ref{prop:prices}, $z$ is continuous on the interior of
-the wage space, as a composition of continuous maps; it is homogeneous of degree zero;
-it satisfies Walras' law $\sum_nw_nz_n(w)=0$, which follows from adding
-\eqref{eq:income} across countries and using \eqref{eq:spending}; and it is bounded
-below by $-L$. For the boundary condition, let $w_n\to0$ with other wages bounded away
-from zero. Spending in every market stays bounded away from zero, since incomes are
-bounded below by $w_jL_j-\sum_g\theta_{gj}\Phi_g$, which we assume positive (fixed
-costs small relative to labor income). Delivered costs of plants located in $n$ fall at
-least in proportion to $w_n^{1-\nu_k}$, and their variable cost bills are
-$Es_i/[\mu(1+t)]$. If the group's share stays below one, the markup is bounded and the
-bill stays bounded away from zero. If the share tends to one (possible only when
-$\eta=1$), \eqref{eq:sharemap} implies that $1-S_g$ falls like $c_i^{(\sigma-1)/\sigma}$,
-so the bill falls like $w_n^{(1-\nu_k)(\sigma-1)/\sigma}$, more slowly than $w_n$.
-Either way $z_n=W_n/w_n-L_n\to\infty$. The standard existence result for
-excess demand functions \citep[Proposition 17.C.1]{MWG1995} applies. \qed
+the simplex and homogeneous of degree zero. It satisfies Walras' law
+$\sum_nw_nz_n(w)=0$, which follows from adding \eqref{eq:income} across countries and
+using \eqref{eq:spending} and the definition of $W_n$ as the right side of
+\eqref{eq:labor}. It is bounded below by $-L$. It remains to check the boundary
+condition of \citet[Proposition 17.C.1]{MWG1995}: if $w^m\to\bar w$, where
+$Z=\{n:\bar w_n=0\}$ is non-empty, then $\max_nz_n(w^m)\to\infty$.
+
+With $\nu_k=0$, a plant's delivered cost is proportional to the wage where it is
+located. So the costs of plants located in $Z$ go to zero, while all other costs stay in
+a compact subset of $(0,\infty)$. By (i), some plant located in $Z$ is active in a
+market $(n',k)$ with $n'\notin Z$. By (ii) and $\eta=1$,
+$E_{n'k}=\beta_kX_{n'}\ge\beta_k\epsilon w_{n'}L_{n'}$, which stays bounded away from
+zero. For $m$ large, the lowest-cost plant $i$ in that market is located in some
+$\ell\in Z$. Let $g$ be its group and $J$ the number of plants in the market. Its
+variable cost bill is $V_i=E_{n'k}s_i/[\mu_g(1+t)]$, all of it paid to labor in $\ell$,
+so it suffices to show that $V_i/w_\ell\to\infty$.
+
+If $S_g\le\frac12$, then $\mu_g\le\bar\mu\equiv\mu(\frac12)$. Every price is at least
+$c_i$, since markups exceed one, so $P^{1-\sigma}\le Jc_i^{1-\sigma}$ and
+$s_i=(\mu_gc_i/P)^{1-\sigma}\ge\bar\mu^{1-\sigma}/J$. Then $V_i$ is bounded away from
+zero while $w_\ell\to0$.
+
+If $S_g>\frac12$, every rival $h$ has $S_h<\frac12$, so
+$\psi(S_h)\le\bar\mu^{\sigma-1}S_h\le\bar\mu^{\sigma-1}(1-S_g)$, while
+$\psi(S_g)\ge\frac12\mu_g^{\sigma-1}$. Under both conducts with $\eta=1$,
+$\mu(S)(1-S)\le\sigma/(\sigma-1)$. Together with \eqref{eq:sharemap}, this gives
+$K_h/K_g=\psi(S_h)/\psi(S_g)\le C\mu_g^{-\sigma}$ for a constant $C$. Rival strength
+$K_h$ is bounded below, because all costs are bounded above. Plant $i$ is the cheapest
+in its group, so $K_g\le Jc_i^{1-\sigma}$ and $s_i\ge S_g/J>1/(2J)$. Hence $V_i\ge
+c\,c_i^{(\sigma-1)/\sigma}$ for some $c>0$, and since $c_i$ is proportional to $w_\ell$,
+$V_i/w_\ell$ grows like $w_\ell^{-1/\sigma}$.
+
+In either case $z_\ell\to\infty$, and the result follows from
+\citet[Proposition 17.C.1]{MWG1995}. \qed
 
 \paragraph{C.3 Proof of Lemma~\ref{lem:pass}.} Hats denote log changes in response to
 a change in wages. \emph{Costs.} Trade costs and tariffs are fixed, so by \eqref{eq:cost} and
 \eqref{eq:delivered}, $\hat c_i=\hat a_i=(1-\nu_k)\hat w_\ell+\nu_k\sum_{k'}\omega_{k'k}\hat P_{\ell k'}$, with non-negative coefficients
 summing to one. \emph{Markets.} Differentiating $S_g=\mu(S_g)^{1-\sigma}K_g/A$, with
 $\hat K_g=(1-\sigma)\hat c_g$ by \eqref{eq:strength} and $\hat A=(1-\sigma)\hat P$,
-gives $\hat S_g=-(\sigma-1)\Lambda_g(\hat c_g-\hat P)$. Shares sum to one, so
+gives $\hat S_g=-(\sigma-1)\Lambda_g(\hat c_g-\hat P)$, with $\Lambda_g$, $\varpi_g$
+and $\hat c_g$ as defined in \eqref{eq:incidenceweights}. Shares sum to one, so
 $\sum_gS_g\hat S_g=0$, which gives $\hat P=\sum_g\varpi_g\hat c_g$ with weights
 $\varpi_g>0$ summing to one. \emph{Stacking.} Substituting costs into markets gives
 $\hat P=\Gamma\hat w+\mathcal N\hat P$ with $\Gamma,\mathcal N\ge0$,
