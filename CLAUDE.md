@@ -76,6 +76,9 @@ interval_certificate.jl the CONTINUUM certificate (§32): outward-rounded interv
 docs/model_section.tex  THE PAPER'S MODEL SECTION (2026-10-01, §38): written in the
                         "Model_Linkages" format, model only, no quantification.
                         10 pp main + 6 pp appendix. Review complete (2026-10-22).
+docs/model_section_simple.tex  SIMPLIFIED MODEL SECTION (2026-10-27), a separate
+                        version; model_section.tex is untouched. 13 pp (base 6.5, entry
+                        extension ~1, appendix 4). See end of §38.
 docs/model_solution.tex THE STEP-BY-STEP SOLUTION (2026-10-27): companion to
                         model_section, English, 14 pp. Baseline (Cournot, eta=1, nu,
                         tariffs >= 0) derived by substitution down to z(w;T)=0 plus the
@@ -3425,3 +3428,23 @@ numbered so Step k = section k (overview is section 0). Verified on a 3-country,
 2-sector economy with nu > 0 and tariffs at two off-equilibrium wage vectors: Walras
 4e-15, M column-sum identity 7e-16, B column sums < nu, dS/dlnA = -S*Lambda 8e-11,
 A_hi bracket holds, W homogeneous of degree one.
+Simplified model section (2026-10-27): docs/model_section_simple.tex, Sebastian's
+choices. REMOVED from the base: intermediate inputs (nu = 0), eta > 1 and Bertrand
+(footnotes only), the parametric productivity structure (alpha_k, delta, Pareto, pool
+zeta, gamma -> phi_i is a primitive; parametric form goes to Quantification), the
+Birkhoff contraction theorem (uniqueness via gross substitutes + ABH only; damping is a
+sentence in the algorithm), the head-office-as-factor-input counterexample (C.8 ->
+footnote), and endogenous entry, which is now a short EXTENSION subsection (fixed costs,
+ladder, entry theorem; proofs in Appendix D). KEPT: group Cournot with cannibalization,
+strength K_g and psi(S) = K/A, ownership theta, the level and response propositions,
+the incidence proposition, the wage channel. Tariffs are now assumed t >= 0 throughout.
+What the simplification buys: with plants exogenous there is no joint wage-entry
+uniqueness gap and no integer problem in the base; without fixed costs X >= wL, so the
+existence proof needs only irreducibility (no income-positivity assumption); one
+Theorem (Wages) combines the gross-substitutes bound (one-half condition + demand
+condition) with ABH. COST to disclose in the paper: with nu = 0 the policy reversal of
+§36.1 is cleaner than at nu = 0.55 (§36.2), so the quantification with intermediates
+changes the magnitude of the policy result. Verified numerically (3 countries, 2 sectors,
+tariffs, nu = 0): income matrix column sums < 1 (max 0.40), X >= wL, Walras 9e-16,
+M row sums 1, M_nj >= Ebar with slack >= 0.26, existence inequality
+K_h/K_g <= 2^sigma (1-S_g)^sigma and chi formula exact.
