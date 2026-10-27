@@ -1,0 +1,620 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\setlist[enumerate]{itemsep=1pt,topsep=3pt}
+
+\newcommand{\cN}{\mathcal N}
+\newcommand{\cK}{\mathcal K}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\TR}{\mathit{TR}}
+
+\title{Solving the Simplified Model, Step by Step}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent This document derives the solution of the simplified model, one substitution
+at a time. It adds no assumptions and no results to the model section. Its purpose is
+to show how the equilibrium conditions reduce to a small system that can be solved,
+which objects have closed forms, and which ones must be computed. Propositions and
+theorems cited by name and number, and all notation, are those of the model section,
+whose notation table lists every symbol.
+
+The model has quantity competition among groups, Cobb--Douglas preferences across
+sectors, labor as the only input, non-negative tariffs, and plants that serve a given
+set of markets. Section~\ref{sec:entry} adds the extension in which groups choose which
+plants serve each market.
+
+\tableofcontents
+
+\setcounter{section}{-1}
+\section{What Has to Be Solved}
+\label{sec:overview}
+
+\paragraph{Primitives.} The economy is described by the sets of countries $\cN$ and
+sectors $\cK$; labor endowments $L_n$; spending shares $\beta_k$ and elasticities
+$\sigma_k>1$; the groups, with their headquarters, sectors and plants; plant
+productivities $\varphi_i$; the markets each plant serves; trade costs $d_{\ell n}$;
+tariffs $t_{\ell nk}\ge0$; and ownership shares $\theta_{gn}$. All of these are given.
+
+\paragraph{Unknowns.} An equilibrium consists of wages $w_n$, incomes $X_n$, and the
+price $p_{i,n}$ and quantity $q_{i,n}$ of every plant in every market it serves.
+Market sizes $E_{nk}$, price indices $P_{nk}$, shares, markups and profits follow from
+these.
+
+\paragraph{Strategy.} There is no closed form for the equilibrium as a whole. Every
+object, however, can be written as a function of the wage vector $w$ alone, through a
+chain of substitutions in which each link is either a closed form or a problem with a
+unique and easily computed solution. The equilibrium is then a wage vector that
+satisfies $N-1$ labor-market conditions.
+
+\begin{center}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Step & Solves for & Takes as given & How \\
+\midrule
+1 & demand functions & prices, spending & closed form \\
+2 & unit and delivered costs & wages & closed form \\
+3 & shares, markups, prices in one market & delivered costs & one scalar equation \\
+4 & market sizes and incomes & wages & linear system \\
+5 & labor-market conditions & everything above & closed form \\
+6 & wages & --- & $N-1$ equations \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent Steps 1--3 hold at any wages. Market shares do not depend on spending, so
+Step 3 can be solved before Step 4, and incomes then solve a linear system.
+
+\section{Step 1: Household Demand}
+\label{sec:demand}
+
+\paragraph{Within a sector.} Fix country $n$ and sector $k$, and write $\sigma=\sigma_k$.
+To obtain an amount $C_{nk}$ of the sector's bundle at least cost, the household
+chooses $q_{i,n}$ to minimize $\sum_{i\in\cA_{nk}}p_{i,n}q_{i,n}$ subject to
+$\bigl[\sum_iq_{i,n}^{(\sigma-1)/\sigma}\bigr]^{\sigma/(\sigma-1)}=C_{nk}$. With
+multiplier $\chi$, the first-order condition for variety $i$ is
+\[
+  p_{i,n}=\chi\,\frac{\partial C_{nk}}{\partial q_{i,n}}
+  =\chi\,C_{nk}^{1/\sigma}q_{i,n}^{-1/\sigma},
+  \qquad\text{so}\qquad
+  q_{i,n}=\Bigl(\frac{p_{i,n}}{\chi}\Bigr)^{-\sigma}C_{nk}.
+\]
+Substituting into the constraint,
+$C_{nk}=\chi^{\sigma}C_{nk}\bigl[\sum_ip_{i,n}^{1-\sigma}\bigr]^{\sigma/(\sigma-1)}$,
+so $\chi=\bigl[\sum_ip_{i,n}^{1-\sigma}\bigr]^{1/(1-\sigma)}\equiv P_{nk}$. The
+multiplier is the price index: the cost of one unit of the bundle. Spending on the
+sector is then $P_{nk}C_{nk}$, and
+\begin{equation}
+  q_{i,n}=p_{i,n}^{-\sigma}P_{nk}^{\sigma-1}\,(P_{nk}C_{nk}).
+  \label{eq:lowertier}
+\end{equation}
+
+\paragraph{Across sectors.} The household maximizes $U_n=\prod_kC_{nk}^{\beta_k}$
+subject to $\sum_kP_{nk}C_{nk}=X_n$. With multiplier $\zeta$, the first-order condition
+for sector $k$ is $\beta_kU_n/C_{nk}=\zeta P_{nk}$, so $P_{nk}C_{nk}=\beta_kU_n/\zeta$.
+Adding over sectors and using $\sum_k\beta_k=1$ gives $U_n/\zeta=X_n$, hence
+\begin{equation}
+  E_{nk}\equiv P_{nk}C_{nk}=\beta_kX_n .
+  \label{eq:spending}
+\end{equation}
+Each sector receives a fixed share of income. Substituting into \eqref{eq:lowertier},
+\begin{equation}
+  q_{i,n}=p_{i,n}^{-\sigma}P_{nk}^{\sigma-1}E_{nk},
+  \qquad
+  s_{i,n}\equiv\frac{p_{i,n}q_{i,n}}{E_{nk}}=\Bigl(\frac{p_{i,n}}{P_{nk}}\Bigr)^{1-\sigma}.
+  \label{eq:demand}
+\end{equation}
+The revenue shares $s_{i,n}$ add up to one in every market. Substituting the optimal
+bundles into utility gives $U_n=X_n/P_n$ with $P_n=\prod_k(P_{nk}/\beta_k)^{\beta_k}$,
+which is why welfare is real income.
+
+\section{Step 2: Costs}
+\label{sec:costs}
+
+\paragraph{Unit cost.} A plant located in $\ell$ produces $y=\varphi_il$ units with $l$
+units of labor. Its cost of producing one unit is
+\begin{equation}
+  a_i=\frac{w_\ell}{\varphi_i}.
+  \label{eq:unitcost}
+\end{equation}
+
+\paragraph{Delivered cost.} To sell $q_{i,n}$ units in $n$, the plant produces
+$d_{\ell n}q_{i,n}$ units, because of iceberg trade costs. Its cost of serving $n$,
+exclusive of tariffs, is
+\begin{equation}
+  V_{i,n}=a_id_{\ell n}q_{i,n},
+  \label{eq:V}
+\end{equation}
+country $n$ collects $t_{\ell nk}V_{i,n}$ in tariffs, and the cost of delivering one
+more unit to $n$, tariff included, is
+\begin{equation}
+  c_{i,n}=a_i\,d_{\ell n}\,(1+t_{\ell nk})
+  =\frac{w_\ell\,d_{\ell n}(1+t_{\ell nk})}{\varphi_i}.
+  \label{eq:delivered}
+\end{equation}
+
+\paragraph{Where the money goes.} The whole of $V_{i,n}$ is paid to labor in $\ell$.
+Out of the plant's revenue in $n$, what is left after $V_{i,n}$ and the tariff is profit
+(Step 3).
+
+\section{Step 3: One Market}
+\label{sec:market}
+
+Fix a market $(n,k)$ and drop its indices: $\sigma$, $E$, $P$, $c_i$, $s_i$ and
+$t_i\equiv t_{\ell(i)nk}$. Let $T_g$ be the plants of group $g$ in the market. The inputs
+of this step are the delivered costs $c_i$, which by \eqref{eq:delivered} depend only on
+wages, and the spending level $E$. The outputs are prices, quantities, shares, markups
+and profits.
+
+\subsection{Inverse demand}
+
+Let $\gamma=(\sigma-1)/\sigma$ and $Q=(\sum_iq_i^\gamma)^{1/\gamma}$, the quantity of
+the sector's bundle. Since $PQ=E$, \eqref{eq:lowertier} can be inverted as
+$p_i=P(q_i/Q)^{-1/\sigma}=(E/Q)(q_i/Q)^{-1/\sigma}$, so that
+\begin{equation}
+  p_i=E\,Q^{-\gamma}q_i^{\gamma-1},
+  \qquad
+  s_i=\frac{p_iq_i}{E}=\frac{q_i^\gamma}{Q^\gamma} .
+  \label{eq:inverse}
+\end{equation}
+
+\subsection{The group's first-order condition and the markup}
+
+Group $g$ chooses $q_i$ for every $i\in T_g$ to maximize
+$\pi_g=\sum_{i\in T_g}(p_i-c_i)q_i$. Its revenue is
+\[
+  \sum_{j\in T_g}p_jq_j=E\,Q^{-\gamma}\sum_{j\in T_g}q_j^\gamma=E\,S_g,
+  \qquad
+  S_g\equiv\sum_{j\in T_g}s_j .
+\]
+Using $\partial\ln Q/\partial q_i=q_i^{\gamma-1}/Q^\gamma=s_i/q_i$, the marginal revenue of
+plant $i$ is
+\[
+  \frac{\partial(ES_g)}{\partial q_i}
+  =E\,Q^{-\gamma}\Bigl[\gamma\,q_i^{\gamma-1}-\gamma\,\frac{q_i^{\gamma-1}}{Q^\gamma}\sum_{j\in T_g}q_j^\gamma\Bigr]
+  =\gamma\,p_i\,(1-S_g).
+\]
+The first term is the revenue from selling more. The second is cannibalization:
+selling more lowers the price index and takes sales from every variety in the market,
+including the group's other plants, and the group counts the loss on all of them, which
+is proportional to its total share $S_g$. Setting marginal revenue equal to marginal
+cost $c_i$ gives
+\begin{equation}
+  p_i=\mu(S_g)\,c_i,
+  \qquad
+  \mu(S)=\frac{\sigma}{(\sigma-1)(1-S)} .
+  \label{eq:markup}
+\end{equation}
+The markup is the same for every plant of the group and depends only on the group's
+total share. It starts at $\mu(0)=\sigma/(\sigma-1)$, the markup of a negligible firm,
+and is unbounded as $S\to1$, which is why every market needs at least two groups.
+
+\subsection{Shares within a group}
+
+With a common markup, $p_i/p_j=c_i/c_j$ for any two plants of the same group, so by
+\eqref{eq:demand} $s_i/s_j=(c_i/c_j)^{1-\sigma}$. Adding over the group,
+\begin{equation}
+  \frac{s_i}{S_g}=\frac{c_i^{1-\sigma}}{K_g},
+  \qquad
+  K_g\equiv\sum_{i\in T_g}c_i^{1-\sigma}.
+  \label{eq:withingroup}
+\end{equation}
+The group gives its cheaper plants a larger part of its sales. Costs show up in how
+the group splits its sales, not in its markups.
+
+\subsection{The share equation}
+
+Let $A\equiv\sum_ip_i^{1-\sigma}=P^{1-\sigma}$, so that $s_i=p_i^{1-\sigma}/A$.
+Substituting $p_i=\mu(S_g)c_i$ and adding over the group,
+\[
+  S_g=\sum_{i\in T_g}\frac{\mu(S_g)^{1-\sigma}c_i^{1-\sigma}}{A}
+  =\frac{\mu(S_g)^{1-\sigma}K_g}{A},
+\]
+that is,
+\begin{equation}
+  \psi(S_g)=\frac{K_g}{A},
+  \qquad
+  \psi(S)\equiv S\,\mu(S)^{\sigma-1}
+  =\Bigl(\frac{\sigma}{\sigma-1}\Bigr)^{\sigma-1}\frac{S}{(1-S)^{\sigma-1}} .
+  \label{eq:sharemap}
+\end{equation}
+For a given $A$ this is one equation in one unknown for each group. Taking logs,
+\begin{equation}
+  \ln S_g-(\sigma-1)\ln(1-S_g)=\ln K_g-\ln A-(\sigma-1)\ln\frac{\sigma}{\sigma-1}
+  \equiv x_g(A).
+  \label{eq:shareeq}
+\end{equation}
+The left side rises from $-\infty$ to $+\infty$ as $S_g$ goes from $0$ to $1$, so the
+equation has exactly one root $S_g(A)\in(0,1)$ for every $A>0$. It has no closed form in
+general, but Newton's method converges quickly from any interior start, using the
+derivative of the left side, $[1+(\sigma-2)S]/[S(1-S)]$.
+
+\subsection{The market-clearing equation}
+
+Shares must add up to one, so the market's equilibrium is the value of $A$ that
+solves
+\begin{equation}
+  \mathcal S(A)\equiv\sum_gS_g(A)=1 .
+  \label{eq:clearing}
+\end{equation}
+Differentiating \eqref{eq:sharemap} in logs, with
+$d\ln\psi/d\ln S=1+(\sigma-1)S/(1-S)$,
+\begin{equation}
+  \frac{dS_g}{d\ln A}=-S_g\Lambda_g,
+  \qquad
+  \Lambda_g\equiv\frac{1-S_g}{1+(\sigma-2)S_g}>0 .
+  \label{eq:dSdA}
+\end{equation}
+Every share falls as $A$ rises, so $\mathcal S$ is strictly decreasing and
+\eqref{eq:clearing} has at most one solution (Proposition~2). A bracket that contains it
+is found as follows. Since $\mu(S)\ge\mu(0)$, \eqref{eq:sharemap} gives
+$S_g\le K_g\mu(0)^{1-\sigma}/A$, so at $A_{\mathrm{hi}}=\mu(0)^{1-\sigma}\sum_gK_g$ shares
+add up to at most one. As $A\to0$ every share tends to one, so $\mathcal S$ tends to the
+number of groups, which is at least two; halving $A$ from $A_{\mathrm{hi}}$ reaches a
+point $A_{\mathrm{lo}}$ with $\mathcal S(A_{\mathrm{lo}})\ge1$ in finitely many steps.
+Between the two, Newton's method on $\ln A$, with derivative
+$\mathcal S'(\ln A)=-\sum_gS_g\Lambda_g$ and a bisection step whenever a Newton step
+would leave the bracket, converges to the unique root.
+
+\subsection{Recovering everything else}
+
+Once $A$ and the shares $S_g$ are known, every other object in the market follows in
+closed form:
+\begin{align}
+  \mu_g&=\mu(S_g),\qquad p_i=\mu_gc_i,\qquad P=A^{1/(1-\sigma)},
+  \label{eq:recover1}\\
+  s_i&=S_g\,\frac{c_i^{1-\sigma}}{K_g},\qquad r_i=s_iE,\qquad q_i=\frac{r_i}{p_i},
+  \label{eq:recover2}\\
+  V_i&=\frac{r_i}{\mu_g(1+t_i)},\qquad \text{tariff revenue } t_iV_i .
+  \label{eq:recover3}
+\end{align}
+The price index is consistent with the prices, since
+$\sum_ip_i^{1-\sigma}=\sum_g\mu_g^{1-\sigma}K_g=A\sum_gS_g=A$. Profit is
+\[
+  \pi_g=\sum_{i\in T_g}(p_i-c_i)q_i=\Bigl(1-\frac{1}{\mu_g}\Bigr)\sum_{i\in T_g}r_i
+  =E\,S_g\,m(S_g),
+  \qquad
+  m(S)\equiv1-\frac{1}{\mu(S)}=\frac{1+(\sigma-1)S}{\sigma},
+\]
+so that, with $\kappa=\sigma-1$,
+\begin{equation}
+  \pi_g=\frac{E}{\sigma}\bigl(S_g+\kappa S_g^2\bigr).
+  \label{eq:profit}
+\end{equation}
+
+\paragraph{The revenue split.} For each plant, revenue splits exactly into labor cost,
+tariff and profit:
+\begin{equation}
+  r_i=\mu_g(1+t_i)V_i=\underbrace{V_i}_{\text{labor}}
+  +\underbrace{t_iV_i}_{\text{tariff}}
+  +\underbrace{(\mu_g-1)(1+t_i)V_i}_{\text{profit}} .
+  \label{eq:revid}
+\end{equation}
+Dividing by $E$ and adding over plants, each dollar spent in the market splits as
+\begin{equation}
+  \underbrace{\sum_i\frac{s_i}{\mu_{g(i)}(1+t_i)}}_{v:\ \text{labor}}
+  +\underbrace{\sum_i\frac{t_is_i}{\mu_{g(i)}(1+t_i)}}_{\tau:\ \text{tariffs}}
+  +\underbrace{\sum_gS_g\,m(S_g)}_{\text{profit}}=1 .
+  \label{eq:perdollar}
+\end{equation}
+
+\paragraph{Two properties used below.} First, shares, markups and the price index
+depend only on delivered costs, not on $E$: spending scales quantities, revenue, costs
+and profits, and nothing else. Second, multiplying every delivered cost by the same
+factor leaves every share and markup unchanged and multiplies every price and $P$ by
+that factor. Since delivered costs are proportional to wages, scaling all wages scales
+all prices and leaves all shares and markups unchanged.
+
+\section{Step 4: Market Sizes and Incomes}
+\label{sec:incomes}
+
+From now on wages $w$ are given. By Steps 2 and 3, every delivered cost, share and
+markup is then known, and everything that remains is linear in spending.
+
+\paragraph{Profits and tariffs as a function of spending.} Group $g$ of sector $k$
+earns $E_{n'k}S_{g,n'}m(S_{g,n'})$ in each destination $n'$ it serves, and country $n$
+collects $\TR_n=\sum_k\tau_{nk}E_{nk}$ in tariffs, where $\tau_{nk}$ is the tariff part
+of \eqref{eq:perdollar} in market $(n,k)$. With $\sum_n\theta_{gn}=1$, the income of
+country $n$ is
+\[
+  X_n=w_nL_n+\sum_g\theta_{gn}\sum_{n'}E_{n'k(g)}S_{g,n'}m(S_{g,n'})+\sum_k\tau_{nk}E_{nk}.
+\]
+
+\paragraph{Substituting market sizes.} By \eqref{eq:spending}, $E_{n'k}=\beta_kX_{n'}$.
+Substituting,
+\begin{equation}
+  X_n=w_nL_n+\sum_{n'\in\cN}\Gamma_{nn'}X_{n'},
+  \qquad
+  \Gamma_{nn'}\equiv\sum_k\beta_k\Bigl[\sum_{g:\,k(g)=k}\theta_{gn}S_{g,n'}m(S_{g,n'})
+  +\mathbf 1\{n'=n\}\,\tau_{nk}\Bigr].
+  \label{eq:incomesys}
+\end{equation}
+$\Gamma_{nn'}$ is the income that country $n$ receives, as profit or tariff revenue, out
+of each dollar that country $n'$ spends. In matrix form,
+\begin{equation}
+  X=wL+\Gamma X
+  \qquad\Longrightarrow\qquad
+  X=(I-\Gamma)^{-1}wL .
+  \label{eq:XofW}
+\end{equation}
+
+\paragraph{Why the solution exists, is unique and exceeds labor income.} Every entry of
+$\Gamma$ is non-negative, because profits and tariffs are. The column of $\Gamma$ for
+country $n'$ adds up, over the receiving countries $n$, to
+\[
+  \sum_n\Gamma_{nn'}=\sum_k\beta_k\Bigl[\sum_gS_{g,n'}m(S_{g,n'})+\tau_{n'k}\Bigr]
+  =1-\sum_k\beta_kv_{n'k}<1,
+\]
+by \eqref{eq:perdollar}: of each dollar country $n'$ spends, the part that goes to labor
+never comes back as profit or tariff revenue. A non-negative matrix whose columns add
+up to less than one has all its eigenvalues below one in absolute value, so
+\[
+  (I-\Gamma)^{-1}=I+\Gamma+\Gamma^2+\cdots\ge0,
+  \qquad
+  X=wL+\Gamma wL+\Gamma^2wL+\cdots\ge wL .
+\]
+The series has a simple reading. Labor income $wL$ is spent; part of that spending
+returns as profits and tariffs, $\Gamma wL$; that income is spent again, and so on. Every
+country's income is at least its labor income (Proposition~3). Market sizes follow from
+\eqref{eq:spending}, and with them every quantity, cost and profit through
+\eqref{eq:recover2}--\eqref{eq:profit}.
+
+\paragraph{Scale.} Scaling all wages by a common factor leaves $\Gamma$ unchanged and
+scales $wL$, so it scales incomes and market sizes by the same factor.
+
+\section{Step 5: The Labor Market}
+\label{sec:labor}
+
+\paragraph{The wage bill.} Country $n$'s wage bill is the labor cost of all plants
+located in $n$, in every market they serve. Let
+\begin{equation}
+  v_{n,(n',k)}\equiv\sum_{i\in\cA_{n'k}:\,\ell(i)=n}\frac{s_{i,n'}}{\mu_{g(i),n'}(1+t_{nn'k})}
+  \label{eq:vcoef}
+\end{equation}
+be the share of spending in market $(n',k)$ that is paid to labor in $n$. Then, using
+\eqref{eq:spending},
+\begin{equation}
+  W_n(w)=\sum_{n'\in\cN}\sum_{k\in\cK}v_{n,(n',k)}\,\beta_k\,X_{n'} .
+  \label{eq:wagebill}
+\end{equation}
+Every term is known from Steps 3 and 4. The excess demand for labor is
+\begin{equation}
+  z_n(w)=\frac{W_n(w)}{w_n}-L_n,
+  \label{eq:excess}
+\end{equation}
+and labor markets clear when $z_n=0$ for every $n$.
+
+\paragraph{Walras' law.} One of these conditions is redundant, because at any wages
+\[
+  \sum_nw_nz_n(w)=\sum_nW_n-\sum_nw_nL_n=0 .
+\]
+To see it, add the revenue split \eqref{eq:revid} over all plants and markets: world
+spending equals the world wage bill plus world tariff revenue plus world profits,
+$\sum_nX_n=\sum_nW_n+\sum_n\TR_n+\sum_g\pi_g$. Adding the income equations over
+countries, with $\sum_n\theta_{gn}=1$, gives
+$\sum_nX_n=\sum_nw_nL_n+\sum_g\pi_g+\sum_n\TR_n$. The two expressions are equal, so
+$\sum_nW_n=\sum_nw_nL_n$.
+
+\paragraph{The numeraire.} Scaling all wages by a common factor scales $W_n$ and $w_n$
+by that factor (Steps 3 and 4), so $z$ does not change. Only relative wages are
+determined, and we set $w_1=1$. By Walras' law, $z_1=0$ whenever $z_2=\dots=z_N=0$.
+
+\section{Step 6: Wages}
+\label{sec:wages}
+
+\paragraph{The reduced system.} Steps 2--5 reduce the whole model to $N-1$ equations in
+$N-1$ unknowns:
+\begin{equation}
+  z_n(1,w_2,\dots,w_N)=0,\qquad n=2,\dots,N .
+  \label{eq:reduced}
+\end{equation}
+Written out, the condition for country $n$ is
+\[
+  w_nL_n=\sum_{n'}\sum_k\beta_kX_{n'}
+  \sum_{i\in\cA_{n'k}:\,\ell(i)=n}\frac{s_{i,n'}}{\mu_{g(i),n'}(1+t_{nn'k})},
+  \qquad
+  X=(I-\Gamma)^{-1}wL,
+\]
+where shares and markups depend on wages only through the delivered costs
+$c_{i,n'}=w_{\ell(i)}d_{\ell(i)n'}(1+t_{\ell(i)n'k})/\varphi_i$. Evaluating $z(w)$ at a
+given $w$ therefore means: compute delivered costs, solve every market (Step 3), solve
+the income system (Step 4), and compute the wage bills (Step 5).
+
+\paragraph{Three channels.} A rise in a foreign wage $w_j$ affects country $n$'s wage
+bill in three ways. Plants located in $j$ become more expensive, so plants located in
+$n$ gain sales, both within their own groups and against rival groups. The share
+changes move markups, which changes how much of each dollar of revenue is paid to labor.
+And incomes $X_{n'}$ change, because they include the profits of the groups each
+country owns. The last channel is the ownership channel of the model. Theorem~1 states
+when the first two always favor country $n$ and the third does not undo them.
+
+\paragraph{Damped tâtonnement.} The algorithm updates wages by
+\begin{equation}
+  w_n^{\text{new}}=w_n^{1-\lambda}\Bigl(\frac{W_n(w)}{L_n}\Bigr)^{\lambda},
+  \qquad\text{that is,}\qquad
+  \ln w_n^{\text{new}}=\ln w_n+\lambda\ln\Bigl(1+\frac{z_n(w)}{L_n}\Bigr),
+  \label{eq:tatonnement}
+\end{equation}
+with $\lambda\in(0,1)$, and then rescales so that $w_1=1$, which is allowed because the
+update is homogeneous of degree one. A country's wage rises when its labor is in excess
+demand, and a wage vector is a fixed point exactly when $W_n=w_nL_n$ for every $n$.
+
+\paragraph{How much damping.} Let $M_{nj}=\partial\ln W_n/\partial\ln w_j$. In logs, the
+update has derivative $(1-\lambda)I+\lambda M$. Its off-diagonal entries are positive
+when labor is a gross substitute, and its diagonal entries are positive when
+$\lambda<1/(1-M_{nn})$ for every $n$. When labor demand is elastic, $M_{nn}<0$, the bound
+is below one, and an undamped update ($\lambda=1$) can overshoot.
+
+\paragraph{Newton steps.} Close to the solution, Newton's method on
+$F_n(\ln w)=\ln W_n-\ln w_n-\ln L_n$, $n=2,\dots,N$, converges faster. Its derivative is
+$\partial F_n/\partial\ln w_j=M_{nj}-\mathbf 1\{n=j\}$, for $n,j\ge2$. The matrix $M$ is
+obtained column by column, by changing one $\ln w_j$ slightly and re-evaluating Steps
+2--5. Iterations stop when $\max_n|z_n|/L_n$ falls below a tolerance.
+
+\section{The Complete Algorithm, and What to Check}
+\label{sec:summary}
+
+From the innermost step outward:
+\begin{enumerate}[label=(\Alph*)]
+\item \emph{Costs.} Given $w$, compute $a_i$ and $c_{i,n}$ by
+\eqref{eq:unitcost}--\eqref{eq:delivered}.
+\item \emph{Markets.} In every market, solve each share equation \eqref{eq:shareeq} for
+$S_g(A)$ and the clearing equation \eqref{eq:clearing} for $A$; recover $\mu_g$, $p_i$,
+$P$ and $s_i$ by \eqref{eq:recover1}--\eqref{eq:recover2}.
+\item \emph{Incomes.} Build $\Gamma$ and compute $X$ by \eqref{eq:XofW} and $E$ by
+\eqref{eq:spending}.
+\item \emph{Labor market.} Compute $W_n$ by \eqref{eq:wagebill} and $z_n$ by
+\eqref{eq:excess}.
+\item \emph{Wages.} Update $w$ by \eqref{eq:tatonnement}, then by Newton steps,
+repeating (A)--(D), until $z(w)=0$.
+\end{enumerate}
+
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+Closed form & Computed \\
+\midrule
+demand, unit and delivered costs & each group's share, given $A$ (one monotone equation) \\
+markups, prices, quantities given shares & each market's $A$ (one monotone equation) \\
+shares within a group, profits & incomes (one linear system) \\
+revenue split into labor, tariffs, profit & wages ($N-1$ equations) \\
+wage bills given incomes and shares & \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Checks at the solution.} Each of these holds at an equilibrium and is a
+useful test of any implementation.
+\begin{enumerate}
+\item In every market, shares add up to one and $\sum_ip_i^{1-\sigma}=P^{1-\sigma}$.
+\item For every plant, revenue equals labor cost plus tariff plus profit,
+\eqref{eq:revid}.
+\item Every country's income equals labor income plus owned profits plus tariff
+revenue, and is at least its labor income.
+\item Every labor market clears, and Walras' law holds also away from the solution,
+which tests the accounting at arbitrary wages.
+\item The hypotheses of Theorem~1: no group holds more than half of any market, and
+$\bar E^{(j)}_n>0$ for every pair of countries.
+\end{enumerate}
+
+\section{Extension: Endogenous Entry}
+\label{sec:entry}
+
+With entry, each group chooses which of its potential plants $\cP_g$ serve each market,
+and a plant that serves market $(n,k)$ pays the fixed cost $F_{i,n}=f_kw_\ell
+f^d_{\ell n}$ in labor of its location. Steps 1--3 are unchanged for given plant sets.
+What changes is that plant sets are now unknowns.
+
+\subsection{Entry into one market}
+
+\paragraph{The value of a plant set.} By Step 3, a set $T\subseteq\cP_g$ affects the
+group's profit only through its strength $K(T)=\sum_{i\in T}c_i^{1-\sigma}$, and it
+costs $\Phi(T)=\sum_{i\in T}F_{i,n}$. Taking $A$ as given, the group's share with set $T$
+is $\psi^{-1}(K(T)/A)$, and its net payoff is
+\begin{equation}
+  U_g(T;A)=\Omega\bigl(K(T);A\bigr)-\Phi(T),
+  \qquad
+  \Omega(K;A)=\frac{E}{\sigma}\bigl(S+\kappa S^2\bigr)\Big|_{S=\psi^{-1}(K/A)} .
+  \label{eq:payoff}
+\end{equation}
+Serving the market with no plant gives $U_g=0$.
+
+\paragraph{The ladder.} A group with $|\cP_g|$ potential plants has $2^{|\cP_g|}$ sets.
+Since $\Omega$ rises with $K$, a set can be chosen only if no other set has at least as
+much strength at no greater fixed cost. The construction is:
+\begin{enumerate}
+\item compute $(K(T),\Phi(T))$ for every set $T$;
+\item discard every $T$ for which some $T'$ has $K(T')\ge K(T)$ and
+$\Phi(T')\le\Phi(T)$, with one inequality strict;
+\item order the remaining sets by strength; fixed cost rises along the order too. Call
+them rungs $0,1,\dots,R_g$, with rung 0 the empty set.
+\end{enumerate}
+When all of a group's plants pay the same fixed cost $F$ in the market, rung $r$ is the
+set of the $r$ plants with the lowest delivered costs. A stand-alone firm has two rungs:
+out or in.
+
+\paragraph{The best response.} At a given $A$, the group picks the rung with the highest
+payoff,
+\begin{equation}
+  K^*_g(A)=K\bigl(T^*_g(A)\bigr),
+  \qquad
+  T^*_g(A)=\arg\max_{r=0,\dots,R_g}\;\Omega(K_r;A)-\Phi_r .
+  \label{eq:bestresponse}
+\end{equation}
+With equal fixed costs this is a cutoff: the strength added by each rung falls as more
+expensive plants are added, and $\Omega$ is strictly concave in $K$ (Theorem~2(a)), so
+the gain from one more rung falls, and the group climbs while the gain is positive.
+
+\paragraph{The entry equilibrium of the market.} Substituting the best responses into
+\eqref{eq:clearing} gives one equation in $A$:
+\begin{equation}
+  \mathcal S^*(A)\equiv\sum_g\psi^{-1}\!\Bigl(\frac{K^*_g(A)}{A}\Bigr)=1 .
+  \label{eq:entryclearing}
+\end{equation}
+When no group would hold more than half of the market with any of its rungs, each
+$K^*_g(A)$ falls with $A$ (Theorem~2), so $\mathcal S^*$ falls with $A$ for two reasons,
+a lower strength and a higher aggregate, and crosses one at most once. It is solved by
+bisection on $\ln A$.
+
+\paragraph{The integer problem.} Because $K^*_g(A)$ moves in jumps, $\mathcal S^*$ can
+jump over one. The bisection then converges to the aggregate $\bar A$ where some group
+switches rungs. If the group is assigned its larger rung, the clearing aggregate lies at
+or above $\bar A$, where the smaller rung is its best response; if it is assigned its
+smaller rung, the clearing aggregate lies below $\bar A$, where the larger rung is.
+Either way the group wishes to deviate, and no exact equilibrium in whole plants exists.
+The procedure keeps the configuration with the fewest groups wishing to deviate and
+reports how many there are.
+
+\subsection{General equilibrium with entry}
+
+\paragraph{What changes in Steps 4 and 5.} Fixed costs are paid to labor where the plant
+is located and are deducted from the group's profit. Let $\Phi_g$ be the total fixed
+cost of group $g$'s active plants, which depends on wages and plant sets only. Income
+becomes
+\[
+  X=wL-\theta'\Phi+\Gamma X
+  \qquad\Longrightarrow\qquad
+  X=(I-\Gamma)^{-1}\bigl(wL-\theta'\Phi\bigr),
+\]
+where $\theta'\Phi$ is the vector with entries $\sum_g\theta_{gn}\Phi_g$, and each
+country's wage bill \eqref{eq:wagebill} adds the fixed costs of the plants located in
+it. Walras' law still holds, because every fixed cost is both a deduction from profit
+and a payment to labor. Scaling all wages scales fixed costs too, so it leaves every
+entry decision unchanged.
+
+\paragraph{The outer loop.} Plant sets and wages are solved by an outer loop:
+\begin{enumerate}
+\item start from a configuration of plant sets, for example every potential plant
+active in every market of its sector;
+\item given the plant sets, solve Steps 2--6 for wages, and record in every market the
+delivered costs, fixed costs, spending and aggregate $A$;
+\item in every market, compute each group's ladder and best response at the recorded
+aggregate, and its gain from switching;
+\item if no group gains, stop: every market is in an entry equilibrium at the
+equilibrium wages;
+\item otherwise, let the groups with the largest gains switch, and return to 2.
+\end{enumerate}
+Moving only the groups with the largest gains damps the loop. Moving every group at once
+can make the configuration oscillate, because wages computed for many active plants
+differ from wages for few. The choice affects the path of the algorithm, not its fixed
+points, and imposes no order of entry. The loop is not guaranteed to converge; when it
+does not reach a configuration in which no group wishes to move, it returns the one with
+the fewest such groups. Because the joint equilibrium of wages and plant sets is not
+known to be unique, the procedure is run from several starting points.
+
+\end{document}

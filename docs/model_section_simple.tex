@@ -7,15 +7,15 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{enumitem}
+\usepackage{longtable}
+\usepackage{booktabs}
 \usepackage{natbib}
 \usepackage[hidelinks]{hyperref}
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
 \theoremstyle{definition}
-\newtheorem{assumption}{Assumption}
 \newtheorem{definition}{Definition}
 
 \setlist[enumerate]{itemsep=1pt,topsep=3pt}
@@ -25,6 +25,7 @@
 \newcommand{\cG}{\mathcal G}
 \newcommand{\cP}{\mathcal P}
 \newcommand{\cA}{\mathcal A}
+\newcommand{\TR}{\mathit{TR}}
 
 \begin{document}
 
@@ -39,29 +40,24 @@ rather than on the share of any single plant. Profits are paid to the countries 
 own each group, and ownership is recorded group by group rather than country by
 country. The baseline takes as given which plants each group operates and which
 markets they serve; Section~\ref{sec:entry} lets groups choose them. Proofs are in the
-Appendix.
+Appendix, and a table of notation closes the document.
 
 \subsection{Model Set-Up}
 \label{sec:setup}
 
 \paragraph{Agents.} There is a finite set of countries $\cN=\{1,\dots,N\}$ and a
-finite set of sectors $\cK=\{1,\dots,K\}$. Each country $n$ is inhabited by a
-representative household that supplies $L_n$ units of labor inelastically and owns
-shares in firms. Production takes place in plants, and every plant belongs to exactly
-one group $g\in\cG$, which we identify with its global ultimate parent. Each group has
-a headquarters country $h(g)$, operates in a single sector $k(g)$,\footnote{This
+finite set of sectors $\cK$. Each country $n$ is inhabited by a representative
+household that supplies $L_n$ units of labor inelastically and owns shares in firms.
+Production takes place in plants, and every plant belongs to exactly one group
+$g\in\cG$, which we identify with its global ultimate parent. Each group has a
+headquarters country $h(g)$, operates in a single sector $k(g)$,\footnote{This
 restriction is without loss for behavior. Marginal costs are constant, so a group's
 decisions separate across markets (Section~\ref{sec:market}). A group active in
 several sectors is equivalent to several single-sector groups with the same owners;
 what the restriction rules out is a capability shared across sectors.} and owns a
 finite set of plants $\cP_g$. We index plants by $i$ and write $g(i)$ and $\ell(i)$ for
-the group and the location of plant $i$. Each plant produces one differentiated variety.
-A \emph{market} is a destination--sector pair $(n,k)$. Plant $i$ serves a given set of
-destinations, and $\cA_{nk}$ denotes the set of plants that serve market $(n,k)$. A
-group with plants in more than one country is a multinational, a plant located outside
-its group's headquarters country is a foreign affiliate, and a group with a single
-plant is a stand-alone firm. We assume that every market is served by at least two
-groups.
+the group and the location of plant $i$. Each plant produces one differentiated
+variety.
 
 \paragraph{Representative household.} The household in country $n$ has
 Cobb--Douglas preferences across sectors and CES preferences within them,
@@ -71,25 +67,23 @@ Cobb--Douglas preferences across sectors and CES preferences within them,
   C_{nk}=\Bigl[\sum_{i\in\cA_{nk}}q_{i,n}^{(\sigma_k-1)/\sigma_k}\Bigr]^{\sigma_k/(\sigma_k-1)},
   \label{eq:utility}
 \end{equation}
-where $\beta_k>0$, $\sum_k\beta_k=1$, and $\sigma_k>1$. The household spends the
-share $\beta_k$ of its income $X_n$ on sector $k$, so spending on market $(n,k)$ is
-\begin{equation}
-  E_{nk}=\beta_kX_n ,
-  \label{eq:spending}
-\end{equation}
-and demand for the variety of plant $i$ is
+where $\cA_{nk}$ is the set of plants that sell sector-$k$ goods in country $n$,
+$\beta_k>0$, $\sum_k\beta_k=1$, and $\sigma_k>1$ is the elasticity of substitution
+between varieties of the same sector. The household spends the share $\beta_k$ of its
+income $X_n$ on sector $k$. Writing $q_{i,n}$ for the quantity of plant $i$'s variety
+sold in $n$ and $E_{nk}$ for spending on sector $k$ in $n$, demand is
 \begin{equation}
   q_{i,n}=p_{i,n}^{-\sigma_k}\,P_{nk}^{\sigma_k-1}E_{nk},
   \qquad
-  P_{nk}=\Bigl[\sum_{i\in\cA_{nk}}p_{i,n}^{1-\sigma_k}\Bigr]^{1/(1-\sigma_k)} .
+  P_{nk}=\Bigl[\sum_{i\in\cA_{nk}}p_{i,n}^{1-\sigma_k}\Bigr]^{1/(1-\sigma_k)} ,
   \label{eq:demand}
 \end{equation}
-Welfare is real income $X_n/P_n$, with $P_n=\prod_k(P_{nk}/\beta_k)^{\beta_k}$.%
-\footnote{With Cobb--Douglas preferences across sectors, a sector's spending does not
-expand when its price index falls. A CES upper tier with elasticity $\eta\in(1,\sigma_k)$
-would add that margin and change the markup in \eqref{eq:markup} to
-$1/\mu(S)=1-(1-S)/\sigma_k-S/\eta$; the structure of the market equilibrium below is
-unchanged.}
+where $P_{nk}$ is the sector's price index. Welfare is real income $X_n/P_n$, with
+$P_n=\prod_k(P_{nk}/\beta_k)^{\beta_k}$.\footnote{With Cobb--Douglas preferences across
+sectors, a sector's spending does not expand when its price index falls. A CES upper
+tier with elasticity $\eta\in(1,\sigma_k)$ would add that margin and change the markup
+in \eqref{eq:markup} to $1/\mu(S)=1-(1-S)/\sigma_k-S/\eta$; the structure of the market
+equilibrium below is unchanged.}
 
 \paragraph{Production technology.} Labor is the only factor of production. A plant
 located in $\ell$ produces with constant returns, and its unit cost is
@@ -97,21 +91,23 @@ located in $\ell$ produces with constant returns, and its unit cost is
   a_i=\frac{w_\ell}{\varphi_i},
   \label{eq:cost}
 \end{equation}
-where $w_\ell$ is the wage and $\varphi_i>0$ the plant's productivity.\footnote{We do
-not include intermediate inputs. With an input--output structure, a tariff also raises
-the cost of the input bundle, and the uniqueness and existence results below require
-additional conditions.} Productivity can combine a component of the location, a
-component of the plant, and a component common to all plants of the group, which
-captures head-office services such as management, technology and brands
-\citep{Antras2003,AntrasHelpman2004}. These services are a non-rival capability of the
-group that all of its plants share, so they enter productivity rather than the cost of
-inputs.\footnote{The common alternative treats head-office services as labor bought at
-the parent's wage, so that a plant abroad pays part of its costs at a foreign wage.
-This links factor markets across countries and can overturn the substitutability of
-labor across countries on which uniqueness of wages rests.} A plant may also be less
-productive when it operates away from its group's headquarters
-\citep{RamondoRodriguezClare2013,HeadMayer2019}. The parametric form of $\varphi_i$
-matters for the quantification, not for the results of this section.
+where $w_\ell$ is the wage in $\ell$ and $\varphi_i>0$ the plant's productivity.%
+\footnote{We do not include intermediate inputs. With an input--output structure, a
+tariff also raises the cost of the input bundle, and the existence and uniqueness
+results below require additional conditions.}
+
+\paragraph{Head-office capability.} Productivity can combine a component of the
+location, a component of the plant, and a component common to all plants of the
+group. The group component captures head-office services such as management,
+technology and brands \citep{Antras2003,AntrasHelpman2004}. These services are a
+non-rival capability of the group that all of its plants share, so they enter
+productivity rather than the cost of inputs.\footnote{The common alternative treats
+head-office services as labor bought at the parent's wage, so that a plant abroad pays
+part of its costs at a foreign wage. This links factor markets across countries and can
+overturn the substitutability of labor across countries on which uniqueness of wages
+rests.} A plant may also be less productive when it operates away from its group's
+headquarters \citep{RamondoRodriguezClare2013,HeadMayer2019}. The parametric form of
+$\varphi_i$ matters for the quantification, not for the results of this section.
 
 \paragraph{Trade.} Shipping goods from $\ell$ to $n$ entails an iceberg cost
 $d_{\ell n}\ge1$, with $d_{nn}=1$. Trade costs run from the country where the good is
@@ -132,6 +128,17 @@ a group uses to serve $n$ face the same tariff. When they do not, it makes the g
 markup differ across its plants, and the property that a group's markup depends only on
 its total share (Section~\ref{sec:market}) is lost.}
 
+\paragraph{Multinational corporations.} A \emph{market} is a destination--sector pair
+$(n,k)$. In the baseline, each plant serves a given set of destinations, so the set
+$\cA_{nk}$ of plants that serve market $(n,k)$ is given. A group with plants in more
+than one country is a multinational, a plant located outside its group's headquarters
+country is a foreign affiliate, and a group with a single plant is a stand-alone firm.
+A multinational can serve a market from a plant at home, from a plant in the
+destination, from a plant in a third country, or from several at once. We assume that
+every market is served by at least two groups. Section~\ref{sec:entry} lets groups
+choose which plants serve each market, so that multinational status becomes an
+equilibrium outcome.
+
 \paragraph{Profit repatriation.} Country $n$ owns a share $\theta_{gn}\ge0$ of group
 $g$, with $\sum_n\theta_{gn}=1$. Groups maximize their own profits whoever owns them:
 ownership determines where profits are spent, not how groups price. The profit of a
@@ -140,9 +147,9 @@ group, $\pi_g=\sum_n\pi_{g,n}$, where $\pi_{g,n}$ is its profit in market $(n,k(
 wherever it is earned. Tariff revenue is rebated lump sum to the household of the
 country that collects it. Income in country $n$ is
 \begin{equation}
-  X_n=w_nL_n+\sum_{g\in\cG}\theta_{gn}\,\pi_g+T_n,
+  X_n=w_nL_n+\sum_{g\in\cG}\theta_{gn}\,\pi_g+\TR_n,
   \qquad
-  T_n=\sum_{k}\sum_{i\in\cA_{nk}}t_{\ell(i)nk}\,a_i\,d_{\ell(i)n}\,q_{i,n}.
+  \TR_n=\sum_{k}\sum_{i\in\cA_{nk}}t_{\ell(i)nk}\,a_i\,d_{\ell(i)n}\,q_{i,n}.
   \label{eq:income}
 \end{equation}
 Profits are earned where groups sell and received where their owners reside, and
@@ -150,6 +157,11 @@ $\theta$ links the two. A natural benchmark assigns each group to the country of
 ultimate parent, $\theta_{gn}=\mathbf 1\{n=h(g)\}$; nothing below requires this form.
 Because income includes the profits of the groups a country owns, wherever they
 produce and sell, trade need not balance country by country.
+
+\paragraph{Timing.} The model is static. Plants, productivities and ownership shares
+are given. Groups choose the quantities their plants sell in each market, taking
+wages and market sizes as given and taking into account their effect on the market's
+price index, and households choose their consumption.
 
 \subsection{Market Structure}
 \label{sec:market}
@@ -231,10 +243,11 @@ equilibrium of the market is the value of $A$ at which shares add up to one,
 \end{equation}
 
 \paragraph{Profits.} Since $c_iq_i=p_iq_i/\mu(S_g)$, the profit of group $g$ is
-$\pi_g=E\,S_g\,[1-1/\mu(S_g)]$, and \eqref{eq:markup} makes the Lerner index linear in
-the share:
+$\pi_g=E\,S_g\,m(S_g)$, where $m(S)\equiv1-1/\mu(S)$ is the Lerner index. By
+\eqref{eq:markup} the Lerner index is linear in the share, $m(S)=(1+\kappa S)/\sigma$
+with $\kappa\equiv\sigma-1$, so that
 \begin{equation}
-  \pi_g=\frac{E}{\sigma}\bigl(S_g+\kappa S_g^2\bigr),\qquad\kappa\equiv\sigma-1 .
+  \pi_g=\frac{E}{\sigma}\bigl(S_g+\kappa S_g^2\bigr).
   \label{eq:profit}
 \end{equation}
 Profits rise more than proportionally with the share, because a larger group both sells
@@ -244,12 +257,19 @@ results of Section~\ref{sec:cs}. It would be zero with constant markups.
 \subsection{General Equilibrium}
 \label{sec:ge}
 
+\paragraph{Market sizes.} Without intermediate inputs, all spending is final spending
+by households, so spending on market $(n,k)$ is
+\begin{equation}
+  E_{nk}=\beta_kX_n .
+  \label{eq:spending}
+\end{equation}
+
 \paragraph{Labor market.} Let $V_{i,n'}\equiv a_id_{\ell(i)n'}q_{i,n'}$ be the cost of
 plant $i$ in serving country $n'$, exclusive of tariffs. By
 Proposition~\ref{prop:markup}, $V_{i,n'}=r_{i,n'}/[\mu_{g(i)}(1+t_{\ell(i)n'k})]$, where
-$r_{i,n'}$ is the plant's revenue in that market and $\mu_{g(i)}$ its group's markup
-there. All of this cost is paid to labor where the plant is located, so labor markets
-clear when
+$r_{i,n'}$ is the plant's revenue in that market, $\mu_{g(i)}$ its group's markup
+there, and $k$ the plant's sector. All of this cost is paid to labor where the plant is
+located, so labor markets clear when
 \begin{equation}
   w_nL_n=\sum_{k\in\cK}\sum_{n'\in\cN}\sum_{i\in\cA_{n'k}:\,\ell(i)=n}V_{i,n'} .
   \label{eq:labor}
@@ -264,9 +284,10 @@ every market, prices satisfy Proposition~\ref{prop:markup} and quantities satisf
 \end{definition}
 
 \noindent Prices, costs and incomes are homogeneous of degree one in wages, and shares
-are homogeneous of degree zero, so wages are determined up to scale. Adding
-\eqref{eq:income} across countries shows that world income equals world spending, and
-one labor-market condition is implied by the others (Walras' law). We set $w_1=1$.
+are homogeneous of degree zero, so wages are determined up to scale. At any wages, the
+value of labor demanded across all countries equals the value of labor supplied
+(Walras' law, Appendix B.2), so one labor-market condition is implied by the others.
+We set $w_1=1$.
 
 \paragraph{Existence and uniqueness.} We establish the results layer by layer: the
 equilibrium of a single market, incomes given wages, and wages.
@@ -282,13 +303,13 @@ so the first-order conditions identify the unique best response.
 
 \begin{proposition}[Incomes]\label{prop:incomes}
 Given wages, incomes are the unique solution of the linear system
-\eqref{eq:spending}, \eqref{eq:income}.
+\eqref{eq:income}, \eqref{eq:spending}, and $X_n\ge w_nL_n$ for every $n$.
 \end{proposition}
 
 \noindent Given wages, every share and markup is known, profits and tariff revenue are
 linear in market sizes, and market sizes are linear in incomes. The system has a unique
-solution because each dollar a country spends returns to the world as profits and
-tariffs by less than a dollar: the rest is paid to labor.
+solution because each dollar a country spends comes back to the world as profits and
+tariff revenue by less than a dollar: the rest is paid to labor.
 
 \begin{proposition}[Existence of wages]\label{prop:exist}
 Suppose no set of countries is cut off from the rest: for every proper subset $Z$ of
@@ -296,13 +317,13 @@ countries, some plant located in $Z$ serves a market of a country outside $Z$. T
 there exist wages that clear every labor market.
 \end{proposition}
 
-\noindent Uniqueness is the most delicate layer. Let $W_n(w)$ be the right side of
-\eqref{eq:labor}, the wage bill of country $n$ at wages $w$, and
-$M_{nj}\equiv\partial\ln W_n/\partial\ln w_j$. Homogeneity makes every row of $M$ sum to
-one. Labor in different countries is a gross substitute when $M_{nj}>0$ for $n\neq j$:
-a rise in any other country's wage raises country $n$'s wage bill. Let $b^n_{i,n'}$ be
-the share of country $n$'s wage bill paid by plant $i$ out of its costs in country
-$n'$, and
+\noindent Uniqueness of wages is the most delicate layer. Let $W_n(w)$ be the right
+side of \eqref{eq:labor}, the wage bill of country $n$ at wages $w$, and
+$M_{nj}\equiv\partial\ln W_n/\partial\ln w_j$ its elasticity with respect to country
+$j$'s wage. Homogeneity makes every row of $M$ sum to one. Labor in different countries
+is a gross substitute when $M_{nj}>0$ for $n\neq j$: a rise in any other country's wage
+raises country $n$'s wage bill. Let $b^n_{i,n'}$ be the share of country $n$'s wage bill
+paid by plant $i$ out of its costs in country $n'$, and
 \begin{equation}
   \bar E^{(j)}_n\equiv\sum_{i,n'}b^n_{i,n'}\,\frac{\partial\ln E_{n'k(i)}}{\partial\ln w_j},
   \label{eq:demandterm}
@@ -310,10 +331,11 @@ $n'$, and
 the average response of the markets in which country $n$'s plants sell.
 
 \begin{theorem}[Wages]\label{thm:wages}
-Let $D$ be a set of wage vectors that is convex in logarithms. Suppose that at every
-$w\in D$ (i) no group holds more than half of any market and (ii)
-$\bar E^{(j)}_n>0$ for all $n\neq j$. Then $M_{nj}\ge\bar E^{(j)}_n>0$ for $n\neq j$
-throughout $D$, and $D$ contains at most one equilibrium wage vector up to scale.
+Let $D$ be a set of wage vectors that is convex in logarithms: the straight line in
+logarithms between any two of its points stays in $D$. Suppose that at every $w\in D$
+(i) no group holds more than half of any market and (ii) $\bar E^{(j)}_n>0$ for all
+$n\neq j$. Then $M_{nj}\ge\bar E^{(j)}_n>0$ for $n\neq j$ throughout $D$, and $D$
+contains at most one equilibrium wage vector up to scale.
 \end{theorem}
 
 \noindent The bound $M_{nj}\ge\bar E^{(j)}_n$ says that a rise in a foreign wage can
@@ -327,28 +349,28 @@ where country $n$ sells shrink enough, its wage bill can fall. That income effec
 ownership channel the model is built to study. Both conditions are inequalities in
 objects the model computes, and we report them with the quantification.
 
-\paragraph{Solution algorithm.} Given wages, each market is solved for $A$ from
-\eqref{eq:clearing} by safeguarded Newton steps on $\ln A$, which never leave a bracket
-that contains the unique root, and incomes come from one linear solve. Wages are updated
-by the damped tâtonnement $w_n\leftarrow w_n^{1-\lambda}(W_n(w)/L_n)^{\lambda}$, which
-raises a country's wage when its labor is in excess demand and whose fixed points are
-the equilibrium wages, followed by Newton steps once close to the solution. Labor
-demand is elastic, so $M_{nn}$ can be negative and an undamped update can overshoot; we
-choose $\lambda$ with $\lambda(1-M_{nn})<1$, which keeps the update monotone.
+\paragraph{Solution algorithm.} The layers above map into nested loops. Given wages,
+each market is solved for $A$ from \eqref{eq:clearing}, and incomes come from one
+linear solve. Wages are updated by the damped tâtonnement
+$w_n\leftarrow w_n^{1-\lambda}(W_n(w)/L_n)^{\lambda}$, with $\lambda\in(0,1)$, which raises
+a country's wage when its labor is in excess demand and whose fixed points are the
+equilibrium wages (Appendix~\ref{app:algo}).
 
 \subsection{Comparative Statics}
 \label{sec:cs}
 
 \paragraph{Incidence within a market.} Consider a market with given plants and
 spending, and a change in delivered costs. Let $\hat c_g=\sum_{i\in T_g}(s_i/S_g)\,
-d\ln c_i$ be the average cost change of group $g$, and
+d\ln c_i$ be the average cost change of group $g$, $\varepsilon_\mu(S)\equiv
+S\mu'(S)/\mu(S)=S/(1-S)$ the elasticity of the markup, and
 \begin{equation}
-  \Lambda_g\equiv\frac{1-S_g}{1+(\sigma-2)S_g},
+  \Lambda_g\equiv\frac{1}{1+(\sigma-1)\varepsilon_\mu(S_g)}=\frac{1-S_g}{1+(\sigma-2)S_g},
   \qquad
   \varpi_g\equiv\frac{S_g\Lambda_g}{\sum_h S_h\Lambda_h}.
   \label{eq:incidenceweights}
 \end{equation}
-$\Lambda_g$ falls from one toward zero as the share rises.
+$\Lambda_g$ falls from one toward zero as the share rises, and the weights $\varpi_g$
+add up to one.
 
 \begin{proposition}[Incidence]\label{prop:incidence}
 Holding spending fixed,
@@ -359,8 +381,8 @@ Holding spending fixed,
   \label{eq:incidence}
 \end{equation}
 If only group $j$'s costs change, its sales-weighted average price rises by the
-fraction $\rho_j=1-(\sigma-1)S_j\Lambda_j(1-\varpi_j)/(1-S_j)\in(0,1]$ of its average
-cost increase $\hat c_j$, and every rival $h$ gains share,
+fraction $\rho_j=1-(\sigma-1)\varepsilon_\mu(S_j)\Lambda_j(1-\varpi_j)\in(0,1]$ of its
+average cost increase $\hat c_j$, and every rival $h$ gains share,
 $d\ln S_h=(\sigma-1)\Lambda_h\varpi_j\hat c_j$, and raises its price.
 \end{proposition}
 
@@ -456,7 +478,7 @@ $\cP_g$. A plant that serves market $(n,k)$ pays a fixed cost
   F_{i,n}=f_k\,w_\ell\,f^d_{\ell n},
   \label{eq:fixed}
 \end{equation}
-in units of labor of the country where it is located, with $f_k>0$ and
+in units of labor of the country $\ell$ where it is located, with $f_k>0$ and
 $f^d_{\ell n}\ge1$. The cost is incurred once per market served, whatever the quantity
 sold, and does not depend on who owns the plant. Because it is paid in labor, it appears
 as wage income and leaves the model homogeneous of degree one in wages. Every fixed cost
@@ -468,7 +490,8 @@ markets jointly \citep{Tintelnot2017}.} This is a simplified version of the mult
 location problem of \citet{Yang2023}.
 
 \paragraph{The entry problem.} A group's plant set matters for its profit only through
-its strength. Let $K(T)=\sum_{i\in T}c_i^{1-\sigma}$ and $\Phi(T)=\sum_{i\in T}F_{i,n}$.
+its strength. For a set of plants $T\subseteq\cP_g$, let $K(T)=\sum_{i\in T}
+c_i^{1-\sigma}$ be its strength and $\Phi(T)=\sum_{i\in T}F_{i,n}$ its fixed cost.
 Given $A$, serving the market with $T$ yields
 \begin{equation}
   U_g(T;A)=\Omega\bigl(K(T);A\bigr)-\Phi(T),
@@ -508,12 +531,13 @@ ladder. Then a market has at most one entry equilibrium.
 \end{enumerate}
 \end{theorem}
 
-\noindent Part (a) says that strength has diminishing returns for the group, and part
-(b) that it is worth less in a more competitive market. Together they imply that each
-group's optimal strength falls as $A$ rises, while $A$ rises with every group's strength,
-so two equilibria with different aggregates cannot both exist. No order of entry is
-imposed, and groups still internalize competition among their own plants. The
-hypothesis is the same one-half condition as in Theorem~\ref{thm:wages}.
+\noindent Here $\Omega_{KA}$ is the cross partial derivative of $\Omega$. Part (a) says
+that strength has diminishing returns for the group, and part (b) that it is worth less
+in a more competitive market. Together they imply that each group's optimal strength
+falls as $A$ rises, while $A$ rises with every group's strength, so two equilibria with
+different aggregates cannot both exist. No order of entry is imposed, and groups still
+internalize competition among their own plants. The hypothesis is the same one-half
+condition as in Theorem~\ref{thm:wages}.
 
 \paragraph{General equilibrium with entry.} Fixed costs are paid to labor where the
 plant is located, so they are added to the right side of \eqref{eq:labor}, and profits
@@ -523,12 +547,8 @@ that every country's income is at least a fixed fraction of its labor income. Tw
 limits are new. First, plant sets change discretely with wages, so uniqueness at each
 layer does not make the joint equilibrium of wages and plant sets unique. Second,
 entry is chosen in whole plants, so an exact equilibrium in pure strategies need not
-exist. The solution algorithm adds an outer loop: at the equilibrium wages for the
-current plant sets, the groups with the largest gains from changing their sets do so,
-and the procedure repeats until no group wishes to move. Moving only the groups with
-the largest gains changes the path of the algorithm, not its fixed points, and does not
-amount to an order of entry. When the loop does not reach a configuration in which no
-group wishes to move, it returns the configuration with the fewest such groups.
+exist. The solution algorithm adds an outer loop over plant sets
+(Appendix~\ref{app:algo}).
 
 \setlength{\bibsep}{1pt}
 \begin{thebibliography}{99}
@@ -592,21 +612,23 @@ from the Cement Industry.'' Working paper, 2023.
 \label{app:market}
 
 \paragraph{A.1 Proof of Proposition~\ref{prop:markup}.} Fix a market. Let
-$\rho=(\sigma-1)/\sigma$ and $Q=(\sum_iq_i^{\rho})^{1/\rho}$. Since $PQ=E$, inverse
-demand is $p_i=E\,Q^{-\rho}q_i^{\rho-1}$, so $s_i=q_i^\rho/Q^\rho$ and group $g$'s
-revenue is $R_g=E\,Q^{-\rho}\sum_{j\in T_g}q_j^{\rho}=E\,S_g$. Using
-$\partial\ln Q/\partial q_i=q_i^{\rho-1}/Q^{\rho}=s_i/q_i$,
+$\gamma\equiv(\sigma-1)/\sigma$ and $Q\equiv(\sum_iq_i^{\gamma})^{1/\gamma}$, the
+quantity of the sectoral composite. Since $PQ=E$, inverse demand is
+$p_i=E\,Q^{-\gamma}q_i^{\gamma-1}$, so $s_i=q_i^\gamma/Q^\gamma$ and group $g$'s revenue
+is $E\,Q^{-\gamma}\sum_{j\in T_g}q_j^{\gamma}=E\,S_g$. Using
+$\partial\ln Q/\partial q_i=q_i^{\gamma-1}/Q^{\gamma}=s_i/q_i$, the derivative of the
+group's revenue with respect to $q_i$ is
 \[
-  \frac{\partial R_g}{\partial q_i}
-  =E\,Q^{-\rho}\Bigl[\rho\,q_i^{\rho-1}-\rho\,\frac{q_i^{\rho-1}}{Q^\rho}\sum_{j\in T_g}q_j^\rho\Bigr]
-  =\rho\,p_i\,(1-S_g).
+  E\,Q^{-\gamma}\Bigl[\gamma\,q_i^{\gamma-1}-\gamma\,\frac{q_i^{\gamma-1}}{Q^\gamma}
+  \sum_{j\in T_g}q_j^\gamma\Bigr]
+  =\gamma\,p_i\,(1-S_g).
 \]
-Setting marginal revenue equal to $c_i$ gives \eqref{eq:markup}. The second term in
-the bracket is the loss the group imposes on its own plants. \qed
+The second term in the bracket is the loss the group imposes on its own plants. Setting
+marginal revenue equal to $c_i$ gives \eqref{eq:markup}. \qed
 
 \paragraph{A.2 Proof of Proposition~\ref{prop:market}.} \emph{Best responses.} Given
 rivals' quantities, group $g$'s profit is $E\,X_g/(X_g+B_g)-\sum_{i\in T_g}c_iq_i$,
-where $X_g=\sum_{i\in T_g}q_i^\rho$ and $B_g>0$ is the same index for rivals. The
+where $X_g=\sum_{i\in T_g}q_i^\gamma$ and $B_g>0$ is the same index for rivals. The
 function $X\mapsto X/(X+B)$ is strictly increasing and strictly concave, with
 derivatives $B/(X+B)^2>0$ and $-2B/(X+B)^3<0$, and $X_g$ is strictly concave in
 $(q_i)_{i\in T_g}$. A strictly increasing, strictly concave function of a strictly
@@ -629,23 +651,27 @@ $\mathcal S(A)=1$ has exactly one solution. \qed
 \label{app:ge}
 
 \paragraph{B.1 Proof of Proposition~\ref{prop:incomes}.} Given wages, delivered costs
-are known, and by Proposition~\ref{prop:market} so are all shares and markups. Profits
-in market $(n',k)$ are $E_{n'k}S_{g,n'}m(S_{g,n'})$, with $m(S)=(1+\kappa S)/\sigma$, and
-tariff revenue is $\tau_{n'k}E_{n'k}$, with
-$\tau_{n'k}=\sum_{i\in\cA_{n'k}}t_is_i/[\mu_{g(i)}(1+t_i)]$. Substituting
-\eqref{eq:spending} into \eqref{eq:income},
+are known, and by Proposition~\ref{prop:market} so are all shares and markups. In
+market $(n',k)$, group $g$'s profit is $E_{n'k}S_{g,n'}m(S_{g,n'})$ and tariff revenue is
+$\tau_{n'k}E_{n'k}$, with $\tau_{n'k}=\sum_{i\in\cA_{n'k}}t_is_i/[\mu_{g(i)}(1+t_i)]$
+and $t_i$ the tariff on plant $i$. Substituting \eqref{eq:spending} into
+\eqref{eq:income},
 \[
-  X_n=w_nL_n+\sum_{n'}\mathcal M_{nn'}X_{n'},
+  X_n=w_nL_n+\sum_{n'}\Gamma_{nn'}X_{n'},
   \qquad
-  \mathcal M_{nn'}=\sum_k\beta_k\Bigl[\sum_{g:\,k(g)=k}\theta_{gn}S_{g,n'}m(S_{g,n'})
+  \Gamma_{nn'}=\sum_k\beta_k\Bigl[\sum_{g:\,k(g)=k}\theta_{gn}S_{g,n'}m(S_{g,n'})
   +\mathbf 1\{n'=n\}\,\tau_{nk}\Bigr]\ge0 .
 \]
-Using $\sum_n\theta_{gn}=1$, the column of $\mathcal M$ for $n'$ sums to
-$\sum_k\beta_k[\sum_gS_{g,n'}m(S_{g,n'})+\tau_{n'k}]$. Per dollar of spending in a market,
-revenue splits into profit, tariff revenue and labor cost,
-$\sum_gS_gm(S_g)+\tau+\sum_is_i/[\mu_{g(i)}(1+t_i)]=1$, and the last term is positive.
-So every column of $\mathcal M$ sums to less than one, $\rho(\mathcal M)<1$, and
-$X=(I-\mathcal M)^{-1}wL\ge wL$ is the unique solution. \qed
+Using $\sum_n\theta_{gn}=1$, the column of $\Gamma$ for $n'$ sums to
+$\sum_k\beta_k[\sum_gS_{g,n'}m(S_{g,n'})+\tau_{n'k}]$. Per dollar of spending in a
+market, revenue splits into profit, tariff revenue and labor cost,
+\begin{equation}
+  \sum_gS_gm(S_g)+\tau+\sum_i\frac{s_i}{\mu_{g(i)}(1+t_i)}=1,
+  \tag{B.1}\label{eq:split}
+\end{equation}
+and the last term is positive. So every column of $\Gamma$ sums to less than one, the
+largest eigenvalue of $\Gamma$ in absolute value is below one, and
+$X=(I-\Gamma)^{-1}wL=\sum_{s\ge0}\Gamma^swL\ge wL$ is the unique solution. \qed
 
 \paragraph{B.2 Proof of Proposition~\ref{prop:exist}.} Normalize wages to the unit
 simplex and let $z_n(w)=W_n(w)/w_n-L_n$ be excess demand for labor. By
@@ -653,20 +679,20 @@ Propositions~\ref{prop:market}--\ref{prop:incomes}, $z$ is continuous on the int
 the simplex and homogeneous of degree zero. It satisfies Walras' law
 $\sum_nw_nz_n(w)=0$. Adding \eqref{eq:income} across countries, world income is
 $\sum_nw_nL_n$ plus world profits plus world tariff revenue. By \eqref{eq:spending},
-world spending equals world income, and by the revenue split in B.1 it also equals
+world spending equals world income, and by \eqref{eq:split} it also equals
 $\sum_nW_n$ plus world profits plus world tariff revenue. Hence
-$\sum_nW_n=\sum_nw_nL_n$. It is bounded below by $-L$. It remains to check the
-boundary condition of \citet[Proposition 17.C.1]{MWG1995}: if $w^m\to\bar w$, where
+$\sum_nW_n=\sum_nw_nL_n$. Excess demand is bounded below by $-L$. It remains to check
+the boundary condition of \citet[Proposition 17.C.1]{MWG1995}: if $w^m\to\bar w$, where
 $Z=\{n:\bar w_n=0\}$ is non-empty, then $\max_nz_n(w^m)\to\infty$.
 
 A plant's delivered cost is proportional to the wage where it is located. So the costs
 of plants located in $Z$ go to zero, while all other costs stay in a compact subset of
 $(0,\infty)$. By hypothesis, some plant located in $Z$ serves a market $(n',k)$ with
-$n'\notin Z$. By B.1, $X_{n'}\ge w_{n'}L_{n'}$, so $E_{n'k}=\beta_kX_{n'}$ stays bounded
-away from zero. For $m$ large, the lowest-cost plant $i$ in that market is located in
-some $\ell\in Z$. Let $g$ be its group and $J$ the number of plants in the market. Its
-cost is $V_i=E_{n'k}s_i/[\mu_g(1+t)]$, all of it paid to labor in $\ell$, so it suffices
-to show that $V_i/w_\ell\to\infty$.
+$n'\notin Z$. By Proposition~\ref{prop:incomes}, $X_{n'}\ge w_{n'}L_{n'}$, so
+$E_{n'k}=\beta_kX_{n'}$ stays bounded away from zero. For $m$ large, the lowest-cost
+plant $i$ in that market is located in some $\ell\in Z$. Let $g$ be its group and $J$
+the number of plants in the market. Its cost is $V_i=E_{n'k}s_i/[\mu_g(1+t_i)]$, all of
+it paid to labor in $\ell$, so it suffices to show that $V_i/w_\ell\to\infty$.
 
 If $S_g\le\frac12$, then $\mu_g\le2\sigma/(\sigma-1)$. Every price is at least $c_i$,
 since markups exceed one, so $P^{1-\sigma}\le Jc_i^{1-\sigma}$ and
@@ -691,10 +717,9 @@ In either case $z_\ell\to\infty$, and the result follows from
 
 \paragraph{B.3 A decomposition of labor payments.} Raise wages, holding tariffs and
 trade costs fixed, and let hats denote log changes. A plant's delivered cost changes by
-$\hat c_i=\hat w_{\ell(i)}$. Its cost in a market is $V_i=r_i/[\mu_g(1+t)]$, so
+$\hat c_i=\hat w_{\ell(i)}$. Its cost in a market is $V_i=r_i/[\mu_g(1+t_i)]$, so
 $\hat V_i=\hat E+\hat s_i-\hat\mu_g$ with $\hat s_i=(1-\sigma)(\hat c_i+\hat\mu_g-\hat P)$
-and $\hat\mu_g=\varepsilon_\mu\hat S_g$, where $\varepsilon_\mu=S_g/(1-S_g)$ is the
-elasticity of the markup. By Proposition~\ref{prop:incidence},
+and $\hat\mu_g=\varepsilon_\mu\hat S_g$. By Proposition~\ref{prop:incidence},
 $\hat S_g=-(\sigma-1)\Lambda_g(\hat c_g-\hat P)$, and using
 $1=\Lambda_g[1+(\sigma-1)\varepsilon_\mu]$,
 \begin{equation}
@@ -822,5 +847,116 @@ with negligible shares and can differ for large ones. Theorem~\ref{thm:entry} ap
 the notion of Definition~\ref{def:entry}. Existence in pure strategies is not guaranteed
 under either notion: a group's choice is discrete, so its optimal strength jumps with
 $A$, and \eqref{eq:clearing} may have no solution with each group on a rung.
+
+\subsection{Solution Algorithm}
+\label{app:algo}
+
+\paragraph{E.1 Markets.} Given an aggregate $A$, each group's share solves the scalar
+equation \eqref{eq:sharemap}, and the market solves \eqref{eq:clearing} by safeguarded
+Newton steps on $\ln A$, which never leave a bracket that contains the unique root.
+
+\paragraph{E.2 Incomes and wages.} Given wages, incomes come from the linear solve of
+B.1. Wages are updated by the damped tâtonnement of Section~\ref{sec:ge}, followed by
+Newton steps once close to the solution. When labor demand is elastic, $M_{nn}<0$ and an
+undamped update ($\lambda=1$) can overshoot; choosing $\lambda$ with
+$\lambda(1-M_{nn})<1$ keeps the update monotone.
+
+\paragraph{E.3 Plant sets (extension).} With entry, each group's best response at a
+given $A$ is found by scanning its ladder, and $A$ by bisection. An outer loop updates
+plant sets: at the equilibrium wages for the current sets, the groups with the largest
+gains from changing their sets do so, and the procedure repeats until no group wishes to
+move. Moving only the groups with the largest gains changes the path of the algorithm,
+not its fixed points, and does not amount to an order of entry. When the loop does not
+reach a configuration in which no group wishes to move, it returns the configuration
+with the fewest such groups and reports how many there are. Because the joint
+equilibrium is not known to be unique, we solve from several starting points.
+
+\clearpage
+\section*{Notation}
+\label{app:notation}
+
+\noindent Symbols are grouped by topic, and the last column gives the equation or
+section where each is defined. A subscript
+$n$ or $n'$ denotes a destination country, $\ell$ the country where a plant is located,
+$k$ a sector, $g$, $h$ or $j$ a group, and $i$ a plant. Within a single market the
+market's indices are dropped.
+
+\small
+\begin{longtable}{@{}p{0.17\linewidth}p{0.62\linewidth}p{0.15\linewidth}@{}}
+\toprule
+Symbol & Meaning & Where \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\multicolumn{3}{@{}l}{\emph{Agents and sets}}\\
+$\cN$, $N$ & set of countries; number of countries & Agents \\
+$\cK$ & set of sectors & Agents \\
+$\cG$ & set of groups (a group is a global ultimate parent and all its plants) & Agents \\
+$h(g)$, $k(g)$ & headquarters country and sector of group $g$ & Agents \\
+$\cP_g$ & plants owned by group $g$ (potential plants in the extension) & Agents \\
+$g(i)$, $\ell(i)$ & group and location of plant $i$ & Agents \\
+$\cA_{nk}$ & plants that serve market $(n,k)$ & \eqref{eq:utility} \\
+$T_g$, $T_{g,n}$ & plants of group $g$ that serve a given market & Section~\ref{sec:market} \\[3pt]
+\multicolumn{3}{@{}l}{\emph{Households and demand}}\\
+$L_n$ & labor supplied by country $n$ & Agents \\
+$U_n$, $C_{nk}$ & utility; consumption of the sector-$k$ bundle & \eqref{eq:utility} \\
+$\beta_k$ & share of income spent on sector $k$ & \eqref{eq:utility} \\
+$\sigma_k$ & elasticity of substitution between varieties of sector $k$ & \eqref{eq:utility} \\
+$q_{i,n}$, $p_{i,n}$ & quantity and price of plant $i$'s variety in country $n$ & \eqref{eq:demand} \\
+$P_{nk}$ & price index of sector $k$ in country $n$ & \eqref{eq:demand} \\
+$P_n$ & consumer price index of country $n$ & \eqref{eq:demand} \\
+$X_n$ & income of country $n$ & \eqref{eq:income} \\
+$E_{nk}$ & spending on market $(n,k)$, the size of the market & \eqref{eq:spending} \\[3pt]
+\multicolumn{3}{@{}l}{\emph{Technology, trade and ownership}}\\
+$w_\ell$ & wage in country $\ell$ & \eqref{eq:cost} \\
+$\varphi_i$ & productivity of plant $i$ & \eqref{eq:cost} \\
+$a_i$ & unit cost of plant $i$, $w_\ell/\varphi_i$ & \eqref{eq:cost} \\
+$d_{\ell n}$ & iceberg trade cost from $\ell$ to $n$ ($\ge1$) & \eqref{eq:delivered} \\
+$t_{\ell nk}$ & tariff of country $n$ on sector-$k$ goods produced in $\ell$ & \eqref{eq:delivered} \\
+$c_{i,n}$ & delivered marginal cost of plant $i$ in market $n$, including the tariff & \eqref{eq:delivered} \\
+$\theta_{gn}$ & share of group $g$ owned by country $n$ & \eqref{eq:income} \\
+$\pi_g$, $\pi_{g,n}$ & profit of group $g$, in total and in market $n$ & \eqref{eq:income} \\
+$\TR_n$ & tariff revenue of country $n$ & \eqref{eq:income} \\[3pt]
+\multicolumn{3}{@{}l}{\emph{Market structure (one market)}}\\
+$A$ & market aggregate, $P^{1-\sigma}$; high when the market is competitive & \eqref{eq:shares} \\
+$s_i$ & revenue share of plant $i$ in the market & \eqref{eq:shares} \\
+$S_g$ & revenue share of group $g$ in the market & \eqref{eq:shares} \\
+$\mu(S)$ & markup of a group with share $S$ & \eqref{eq:markup} \\
+$K_g$ & strength of group $g$, $\sum_{i\in T_g}c_i^{1-\sigma}$ & \eqref{eq:strength} \\
+$\psi(S)$ & share map: a group with strength $K$ has the share $S$ with $\psi(S)=K/A$ & \eqref{eq:sharemap} \\
+$m(S)$ & Lerner index, $1-1/\mu(S)$ & \eqref{eq:profit} \\
+$\kappa$ & curvature of profit in the share, $\sigma-1$ & \eqref{eq:profit} \\[3pt]
+\multicolumn{3}{@{}l}{\emph{General equilibrium}}\\
+$V_{i,n'}$ & cost of plant $i$ in serving country $n'$, all paid to labor & \eqref{eq:labor} \\
+$r_{i,n'}$ & revenue of plant $i$ in country $n'$ & \eqref{eq:labor} \\
+$W_n$ & wage bill of country $n$ (labor demanded, in value) & Section~\ref{sec:ge} \\
+$M_{nj}$ & elasticity of $W_n$ with respect to the wage of country $j$ & Section~\ref{sec:ge} \\
+$b^n_{i,n'}$ & share of $W_n$ paid by plant $i$ out of its costs in $n'$ & \eqref{eq:demandterm} \\
+$\bar E^{(j)}_n$ & average response of the markets where country $n$'s plants sell to $w_j$ & \eqref{eq:demandterm} \\
+$D$ & set of wage vectors on which uniqueness is checked & Theorem~\ref{thm:wages} \\
+$\lambda$ & damping of the wage update & Solution algorithm \\
+$z_n$ & excess demand for labor, $W_n/w_n-L_n$ & Appendix B.2 \\
+$\Gamma$, $\tau_{nk}$ & income matrix; tariff revenue per dollar spent in $(n,k)$ & Appendix B.1 \\[3pt]
+\multicolumn{3}{@{}l}{\emph{Comparative statics}}\\
+$\hat x$ & log change of $x$ & Section~\ref{sec:cs} \\
+$\hat c_g$ & sales-weighted average change in group $g$'s delivered costs & \eqref{eq:incidenceweights} \\
+$\varepsilon_\mu(S)$ & elasticity of the markup with respect to the share, $S/(1-S)$ & \eqref{eq:incidenceweights} \\
+$\Lambda_g$ & how strongly group $g$'s share responds to its relative cost & \eqref{eq:incidenceweights} \\
+$\varpi_g$ & weight of group $g$ in the response of the price index & \eqref{eq:incidenceweights} \\
+$\rho_j$ & pass-through of a cost increase to group $j$'s prices & Proposition~\ref{prop:incidence} \\
+$\pi^H$, $\theta_g$ & profit income of country $H$ from a market; its ownership shares & \eqref{eq:decomp} \\
+$\bar\theta$ & sales-weighted ownership share of country $H$ in the market & \eqref{eq:decomp} \\
+HHI & Herfindahl index of group shares, $\sum_gS_g^2$ & \eqref{eq:decomp} \\
+$\mathrm{Cov}_S(\theta,S)$ & sales-weighted covariance between ownership and share & \eqref{eq:decomp} \\
+$\omega_{gj}$ & share of group $g$'s sales in a market that comes from its plants in $j$ & Wages and prices \\
+$\chi_g$ & coefficient of the between-group reallocation of labor payments & Appendix B.3 \\[3pt]
+\multicolumn{3}{@{}l}{\emph{Extension: entry}}\\
+$F_{i,n}$ & fixed cost for plant $i$ to serve market $n$ & \eqref{eq:fixed} \\
+$f_k$, $f^d_{\ell n}$ & sector and distance components of the fixed cost & \eqref{eq:fixed} \\
+$K(T)$, $\Phi(T)$ & strength and fixed cost of a set of plants $T$ & \eqref{eq:entrypayoff} \\
+$\Omega(K;A)$ & profit of a group with strength $K$ at aggregate $A$ & \eqref{eq:entrypayoff} \\
+$U_g(T;A)$ & net payoff of group $g$ from serving the market with $T$ & \eqref{eq:entrypayoff} \\
+\end{longtable}
 
 \end{document}

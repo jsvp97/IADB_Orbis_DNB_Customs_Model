@@ -79,6 +79,9 @@ docs/model_section.tex  THE PAPER'S MODEL SECTION (2026-10-01, §38): written in
 docs/model_section_simple.tex  SIMPLIFIED MODEL SECTION (2026-10-27), a separate
                         version; model_section.tex is untouched. 13 pp (base 6.5, entry
                         extension ~1, appendix 4). See end of §38.
+docs/model_solution_simple.tex  STEP-BY-STEP SOLUTION OF THE SIMPLIFIED MODEL
+                        (2026-10-27), 10 pp, English, algebra only: Steps 0-6 + algorithm
+                        and checks + entry extension.
 docs/model_solution.tex THE STEP-BY-STEP SOLUTION (2026-10-27): companion to
                         model_section, English, 14 pp. Baseline (Cournot, eta=1, nu,
                         tariffs >= 0) derived by substitution down to z(w;T)=0 plus the
@@ -3448,3 +3451,17 @@ changes the magnitude of the policy result. Verified numerically (3 countries, 2
 tariffs, nu = 0): income matrix column sums < 1 (max 0.40), X >= wL, Walras 9e-16,
 M row sums 1, M_nj >= Ebar with slack >= 0.26, existence inequality
 K_h/K_g <= 2^sigma (1-S_g)^sigma and chi formula exact.
+Simplified section revised + solution doc (2026-10-27). model_section_simple.tex now
+mirrors model_section's paragraph structure (Timing, Multinational corporations,
+Head-office capability, Market sizes, Appendix E algorithm restored) and ends with a
+NOTATION TABLE (longtable, grouped by topic, with where each symbol is defined). Notation
+clashes fixed: K no longer names the number of sectors (K_g is strength only); tariff
+revenue is TR_n (T is plant sets); the income matrix is Gamma (M is the wage-bill
+elasticity matrix); the A.1 exponent is gamma = (sigma-1)/sigma (rho is pass-through
+only; spectral radius stated in words); m(S) and eps_mu now defined in the main text.
+Fixed a false main-text sentence: Walras' law does not follow from "world income =
+world spending"; it is proved in B.2. Numbering: Props 1-7 (Markups, One market,
+Incomes, Existence, Incidence, Ownership, Response), Thm 1 Wages, Thm 2 Entry.
+docs/model_solution_simple.tex (10 pp) follows model_solution's step structure; its
+formulas (Gamma, column sums = 1 - labor share, X >= wL, Walras, dS/dlnA) are the ones
+verified numerically in the simplified-model check.
