@@ -75,7 +75,14 @@ interval_certificate.jl the CONTINUUM certificate (§32): outward-rounded interv
                         arithmetic + centred forms -> run_interval_certificate.txt
 docs/model_section.tex  THE PAPER'S MODEL SECTION (2026-10-01, §38): written in the
                         "Model_Linkages" format, model only, no quantification.
-                        10 pp main + 5 pp appendix. Being revised paragraph by paragraph.
+                        10 pp main + 6 pp appendix. Review complete (2026-10-22).
+docs/model_solution.tex THE STEP-BY-STEP SOLUTION (2026-10-27): companion to
+                        model_section, English, 14 pp. Baseline (Cournot, eta=1, nu,
+                        tariffs >= 0) derived by substitution down to z(w;T)=0 plus the
+                        active-set outer loop; boxes for Bertrand and eta>1. Algebra only,
+                        no code references, no numbers. New formulas (spending/income
+                        matrices, column-sum argument, Walras, dS/dlnA, A bracket)
+                        verified numerically off equilibrium.
 docs/                   model_guide.pdf (the paper-shaped document), model_summary.pdf
                         (5 pp), derivations.md, entry_options.md, papers/ (the three
                         reference PDFs)
@@ -3412,3 +3419,9 @@ B.4 and C.1 pointed at a moved section and a renamed proof step. C.6 now cites A
 Block and Hurwicz (1959) and MWG Section 17.F (section number not checked against the
 book). Model section review COMPLETE; wages-with-intermediates existence deferred to the
 Quantification section by Sebastian's decision.
+Step-by-step solution document (2026-10-27): docs/model_solution.tex, Sebastian's choices:
+English, baseline + boxes, no worked numerical example, no code references. Sections
+numbered so Step k = section k (overview is section 0). Verified on a 3-country,
+2-sector economy with nu > 0 and tariffs at two off-equilibrium wage vectors: Walras
+4e-15, M column-sum identity 7e-16, B column sums < nu, dS/dlnA = -S*Lambda 8e-11,
+A_hi bracket holds, W homogeneous of degree one.
