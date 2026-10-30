@@ -14,9 +14,6 @@
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{theorem}{Theorem}
-\newtheorem{corollary}{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}
 
 \setlist[enumerate]{itemsep=1pt,topsep=3pt}
 
@@ -41,8 +38,8 @@ single plant. Each group is owned by households in one or more countries, and it
 profits are paid to those owners wherever they are earned. Ownership shares are
 defined group by group, so two groups headquartered in the same country can have
 different owners. The baseline takes as given which plants each group operates and
-which markets they serve; Section~\ref{sec:entry} lets groups choose them. Proofs are
-in the Appendix, and a table of notation closes the document.
+which markets they serve; Section~\ref{sec:entry} lets groups choose them. Formal statements
+and proofs are in the Appendix, and a table of notation closes the document.
 
 \subsection{Model Set-Up}
 \label{sec:setup}
@@ -197,14 +194,12 @@ quantities of all of its plants that serve the market, taking as given the quant
 of other groups and the level of spending $E$. It maximizes its profit
 $\pi_g=\sum_{i\in T_g}(p_i-c_i)q_i$.
 
-\begin{proposition}[Markups]\label{prop:markup}
-The first-order conditions of group $g$ are $p_i=\mu(S_g)\,c_i$ for every $i\in T_g$,
-with
+The first-order conditions of group $g$ (Proposition~\ref{prop:markup} in Appendix A.1)
+give $p_i=\mu(S_g)\,c_i$ for every plant $i\in T_g$, with
 \begin{equation}
   \mu(S)=\frac{\sigma}{(\sigma-1)(1-S)} .
   \label{eq:markup}
 \end{equation}
-\end{proposition}
 
 \noindent This is the markup of \citet{AtkesonBurstein2008}, evaluated at the share
 of the group rather than of the plant.\footnote{Under price competition the markup is
@@ -276,8 +271,8 @@ by households, so spending on market $(n,k)$ is
 \end{equation}
 
 \paragraph{Labor market.} Let $V_{i,n'}\equiv a_id_{\ell(i)n'}q_{i,n'}$ be the cost of
-plant $i$ in serving country $n'$, exclusive of tariffs. By
-Proposition~\ref{prop:markup}, $V_{i,n'}=r_{i,n'}/[\mu_{g(i)}(1+t_{\ell(i)n'k})]$, where
+plant $i$ in serving country $n'$, exclusive of tariffs. Since each price is the
+group's markup times delivered cost, $V_{i,n'}=r_{i,n'}/[\mu_{g(i)}(1+t_{\ell(i)n'k})]$, where
 $r_{i,n'}$ is the plant's revenue in that market, $\mu_{g(i)}$ its group's markup
 there, and $k$ the plant's sector. All of this cost is paid to labor where the plant is
 located, so labor markets clear when
@@ -286,13 +281,15 @@ located, so labor markets clear when
   \label{eq:labor}
 \end{equation}
 
-\begin{definition}[Equilibrium]\label{def:eq}
-An equilibrium consists of wages $\{w_n\}$, incomes $\{X_n\}$, and prices and
-quantities $\{p_{i,n},q_{i,n}\}$ such that households maximize \eqref{eq:utility}; in
-every market, prices satisfy Proposition~\ref{prop:markup} and quantities satisfy
-\eqref{eq:demand}; incomes satisfy \eqref{eq:income}, with market sizes
-\eqref{eq:spending}; and labor markets clear, \eqref{eq:labor}.
-\end{definition}
+\paragraph{Equilibrium.} An equilibrium consists of wages $\{w_n\}$, incomes $\{X_n\}$,
+and prices and quantities $\{p_{i,n},q_{i,n}\}$ such that:
+\begin{enumerate}
+\item households maximize \eqref{eq:utility}, so quantities satisfy \eqref{eq:demand};
+\item in every market, each group's prices satisfy its first-order conditions,
+\eqref{eq:markup};
+\item incomes satisfy \eqref{eq:income}, with market sizes \eqref{eq:spending};
+\item labor markets clear, \eqref{eq:labor}.
+\end{enumerate}
 
 \noindent Prices, costs and incomes are homogeneous of degree one in wages, and shares
 are homogeneous of degree zero, so wages are determined up to scale. At any wages, once
@@ -301,37 +298,31 @@ equals the value of labor supplied (Walras' law, Appendix B.2), so one labor-mar
 condition is implied by the others. We set $w_1=1$.
 
 \paragraph{Existence and uniqueness.} We establish the results layer by layer: the
-equilibrium of a single market, incomes given wages, and wages.
+equilibrium of a single market, incomes given wages, and wages. The formal statements
+and their proofs are in Appendices A and B.
 
-\begin{proposition}[One market]\label{prop:market}
-For any positive delivered costs, a market has exactly one equilibrium.
-\end{proposition}
+For any positive delivered costs, a market has exactly one equilibrium
+(Proposition~\ref{prop:market}). The proof uses \eqref{eq:clearing}. Each
+$\psi^{-1}(K_g/A)$ falls as $A$ rises, from one when $A$ is near zero to zero when $A$
+is large. The sum of shares therefore falls strictly from the number of groups, at
+least two, to zero, and equals one exactly once. Each group's profit is strictly
+concave in its own quantities, so the first-order conditions identify the unique best
+response.
 
-\noindent The proof uses \eqref{eq:clearing}. Each $\psi^{-1}(K_g/A)$ falls as $A$
-rises, from one when $A$ is near zero to zero when $A$ is large. The sum of shares
-therefore falls strictly from the number of groups, at least two, to zero, and equals
-one exactly once. Each group's profit is strictly concave in its own quantities, so the
-first-order conditions identify the unique best response.
+Given wages, incomes are the unique solution of the linear system \eqref{eq:income},
+\eqref{eq:spending}, and $X_n\ge w_nL_n$ for every $n$
+(Proposition~\ref{prop:incomes}). Every share and markup is then known, profits and
+tariff revenue are linear in market sizes, and market sizes are linear in incomes. Part
+of every dollar spent in a market is paid to labor, so less than a dollar returns to
+households as profits and tariff revenue; this makes the system's solution unique.
+Since profits and tariff revenue are non-negative, income is at least labor income.
 
-\begin{proposition}[Incomes]\label{prop:incomes}
-Given wages, incomes are the unique solution of the linear system
-\eqref{eq:income}, \eqref{eq:spending}, and $X_n\ge w_nL_n$ for every $n$.
-\end{proposition}
+Wages that clear every labor market exist provided no set of countries is cut off from
+the rest: for every proper subset $Z$ of countries, some plant located in $Z$ serves a
+market of a country outside $Z$ (Proposition~\ref{prop:exist}). The condition rules out
+a set of countries that sells nothing to the rest of the world, whose wages relative
+to the others would then be undetermined.
 
-\noindent Given wages, every share and markup is known, profits and tariff revenue are
-linear in market sizes, and market sizes are linear in incomes. Part of every dollar
-spent in a market is paid to labor, so less than a dollar returns to households as
-profits and tariff revenue; this makes the system's solution unique. Since profits and
-tariff revenue are non-negative, income is at least labor income.
-
-\begin{proposition}[Existence of wages]\label{prop:exist}
-Suppose no set of countries is cut off from the rest: for every proper subset $Z$ of
-countries, some plant located in $Z$ serves a market of a country outside $Z$. Then
-there exist wages that clear every labor market.
-\end{proposition}
-
-\noindent The condition rules out a set of countries that sells nothing to the rest
-of the world, whose wages relative to the others would then be undetermined.
 Uniqueness of wages is the most delicate layer. Let $W_n(w)$ be the right
 side of \eqref{eq:labor}, the wage bill of country $n$ at wages $w$, and
 $M_{nj}\equiv\partial\ln W_n/\partial\ln w_j$ its elasticity with respect to country
@@ -344,16 +335,14 @@ that plant $i$ pays out of its sales in country $n'$, and
   \label{eq:demandterm}
 \end{equation}
 the average response of the markets in which country $n$'s plants sell.
+Theorem~\ref{thm:wages} gives sufficient conditions for uniqueness. Let $D$ be a set of
+wage vectors that is convex in logarithms: the straight line in logarithms between any
+two of its points stays in $D$. If at every $w\in D$ (i) no group holds more than half
+of any market and (ii) $\bar E^{(j)}_n>0$ for all $n\neq j$, then
+$M_{nj}\ge\bar E^{(j)}_n>0$ for $n\neq j$ throughout $D$, and $D$ contains at most one
+equilibrium wage vector up to scale.
 
-\begin{theorem}[Wages]\label{thm:wages}
-Let $D$ be a set of wage vectors that is convex in logarithms: the straight line in
-logarithms between any two of its points stays in $D$. Suppose that at every $w\in D$
-(i) no group holds more than half of any market and (ii) $\bar E^{(j)}_n>0$ for all
-$n\neq j$. Then $M_{nj}\ge\bar E^{(j)}_n>0$ for $n\neq j$ throughout $D$, and $D$
-contains at most one equilibrium wage vector up to scale.
-\end{theorem}
-
-\noindent The bound $M_{nj}\ge\bar E^{(j)}_n$ says that a rise in a foreign wage can
+The bound $M_{nj}\ge\bar E^{(j)}_n$ says that a rise in a foreign wage can
 lower country $n$'s wage bill only by shrinking the markets in which its plants sell.
 Plants located in $n$ do not become more expensive when $w_j$ rises, so every
 reallocation of sales between plants and between groups favors country $n$.
@@ -370,7 +359,8 @@ each market is solved for $A$ from \eqref{eq:clearing}, and incomes come from on
 linear solve. Wages are updated by the damped tâtonnement
 $w_n\leftarrow w_n^{1-\lambda}(W_n(w)/L_n)^{\lambda}$, with $\lambda\in(0,1)$, which raises
 a country's wage when its labor is in excess demand and whose fixed points are the
-equilibrium wages (Appendix~\ref{app:algo}).
+equilibrium wages. When labor demand is elastic, $M_{nn}<0$, an undamped update can
+overshoot; a $\lambda$ with $\lambda(1-M_{nn})<1$ avoids it.
 
 \subsection{Extension: Endogenous Entry}
 \label{sec:entry}
@@ -414,48 +404,45 @@ group's plants pay the same fixed cost to serve the market, each rung adds the p
 with the next-lowest delivered cost, and the group's choice is a cutoff on its own list
 of plants, the within-group analogue of the cutoff in \citet{GaubertItskhoki2021}.
 
-\begin{definition}[Entry equilibrium in a market]\label{def:entry}
-Given delivered costs, fixed costs and spending, an entry equilibrium is a collection of
-plant sets $\{T_g\}$ and an aggregate $A$ such that (i) each $T_g$ maximizes
-$U_g(\cdot\,;A)$ over subsets of $\cP_g$, and (ii) $A$ solves \eqref{eq:clearing} with
-$K_g=K(T_g)$.
-\end{definition}
+\paragraph{Entry equilibrium.} Given delivered costs, fixed costs and spending, an
+entry equilibrium in a market is a collection of plant sets $\{T_g\}$ and an aggregate
+$A$ such that each $T_g$ maximizes $U_g(\cdot\,;A)$ over subsets of $\cP_g$, and $A$
+solves \eqref{eq:clearing} with $K_g=K(T_g)$. Groups evaluate entry at the prevailing
+degree of competition, as in a free-entry condition, while taking into account their
+effect on $A$ when they set quantities. This notion turns each group's entry problem
+into the choice of its strength $K$ given the aggregate $A$; Appendix C.4 discusses the
+alternative in which groups also anticipate their effect on $A$ when they enter.
 
-\noindent Groups evaluate entry at the prevailing degree of competition, as in a
-free-entry condition, while taking into account their effect on $A$ when they set
-quantities. This notion turns each group's entry problem into the choice of one number
-given one number.
-
-\begin{theorem}[Entry]\label{thm:entry}
-Let $\sigma\ge2$.
-\begin{enumerate}[label=(\alph*)]
-\item $\Omega(K;A)$ is strictly concave in $K$ at every share.
-\item $\Omega_{KA}<0$ whenever the group's share is at most one half.
-\item Suppose that, for any two candidate equilibria, no group would hold more than
-half of the market if it operated the plants it chooses in one of them while facing the
-aggregate of the other, and that no group is indifferent between two rungs of its
-ladder. Then a market has at most one entry equilibrium.
-\end{enumerate}
-\end{theorem}
-
-\noindent Here $\Omega_{KA}$ is the cross partial derivative of $\Omega$. Part (a) says
-that strength has diminishing returns for the group, and part (b) that it is worth less
-in a more competitive market. Together they imply that each group's optimal strength
-falls as $A$ rises, while $A$ rises with every group's strength, so two equilibria with
-different aggregates cannot both exist. No order of entry is imposed, and groups still
+Theorem~\ref{thm:entry} in Appendix C establishes three properties when $\sigma\ge2$.
+First, $\Omega(K;A)$ is strictly concave in $K$ at every share: strength has
+diminishing returns for the group. Second, the cross partial derivative $\Omega_{KA}$ is
+negative whenever the group's share is at most one half: strength is worth less in a
+more competitive market. Third, a market has at most one entry equilibrium, provided
+that, for any two candidate equilibria, no group would hold more than half of the
+market if it operated the plants it chooses in one of them while facing the aggregate
+of the other, and that no group is indifferent between two rungs of its ladder. The
+first two properties imply that each group's optimal strength does not rise when $A$
+rises, while $A$ rises with every group's strength, so two equilibria with different
+aggregates cannot both exist. No order of entry is imposed, and groups still
 internalize competition among their own plants. The hypothesis is the same one-half
 condition as in Theorem~\ref{thm:wages}.
 
 \paragraph{General equilibrium with entry.} Fixed costs are paid to labor where the
 plant is located, so they are added to the right side of \eqref{eq:labor}, and profits
-distributed through $\theta$ are net of them. The results of Section~\ref{sec:ge} hold
-for given plant sets, with one change: existence also requires fixed costs small enough
-that every country's income is at least a fixed fraction of its labor income. Two
-limits are new. First, plant sets change discretely with wages, so uniqueness at each
-layer does not make the joint equilibrium of wages and plant sets unique. Second,
-entry is chosen in whole plants, so an exact equilibrium in pure strategies need not
-exist. The solution algorithm adds an outer loop over plant sets
-(Appendix~\ref{app:algo}).
+distributed through $\theta$ are net of them. For given plant sets, the results of
+Section~\ref{sec:ge} carry over with two changes. Existence of wages requires fixed
+costs small enough that every country's income is at least a fixed fraction of its
+labor income. In the demand term \eqref{eq:demandterm}, payments for fixed costs enter
+with a zero response, because a fixed cost paid in country $n$ does not change when
+another country's wage rises. Two limits are new. First, plant sets change discretely
+with wages, so uniqueness at each layer does not make the joint equilibrium of wages
+and plant sets unique. Second, entry is chosen in whole plants, so an equilibrium in
+which no group wishes to change its plant set need not exist. The solution algorithm
+adds an outer loop over plant sets: at the equilibrium wages for the current sets, the
+groups with the largest gains from changing their sets do so. This changes the path of
+the algorithm, not its fixed points, and imposes no order of entry. When the loop does
+not reach a configuration in which no group wishes to move, it returns the one with
+the fewest such groups and reports how many there are.
 
 \setlength{\bibsep}{1pt}
 \begin{thebibliography}{99}
@@ -518,7 +505,12 @@ from the Cement Industry.'' Working paper, 2023.
 \subsection{The Market Game}
 \label{app:market}
 
-\paragraph{A.1 Proof of Proposition~\ref{prop:markup}.} Fix a market. Let
+\paragraph{A.1 Markups.}\leavevmode
+\begin{proposition}[Markups]\label{prop:markup}
+The first-order conditions of group $g$ are $p_i=\mu(S_g)\,c_i$ for every $i\in T_g$,
+with $\mu$ given by \eqref{eq:markup}.
+\end{proposition}
+\noindent\emph{Proof.} Fix a market. Let
 $\gamma\equiv(\sigma-1)/\sigma$ and $Q\equiv(\sum_iq_i^{\gamma})^{1/\gamma}$, the
 quantity of the sectoral composite. Since $PQ=E$, inverse demand is
 $p_i=E\,Q^{-\gamma}q_i^{\gamma-1}$, so $s_i=q_i^\gamma/Q^\gamma$ and group $g$'s revenue
@@ -533,7 +525,11 @@ group's revenue with respect to $q_i$ is
 The second term in the bracket is the loss the group imposes on its own plants. Setting
 marginal revenue equal to $c_i$ gives \eqref{eq:markup}. \qed
 
-\paragraph{A.2 Proof of Proposition~\ref{prop:market}.} \emph{Best responses.} Given
+\paragraph{A.2 One market.}\leavevmode
+\begin{proposition}[One market]\label{prop:market}
+For any positive delivered costs, a market has exactly one equilibrium.
+\end{proposition}
+\noindent\emph{Proof.} \emph{Best responses.} Given
 rivals' quantities, group $g$'s profit is $E\,X_g/(X_g+B_g)-\sum_{i\in T_g}c_iq_i$,
 where $X_g=\sum_{i\in T_g}q_i^\gamma$ and $B_g>0$ is the same index for rivals. The
 function $X\mapsto X/(X+B)$ is strictly increasing and strictly concave, with
@@ -557,7 +553,12 @@ $\mathcal S(A)=1$ has exactly one solution. \qed
 \subsection{General Equilibrium}
 \label{app:ge}
 
-\paragraph{B.1 Proof of Proposition~\ref{prop:incomes}.} Given wages, delivered costs
+\paragraph{B.1 Incomes.}\leavevmode
+\begin{proposition}[Incomes]\label{prop:incomes}
+Given wages, incomes are the unique solution of the linear system
+\eqref{eq:income}, \eqref{eq:spending}, and $X_n\ge w_nL_n$ for every $n$.
+\end{proposition}
+\noindent\emph{Proof.} Given wages, delivered costs
 are known, and by Proposition~\ref{prop:market} so are all shares and markups. In
 market $(n',k)$, group $g$'s profit is $E_{n'k}S_{g,n'}m(S_{g,n'})$ and tariff revenue is
 $\tau_{n'k}E_{n'k}$, with $\tau_{n'k}=\sum_{i\in\cA_{n'k}}t_is_i/[\mu_{g(i)}(1+t_i)]$
@@ -580,7 +581,13 @@ and the last term is positive. So every column of $\Gamma$ sums to less than one
 largest eigenvalue of $\Gamma$ in absolute value is below one, and
 $X=(I-\Gamma)^{-1}wL=\sum_{s\ge0}\Gamma^swL\ge wL$ is the unique solution. \qed
 
-\paragraph{B.2 Proof of Proposition~\ref{prop:exist}.} Normalize wages to the unit
+\paragraph{B.2 Existence of wages.}\leavevmode
+\begin{proposition}[Existence of wages]\label{prop:exist}
+Suppose that for every proper subset $Z$ of countries, some plant located in $Z$ serves
+a market of a country outside $Z$. Then there exist wages that clear every labor
+market.
+\end{proposition}
+\noindent\emph{Proof.} Normalize wages to the unit
 simplex and let $z_n(w)=W_n(w)/w_n-L_n$ be excess demand for labor. By
 Propositions~\ref{prop:market}--\ref{prop:incomes}, $z$ is continuous on the interior of
 the simplex and homogeneous of degree zero. It satisfies Walras' law
@@ -650,7 +657,14 @@ The first term is the growth of the market, the second the reallocation of sales
 the group, the third the reallocation between the group and its rivals. The coefficient
 $\chi_g$ lies in $[0,\sigma-1]$ exactly when $S_g\le\frac12$.
 
-\paragraph{B.4 Proof of Theorem~\ref{thm:wages}.} \emph{The bound.} Raise $w_j$ alone,
+\paragraph{B.4 Uniqueness of wages.}\leavevmode
+\begin{theorem}[Wages]\label{thm:wages}
+Let $D$ be a set of wage vectors that is convex in logarithms. Suppose that at every
+$w\in D$ (i) no group holds more than half of any market and (ii)
+$\bar E^{(j)}_n>0$ for all $n\neq j$. Then $M_{nj}\ge\bar E^{(j)}_n>0$ for $n\neq j$
+throughout $D$, and $D$ contains at most one equilibrium wage vector up to scale.
+\end{theorem}
+\noindent\emph{Proof.} \emph{The bound.} Raise $w_j$ alone,
 $j\neq n$. Every plant paying country $n$ is located in $n$, so $\hat c_i=0$ for those
 plants. Every other plant has $\hat c_i\in\{0,1\}$, so $\hat c_g\in[0,1]$ and, by B.3,
 $\hat P=\sum_g\varpi_g\hat c_g\in[0,1]$. With
@@ -671,6 +685,21 @@ $z_{n_0}(w)>z_{n_0}(w^*)=0$, a contradiction. \qed
 
 \subsection{Entry}
 \label{app:entry}
+
+\begin{theorem}[Entry]\label{thm:entry}
+Let $\sigma\ge2$.
+\begin{enumerate}[label=(\alph*)]
+\item $\Omega(K;A)$ is strictly concave in $K$ at every share.
+\item $\Omega_{KA}<0$ whenever the group's share is at most one half.
+\item Suppose that, for any two candidate equilibria, no group would hold more than
+half of the market if it operated the plants it chooses in one of them while facing the
+aggregate of the other, and that no group is indifferent between two rungs of its
+ladder. Then a market has at most one entry equilibrium.
+\end{enumerate}
+\end{theorem}
+
+\noindent Paragraphs C.1--C.3 prove the theorem; C.4 discusses the notion of
+equilibrium it uses.
 
 \paragraph{C.1 Two elasticities.} Let $G(S)\equiv\pi'(S)/\psi'(S)$, where
 $\pi(S)=E(S+\kappa S^2)/\sigma$, and define $\varepsilon_G=SG'/G$ and
@@ -725,37 +754,15 @@ and by Step 3, $A'=A(\{K'_g\})\le A(\{K_g\})=A$, a contradiction. Equilibria wit
 same aggregate have the same best responses, and with no ties the same plant sets.
 \qed
 
-\paragraph{C.4 The notion of entry equilibrium.} Definition~\ref{def:entry} evaluates
+\paragraph{C.4 The notion of entry equilibrium.} The entry equilibrium of
+Section~\ref{sec:entry} evaluates
 every alternative set at the prevailing aggregate $A$. In a two-stage game in which the
 market is re-solved after a deviation, a group that adds a plant anticipates that $A$
 rises, which lowers the value of the deviation; the two notions coincide for groups
 with negligible shares and can differ for large ones. Theorem~\ref{thm:entry} applies to
-the notion of Definition~\ref{def:entry}. Existence in pure strategies is not guaranteed
+the first notion. Existence in pure strategies is not guaranteed
 under either notion: a group's choice is discrete, so its optimal strength jumps with
 $A$, and \eqref{eq:clearing} may have no solution with each group on a rung.
-
-\subsection{Solution Algorithm}
-\label{app:algo}
-
-\paragraph{D.1 Markets.} Given an aggregate $A$, each group's share solves the scalar
-equation \eqref{eq:sharemap}, and the market solves \eqref{eq:clearing} by safeguarded
-Newton steps on $\ln A$, which never leave a bracket that contains the unique root.
-
-\paragraph{D.2 Incomes and wages.} Given wages, incomes come from the linear solve of
-B.1. Wages are updated by the damped tâtonnement of Section~\ref{sec:ge}, followed by
-Newton steps once close to the solution. When labor demand is elastic, $M_{nn}<0$ and an
-undamped update ($\lambda=1$) can overshoot; choosing $\lambda$ with
-$\lambda(1-M_{nn})<1$ keeps the update monotone.
-
-\paragraph{D.3 Plant sets (extension).} With entry, each group's best response at a
-given $A$ is found by scanning its ladder, and $A$ by bisection. An outer loop updates
-plant sets: at the equilibrium wages for the current sets, the groups with the largest
-gains from changing their sets do so, and the procedure repeats until no group wishes to
-move. Moving only the groups with the largest gains changes the path of the algorithm,
-not its fixed points, and does not amount to an order of entry. When the loop does not
-reach a configuration in which no group wishes to move, it returns the configuration
-with the fewest such groups and reports how many there are. Because the joint
-equilibrium is not known to be unique, we solve from several starting points.
 
 \clearpage
 \section*{Notation}

@@ -3477,3 +3477,15 @@ and in commit 6cb7d30. Two errors found in them before deletion, STILL PRESENT i
 model_section.tex: "a stand-alone exporter bears the tariff in full" (its COST rises by
 the full tariff; it passes through only rho < 1) and "varpi_g < S_g for the larger groups"
 (true only for groups large relative to the rest of the market). 13 pp now.
+Simple section aligned with the Model_Linkages example (2026-10-30). The example keeps
+the main text in prose (no Proposition/Theorem/Definition environments; equilibrium as a
+paragraph with a numbered list) and puts every formal statement in the appendix; its
+discrete firm choice is in the core (its 1.2), and it ends with "Identification and
+Empirical Content". Applied, at Sebastian's decision: all formal statements moved to the
+appendix (numbering unchanged: Props 1-4, Thms 1-2), main text in prose with pointers;
+Appendix D (algorithm) deleted -- it duplicated model_solution_simple; entry KEPT as an
+extension (1.4). Entry fixes: with fixed costs the demand term counts fixed-cost
+payments with ZERO response (otherwise M >= Ebar is false); existence clause refers to
+wages given plant sets; optimal strength "does not rise" in A (was "falls", also fixed in
+model_solution_simple). Open for later: an "empirical content" subsection, where the
+ownership-weighted HHI decomposition would naturally return. 14 pp.
