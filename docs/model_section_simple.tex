@@ -62,33 +62,36 @@ $i$ and write $g(i)$ and $\ell(i)$ for the group and the location of plant $i$. 
 plant produces one differentiated variety, which it can sell in several countries.
 
 \paragraph{Representative household.} The household in country $n$ has
-Cobb--Douglas preferences across sectors and CES preferences within them,
+Cobb--Douglas preferences across sectors and CES preferences within them. Let
+$\cA_{nk}$ be the set of plants that sell sector-$k$ goods in country $n$, and
+$q_{i,n}$ the quantity of plant $i$'s variety sold in $n$. Then
 \begin{equation}
   U_n=\prod_{k\in\cK}C_{nk}^{\beta_k},
   \qquad
   C_{nk}=\Bigl[\sum_{i\in\cA_{nk}}q_{i,n}^{(\sigma_k-1)/\sigma_k}\Bigr]^{\sigma_k/(\sigma_k-1)},
   \label{eq:utility}
 \end{equation}
-where $\cA_{nk}$ is the set of plants that sell sector-$k$ goods in country $n$,
-$\beta_k>0$, $\sum_k\beta_k=1$, and $\sigma_k>1$ is the elasticity of substitution
-between varieties of the same sector. The household spends the share $\beta_k$ of its
-income $X_n$ on sector $k$. Writing $q_{i,n}$ for the quantity of plant $i$'s variety
-sold in $n$ and $E_{nk}$ for spending on sector $k$ in $n$, demand is
+where $\beta_k>0$, $\sum_k\beta_k=1$, and $\sigma_k>1$ is the elasticity of
+substitution between varieties of the same sector. The household spends the share
+$\beta_k$ of its income $X_n$, defined in \eqref{eq:income}, on sector $k$. Writing
+$E_{nk}$ for spending on sector $k$ in $n$, demand is
 \begin{equation}
   q_{i,n}=p_{i,n}^{-\sigma_k}\,P_{nk}^{\sigma_k-1}E_{nk},
   \qquad
   P_{nk}=\Bigl[\sum_{i\in\cA_{nk}}p_{i,n}^{1-\sigma_k}\Bigr]^{1/(1-\sigma_k)} ,
   \label{eq:demand}
 \end{equation}
-where $P_{nk}$ is the sector's price index. Welfare is real income $X_n/P_n$, with
-$P_n=\prod_k(P_{nk}/\beta_k)^{\beta_k}$.\footnote{With Cobb--Douglas preferences across
-sectors, a sector's spending does not expand when its price index falls. A CES upper
-tier with elasticity $\eta\in(1,\sigma_k)$ would add that margin and change the markup
-in \eqref{eq:markup} to $1/\mu(S)=1-(1-S)/\sigma_k-S/\eta$; the structure of the market
-equilibrium below is unchanged.}
+where $P_{nk}$ is the sector's price index. Welfare is real income $X_n/P_n$, where
+$P_n=\prod_k(P_{nk}/\beta_k)^{\beta_k}$ is the cost of one unit of
+utility.\footnote{With Cobb--Douglas preferences across sectors, a sector's spending
+does not expand when its price index falls. A CES upper tier with elasticity
+$\eta\in(1,\sigma_k)$ adds that margin. It changes the markup in \eqref{eq:markup} to
+$1/\mu(S)=1-(1-S)/\sigma_k-S/\eta$, and Proposition~\ref{prop:market} still holds
+with this markup. Sector spending then depends on sector prices, however, and the
+general equilibrium results of Section~\ref{sec:ge} would have to be derived again.}
 
 \paragraph{Production technology.} Labor is the only factor of production. A plant
-located in $\ell$ produces with constant returns, and its unit cost is
+located in $\ell=\ell(i)$ produces with constant returns, and its unit cost is
 \begin{equation}
   a_i=\frac{w_\ell}{\varphi_i},
   \label{eq:cost}
@@ -105,9 +108,9 @@ technology and brands \citep{Antras2003,AntrasHelpman2004}. These services are a
 non-rival capability of the group that all of its plants share, so they enter
 productivity rather than the cost of inputs.\footnote{The common alternative treats
 head-office services as labor bought at the parent's wage, so that a plant abroad pays
-part of its costs at a foreign wage. This links factor markets across countries and can
-overturn the substitutability of labor across countries on which uniqueness of wages
-rests.} A plant may also be less productive when it operates away from its group's
+part of its costs at a foreign wage. This links factor markets across countries and
+can break the gross-substitutes property (Section~\ref{sec:ge}) on which uniqueness of
+wages rests.} A plant may also be less productive when it operates away from its group's
 headquarters \citep{RamondoRodriguezClare2013,HeadMayer2019}. The parametric form of
 $\varphi_i$ matters for the quantification, not for the results of this section.
 
