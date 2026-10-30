@@ -3465,3 +3465,15 @@ Incomes, Existence, Incidence, Ownership, Response), Thm 1 Wages, Thm 2 Entry.
 docs/model_solution_simple.tex (10 pp) follows model_solution's step structure; its
 formulas (Gamma, column sums = 1 - labor share, X >= wL, Walras, dS/dlnA) are the ones
 verified numerically in the simplified-model check.
+Simple section, paragraph review (2026-10-30). Set-up, market structure and GE revised
+(definitions: a multinational is a group with >= 1 foreign affiliate; cannibalization
+separated from the Atkeson-Burstein own-sales factor 1-s_i). COMPARATIVE STATICS REMOVED
+from model_section_simple at Sebastian's instruction (the model section builds the model;
+results go elsewhere): former 1.4 and Appendix C deleted, appendices relabelled
+(Entry = C, Algorithm = D, extension = 1.4). The wage proof needed the incidence
+derivation, so it now sits inside B.3 (Lambda, varpi, eps_mu defined there). The deleted
+Props (Incidence, Ownership-weighted concentration, Response) survive in model_section.tex
+and in commit 6cb7d30. Two errors found in them before deletion, STILL PRESENT in
+model_section.tex: "a stand-alone exporter bears the tariff in full" (its COST rises by
+the full tariff; it passes through only rho < 1) and "varpi_g < S_g for the larger groups"
+(true only for groups large relative to the rest of the market). 13 pp now.

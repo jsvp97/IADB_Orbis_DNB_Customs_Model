@@ -210,8 +210,7 @@ with
 of the group rather than of the plant.\footnote{Under price competition the markup is
 $\varepsilon(S)/[\varepsilon(S)-1]$ with $\varepsilon(S)=\sigma-(\sigma-1)S$. It is also
 common to the group's plants and increasing in its share, so the structure below
-carries over, but profits are no longer quadratic in the share and the ownership result
-of Section~\ref{sec:cs} becomes an approximation.} It rises from $\sigma/(\sigma-1)$ for
+carries over, but profits are no longer quadratic in the share.} It rises from $\sigma/(\sigma-1)$ for
 a negligible group and is unbounded as the share tends to one.
 
 \paragraph{Cannibalization.} When a firm expands output, the sector price index falls
@@ -260,8 +259,11 @@ with $\kappa\equiv\sigma-1$, so that
   \label{eq:profit}
 \end{equation}
 Profits rise more than proportionally with the share, because a larger group both sells
-more and earns a higher margin on each dollar of sales. The curvature $\kappa$ governs the ownership
-results of Section~\ref{sec:cs}. It would be zero with constant markups.
+more and earns a higher margin on each dollar of sales. The curvature $\kappa$
+would be zero with constant markups. Because $\kappa>0$, the profit income a country
+receives through \eqref{eq:income} depends on which groups it owns, not only on its
+average ownership share: owning the large groups is worth more than owning the same
+share of sales spread over small ones.
 
 \subsection{General Equilibrium}
 \label{sec:ge}
@@ -369,115 +371,6 @@ linear solve. Wages are updated by the damped tâtonnement
 $w_n\leftarrow w_n^{1-\lambda}(W_n(w)/L_n)^{\lambda}$, with $\lambda\in(0,1)$, which raises
 a country's wage when its labor is in excess demand and whose fixed points are the
 equilibrium wages (Appendix~\ref{app:algo}).
-
-\subsection{Comparative Statics}
-\label{sec:cs}
-
-\paragraph{Incidence within a market.} Consider a market with given plants and
-spending, and a change in delivered costs. Let $\hat c_g=\sum_{i\in T_g}(s_i/S_g)\,
-d\ln c_i$ be the average cost change of group $g$, $\varepsilon_\mu(S)\equiv
-S\mu'(S)/\mu(S)=S/(1-S)$ the elasticity of the markup, and
-\begin{equation}
-  \Lambda_g\equiv\frac{1}{1+(\sigma-1)\varepsilon_\mu(S_g)}=\frac{1-S_g}{1+(\sigma-2)S_g},
-  \qquad
-  \varpi_g\equiv\frac{S_g\Lambda_g}{\sum_h S_h\Lambda_h}.
-  \label{eq:incidenceweights}
-\end{equation}
-$\Lambda_g$ falls from one toward zero as the share rises, and the weights $\varpi_g$
-add up to one.
-
-\begin{proposition}[Incidence]\label{prop:incidence}
-Holding spending fixed,
-\begin{equation}
-  d\ln S_g=-(\sigma-1)\Lambda_g\bigl(\hat c_g-d\ln P\bigr),
-  \qquad
-  d\ln P=\sum_g\varpi_g\,\hat c_g .
-  \label{eq:incidence}
-\end{equation}
-If only group $j$'s costs change, its sales-weighted average price rises by the
-fraction $\rho_j=1-(\sigma-1)\varepsilon_\mu(S_j)\Lambda_j(1-\varpi_j)\in(0,1]$ of its
-average cost increase $\hat c_j$, and every rival $h$ gains share,
-$d\ln S_h=(\sigma-1)\Lambda_h\varpi_j\hat c_j$, and raises its price.
-\end{proposition}
-
-\noindent In the limit of small groups, which is monopolistic competition,
-$\Lambda_g=1$, $\varpi_g=S_g$ and $\rho_j=1$. Large groups instead absorb part of a cost
-increase in their markup, so pass-through falls with the group's share, and since
-$\varpi_g<S_g$ for the larger groups, the price index moves by less than their share
-would suggest. Rivals are not passive either: a cost increase for one group raises
-their shares, markups and prices. Because tariffs depend on where goods are produced, a
-tariff on goods from $\ell$ raises $\hat c_g$ only by the share of group $g$'s sales
-that comes from its plants in $\ell$: a group able to serve the market from several
-countries is partly shielded, while a stand-alone exporter from $\ell$ bears the tariff
-in full.
-
-\paragraph{Ownership and the level of profit income.} Consider a country $H$ with
-ownership shares $\theta_g\equiv\theta_{gH}$, and its profit income from a market,
-$\pi^H=\sum_g\theta_g\pi_g$.
-
-\begin{proposition}[Ownership-weighted concentration]\label{prop:ownership}
-\begin{equation}
-  \frac{\pi^H}{E}=\frac{1}{\sigma}\Bigl[\bar\theta
-  +\kappa\bigl(\bar\theta\cdot\mathrm{HHI}+\mathrm{Cov}_S(\theta,S)\bigr)\Bigr],
-  \label{eq:decomp}
-\end{equation}
-where $\bar\theta=\sum_gS_g\theta_g$ is the sales-weighted ownership share,
-$\mathrm{HHI}=\sum_gS_g^2$, and
-$\mathrm{Cov}_S(\theta,S)=\sum_g\theta_gS_g^2-\bar\theta\cdot\mathrm{HHI}$ is the
-covariance between ownership and share computed with sales weights. A calculation that
-applies $\bar\theta$ to total profit in the market, $\bar\theta\sum_g\pi_g$, misses
-exactly $(E\kappa/\sigma)\,\mathrm{Cov}_S(\theta,S)$.
-\end{proposition}
-
-\noindent The first term is what a model with constant markups delivers: ownership
-times revenue over $\sigma$. The second is an ownership-weighted Herfindahl index. Its
-component $\bar\theta\cdot\mathrm{HHI}$ can be built from a country's ownership share and
-a concentration index; the covariance cannot, since it requires knowing which groups a
-country owns and how large each one is. Because profits are convex in shares, two
-countries with the same share of a market's sales earn different profits if one owns
-the large groups and the other the small ones. With constant markups, as under
-monopolistic competition, $\kappa=0$ and a country's profit income is its ownership
-share times total profit, whatever the distribution of ownership across groups. Summed
-over markets with spending weights, the same algebra splits the economy-wide correction
-into a covariance across markets between ownership shares and concentration, and the
-average of the covariances within markets.
-
-\paragraph{Ownership and the response of profit income.} Welfare depends on how profit
-income responds to policy, and the response is governed by a different statistic.
-
-\begin{proposition}[Response of owned profits]\label{prop:response}
-Holding spending fixed, a change in the delivered costs of group $j$ alone changes
-country $H$'s profit income by
-\begin{equation}
-  \frac{d\pi^H}{E}=\frac{\sigma-1}{\sigma}\,\varpi_j\,\hat c_j
-  \sum_{h\neq j}S_h\Lambda_h\Bigl[\theta_h\bigl(1+2\kappa S_h\bigr)
-  -\theta_j\bigl(1+2\kappa S_j\bigr)\Bigr].
-  \label{eq:response}
-\end{equation}
-\end{proposition}
-
-\noindent A cost increase for group $j$ alone, for example a tariff on goods from a
-country from which only $j$ serves the market, reallocates sales from $j$ to its rivals
-in proportion to $S_h\Lambda_h$, and each unit of share is worth $\theta(1+2\kappa S)$ to
-country $H$, up to the factor $E/\sigma$. The country gains when the rivals it owns are
-worth more to it at the margin than the group whose costs rose. The weights are
-$S_h\Lambda_h$ rather than $S_h^2$, so large groups count for less in the response than
-in the level, and what matters is the ownership of the affected group relative to its
-rivals, not the covariance that governs the level. The ownership-weighted Herfindahl
-index measures a country's stake in a market but is not a sufficient statistic for how
-that stake responds to a tariff; in general equilibrium the response also runs through
-wages and market sizes.
-
-\paragraph{Wages and prices.} A rise in country $j$'s wage raises the delivered cost of
-every plant located in $j$ one for one. By Proposition~\ref{prop:incidence}, it raises
-the price index of every market by $\sum_g\varpi_g\omega_{gj}$, where $\omega_{gj}$ is
-the share of group $g$'s sales in the market that comes from its plants in $j$: a
-proportion between zero and one, so markups dampen a wage change but cannot reverse or
-amplify it. Who gains from a fall in $j$'s wage depends on ownership. The fall lowers
-the costs of every group with plants in $j$, and part of the gain accrues as profit to
-the owners of those groups, wherever they reside. A policy that lowers a foreign wage
-can therefore raise the income of the country that owns the plants located there. This
-is the general-equilibrium channel through which ownership matters for trade policy.
 
 \subsection{Extension: Endogenous Entry}
 \label{sec:entry}
@@ -733,8 +626,18 @@ In either case $z_\ell\to\infty$, and the result follows from
 trade costs fixed, and let hats denote log changes. A plant's delivered cost changes by
 $\hat c_i=\hat w_{\ell(i)}$. Its cost in a market is $V_i=r_i/[\mu_g(1+t_i)]$, so
 $\hat V_i=\hat E+\hat s_i-\hat\mu_g$ with $\hat s_i=(1-\sigma)(\hat c_i+\hat\mu_g-\hat P)$
-and $\hat\mu_g=\varepsilon_\mu\hat S_g$. By Proposition~\ref{prop:incidence},
-$\hat S_g=-(\sigma-1)\Lambda_g(\hat c_g-\hat P)$, and using
+and $\hat\mu_g=\varepsilon_\mu\hat S_g$, where $\varepsilon_\mu(S)\equiv
+S\mu'(S)/\mu(S)=S/(1-S)$ is the elasticity of the markup. Let
+$\hat c_g=\sum_{i\in T_g}(s_i/S_g)\hat c_i$ be the group's average cost change and
+\[
+  \Lambda_g\equiv\frac{1}{1+(\sigma-1)\varepsilon_\mu(S_g)}=\frac{1-S_g}{1+(\sigma-2)S_g},
+  \qquad
+  \varpi_g\equiv\frac{S_g\Lambda_g}{\sum_hS_h\Lambda_h}.
+\]
+By \eqref{eq:strength}, $\hat K_g=(1-\sigma)\hat c_g$, and $\hat A=(1-\sigma)\hat P$.
+Differentiating $\psi(S_g)=K_g/A$, with $d\ln\psi/d\ln S=1/\Lambda_g$, gives
+$\hat S_g=-(\sigma-1)\Lambda_g(\hat c_g-\hat P)$. Shares sum to one, so
+$\sum_gS_g\hat S_g=0$, which gives $\hat P=\sum_g\varpi_g\hat c_g$. Using
 $1=\Lambda_g[1+(\sigma-1)\varepsilon_\mu]$,
 \begin{equation}
   \hat V_i=\hat E-(\sigma-1)(\hat c_i-\hat c_g)-\chi_g\,(\hat c_g-\hat P),
@@ -749,8 +652,8 @@ $\chi_g$ lies in $[0,\sigma-1]$ exactly when $S_g\le\frac12$.
 
 \paragraph{B.4 Proof of Theorem~\ref{thm:wages}.} \emph{The bound.} Raise $w_j$ alone,
 $j\neq n$. Every plant paying country $n$ is located in $n$, so $\hat c_i=0$ for those
-plants. Every other plant has $\hat c_i\in\{0,1\}$, so $\hat c_g\in[0,1]$ and, by
-Proposition~\ref{prop:incidence}, $\hat P=\sum_g\varpi_g\hat c_g\in[0,1]$. With
+plants. Every other plant has $\hat c_i\in\{0,1\}$, so $\hat c_g\in[0,1]$ and, by B.3,
+$\hat P=\sum_g\varpi_g\hat c_g\in[0,1]$. With
 $\hat c_i=0$ the last two terms of \eqref{eq:vdecomp} equal
 $(\sigma-1)\hat c_g-\chi_g(\hat c_g-\hat P)$. If $\hat c_g\ge\hat P$, condition (i)
 gives $\chi_g\le\sigma-1$ and the expression is at least $(\sigma-1)\hat P\ge0$;
@@ -766,41 +669,10 @@ logarithms. Every wage other than $w_{n_0}$ weakly rises and at least one strict
 rises, so $W_{n_0}$ strictly rises while $w_{n_0}$ does not. Then
 $z_{n_0}(w)>z_{n_0}(w^*)=0$, a contradiction. \qed
 
-\subsection{Comparative Statics}
-\label{app:cs}
-
-\paragraph{C.1 Proof of Proposition~\ref{prop:incidence}.} By \eqref{eq:strength},
-$d\ln K_g=(1-\sigma)\hat c_g$, and $d\ln A=(1-\sigma)\,d\ln P$. Differentiating
-$\psi(S_g)=K_g/A$, with $d\ln\psi/d\ln S=1+(\sigma-1)\varepsilon_\mu=1/\Lambda_g$, gives
-$d\ln S_g=-(\sigma-1)\Lambda_g(\hat c_g-d\ln P)$. Shares sum to one, so
-$\sum_gS_g\,d\ln S_g=0$, which gives $d\ln P=\sum_g\varpi_g\hat c_g$. If only $j$'s
-costs change, $d\ln P=\varpi_j\hat c_j$, so $d\ln S_j=-(\sigma-1)\Lambda_j(1-\varpi_j)\hat
-c_j$ and, for $h\neq j$, $d\ln S_h=(\sigma-1)\Lambda_h\varpi_j\hat c_j$. Prices are
-$p_i=\mu(S_g)c_i$, so $d\ln p_i=d\ln c_i+\varepsilon_\mu(S_g)\,d\ln S_g$. Averaging over
-group $j$'s plants with weights $s_i/S_j$ gives $\rho_j\hat c_j$, and every rival's
-price rises. Since $(\sigma-1)\varepsilon_\mu\Lambda_j<1$ and $1-\varpi_j\in[0,1)$,
-$\rho_j\in(0,1]$. \qed
-
-\paragraph{C.2 Proof of Proposition~\ref{prop:ownership}.} By \eqref{eq:profit},
-$\pi^H/E=\sigma^{-1}\sum_g\theta_gS_g(1+\kappa S_g)=\sigma^{-1}[\bar\theta+\kappa\sum_g
-\theta_gS_g^2]$, and $\sum_g\theta_gS_g^2=\bar\theta\cdot\mathrm{HHI}+\mathrm{Cov}_S
-(\theta,S)$ by definition. Total profit is the case $\theta_g\equiv1$,
-$\sum_g\pi_g/E=(1+\kappa\,\mathrm{HHI})/\sigma$, using $\sum_gS_g=1$. Subtracting
-$\bar\theta\sum_g\pi_g$ from $\pi^H$ leaves $(E\kappa/\sigma)\mathrm{Cov}_S(\theta,S)$.
-\qed
-
-\paragraph{C.3 Proof of Proposition~\ref{prop:response}.} By \eqref{eq:profit},
-$d\pi_g=(E/\sigma)(1+2\kappa S_g)\,dS_g$. Let $Z=\sum_hS_h\Lambda_h$, so
-$\varpi_j=S_j\Lambda_j/Z$. From C.1,
-$dS_j=-(\sigma-1)S_j\Lambda_j(1-\varpi_j)\hat c_j=-(\sigma-1)\varpi_j\hat c_j\sum_{h\neq
-j}S_h\Lambda_h$ and $dS_h=(\sigma-1)\varpi_jS_h\Lambda_h\hat c_j$ for $h\neq j$.
-Substituting into $d\pi^H=\sum_g\theta_gd\pi_g$ and collecting terms gives
-\eqref{eq:response}. \qed
-
 \subsection{Entry}
 \label{app:entry}
 
-\paragraph{D.1 Two elasticities.} Let $G(S)\equiv\pi'(S)/\psi'(S)$, where
+\paragraph{C.1 Two elasticities.} Let $G(S)\equiv\pi'(S)/\psi'(S)$, where
 $\pi(S)=E(S+\kappa S^2)/\sigma$, and define $\varepsilon_G=SG'/G$ and
 $\varepsilon_\psi=S\psi'/\psi$. Differentiating $\psi(S)=K/A$ gives
 $\partial S/\partial K=1/(A\psi')$ and $\partial S/\partial A=-\psi/(A\psi')$. Hence
@@ -812,7 +684,7 @@ $\Omega_K=G(S)/A>0$, $\Omega_{KK}=G'(S)/(A^2\psi'(S))$, and
 So $\Omega$ is strictly concave in $K$ if and only if $\varepsilon_G<0$, and
 $\Omega_{KA}<0$ if and only if $\varepsilon_G+\varepsilon_\psi>0$.
 
-\paragraph{D.2 Proof of Theorem~\ref{thm:entry}(a)--(b).} Set $E=1$,
+\paragraph{C.2 Proof of Theorem~\ref{thm:entry}(a)--(b).} Set $E=1$,
 $a\equiv2(\sigma-1)$ and $b\equiv\sigma-2\ge0$. Then $\pi'(S)=(1+aS)/\sigma$ and
 $\psi'(S)=C(1-S)^{-\sigma}(1+bS)$ with $C=[\sigma/(\sigma-1)]^{\sigma-1}$, so
 \[
@@ -830,7 +702,7 @@ The map $x\mapsto x/(1+x)$ is increasing and $a>b$, so the first two terms sum t
 positive number; the third is non-negative when $S\le\frac12$. This is (b). At
 $S=\frac12$ the expression equals $(\sigma-1)/\sigma-(\sigma-2)/\sigma=1/\sigma$. \qed
 
-\paragraph{D.3 Proof of Theorem~\ref{thm:entry}(c).} \emph{Step 1: the ladder.} Since
+\paragraph{C.3 Proof of Theorem~\ref{thm:entry}(c).} \emph{Step 1: the ladder.} Since
 $\Omega_K>0$, a set $T$ is optimal only if no $T'$ has $K(T')\ge K(T)$ and
 $\Phi(T')\le\Phi(T)$ with one inequality strict. The remaining efficient sets can be
 ordered so that $K$ and $\Phi$ rise together. \emph{Step 2: single crossing.} Take
@@ -853,7 +725,7 @@ and by Step 3, $A'=A(\{K'_g\})\le A(\{K_g\})=A$, a contradiction. Equilibria wit
 same aggregate have the same best responses, and with no ties the same plant sets.
 \qed
 
-\paragraph{D.4 The notion of entry equilibrium.} Definition~\ref{def:entry} evaluates
+\paragraph{C.4 The notion of entry equilibrium.} Definition~\ref{def:entry} evaluates
 every alternative set at the prevailing aggregate $A$. In a two-stage game in which the
 market is re-solved after a deviation, a group that adds a plant anticipates that $A$
 rises, which lowers the value of the deviation; the two notions coincide for groups
@@ -865,17 +737,17 @@ $A$, and \eqref{eq:clearing} may have no solution with each group on a rung.
 \subsection{Solution Algorithm}
 \label{app:algo}
 
-\paragraph{E.1 Markets.} Given an aggregate $A$, each group's share solves the scalar
+\paragraph{D.1 Markets.} Given an aggregate $A$, each group's share solves the scalar
 equation \eqref{eq:sharemap}, and the market solves \eqref{eq:clearing} by safeguarded
 Newton steps on $\ln A$, which never leave a bracket that contains the unique root.
 
-\paragraph{E.2 Incomes and wages.} Given wages, incomes come from the linear solve of
+\paragraph{D.2 Incomes and wages.} Given wages, incomes come from the linear solve of
 B.1. Wages are updated by the damped tâtonnement of Section~\ref{sec:ge}, followed by
 Newton steps once close to the solution. When labor demand is elastic, $M_{nn}<0$ and an
 undamped update ($\lambda=1$) can overshoot; choosing $\lambda$ with
 $\lambda(1-M_{nn})<1$ keeps the update monotone.
 
-\paragraph{E.3 Plant sets (extension).} With entry, each group's best response at a
+\paragraph{D.3 Plant sets (extension).} With entry, each group's best response at a
 given $A$ is found by scanning its ladder, and $A$ by bisection. An outer loop updates
 plant sets: at the equilibrium wages for the current sets, the groups with the largest
 gains from changing their sets do so, and the procedure repeats until no group wishes to
@@ -946,24 +818,17 @@ $V_{i,n'}$ & cost of plant $i$ in serving country $n'$, all paid to labor & \eqr
 $r_{i,n'}$ & revenue of plant $i$ in country $n'$ & \eqref{eq:labor} \\
 $W_n$ & wage bill of country $n$ (labor demanded, in value) & Section~\ref{sec:ge} \\
 $M_{nj}$ & elasticity of $W_n$ with respect to the wage of country $j$ & Section~\ref{sec:ge} \\
-$b^n_{i,n'}$ & share of $W_n$ paid by plant $i$ out of its costs in $n'$ & \eqref{eq:demandterm} \\
+$b^n_{i,n'}$ & share of $W_n$ paid by plant $i$ out of its sales in $n'$ & \eqref{eq:demandterm} \\
 $\bar E^{(j)}_n$ & average response of the markets where country $n$'s plants sell to $w_j$ & \eqref{eq:demandterm} \\
 $D$ & set of wage vectors on which uniqueness is checked & Theorem~\ref{thm:wages} \\
 $\lambda$ & damping of the wage update & Solution algorithm \\
 $z_n$ & excess demand for labor, $W_n/w_n-L_n$ & Appendix B.2 \\
 $\Gamma$, $\tau_{nk}$ & income matrix; tariff revenue per dollar spent in $(n,k)$ & Appendix B.1 \\[3pt]
-\multicolumn{3}{@{}l}{\emph{Comparative statics}}\\
-$\hat x$ & log change of $x$ & Section~\ref{sec:cs} \\
-$\hat c_g$ & sales-weighted average change in group $g$'s delivered costs & \eqref{eq:incidenceweights} \\
-$\varepsilon_\mu(S)$ & elasticity of the markup with respect to the share, $S/(1-S)$ & \eqref{eq:incidenceweights} \\
-$\Lambda_g$ & how strongly group $g$'s share responds to its relative cost & \eqref{eq:incidenceweights} \\
-$\varpi_g$ & weight of group $g$ in the response of the price index & \eqref{eq:incidenceweights} \\
-$\rho_j$ & pass-through of a cost increase to group $j$'s prices & Proposition~\ref{prop:incidence} \\
-$\pi^H$, $\theta_g$ & profit income of country $H$ from a market; its ownership shares & \eqref{eq:decomp} \\
-$\bar\theta$ & sales-weighted ownership share of country $H$ in the market & \eqref{eq:decomp} \\
-HHI & Herfindahl index of group shares, $\sum_gS_g^2$ & \eqref{eq:decomp} \\
-$\mathrm{Cov}_S(\theta,S)$ & sales-weighted covariance between ownership and share & \eqref{eq:decomp} \\
-$\omega_{gj}$ & share of group $g$'s sales in a market that comes from its plants in $j$ & Wages and prices \\
+$\hat x$ & log change of $x$ & Appendix B.3 \\
+$\hat c_g$ & sales-weighted average change in group $g$'s delivered costs & Appendix B.3 \\
+$\varepsilon_\mu(S)$ & elasticity of the markup with respect to the share, $S/(1-S)$ & Appendix B.3 \\
+$\Lambda_g$ & how strongly group $g$'s share responds to its relative cost & Appendix B.3 \\
+$\varpi_g$ & weight of group $g$ in the response of the price index & Appendix B.3 \\
 $\chi_g$ & coefficient of the between-group reallocation of labor payments & Appendix B.3 \\[3pt]
 \multicolumn{3}{@{}l}{\emph{Extension: entry}}\\
 $F_{i,n}$ & fixed cost for plant $i$ to serve market $n$ & \eqref{eq:fixed} \\
