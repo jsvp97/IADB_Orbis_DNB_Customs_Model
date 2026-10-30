@@ -522,8 +522,10 @@ group's revenue with respect to $q_i$ is
   \sum_{j\in T_g}q_j^\gamma\Bigr]
   =\gamma\,p_i\,(1-S_g).
 \]
-The second term in the bracket is the loss the group imposes on its own plants. Setting
-marginal revenue equal to $c_i$ gives \eqref{eq:markup}. \qed
+The second term in the bracket is the sales that expanding plant $i$ takes from all
+of the group's plants, plant $i$ included; for a single-plant firm only the term
+$j=i$ remains, which gives the factor $1-s_i$. Setting marginal revenue equal to $c_i$
+gives \eqref{eq:markup}. \qed
 
 \paragraph{A.2 One market.}\leavevmode
 \begin{proposition}[One market]\label{prop:market}
@@ -536,15 +538,17 @@ function $X\mapsto X/(X+B)$ is strictly increasing and strictly concave, with
 derivatives $B/(X+B)^2>0$ and $-2B/(X+B)^3<0$, and $X_g$ is strictly concave in
 $(q_i)_{i\in T_g}$. A strictly increasing, strictly concave function of a strictly
 concave function is strictly concave, and cost is linear, so profit is strictly concave
-in the group's own quantities. Since $\partial X_g/\partial q_i\to\infty$ as $q_i\to0$,
+in the group's own quantities. Revenue is at most $E$, so profit falls without bound as
+any quantity grows, and a maximum exists. Since $\partial X_g/\partial q_i\to\infty$ as
+$q_i\to0$,
 the optimum is interior and is the unique solution of the first-order conditions.
 \emph{The share map.} By \eqref{eq:sharemap}, $\psi(0)=0$, $\psi$ is continuous and
 strictly increasing on $[0,1)$, and $\psi(S)\to\infty$ as $S\to1$, so it has a
 continuous, strictly increasing inverse defined on $[0,\infty)$. \emph{The aggregate.}
 By Proposition~\ref{prop:markup} and \eqref{eq:sharemap}, an equilibrium is an $A$
 solving \eqref{eq:clearing}, and conversely any such $A$ generates prices
-$p_i=\mu(S_g)c_i$ that satisfy every group's first-order conditions and are consistent
-with $A$, since $\sum_ip_i^{1-\sigma}=\sum_g\mu(S_g)^{1-\sigma}K_g=A\sum_gS_g=A$. The
+$p_i=\mu(S_g)c_i$ that satisfy every group's first-order conditions, and hence are best
+responses by the concavity above, and that are consistent with $A$, since $\sum_ip_i^{1-\sigma}=\sum_g\mu(S_g)^{1-\sigma}K_g=A\sum_gS_g=A$. The
 left side of \eqref{eq:clearing}, $\mathcal S(A)$, is continuous and strictly
 decreasing. As $A\to\infty$ every share tends to zero, and as $A\to0$ every share tends
 to one, so $\mathcal S$ tends to the number of groups, which is at least two. Hence
@@ -568,8 +572,9 @@ and $t_i$ the tariff on plant $i$. Substituting \eqref{eq:spending} into
   X_n=w_nL_n+\sum_{n'}\Gamma_{nn'}X_{n'},
   \qquad
   \Gamma_{nn'}=\sum_k\beta_k\Bigl[\sum_{g:\,k(g)=k}\theta_{gn}S_{g,n'}m(S_{g,n'})
-  +\mathbf 1\{n'=n\}\,\tau_{nk}\Bigr]\ge0 .
+  +\mathbf 1\{n'=n\}\,\tau_{nk}\Bigr]\ge0 ,
 \]
+where the inequality uses non-negative tariffs, so that $\tau_{nk}\ge0$.
 Using $\sum_n\theta_{gn}=1$, the column of $\Gamma$ for $n'$ sums to
 $\sum_k\beta_k[\sum_gS_{g,n'}m(S_{g,n'})+\tau_{n'k}]$. Per dollar of spending in a
 market, revenue splits into profit, tariff revenue and labor cost,
@@ -604,8 +609,9 @@ of plants located in $Z$ go to zero, while all other costs stay in a compact sub
 $(0,\infty)$. By hypothesis, some plant located in $Z$ serves a market $(n',k)$ with
 $n'\notin Z$. By Proposition~\ref{prop:incomes}, $X_{n'}\ge w_{n'}L_{n'}$, so
 $E_{n'k}=\beta_kX_{n'}$ stays bounded away from zero. For $m$ large, the lowest-cost
-plant $i$ in that market is located in some $\ell\in Z$. Let $g$ be its group and $J$
-the number of plants in the market. Its cost is $V_i=E_{n'k}s_i/[\mu_g(1+t_i)]$, all of
+plant $i$ in that market is located in some $\ell\in Z$; since there are finitely many
+plants, we can pass to a subsequence along which $\ell$, $i$ and its group $g$ do not
+change. Let $J$ be the number of plants in the market. Its cost is $V_i=E_{n'k}s_i/[\mu_g(1+t_i)]$, all of
 it paid to labor in $\ell$, so it suffices to show that $V_i/w_\ell\to\infty$.
 
 If $S_g\le\frac12$, then $\mu_g\le2\sigma/(\sigma-1)$. Every price is at least $c_i$,
@@ -772,7 +778,8 @@ $A$, and \eqref{eq:clearing} may have no solution with each group on a rung.
 section where each is defined. A subscript
 $n$ or $n'$ denotes a destination country, $\ell$ the country where a plant is located,
 $k$ a sector, $g$, $h$ or $j$ a group, and $i$ a plant. Within a single market the
-market's indices are dropped.
+market's indices are dropped. Symbols used only inside one proof, such as $\gamma$,
+$Q$ and $G$, are defined there.
 
 \small
 \begin{longtable}{@{}p{0.17\linewidth}p{0.62\linewidth}p{0.15\linewidth}@{}}
