@@ -293,10 +293,10 @@ every market, prices satisfy Proposition~\ref{prop:markup} and quantities satisf
 \end{definition}
 
 \noindent Prices, costs and incomes are homogeneous of degree one in wages, and shares
-are homogeneous of degree zero, so wages are determined up to scale. At any wages, the
-value of labor demanded across all countries equals the value of labor supplied
-(Walras' law, Appendix B.2), so one labor-market condition is implied by the others.
-We set $w_1=1$.
+are homogeneous of degree zero, so wages are determined up to scale. At any wages, once
+incomes satisfy \eqref{eq:income}, the value of labor demanded across all countries
+equals the value of labor supplied (Walras' law, Appendix B.2), so one labor-market
+condition is implied by the others. We set $w_1=1$.
 
 \paragraph{Existence and uniqueness.} We establish the results layer by layer: the
 equilibrium of a single market, incomes given wages, and wages.
@@ -305,10 +305,11 @@ equilibrium of a single market, incomes given wages, and wages.
 For any positive delivered costs, a market has exactly one equilibrium.
 \end{proposition}
 
-\noindent The proof uses \eqref{eq:clearing}: each $\psi^{-1}(K_g/A)$ falls as $A$
-rises, so the sum of shares is a strictly decreasing function of a single number and
-equals one exactly once. Each group's profit is strictly concave in its own quantities,
-so the first-order conditions identify the unique best response.
+\noindent The proof uses \eqref{eq:clearing}. Each $\psi^{-1}(K_g/A)$ falls as $A$
+rises, from one when $A$ is near zero to zero when $A$ is large. The sum of shares
+therefore falls strictly from the number of groups, at least two, to zero, and equals
+one exactly once. Each group's profit is strictly concave in its own quantities, so the
+first-order conditions identify the unique best response.
 
 \begin{proposition}[Incomes]\label{prop:incomes}
 Given wages, incomes are the unique solution of the linear system
@@ -316,9 +317,10 @@ Given wages, incomes are the unique solution of the linear system
 \end{proposition}
 
 \noindent Given wages, every share and markup is known, profits and tariff revenue are
-linear in market sizes, and market sizes are linear in incomes. The system has a unique
-solution because each dollar a country spends comes back to the world as profits and
-tariff revenue by less than a dollar: the rest is paid to labor.
+linear in market sizes, and market sizes are linear in incomes. Part of every dollar
+spent in a market is paid to labor, so less than a dollar returns to households as
+profits and tariff revenue; this makes the system's solution unique. Since profits and
+tariff revenue are non-negative, income is at least labor income.
 
 \begin{proposition}[Existence of wages]\label{prop:exist}
 Suppose no set of countries is cut off from the rest: for every proper subset $Z$ of
@@ -326,13 +328,15 @@ countries, some plant located in $Z$ serves a market of a country outside $Z$. T
 there exist wages that clear every labor market.
 \end{proposition}
 
-\noindent Uniqueness of wages is the most delicate layer. Let $W_n(w)$ be the right
+\noindent The condition rules out a set of countries that sells nothing to the rest
+of the world, whose wages relative to the others would then be undetermined.
+Uniqueness of wages is the most delicate layer. Let $W_n(w)$ be the right
 side of \eqref{eq:labor}, the wage bill of country $n$ at wages $w$, and
 $M_{nj}\equiv\partial\ln W_n/\partial\ln w_j$ its elasticity with respect to country
-$j$'s wage. Homogeneity makes every row of $M$ sum to one. Labor in different countries
-is a gross substitute when $M_{nj}>0$ for $n\neq j$: a rise in any other country's wage
+$j$'s wage. Homogeneity makes every row of $M$ sum to one. Wages are gross substitutes
+when $M_{nj}>0$ for $n\neq j$: a rise in any other country's wage
 raises country $n$'s wage bill. Let $b^n_{i,n'}$ be the share of country $n$'s wage bill
-paid by plant $i$ out of its costs in country $n'$, and
+that plant $i$ pays out of its sales in country $n'$, and
 \begin{equation}
   \bar E^{(j)}_n\equiv\sum_{i,n'}b^n_{i,n'}\,\frac{\partial\ln E_{n'k(i)}}{\partial\ln w_j},
   \label{eq:demandterm}
@@ -348,15 +352,16 @@ contains at most one equilibrium wage vector up to scale.
 \end{theorem}
 
 \noindent The bound $M_{nj}\ge\bar E^{(j)}_n$ says that a rise in a foreign wage can
-lower country $n$'s wage bill only by shrinking the markets in which its plants sell;
-every reallocation of sales between plants and between groups favors country $n$.
+lower country $n$'s wage bill only by shrinking the markets in which its plants sell.
+Plants located in $n$ do not become more expensive when $w_j$ rises, so every
+reallocation of sales between plants and between groups favors country $n$.
 Condition (i) is what signs the effect of variable markups on labor demand. With gross
 substitutes, a second equilibrium is ruled out by the classical argument of
-\citet{ArrowBlockHurwicz1959}. Condition (ii) is not a theorem of the model. A country
-whose groups lose profits when a foreign wage rises spends less, and if the markets
-where country $n$ sells shrink enough, its wage bill can fall. That income effect is the
-ownership channel the model is built to study. Both conditions are inequalities in
-objects the model computes, and we report them with the quantification.
+\citet{ArrowBlockHurwicz1959}. Condition (ii) can fail. A country whose groups lose
+profits when a foreign wage rises spends less, and if the markets where country $n$
+sells shrink enough, its wage bill can fall. That income effect is the ownership
+channel the model is built to study. Both conditions are inequalities in objects the
+model computes, and we report them with the quantification.
 
 \paragraph{Solution algorithm.} The layers above map into nested loops. Given wages,
 each market is solved for $A$ from \eqref{eq:clearing}, and incomes come from one
