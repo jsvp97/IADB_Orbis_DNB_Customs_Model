@@ -33,31 +33,33 @@
 \label{sec:model}
 
 We develop a static general equilibrium model of multinational production in which
-the strategic agent is the ownership group. A group can operate plants in several
-countries and, when it sets quantities, takes into account that its own plants compete
-with one another. Markups therefore depend on the group's total share of the market
-rather than on the share of any single plant. Profits are paid to the countries that
-own each group, and ownership is recorded group by group rather than country by
-country. The baseline takes as given which plants each group operates and which
-markets they serve; Section~\ref{sec:entry} lets groups choose them. Proofs are in the
-Appendix, and a table of notation closes the document.
+the decision maker is the business group, identified with its global ultimate parent.
+A group can operate plants in several countries and, when it sets quantities, takes
+into account that its own plants compete with one another. Its markup therefore
+depends on the group's total share of the market rather than on the share of any
+single plant. Each group is owned by households in one or more countries, and its
+profits are paid to those owners wherever they are earned. Ownership shares are
+defined group by group, so two groups headquartered in the same country can have
+different owners. The baseline takes as given which plants each group operates and
+which markets they serve; Section~\ref{sec:entry} lets groups choose them. Proofs are
+in the Appendix, and a table of notation closes the document.
 
 \subsection{Model Set-Up}
 \label{sec:setup}
 
 \paragraph{Agents.} There is a finite set of countries $\cN=\{1,\dots,N\}$ and a
 finite set of sectors $\cK$. Each country $n$ is inhabited by a representative
-household that supplies $L_n$ units of labor inelastically and owns shares in firms.
+household that supplies $L_n$ units of labor inelastically and owns shares in groups.
 Production takes place in plants, and every plant belongs to exactly one group
-$g\in\cG$, which we identify with its global ultimate parent. Each group has a
-headquarters country $h(g)$, operates in a single sector $k(g)$,\footnote{This
-restriction is without loss for behavior. Marginal costs are constant, so a group's
-decisions separate across markets (Section~\ref{sec:market}). A group active in
-several sectors is equivalent to several single-sector groups with the same owners;
-what the restriction rules out is a capability shared across sectors.} and owns a
-finite set of plants $\cP_g$. We index plants by $i$ and write $g(i)$ and $\ell(i)$ for
-the group and the location of plant $i$. Each plant produces one differentiated
-variety.
+$g\in\cG$, which we identify with its global ultimate parent; a firm that is not part
+of a larger group is a group with a single plant. Each group has a headquarters
+country $h(g)$, operates in a single sector $k(g)$,\footnote{This restriction is
+without loss. Marginal costs are constant, so a group's decisions separate across
+markets (Section~\ref{sec:market}), and a group active in several sectors behaves like
+several single-sector groups with the same owners.} and owns a finite set of plants
+$\cP_g$ (in Section~\ref{sec:entry}, the plants it may operate). We index plants by
+$i$ and write $g(i)$ and $\ell(i)$ for the group and the location of plant $i$. Each
+plant produces one differentiated variety, which it can sell in several countries.
 
 \paragraph{Representative household.} The household in country $n$ has
 Cobb--Douglas preferences across sectors and CES preferences within them,
