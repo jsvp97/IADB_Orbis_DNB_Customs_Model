@@ -375,8 +375,9 @@ $\cP_g$. A plant that serves market $(n,k)$ pays a fixed cost
   F_{i,n}=f_k\,w_\ell\,f^d_{\ell n},
   \label{eq:fixed}
 \end{equation}
-in units of labor of the country $\ell$ where it is located, with $f_k>0$ and
-$f^d_{\ell n}\ge1$. The cost is incurred once per market served, whatever the quantity
+in units of labor of the country $\ell$ where it is located, with $f_k>0$ a sector
+component and $f^d_{\ell n}\ge1$ a bilateral component that is larger when serving $n$
+from $\ell$ is more costly. The cost is incurred once per market served, whatever the quantity
 sold, and does not depend on who owns the plant. Because it is paid in labor, it appears
 as wage income and leaves the model homogeneous of degree one in wages. Every fixed cost
 is specific to a plant--market pair, so a group's problem separates across
@@ -805,7 +806,7 @@ $\beta_k$ & share of income spent on sector $k$ & \eqref{eq:utility} \\
 $\sigma_k$ & elasticity of substitution between varieties of sector $k$ & \eqref{eq:utility} \\
 $q_{i,n}$, $p_{i,n}$ & quantity and price of plant $i$'s variety in country $n$ & \eqref{eq:demand} \\
 $P_{nk}$ & price index of sector $k$ in country $n$ & \eqref{eq:demand} \\
-$P_n$ & consumer price index of country $n$ & \eqref{eq:demand} \\
+$P_n$ & consumer price index of country $n$ & Representative household \\
 $X_n$ & income of country $n$ & \eqref{eq:income} \\
 $E_{nk}$ & spending on market $(n,k)$, the size of the market & \eqref{eq:spending} \\[3pt]
 \multicolumn{3}{@{}l}{\emph{Technology, trade and ownership}}\\
@@ -816,7 +817,8 @@ $d_{\ell n}$ & iceberg trade cost from $\ell$ to $n$ ($\ge1$) & \eqref{eq:delive
 $t_{\ell nk}$ & tariff of country $n$ on sector-$k$ goods produced in $\ell$ & \eqref{eq:delivered} \\
 $c_{i,n}$ & delivered marginal cost of plant $i$ in market $n$, including the tariff & \eqref{eq:delivered} \\
 $\theta_{gn}$ & share of group $g$ owned by country $n$ & \eqref{eq:income} \\
-$\pi_g$, $\pi_{g,n}$ & profit of group $g$, in total and in market $n$ & \eqref{eq:income} \\
+$\pi_g$, $\pi_{g,n}$ & profit of group $g$, in total and in market $(n,k(g))$; within one market, $\pi_g$ denotes $\pi_{g,n}$ & \eqref{eq:income} \\
+$Z$ & a proper subset of countries, in the condition for existence of wages & Existence and uniqueness \\
 $\TR_n$ & tariff revenue of country $n$ & \eqref{eq:income} \\[3pt]
 \multicolumn{3}{@{}l}{\emph{Market structure (one market)}}\\
 $A$ & market aggregate, $P^{1-\sigma}$; high when the market is competitive & \eqref{eq:shares} \\
@@ -846,7 +848,7 @@ $\varpi_g$ & weight of group $g$ in the response of the price index & Appendix B
 $\chi_g$ & coefficient of the between-group reallocation of labor payments & Appendix B.3 \\[3pt]
 \multicolumn{3}{@{}l}{\emph{Extension: entry}}\\
 $F_{i,n}$ & fixed cost for plant $i$ to serve market $n$ & \eqref{eq:fixed} \\
-$f_k$, $f^d_{\ell n}$ & sector and distance components of the fixed cost & \eqref{eq:fixed} \\
+$f_k$, $f^d_{\ell n}$ & sector and bilateral components of the fixed cost & \eqref{eq:fixed} \\
 $K(T)$, $\Phi(T)$ & strength and fixed cost of a set of plants $T$ & \eqref{eq:entrypayoff} \\
 $\Omega(K;A)$ & profit of a group with strength $K$ at aggregate $A$ & \eqref{eq:entrypayoff} \\
 $U_g(T;A)$ & net payoff of group $g$ from serving the market with $T$ & \eqref{eq:entrypayoff} \\
