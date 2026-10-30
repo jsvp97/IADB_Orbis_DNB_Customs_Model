@@ -175,8 +175,9 @@ consumption.
 \label{sec:market}
 
 Fix a market $(n,k)$ and suppress its indices: we write $\sigma$, $E$ and $P$ for
-$\sigma_k$, $E_{nk}$ and $P_{nk}$, $c_i$ for the delivered cost $c_{i,n}$, and $T_g$ for
-the plants of group $g$ that serve the market.
+$\sigma_k$, $E_{nk}$ and $P_{nk}$, $c_i$ for the delivered cost $c_{i,n}$, $T_g$ for
+the plants of group $g$ that serve the market, and $\pi_g$ for the group's profit
+$\pi_{g,n}$ in the market.
 
 \paragraph{Demand.} Let $A\equiv\sum_{i\in\cA}p_i^{1-\sigma}=P^{1-\sigma}$. By
 \eqref{eq:demand}, the revenue share of plant $i$ and the share of group $g$ are
@@ -211,18 +212,18 @@ $\varepsilon(S)/[\varepsilon(S)-1]$ with $\varepsilon(S)=\sigma-(\sigma-1)S$. It
 common to the group's plants and increasing in its share, so the structure below
 carries over, but profits are no longer quadratic in the share and the ownership result
 of Section~\ref{sec:cs} becomes an approximation.} It rises from $\sigma/(\sigma-1)$ for
-a negligible group and is unbounded as the share tends to one, which is why every
-market needs at least two groups.
+a negligible group and is unbounded as the share tends to one.
 
-\paragraph{Cannibalization across multinational affiliates.} When a group expands one
-of its plants, the sector price index falls and every variety in the market loses
-sales, the group's other plants included. A single-plant firm ignores the losses it
-imposes on others; a group counts the losses it imposes on itself, and these grow with
-its share. This is the factor $1-S_g$ in \eqref{eq:markup}. Two implications follow.
-First, all plants of a group charge the same markup in a given market, and differences
-in their costs show up in quantities rather than in markups. Second, market power is a
-property of the group: concentration should be measured at the level of groups, and a
-group charges more than its plants would charge as independent firms. Within a group,
+\paragraph{Cannibalization.} When a firm expands output, the sector price index falls
+and every variety in the market loses sales. A single-plant firm takes into account
+the sales it loses itself, which gives the factor $1-s_i$ of
+\citet{AtkesonBurstein2008}. A group also counts the sales its other plants lose, so
+the factor becomes $1-S_g$ in \eqref{eq:markup}: its plants cannibalize one another,
+and the loss grows with the group's share. Two implications follow. First, all plants
+of a group charge the same markup in a given market, and differences in their costs
+show up in quantities rather than in markups. Second, market power is a property of
+the group: concentration should be measured at the level of groups, and each plant's
+markup depends on its group's share, which exceeds its own. Within a group,
 \eqref{eq:shares} and the common markup give
 \begin{equation}
   \frac{s_i}{S_g}=\frac{c_i^{1-\sigma}}{K_g},
@@ -259,7 +260,7 @@ with $\kappa\equiv\sigma-1$, so that
   \label{eq:profit}
 \end{equation}
 Profits rise more than proportionally with the share, because a larger group both sells
-more and earns more on each unit sold. The curvature $\kappa$ governs the ownership
+more and earns a higher margin on each dollar of sales. The curvature $\kappa$ governs the ownership
 results of Section~\ref{sec:cs}. It would be zero with constant markups.
 
 \subsection{General Equilibrium}
