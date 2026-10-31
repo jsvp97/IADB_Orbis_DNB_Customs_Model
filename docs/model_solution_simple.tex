@@ -86,16 +86,16 @@ Step 3 can be solved before Step 4, and incomes then solve a linear system.
 To obtain an amount $C_{nk}$ of the sector's bundle at least cost, the household
 chooses $q_{i,n}$ to minimize $\sum_{i\in\cA_{nk}}p_{i,n}q_{i,n}$ subject to
 $\bigl[\sum_iq_{i,n}^{(\sigma-1)/\sigma}\bigr]^{\sigma/(\sigma-1)}=C_{nk}$. With
-multiplier $\chi$, the first-order condition for variety $i$ is
+multiplier $\xi$, the first-order condition for variety $i$ is
 \[
-  p_{i,n}=\chi\,\frac{\partial C_{nk}}{\partial q_{i,n}}
-  =\chi\,C_{nk}^{1/\sigma}q_{i,n}^{-1/\sigma},
+  p_{i,n}=\xi\,\frac{\partial C_{nk}}{\partial q_{i,n}}
+  =\xi\,C_{nk}^{1/\sigma}q_{i,n}^{-1/\sigma},
   \qquad\text{so}\qquad
-  q_{i,n}=\Bigl(\frac{p_{i,n}}{\chi}\Bigr)^{-\sigma}C_{nk}.
+  q_{i,n}=\Bigl(\frac{p_{i,n}}{\xi}\Bigr)^{-\sigma}C_{nk}.
 \]
 Substituting into the constraint,
-$C_{nk}=\chi^{\sigma}C_{nk}\bigl[\sum_ip_{i,n}^{1-\sigma}\bigr]^{\sigma/(\sigma-1)}$,
-so $\chi=\bigl[\sum_ip_{i,n}^{1-\sigma}\bigr]^{1/(1-\sigma)}\equiv P_{nk}$. The
+$C_{nk}=\xi^{\sigma}C_{nk}\bigl[\sum_ip_{i,n}^{1-\sigma}\bigr]^{\sigma/(\sigma-1)}$,
+so $\xi=\bigl[\sum_ip_{i,n}^{1-\sigma}\bigr]^{1/(1-\sigma)}\equiv P_{nk}$. The
 multiplier is the price index: the cost of one unit of the bundle. Spending on the
 sector is then $P_{nk}C_{nk}$, and
 \begin{equation}
@@ -125,8 +125,8 @@ which is why welfare is real income.
 \section{Step 2: Costs}
 \label{sec:costs}
 
-\paragraph{Unit cost.} A plant located in $\ell$ produces $y=\varphi_il$ units with $l$
-units of labor. Its cost of producing one unit is
+\paragraph{Unit cost.} A plant located in $\ell$ produces $\varphi_i$ units of output
+per unit of labor. Its cost of producing one unit is
 \begin{equation}
   a_i=\frac{w_\ell}{\varphi_i}.
   \label{eq:unitcost}
@@ -188,10 +188,11 @@ plant $i$ is
   =E\,Q^{-\gamma}\Bigl[\gamma\,q_i^{\gamma-1}-\gamma\,\frac{q_i^{\gamma-1}}{Q^\gamma}\sum_{j\in T_g}q_j^\gamma\Bigr]
   =\gamma\,p_i\,(1-S_g).
 \]
-The first term is the revenue from selling more. The second is cannibalization:
-selling more lowers the price index and takes sales from every variety in the market,
-including the group's other plants, and the group counts the loss on all of them, which
-is proportional to its total share $S_g$. Setting marginal revenue equal to marginal
+The first term is the revenue from selling more. The second is the sales that the
+expansion takes from all of the group's plants, plant $i$ included, because selling
+more lowers the price index. A single-plant firm counts only its own loss, which gives
+the factor $1-s_i$; a group also counts the loss on its other plants, which is
+cannibalization, so the factor is $1-S_g$. Setting marginal revenue equal to marginal
 cost $c_i$ gives
 \begin{equation}
   p_i=\mu(S_g)\,c_i,
@@ -240,8 +241,10 @@ For a given $A$ this is one equation in one unknown for each group. Taking logs,
 \end{equation}
 The left side rises from $-\infty$ to $+\infty$ as $S_g$ goes from $0$ to $1$, so the
 equation has exactly one root $S_g(A)\in(0,1)$ for every $A>0$. It has no closed form in
-general, but Newton's method converges quickly from any interior start, using the
-derivative of the left side, $[1+(\sigma-2)S]/[S(1-S)]$.
+general. The left side is not concave, so a plain Newton step can leave $(0,1)$;
+Newton's method with a bisection step whenever a Newton step would leave the current
+bracket converges quickly, using the derivative of the left side,
+$[1+(\sigma-2)S]/[S(1-S)]$.
 
 \subsection{The market-clearing equation}
 
@@ -455,7 +458,7 @@ demand, and a wage vector is a fixed point exactly when $W_n=w_nL_n$ for every $
 
 \paragraph{How much damping.} Let $M_{nj}=\partial\ln W_n/\partial\ln w_j$. In logs, the
 update has derivative $(1-\lambda)I+\lambda M$. Its off-diagonal entries are positive
-when labor is a gross substitute, and its diagonal entries are positive when
+when wages are gross substitutes, and its diagonal entries are positive when
 $\lambda<1/(1-M_{nn})$ for every $n$. When labor demand is elastic, $M_{nn}<0$, the bound
 is below one, and an undamped update ($\lambda=1$) can overshoot.
 
@@ -596,6 +599,14 @@ country's wage bill \eqref{eq:wagebill} adds the fixed costs of the plants locat
 it. Walras' law still holds, because every fixed cost is both a deduction from profit
 and a payment to labor. Scaling all wages scales fixed costs too, so it leaves every
 entry decision unchanged.
+
+Two results of Steps 4 and 6 change. Income is no longer bounded below by labor income
+for arbitrary plant sets, because a group's profit net of fixed costs can be negative;
+existence of wages for given plant sets then needs fixed costs small enough that every
+country's income is at least a fixed fraction of its labor income. And in the
+hypotheses of Theorem~1, payments for fixed costs enter the demand term with a zero
+response, because a fixed cost paid in country $n$ does not change when another
+country's wage rises.
 
 \paragraph{The outer loop.} Plant sets and wages are solved by an outer loop:
 \begin{enumerate}

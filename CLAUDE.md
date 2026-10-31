@@ -3489,3 +3489,9 @@ payments with ZERO response (otherwise M >= Ebar is false); existence clause ref
 wages given plant sets; optimal strength "does not rise" in A (was "falls", also fixed in
 model_solution_simple). Open for later: an "empirical content" subsection, where the
 ownership-weighted HHI decomposition would naturally return. 14 pp.
+model_solution_simple reviewed (2026-10-31): algebra re-derived and correct. Fixed two
+false claims -- plain Newton on the share equation is NOT globally convergent (the left
+side changes curvature), now safeguarded by bisection; with entry, X >= wL fails for
+arbitrary plant sets and fixed-cost payments enter the demand term with zero response
+(now stated, matching the section). Also: cannibalization separated from the own-sales
+factor 1-s_i, multiplier renamed xi (chi is chi_g in B.3), labor symbol l removed.
