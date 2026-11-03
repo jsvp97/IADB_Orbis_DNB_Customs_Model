@@ -19,7 +19,7 @@ end of this file) is the dated log of every decision and fix in this work stream
 |---|---|---|
 | `docs/model_section_simple.tex` | **THE ACTIVE DOCUMENT.** Simplified model section, 14 pp: main text 1.1 Set-Up, 1.2 Market Structure, 1.3 General Equilibrium, 1.4 Extension: Endogenous Entry; Appendix A (market game), B (GE), C (entry); References; Notation table | **Reviewed paragraph by paragraph, main text, appendix and notation, 2026-10-30/31. Done.** |
 | `docs/model_solution_simple.tex` | step-by-step solution of the simple model, 10 pp (Steps 0-6, algorithm and checks, entry extension) | **Reviewed 2026-10-31. Done.** Cites Props 2-3 and Thms 1-2 of the simple section by number |
-| `docs/model_section.tex` | full model section (intermediates, eta, Bertrand, parametric productivity, Birkhoff contraction, comparative statics), 10 pp main + 6 pp appendix | reviewed 2026-10-22; the two known errors fixed 2026-11-02; it does NOT follow the example's format |
+| `docs/model_section.tex` | full model section (intermediates, eta, Bertrand, parametric productivity, Birkhoff contraction, comparative statics), 10 pp main + 6 pp appendix | reviewed 2026-10-22; the two known errors fixed 2026-11-02. **NOT the paper's version** (decided 2026-11-02): kept as the source for the results section and quantification; does not follow the example's format |
 | `docs/model_solution.tex` | step-by-step solution of the full model, 14 pp | reviewed 2026-10-27 |
 
 ## 00.2 Decisions Sebastián has made — do not relitigate
@@ -42,6 +42,8 @@ end of this file) is the dated log of every decision and fix in this work stream
   Atkeson-Burstein own-sales factor 1-s_i).
 - **Existence of wages with intermediates** is open and deferred to the Quantification
   section.
+- **The paper's model section is the SIMPLE version** (decided 2026-11-02). The full
+  version is a source document, not a candidate.
 
 ## 00.3 Next steps, ranked
 
@@ -49,8 +51,9 @@ end of this file) is the dated log of every decision and fix in this work stream
    §38): the varpi_g < S_g sentence now states the exact condition (Lambda_g below its
    share-weighted mean, always true for the largest group); the stand-alone exporter's
    cost rises by the full tariff and its price by rho_j of it. Main text still ends on p. 10.
-2. **Decide which version goes into the paper** (simple or full). If full, restructure it
-   to the example's format (statements to appendix, drop comparative statics).
+2. ~~**Decide which version goes into the paper**~~ **DECIDED 2026-11-02: the SIMPLE
+   version** (`model_section_simple.tex`). `model_section.tex` is not restructured; it stays
+   as the source for the results section (item 4) and the quantification (item 5).
 3. **Empirical-content subsection**, like the example's 1.4 "Identification and Empirical
    Content": what the data identify (theta, Cov_S(theta,S), the ownership-weighted HHI
    decomposition; measured in §34). New material, not yet started.
@@ -3569,3 +3572,6 @@ share exactly when Lambda_g is below its share-weighted mean, which always holds
 largest group (Lambda falls with S). (2) "a stand-alone exporter bears the tariff in full"
 replaced: its cost rises by the full tariff, its price by the fraction rho_j < 1 of it.
 Compiled three times: 0 errors, no undefined references, 17 pp; main text still ends on p. 10.
+Version decision (2026-11-02): the SIMPLE model section (model_section_simple.tex) is the
+one that goes into the paper. model_section.tex is not restructured to the example's
+format; it remains the source for the results section and the quantification.
