@@ -3595,3 +3595,13 @@ such sets the same way). Compiled three times: 0 errors, 14 pp.
 Model closed (2026-11-02): model_section_simple.tex is final; the results section is out
 of scope for now and no new document is created (00.3 items 0 and 4, with the two errors
 in the old comparative-statics text recorded there).
+Cannibalization made explicit (2026-11-03), at Sebastian's request. The mechanism was
+already in the simple section (paragraph after the markup, factor 1-S_g vs 1-s_i) but only
+on the pricing margin and under a bare heading. Changes, no new math: the intro names it;
+the heading is now "Cannibalization across a group's plants"; the entry paragraph says that
+concavity of Omega in K (Thm 2(a)) IS cannibalization at the entry margin (at given A a new
+plant takes sales from the group's own plants, so S/K falls in K; the rising markup works
+the other way, pi convex in S, and (a) says cannibalization dominates); the solution doc's
+cutoff paragraph says the same. Checked numerically: S/K decreasing, S concave in K, Omega
+concave in K at 3,588 points (sigma 2,3,5,8; three values of A), 0 violations. Both PDFs
+compiled 3x, 0 errors, 0 undefined references, 14 pp and 10 pp.

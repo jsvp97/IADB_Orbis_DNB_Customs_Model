@@ -32,7 +32,8 @@
 We develop a static general equilibrium model of multinational production in which
 the decision maker is the business group, identified with its global ultimate parent.
 A group can operate plants in several countries and, when it sets quantities, takes
-into account that its own plants compete with one another. Its markup therefore
+into account that its own plants compete with one another: expanding one plant
+cannibalizes the sales of the others. Its markup therefore
 depends on the group's total share of the market rather than on the share of any
 single plant. Each group is owned by households in one or more countries, and its
 profits are paid to those owners wherever they are earned. Ownership shares are
@@ -208,7 +209,7 @@ common to the group's plants and increasing in its share, so the structure below
 carries over, but profits are no longer quadratic in the share.} It rises from $\sigma/(\sigma-1)$ for
 a negligible group and is unbounded as the share tends to one.
 
-\paragraph{Cannibalization.} When a firm expands output, the sector price index falls
+\paragraph{Cannibalization across a group's plants.} When a firm expands output, the sector price index falls
 and every variety in the market loses sales. A single-plant firm takes into account
 the sales it loses itself, which gives the factor $1-s_i$ of
 \citet{AtkesonBurstein2008}. A group also counts the sales its other plants lose, so
@@ -418,7 +419,11 @@ alternative in which groups also anticipate their effect on $A$ when they enter.
 
 Theorem~\ref{thm:entry} in Appendix C establishes three properties when $\sigma\ge2$.
 First, $\Omega(K;A)$ is strictly concave in $K$ at every share: strength has
-diminishing returns for the group. Second, the cross partial derivative $\Omega_{KA}$ is
+diminishing returns for the group. This is cannibalization at the entry margin: at a
+given $A$, a new plant takes part of its sales from the group's own plants, so the
+group's share rises less than proportionally with its strength. The higher markup the
+group then earns on all of its sales works the other way, and part (a) shows that
+cannibalization dominates. Second, the cross partial derivative $\Omega_{KA}$ is
 negative whenever the group's share is at most one half: strength is worth less in a
 more competitive market. Third, a market has at most one entry equilibrium, provided
 that, for any two candidate equilibria, no group would hold more than half of the
