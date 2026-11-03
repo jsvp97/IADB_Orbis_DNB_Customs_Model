@@ -7,6 +7,75 @@ Fact 5 fails. Baseline changed 2026-08-20: head-office services are a capability
 factor input. ~~GE uniqueness verified numerically~~ — superseded, see §31.
 
 
+# 00. HANDOFF — WHERE WE ARE (2026-11-03). READ THIS BEFORE ANYTHING ELSE
+
+**Current work stream: writing the paper's MODEL SECTION.** The research results in
+§0–§37 are settled background; the live work is the LaTeX documents below. §38 (at the
+end of this file) is the dated log of every decision and fix in this work stream.
+
+## 00.1 The four documents and their state
+
+| file | what it is | state |
+|---|---|---|
+| `docs/model_section_simple.tex` | **THE ACTIVE DOCUMENT.** Simplified model section, 14 pp: main text 1.1 Set-Up, 1.2 Market Structure, 1.3 General Equilibrium, 1.4 Extension: Endogenous Entry; Appendix A (market game), B (GE), C (entry); References; Notation table | **Reviewed paragraph by paragraph, main text, appendix and notation, 2026-10-30/31. Done.** |
+| `docs/model_solution_simple.tex` | step-by-step solution of the simple model, 10 pp (Steps 0-6, algorithm and checks, entry extension) | **Reviewed 2026-10-31. Done.** Cites Props 2-3 and Thms 1-2 of the simple section by number |
+| `docs/model_section.tex` | full model section (intermediates, eta, Bertrand, parametric productivity, Birkhoff contraction, comparative statics), 10 pp main + 6 pp appendix | reviewed 2026-10-22, but **two known errors remain** (00.3 item 1) and it does NOT follow the example's format |
+| `docs/model_solution.tex` | step-by-step solution of the full model, 14 pp | reviewed 2026-10-27 |
+
+## 00.2 Decisions Sebastián has made — do not relitigate
+
+- **Format:** follow `Example_model_Linkages_New.pdf` (local only, gitignored; also in
+  git history at commit d7e6198). Main text in PROSE, no Proposition/Theorem/Definition
+  environments; equilibrium as a paragraph with a numbered list; every formal statement
+  and proof in the appendix. Notation table at the end (his request, not in the example).
+- **Model only:** no stylized facts, calibration, quantification or literature review,
+  and **no comparative statics section** (removed 2026-10-30; the results it held go to a
+  later results section). At most 10 pp main text and 10 pp appendix.
+- **Simple model choices:** no intermediate inputs (nu = 0); Cournot and eta = 1 only
+  (Bertrand and eta > 1 in footnotes); productivity phi_i is a primitive (parametric form
+  goes to Quantification); uniqueness of wages via gross substitutes + Arrow-Block-Hurwicz
+  only (no Birkhoff); tariffs t >= 0; plants exogenous in the base, entry as an
+  EXTENSION (1.4), not in the core; no algorithm appendix (it duplicated the solution doc).
+- **Definitions adopted:** a multinational is a group with at least one foreign
+  affiliate; any other group is domestic; a domestic group with one plant is a
+  stand-alone firm. Cannibalization = the loss on the group's OTHER plants (1-S_g vs the
+  Atkeson-Burstein own-sales factor 1-s_i).
+- **Existence of wages with intermediates** is open and deferred to the Quantification
+  section.
+
+## 00.3 Next steps, ranked
+
+1. **Fix two errors still in `model_section.tex`** (found in the simple version's
+   comparative statics before it was deleted): "a stand-alone exporter bears the tariff
+   in full" (its COST rises by the full tariff; its price only by rho < 1) and
+   "varpi_g < S_g for the larger groups" (true only for groups large relative to the rest
+   of the market). Note: its main text ends on the last line of p. 10, zero slack.
+2. **Decide which version goes into the paper** (simple or full). If full, restructure it
+   to the example's format (statements to appendix, drop comparative statics).
+3. **Empirical-content subsection**, like the example's 1.4 "Identification and Empirical
+   Content": what the data identify (theta, Cov_S(theta,S), the ownership-weighted HHI
+   decomposition; measured in §34). New material, not yet started.
+4. **Results section** for the removed comparative statics: incidence and pass-through,
+   ownership-weighted concentration (level), response of owned profits, the wage
+   channel. Text and proofs survive in `model_section.tex` and in commit 6cb7d30.
+5. **Quantification:** existence with intermediates; the nu choice (§30.6); the lambda
+   configuration (§37); verify external parameter values against sources (§15).
+6. Research items in §0.5 (Fact 5 mechanism discipline, intra-firm share, etc.).
+
+## 00.4 How we work (Sebastián's preferences)
+
+- Paragraph-by-paragraph review: Claude gives a short critique in **simple Spanish**
+  plus the proposed **English** text, then waits. "Aplícalo tal cual y continuemos con la
+  revisión" means apply exactly, compile, commit, push, and move to the next block.
+- Be a blunt sparring partner: find errors, say when unsure, verify. No flattery.
+- After every edit: `pdflatex` three times, check `grep -c "^!" file.log` is 0 and no
+  undefined references, then delete .aux/.log/.out/.toc. Re-derive any formula you touch.
+  Append a dated note to the end of §38.
+- Git: the work lives on branch `claude/busy-lovelace-eypgaf` (44 commits ahead of
+  `main` as of 2026-11-03, not merged, no PR). Do not open a PR unless asked.
+
+---
+
 # 0. READ THIS FIRST — CURRENT STATE (last updated 2026-08-26)
 
 **If you are a fresh session: read this section, then §29–§31, then stop. Sections 1–28
@@ -76,9 +145,8 @@ interval_certificate.jl the CONTINUUM certificate (§32): outward-rounded interv
 docs/model_section.tex  THE PAPER'S MODEL SECTION (2026-10-01, §38): written in the
                         "Model_Linkages" format, model only, no quantification.
                         10 pp main + 6 pp appendix. Review complete (2026-10-22).
-docs/model_section_simple.tex  SIMPLIFIED MODEL SECTION (2026-10-27), a separate
-                        version; model_section.tex is untouched. 13 pp (base 6.5, entry
-                        extension ~1, appendix 4). See end of §38.
+docs/model_section_simple.tex  SIMPLIFIED MODEL SECTION, the ACTIVE document (§00).
+                        14 pp, example format, fully reviewed 2026-10-31. See end of §38.
 docs/model_solution_simple.tex  STEP-BY-STEP SOLUTION OF THE SIMPLIFIED MODEL
                         (2026-10-27), 10 pp, English, algebra only: Steps 0-6 + algorithm
                         and checks + entry extension.
