@@ -54,9 +54,13 @@ end of this file) is the dated log of every decision and fix in this work stream
 2. ~~**Decide which version goes into the paper**~~ **DECIDED 2026-11-02: the SIMPLE
    version** (`model_section_simple.tex`). `model_section.tex` is not restructured; it stays
    as the source for the results section (item 4) and the quantification (item 5).
-3. **Empirical-content subsection**, like the example's 1.4 "Identification and Empirical
-   Content": what the data identify (theta, Cov_S(theta,S), the ownership-weighted HHI
-   decomposition; measured in §34). New material, not yet started.
+3. ~~**Empirical-content subsection**~~ **DROPPED 2026-11-02** (Sebastián's decision after
+   review). Each candidate block was redundant with the text (group-level concentration,
+   "owning the large groups is worth more"), belonged to the results section (the HHI
+   decomposition is the level proposition already moved there, item 4) or to empirics
+   (aggregation across markets), or would ADD AN ERROR: lambda and the outside supplier do
+   not exist in the simple model (they are the §37 configuration). The example has a 1.4
+   because its empirics estimate a structural equation; ours do not. Do not reintroduce it.
 4. **Results section** for the removed comparative statics: incidence and pass-through,
    ownership-weighted concentration (level), response of owned profits, the wage
    channel. Text and proofs survive in `model_section.tex` and in commit 6cb7d30.
@@ -3575,3 +3579,8 @@ Compiled three times: 0 errors, no undefined references, 17 pp; main text still 
 Version decision (2026-11-02): the SIMPLE model section (model_section_simple.tex) is the
 one that goes into the paper. model_section.tex is not restructured to the example's
 format; it remains the source for the results section and the quantification.
+Empirical-content subsection dropped (2026-11-02): see 00.3 item 3. One precision added to
+model_section_simple.tex instead, in the entry-equilibrium paragraph: eq:clearing has no
+solution with fewer than two groups (psi^{-1} < 1), so every entry equilibrium has at least
+two (the baseline's two-group assumption is an outcome under entry; the code's eq_on rejects
+such sets the same way). Compiled three times: 0 errors, 14 pp.
