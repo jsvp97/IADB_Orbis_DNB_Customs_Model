@@ -3605,3 +3605,24 @@ the other way, pi convex in S, and (a) says cannibalization dominates); the solu
 cutoff paragraph says the same. Checked numerically: S/K decreasing, S concave in K, Omega
 concave in K at 3,588 points (sigma 2,3,5,8; three values of A), 0 violations. Both PDFs
 compiled 3x, 0 errors, 0 undefined references, 14 pp and 10 pp.
+First-reader pass on the simple section (2026-11-03). No displayed equation added to
+Head-office capability or Multinational corporations: phi_i is a primitive (00.2), so the
+paragraph now says the model uses only phi_i > 0. MNC definitions now in math: foreign
+affiliate l(i) != h(g(i)); two-group assumption P_g cap A_nk nonempty for >= 2 groups;
+T_g = P_g cap A_nk in 1.2. Fixed three unexplained steps: the cannibalization paragraph
+now gives the marginal revenue (sigma-1)/sigma p_i (1-s_i) vs (1-S_g) instead of an
+undefined 'factor'; sigma >= 2 in the entry theorem is flagged as used in C.2; the
+fixed-cost condition for existence with entry now says why (net profits can be negative,
+B.2 needs a lower bound on income). 0 errors, 14 pp, main text ends on p. 8.
+
+
+---
+
+# Token-efficient approach (from github.com/drona23/claude-token-efficient)
+
+## Approach
+- Read existing files before writing. Don't re-read unless changed.
+- Thorough in reasoning, concise in output.
+- No sycophantic openers or closing fluff.
+- No emojis or em-dashes.
+- Do not guess APIs, versions, flags, commit SHAs, or package names. Verify by reading code or docs before asserting.

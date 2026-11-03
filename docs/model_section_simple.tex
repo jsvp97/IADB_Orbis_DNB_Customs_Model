@@ -109,8 +109,10 @@ head-office services as labor bought at the parent's wage, so that a plant abroa
 part of its costs at a foreign wage. This links factor markets across countries and
 can break the gross-substitutes property (Section~\ref{sec:ge}) on which uniqueness of
 wages rests.} A plant may also be less productive when it operates away from its group's
-headquarters \citep{RamondoRodriguezClare2013,HeadMayer2019}. The parametric form of
-$\varphi_i$ matters for the quantification, not for the results of this section.
+headquarters \citep{RamondoRodriguezClare2013,HeadMayer2019}. The model uses only the
+resulting productivity $\varphi_i>0$ of each plant: no result in this section depends on
+how $\varphi_i$ splits into these components, and their parametric form is set in the
+quantification.
 
 \paragraph{Trade.} Shipping goods from $\ell$ to $n$ entails an iceberg cost
 $d_{\ell n}\ge1$, with $d_{nn}=1$. Trade costs run from the country where the good is
@@ -135,12 +137,14 @@ property that a group's markup depends only on its total share
 
 \paragraph{Multinational corporations.} A \emph{market} is a destination--sector pair
 $(n,k)$. In the baseline, each plant serves a given set of destinations, so the set
-$\cA_{nk}$ of plants that serve market $(n,k)$ is given. A plant located outside its
-group's headquarters country is a foreign affiliate. A group with at least one foreign
-affiliate is a multinational; any other group is domestic, and a domestic group with a
-single plant is a stand-alone firm. A multinational can serve a market from a plant at
-home, from a plant in the destination, from a plant in a third country, or from
-several at once. We assume that every market is served by at least two groups: under
+$\cA_{nk}$ of plants that serve market $(n,k)$ is given. Plant $i$ is a foreign
+affiliate if it is located outside its group's headquarters country,
+$\ell(i)\neq h(g(i))$. A group with at least one foreign affiliate is a multinational;
+any other group is domestic, and a domestic group with a single plant is a stand-alone
+firm. A multinational can serve a market from a plant at home, from a plant in the
+destination, from a plant in a third country, or from several at once. We assume that
+every market is served by at least two groups, that is, $\cP_g\cap\cA_{nk}\neq\emptyset$
+for at least two groups $g$: under
 Cournot competition with Cobb--Douglas spending across sectors, a group that served a
 market alone would face no limit on its markup. Section~\ref{sec:entry} lets groups
 choose which plants serve each market, so that multinational status becomes an
@@ -173,8 +177,8 @@ consumption.
 \label{sec:market}
 
 Fix a market $(n,k)$ and suppress its indices: we write $\sigma$, $E$ and $P$ for
-$\sigma_k$, $E_{nk}$ and $P_{nk}$, $c_i$ for the delivered cost $c_{i,n}$, $T_g$ for
-the plants of group $g$ that serve the market, and $\pi_g$ for the group's profit
+$\sigma_k$, $E_{nk}$ and $P_{nk}$, $c_i$ for the delivered cost $c_{i,n}$,
+$T_g=\cP_g\cap\cA_{nk}$ for the plants of group $g$ that serve the market, and $\pi_g$ for the group's profit
 $\pi_{g,n}$ in the market.
 
 \paragraph{Demand.} Let $A\equiv\sum_{i\in\cA}p_i^{1-\sigma}=P^{1-\sigma}$. By
@@ -211,9 +215,11 @@ a negligible group and is unbounded as the share tends to one.
 
 \paragraph{Cannibalization across a group's plants.} When a firm expands output, the sector price index falls
 and every variety in the market loses sales. A single-plant firm takes into account
-the sales it loses itself, which gives the factor $1-s_i$ of
-\citet{AtkesonBurstein2008}. A group also counts the sales its other plants lose, so
-the factor becomes $1-S_g$ in \eqref{eq:markup}: its plants cannibalize one another,
+the sales it loses itself, so its marginal revenue is $\frac{\sigma-1}{\sigma}p_i(1-s_i)$,
+which gives the markup of \citet{AtkesonBurstein2008} at its own share. A group also
+counts the sales its other plants lose, so the marginal revenue of plant $i$ is
+$\frac{\sigma-1}{\sigma}p_i(1-S_g)$ (Appendix A.1), which gives \eqref{eq:markup}: its
+plants cannibalize one another,
 and the loss grows with the group's share. Two implications follow. First, all plants
 of a group charge the same markup in a given market, and differences in their costs
 show up in quantities rather than in markups. Second, market power is a property of
@@ -417,7 +423,8 @@ effect on $A$ when they set quantities. This notion turns each group's entry pro
 into the choice of its strength $K$ given the aggregate $A$; Appendix C.4 discusses the
 alternative in which groups also anticipate their effect on $A$ when they enter.
 
-Theorem~\ref{thm:entry} in Appendix C establishes three properties when $\sigma\ge2$.
+Theorem~\ref{thm:entry} in Appendix C establishes three properties when $\sigma\ge2$, a
+bound the proof uses to sign one term (Appendix C.2).
 First, $\Omega(K;A)$ is strictly concave in $K$ at every share: strength has
 diminishing returns for the group. This is cannibalization at the entry margin: at a
 given $A$, a new plant takes part of its sales from the group's own plants, so the
@@ -438,9 +445,10 @@ condition as in Theorem~\ref{thm:wages}.
 \paragraph{General equilibrium with entry.} Fixed costs are paid to labor where the
 plant is located, so they are added to the right side of \eqref{eq:labor}, and profits
 distributed through $\theta$ are net of them. For given plant sets, the results of
-Section~\ref{sec:ge} carry over with two changes. Existence of wages requires fixed
-costs small enough that every country's income is at least a fixed fraction of its
-labor income. In the demand term \eqref{eq:demandterm}, payments for fixed costs enter
+Section~\ref{sec:ge} carry over with two changes. Profits net of fixed costs can be
+negative, so income can fall below labor income, and the existence proof (Appendix B.2)
+uses a lower bound on income: existence of wages requires fixed costs small enough that
+every country's income is at least a fixed fraction of its labor income. In the demand term \eqref{eq:demandterm}, payments for fixed costs enter
 with a zero response, because a fixed cost paid in country $n$ does not change when
 another country's wage rises. Two limits are new. First, plant sets change discretely
 with wages, so uniqueness at each layer does not make the joint equilibrium of wages
