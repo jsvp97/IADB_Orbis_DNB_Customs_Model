@@ -71,8 +71,8 @@ end of this file) is the dated log of every decision and fix in this work stream
 - After every edit: `pdflatex` three times, check `grep -c "^!" file.log` is 0 and no
   undefined references, then delete .aux/.log/.out/.toc. Re-derive any formula you touch.
   Append a dated note to the end of §38.
-- Git: the work lives on branch `claude/busy-lovelace-eypgaf` (44 commits ahead of
-  `main` as of 2026-11-03, not merged, no PR). Do not open a PR unless asked.
+- Git: the work lives on branch `claude/busy-lovelace-eypgaf` (ahead of `main`,
+  not merged as of 2026-11-03, no PR). Do not open a PR unless asked.
 
 ---
 
