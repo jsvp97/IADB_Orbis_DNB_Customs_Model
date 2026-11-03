@@ -61,9 +61,17 @@ end of this file) is the dated log of every decision and fix in this work stream
    (aggregation across markets), or would ADD AN ERROR: lambda and the outside supplier do
    not exist in the simple model (they are the §37 configuration). The example has a 1.4
    because its empirics estimate a structural equation; ours do not. Do not reintroduce it.
-4. **Results section** for the removed comparative statics: incidence and pass-through,
-   ownership-weighted concentration (level), response of owned profits, the wage
-   channel. Text and proofs survive in `model_section.tex` and in commit 6cb7d30.
+0. **THE MODEL IS CLOSED (2026-11-02).** `model_section_simple.tex` is the final model
+   section. Do not extend it or add subsections; Sebastián's rule is no over-engineering:
+   add only what the model needs, leave out anything that is not needed or can bring errors.
+4. **Results section: OUT OF SCOPE for now (2026-11-02, Sebastián's decision).** It is
+   paper material, not part of the model; no new document is to be created for it. If it
+   is ever written, the text and proofs are in `model_section.tex` and commit 6cb7d30, and
+   TWO ERRORS in that old text must be fixed first: (a) aggregation across markets must
+   weight by E_m*kappa_m/sigma_m, not by spending E_m, when sigma varies by sector;
+   (b) "markups dampen a wage change" is false: d ln P = sum_g varpi_g omega_gj is an
+   average in [0,1], as under CES; say only that the index neither falls nor rises by more
+   than the wage.
 5. **Quantification:** existence with intermediates; the nu choice (§30.6); the lambda
    configuration (§37); verify external parameter values against sources (§15).
 6. Research items in §0.5 (Fact 5 mechanism discipline, intra-firm share, etc.).
@@ -3584,3 +3592,6 @@ model_section_simple.tex instead, in the entry-equilibrium paragraph: eq:clearin
 solution with fewer than two groups (psi^{-1} < 1), so every entry equilibrium has at least
 two (the baseline's two-group assumption is an outcome under entry; the code's eq_on rejects
 such sets the same way). Compiled three times: 0 errors, 14 pp.
+Model closed (2026-11-02): model_section_simple.tex is final; the results section is out
+of scope for now and no new document is created (00.3 items 0 and 4, with the two errors
+in the old comparative-statics text recorded there).
