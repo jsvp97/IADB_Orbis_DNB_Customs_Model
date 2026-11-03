@@ -19,7 +19,7 @@ end of this file) is the dated log of every decision and fix in this work stream
 |---|---|---|
 | `docs/model_section_simple.tex` | **THE ACTIVE DOCUMENT.** Simplified model section, 14 pp: main text 1.1 Set-Up, 1.2 Market Structure, 1.3 General Equilibrium, 1.4 Extension: Endogenous Entry; Appendix A (market game), B (GE), C (entry); References; Notation table | **Reviewed paragraph by paragraph, main text, appendix and notation, 2026-10-30/31. Done.** |
 | `docs/model_solution_simple.tex` | step-by-step solution of the simple model, 10 pp (Steps 0-6, algorithm and checks, entry extension) | **Reviewed 2026-10-31. Done.** Cites Props 2-3 and Thms 1-2 of the simple section by number |
-| `docs/model_section.tex` | full model section (intermediates, eta, Bertrand, parametric productivity, Birkhoff contraction, comparative statics), 10 pp main + 6 pp appendix | reviewed 2026-10-22, but **two known errors remain** (00.3 item 1) and it does NOT follow the example's format |
+| `docs/model_section.tex` | full model section (intermediates, eta, Bertrand, parametric productivity, Birkhoff contraction, comparative statics), 10 pp main + 6 pp appendix | reviewed 2026-10-22; the two known errors fixed 2026-11-02; it does NOT follow the example's format |
 | `docs/model_solution.tex` | step-by-step solution of the full model, 14 pp | reviewed 2026-10-27 |
 
 ## 00.2 Decisions Sebastián has made — do not relitigate
@@ -45,11 +45,10 @@ end of this file) is the dated log of every decision and fix in this work stream
 
 ## 00.3 Next steps, ranked
 
-1. **Fix two errors still in `model_section.tex`** (found in the simple version's
-   comparative statics before it was deleted): "a stand-alone exporter bears the tariff
-   in full" (its COST rises by the full tariff; its price only by rho < 1) and
-   "varpi_g < S_g for the larger groups" (true only for groups large relative to the rest
-   of the market). Note: its main text ends on the last line of p. 10, zero slack.
+1. ~~**Fix two errors still in `model_section.tex`**~~ **DONE 2026-11-02** (see end of
+   §38): the varpi_g < S_g sentence now states the exact condition (Lambda_g below its
+   share-weighted mean, always true for the largest group); the stand-alone exporter's
+   cost rises by the full tariff and its price by rho_j of it. Main text still ends on p. 10.
 2. **Decide which version goes into the paper** (simple or full). If full, restructure it
    to the example's format (statements to appendix, drop comparative statics).
 3. **Empirical-content subsection**, like the example's 1.4 "Identification and Empirical
@@ -3563,3 +3562,10 @@ side changes curvature), now safeguarded by bisection; with entry, X >= wL fails
 arbitrary plant sets and fixed-cost payments enter the demand term with zero response
 (now stated, matching the section). Also: cannibalization separated from the own-sales
 factor 1-s_i, multiplier renamed xi (chi is chi_g in B.3), labor symbol l removed.
+model_section.tex, two errors fixed (2026-11-02), paragraph after Prop. Incidence.
+(1) "varpi_g < S_g for the larger groups" replaced by the exact condition: since
+varpi_g/S_g = Lambda_g / sum_h S_h Lambda_h, the price index moves by less than a group's
+share exactly when Lambda_g is below its share-weighted mean, which always holds for the
+largest group (Lambda falls with S). (2) "a stand-alone exporter bears the tariff in full"
+replaced: its cost rises by the full tariff, its price by the fraction rho_j < 1 of it.
+Compiled three times: 0 errors, no undefined references, 17 pp; main text still ends on p. 10.
