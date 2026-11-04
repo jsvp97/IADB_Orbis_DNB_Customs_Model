@@ -224,7 +224,7 @@ and the loss grows with the group's share. Two implications follow. First, all p
 of a group charge the same markup in a given market, and differences in their costs
 show up in quantities rather than in markups. Second, market power is a property of
 the group: concentration should be measured at the level of groups, and each plant's
-markup depends on its group's share, which exceeds its own. Within a group,
+markup depends on its group's share, which is at least as large as its own. Within a group,
 \eqref{eq:shares} and the common markup give
 \begin{equation}
   \frac{s_i}{S_g}=\frac{c_i^{1-\sigma}}{K_g},
@@ -325,10 +325,11 @@ households as profits and tariff revenue; this makes the system's solution uniqu
 Since profits and tariff revenue are non-negative, income is at least labor income.
 
 Wages that clear every labor market exist provided no set of countries is cut off from
-the rest: for every proper subset $Z$ of countries, some plant located in $Z$ serves a
-market of a country outside $Z$ (Proposition~\ref{prop:exist}). The condition rules out
-a set of countries that sells nothing to the rest of the world, whose wages relative
-to the others would then be undetermined.
+the rest: for every non-empty proper subset $Z$ of countries, some plant located in $Z$
+serves a market of a country outside $Z$ (Proposition~\ref{prop:exist}). The condition
+rules out a set of countries that sells nothing to the rest of the world: for such a
+set, a fall in its wages relative to the others need not raise the demand for its labor
+without bound, and the existence argument relies on that.
 
 Uniqueness of wages is the most delicate layer. Let $W_n(w)$ be the right
 side of \eqref{eq:labor}, the wage bill of country $n$ at wages $w$, and
@@ -604,7 +605,7 @@ $X=(I-\Gamma)^{-1}wL=\sum_{s\ge0}\Gamma^swL\ge wL$ is the unique solution. \qed
 
 \paragraph{B.2 Existence of wages.}\leavevmode
 \begin{proposition}[Existence of wages]\label{prop:exist}
-Suppose that for every proper subset $Z$ of countries, some plant located in $Z$ serves
+Suppose that for every non-empty proper subset $Z$ of countries, some plant located in $Z$ serves
 a market of a country outside $Z$. Then there exist wages that clear every labor
 market.
 \end{proposition}
@@ -625,9 +626,9 @@ of plants located in $Z$ go to zero, while all other costs stay in a compact sub
 $(0,\infty)$. By hypothesis, some plant located in $Z$ serves a market $(n',k)$ with
 $n'\notin Z$. By Proposition~\ref{prop:incomes}, $X_{n'}\ge w_{n'}L_{n'}$, so
 $E_{n'k}=\beta_kX_{n'}$ stays bounded away from zero. For $m$ large, the lowest-cost
-plant $i$ in that market is located in some $\ell\in Z$; since there are finitely many
-plants, we can pass to a subsequence along which $\ell$, $i$ and its group $g$ do not
-change. Let $J$ be the number of plants in the market. Its cost is $V_i=E_{n'k}s_i/[\mu_g(1+t_i)]$, all of
+plant $i$ in that market is located in some $\ell\in Z$. Since there are finitely many
+plants, the sequence splits into finitely many subsequences along each of which $\ell$,
+$i$ and its group $g$ do not change, and it suffices to treat one of them. Let $J$ be the number of plants in the market. Its cost is $V_i=E_{n'k}s_i/[\mu_g(1+t_i)]$, all of
 it paid to labor in $\ell$, so it suffices to show that $V_i/w_\ell\to\infty$.
 
 If $S_g\le\frac12$, then $\mu_g\le2\sigma/(\sigma-1)$. Every price is at least $c_i$,
@@ -833,7 +834,7 @@ $t_{\ell nk}$ & tariff of country $n$ on sector-$k$ goods produced in $\ell$ & \
 $c_{i,n}$ & delivered marginal cost of plant $i$ in market $n$, including the tariff & \eqref{eq:delivered} \\
 $\theta_{gn}$ & share of group $g$ owned by country $n$ & \eqref{eq:income} \\
 $\pi_g$, $\pi_{g,n}$ & profit of group $g$, in total and in market $(n,k(g))$; within one market, $\pi_g$ denotes $\pi_{g,n}$ & \eqref{eq:income} \\
-$Z$ & a proper subset of countries, in the condition for existence of wages & Existence and uniqueness \\
+$Z$ & a non-empty proper subset of countries, in the condition for existence of wages & Existence and uniqueness \\
 $\TR_n$ & tariff revenue of country $n$ & \eqref{eq:income} \\[3pt]
 \multicolumn{3}{@{}l}{\emph{Market structure (one market)}}\\
 $A$ & market aggregate, $P^{1-\sigma}$; high when the market is competitive & \eqref{eq:shares} \\

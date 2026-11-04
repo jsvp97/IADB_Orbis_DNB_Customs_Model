@@ -17,8 +17,8 @@ end of this file) is the dated log of every decision and fix in this work stream
 
 | file | what it is | state |
 |---|---|---|
-| `docs/model_section_simple.tex` | **THE ACTIVE DOCUMENT.** Simplified model section, 14 pp: main text 1.1 Set-Up, 1.2 Market Structure, 1.3 General Equilibrium, 1.4 Extension: Endogenous Entry; Appendix A (market game), B (GE), C (entry); References; Notation table | **Reviewed paragraph by paragraph, main text, appendix and notation, 2026-10-30/31. Done.** |
-| `docs/model_solution_simple.tex` | step-by-step solution of the simple model, 10 pp (Steps 0-6, algorithm and checks, entry extension) | **Reviewed 2026-10-31. Done.** Cites Props 2-3 and Thms 1-2 of the simple section by number |
+| `docs/model_section_simple.tex` | **THE ACTIVE DOCUMENT.** Simplified model section, 15 pp: main text 1.1 Set-Up, 1.2 Market Structure, 1.3 General Equilibrium, 1.4 Extension: Endogenous Entry; Appendix A (market game), B (GE), C (entry); References; Notation table | **Reviewed paragraph by paragraph, main text, appendix and notation, 2026-10-30/31; final review of both documents 2026-11-04 (end of §38). Done.** |
+| `docs/model_solution_simple.tex` | step-by-step solution of the simple model, 11 pp (Steps 0-6, algorithm and checks, entry extension) | **Reviewed 2026-10-31 and 2026-11-04. Done.** Cites Props 2-4 and Thms 1-2 of the simple section by number |
 | `docs/model_section.tex` | full model section (intermediates, eta, Bertrand, parametric productivity, Birkhoff contraction, comparative statics), 10 pp main + 6 pp appendix | reviewed 2026-10-22; the two known errors fixed 2026-11-02. **NOT the paper's version** (decided 2026-11-02): kept as the source for the results section and quantification; does not follow the example's format |
 | `docs/model_solution.tex` | step-by-step solution of the full model, 14 pp | reviewed 2026-10-27 |
 
@@ -160,9 +160,9 @@ docs/model_section.tex  THE PAPER'S MODEL SECTION (2026-10-01, §38): written in
                         "Model_Linkages" format, model only, no quantification.
                         10 pp main + 6 pp appendix. Review complete (2026-10-22).
 docs/model_section_simple.tex  SIMPLIFIED MODEL SECTION, the ACTIVE document (§00).
-                        14 pp, example format, fully reviewed 2026-10-31. See end of §38.
+                        15 pp, example format, fully reviewed 2026-10-31. See end of §38.
 docs/model_solution_simple.tex  STEP-BY-STEP SOLUTION OF THE SIMPLIFIED MODEL
-                        (2026-10-27), 10 pp, English, algebra only: Steps 0-6 + algorithm
+                        (2026-10-27), 11 pp, English, algebra only: Steps 0-6 + algorithm
                         and checks + entry extension.
 docs/model_solution.tex THE STEP-BY-STEP SOLUTION (2026-10-27): companion to
                         model_section, English, 14 pp. Baseline (Cournot, eta=1, nu,
@@ -3614,6 +3614,27 @@ now gives the marginal revenue (sigma-1)/sigma p_i (1-s_i) vs (1-S_g) instead of
 undefined 'factor'; sigma >= 2 in the entry theorem is flagged as used in C.2; the
 fixed-cost condition for existence with entry now says why (net profits can be negative,
 B.2 needs a lower bound on income). 0 errors, 14 pp, main text ends on p. 8.
+Final review of both simple documents (2026-11-04). Every step of the algebra and every
+proof re-derived by hand; every formula re-tested in a new independent Python implementation
+(not the Julia code): 10 random economies at two wage spreads, with tariffs. Walras, income
+column sums, homogeneity, revenue split, V formula, psi, profit, B.3 decomposition, P-hat, all
+at or below 1e-6 (the finite-difference error); MR and FOC by complex step 1e-14; M >= Ebar in
+678 ordered pairs at 70 wage vectors with S <= 1/2, 0 failures; existence inequality 179 cases;
+multi-start wages agree to 7e-12; Theorem 2(a)-(b) signs at 60 digits, 0 failures in 84 points,
+eps_G closed form to 1e-58; ladder = brute force and rung r = r cheapest plants, 0 failures in
+120 markets, 0 multiple entry equilibria, 5 with none (the integer problem). No formula was
+wrong. Text fixed. Section: 'proper subset' was formally wrong (the empty set fails the
+hypothesis), now non-empty, in Prop. 4, main text and table; the reason for that condition said
+wages would be 'undetermined', which is not what the proof uses, now stated as the proof uses
+it; the B.2 subsequence step now covers the whole sequence; a group's share 'exceeds' a plant's
+was false for a stand-alone firm. Solution: the checks paragraph said Theorem 1's hypotheses
+hold at any equilibrium, which is FALSE (they can fail, and they are conditions on a set D);
+it claimed the notation table lists every symbol; sigma >= 2 for Theorem 2 was not stated; the
+K*(A) monotonicity now says over the range of aggregates considered (any rung exceeds half as
+A goes to 0); the outer loop now rules out a switch leaving a market with fewer than two groups
+(the code's eq_on does this); Step 6 now cites Prop. 4 and Thm 1. Compiled 3x, 0 errors, 0
+undefined, 0 overfull: section 15 pp (main text ends p. 8, appendix pp. 9-13, notation runs onto
+p. 15), solution 11 pp.
 
 
 ---

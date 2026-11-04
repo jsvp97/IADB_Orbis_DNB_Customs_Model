@@ -29,8 +29,8 @@
 at a time. It adds no assumptions and no results to the model section. Its purpose is
 to show how the equilibrium conditions reduce to a small system that can be solved,
 which objects have closed forms, and which ones must be computed. Propositions and
-theorems cited by name and number, and all notation, are those of the model section,
-whose notation table lists every symbol.
+theorems cited by number, and the notation, are those of the model section, whose table
+lists its symbols; symbols used only here are defined where they appear.
 
 The model has quantity competition among groups, Cobb--Douglas preferences across
 sectors, labor as the only input, non-negative tariffs, and plants that serve a given
@@ -214,8 +214,8 @@ With a common markup, $p_i/p_j=c_i/c_j$ for any two plants of the same group, so
   K_g\equiv\sum_{i\in T_g}c_i^{1-\sigma}.
   \label{eq:withingroup}
 \end{equation}
-The group gives its cheaper plants a larger part of its sales. Costs show up in how
-the group splits its sales, not in its markups.
+The group gives its cheaper plants a larger part of its sales. Cost differences across
+its plants show up in how the group splits its sales, not in their markups.
 
 \subsection{The share equation}
 
@@ -435,7 +435,9 @@ Written out, the condition for country $n$ is
 where shares and markups depend on wages only through the delivered costs
 $c_{i,n'}=w_{\ell(i)}d_{\ell(i)n'}(1+t_{\ell(i)n'k})/\varphi_i$. Evaluating $z(w)$ at a
 given $w$ therefore means: compute delivered costs, solve every market (Step 3), solve
-the income system (Step 4), and compute the wage bills (Step 5).
+the income system (Step 4), and compute the wage bills (Step 5). Proposition~4 gives the
+condition under which the system has a solution, and Theorem~1 the conditions under
+which a set of wage vectors contains at most one.
 
 \paragraph{Three channels.} A rise in a foreign wage $w_j$ affects country $n$'s wage
 bill in three ways. Plants located in $j$ become more expensive, so plants located in
@@ -501,8 +503,10 @@ wage bills given incomes and shares & \\
 \end{tabular}
 \end{center}
 
-\paragraph{Checks at the solution.} Each of these holds at an equilibrium and is a
-useful test of any implementation.
+\paragraph{Checks at the solution.} The first four hold at any equilibrium and test an
+implementation. The fifth is not implied by equilibrium: it checks the hypotheses of
+Theorem~1, which can fail and must hold over a set of wage vectors, so it is evaluated
+over that set.
 \begin{enumerate}
 \item In every market, shares add up to one and $\sum_ip_i^{1-\sigma}=P^{1-\sigma}$.
 \item For every plant, revenue equals labor cost plus tariff plus profit,
@@ -521,7 +525,8 @@ $\bar E^{(j)}_n>0$ for every pair of countries.
 With entry, each group chooses which of its potential plants $\cP_g$ serve each market,
 and a plant that serves market $(n,k)$ pays the fixed cost $F_{i,n}=f_kw_\ell
 f^d_{\ell n}$ in labor of its location. Steps 1--3 are unchanged for given plant sets.
-What changes is that plant sets are now unknowns.
+What changes is that plant sets are now unknowns. The results cited from Theorem~2 hold
+for $\sigma\ge2$.
 
 \subsection{Entry into one market}
 
@@ -560,9 +565,10 @@ payoff,
   \label{eq:bestresponse}
 \end{equation}
 With equal fixed costs this is a cutoff: the strength added by each rung falls as more
-expensive plants are added, and $\Omega$ is strictly concave in $K$ (Theorem~2(a))
-because each new plant takes part of its sales from the group's own plants, so the gain
-from one more rung falls, and the group climbs while the gain is positive.
+expensive plants are added, and $\Omega$ is strictly concave in $K$ (Theorem~2(a)): each
+new plant takes part of its sales from the group's own plants, which outweighs the
+higher markup the group earns on all of its sales. So the gain from one more rung falls,
+and the group climbs while the gain is positive.
 
 \paragraph{The entry equilibrium of the market.} Substituting the best responses into
 \eqref{eq:clearing} gives one equation in $A$:
@@ -570,8 +576,8 @@ from one more rung falls, and the group climbs while the gain is positive.
   \mathcal S^*(A)\equiv\sum_g\psi^{-1}\!\Bigl(\frac{K^*_g(A)}{A}\Bigr)=1 .
   \label{eq:entryclearing}
 \end{equation}
-When no group would hold more than half of the market with any of its rungs, each
-$K^*_g(A)$ does not rise with $A$ (Theorem~2), so $\mathcal S^*$ falls strictly with $A$:
+When, over the range of aggregates considered, no group would hold more than half of
+the market with any of its rungs, each $K^*_g(A)$ does not rise with $A$ (Theorem~2), so $\mathcal S^*$ falls strictly with $A$:
 strength does not rise and the aggregate is higher. It crosses one at most once. It is solved by
 bisection on $\ln A$.
 
@@ -619,7 +625,9 @@ delivered costs, fixed costs, spending and aggregate $A$;
 aggregate, and its gain from switching;
 \item if no group gains, stop: every market is in an entry equilibrium at the
 equilibrium wages;
-\item otherwise, let the groups with the largest gains switch, and return to 2.
+\item otherwise, let the groups with the largest gains switch, and return to 2. A switch
+that would leave a market with fewer than two groups is not made, because that market
+then has no solution (Step 3).
 \end{enumerate}
 Moving only the groups with the largest gains damps the loop. Moving every group at once
 can make the configuration oscillate, because wages computed for many active plants
