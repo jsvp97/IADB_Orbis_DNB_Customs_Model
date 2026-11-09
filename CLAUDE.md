@@ -19,6 +19,7 @@ end of this file) is the dated log of every decision and fix in this work stream
 |---|---|---|
 | `docs/model_section_simple.tex` | **THE ACTIVE DOCUMENT.** Simplified model section, 15 pp: main text 1.1 Set-Up, 1.2 Market Structure, 1.3 General Equilibrium, 1.4 Extension: Endogenous Entry; Appendix A (market game), B (GE), C (entry); References; Notation table | **Reviewed paragraph by paragraph, main text, appendix and notation, 2026-10-30/31; final review of both documents 2026-11-04 (end of §38). Done.** |
 | `docs/model_solution_simple.tex` | step-by-step solution of the simple model, 11 pp (Steps 0-6, algorithm and checks, entry extension) | **Reviewed 2026-10-31 and 2026-11-04. Done.** Cites Props 2-4 and Thms 1-2 of the simple section by number |
+| `solve_model_simple.jl` | **THE SOLVER for the simple model** (2026-11-09): one file, Julia stdlib only, sections numbered like the solution doc's Steps 0-6, plus checks and the entry extension. `julia solve_model_simple.jl [entry]` -> `run_solve_model_simple.txt` | written and verified 2026-11-09 (end of §38) |
 | `docs/model_section.tex` | full model section (intermediates, eta, Bertrand, parametric productivity, Birkhoff contraction, comparative statics), 10 pp main + 6 pp appendix | reviewed 2026-10-22; the two known errors fixed 2026-11-02. **NOT the paper's version** (decided 2026-11-02): kept as the source for the results section and quantification; does not follow the example's format |
 | `docs/model_solution.tex` | step-by-step solution of the full model, 14 pp | reviewed 2026-10-27 |
 
@@ -3635,6 +3636,25 @@ A goes to 0); the outer loop now rules out a switch leaving a market with fewer 
 (the code's eq_on does this); Step 6 now cites Prop. 4 and Thm 1. Compiled 3x, 0 errors, 0
 undefined, 0 overfull: section 15 pp (main text ends p. 8, appendix pp. 9-13, notation runs onto
 p. 15), solution 11 pp.
+Solver for the simple model (2026-11-09): `solve_model_simple.jl` (~600 lines, Julia stdlib only),
+written from the two simple documents alone, sections numbered like the solution doc's steps:
+share equation by safeguarded Newton, clearing by Newton on ln A in the doc's bracket, incomes
+X = (I-Gamma)^{-1}(wL - theta'Phi), wage bills, damped tatonnement (lambda 0.25) then Newton on
+ln w with step halving; entry: ladder by enumerating 2^p sets, best response at the recorded A,
+outer loop moving the top quarter of gainers (as mne_model.jl, frac 0.25, 8 stalls), never leaving
+a market with fewer than two groups. Example economy: 3 countries, 2 sectors, 18 groups, 28 plants,
+5% tariffs. Verified (run_solve_model_simple.txt): labor gap 3e-14; shares, price index, spending =
+revenue, revenue split, labor-cost formula, profit closed form, income identity all <= 6e-15,
+computed from primitives; Walras off equilibrium 3e-16; multi-start wage gap 2e-14; Theorem 1
+hypotheses on 21 points of a +-0.2 log box: max share 0.42, min Ebar +0.12, min (M - Ebar) +0.28.
+Scratch tests (not committed): FOC from inverse demand 1e-8 (finite differences), no profitable
+quantity deviation; ladder optimum = brute force in 2000 random cases. ENTRY: exact equilibrium
+(0 movers) at f_k = 0.001 (the demo value); at f_k 0.002-0.008 the loop ends with 1-7 groups
+wishing to move in this small world, the integer problem. Checked case (f_k 0.004, market (3,1)):
+none of the four configurations of the two marginal firms is stable; best has 1 mover, the loop
+returns 2 because it cycles between two of them. The one-market entry bisection (solution doc
+7.1) is not implemented: the GE outer loop does not use it. Share solver loses accuracy only when
+1 - S nears machine precision (S ~ 0.9999999), not reached with two or more groups.
 
 
 ---

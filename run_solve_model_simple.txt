@@ -1,0 +1,73 @@
+Example economy: 3 countries, 2 sectors, 18 groups, 28 plants
+
+BASELINE (plants given)
+  labor-market gap max|z_n|/L_n = 2.7e-14   converged: true
+  country      wage    income X   X/(wL)   welfare X/P
+     1      1.0000      3.5281   1.7640        2.3659
+     2      1.0191      1.6749   1.6436        1.1135
+     3      1.0084      1.4219   1.4100        0.9177
+  market (n,k)   groups   plants   largest group share   group HHI   price index
+  (1,1)             9       14           0.300             0.203       0.6974
+  (1,2)             9       14           0.393             0.267       0.7971
+  (2,1)             9       14           0.337             0.201       0.7032
+  (2,2)             9       14           0.329             0.196       0.8045
+  (3,1)             9       14           0.312             0.194       0.7223
+  (3,2)             9       14           0.299             0.201       0.8308
+
+  Checks at the solution (largest relative error):
+    income identity                      3.8e-16
+    labor cost formula                   4.3e-15
+    price index                          3.3e-15
+    profit closed form                   4.6e-15
+    revenue = labor + tariff + profit    2.3e-16
+    shares add to one                    3.8e-15
+    spending = revenue                   3.0e-15
+    labor markets clear                  2.7e-14
+    Walras' law off equilibrium          3.0e-16   (5 random wage vectors)
+    smallest X_n/(w_n L_n)               1.4100   (Proposition 3: >= 1 without fixed costs)
+
+  Theorem 1 hypotheses on points of the box |ln w_n - ln w*_n| <= 0.2:
+    point    max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)   |row sum - 1|
+    w*           0.3926           +0.2381         +0.6733         +0.4346        9.1e-11
+    worst of 20 points 0.4183         +0.1181         +0.5844         +0.2815
+    (M - Ebar >= 0 is the bound of Theorem 1; it is computed by finite differences,
+     so values of order -1e-6 are numerical error. Checking points proves nothing
+     between them.)
+
+  Solved again from 5 random starting wages: largest difference in ln w = 1.9e-14
+
+EXTENSION: ENDOGENOUS ENTRY (f_k = 0.001)
+  labor-market gap max|z_n|/L_n = 5.8e-14   converged: true
+  country      wage    income X   X/(wL)   welfare X/P
+     1      1.0000      3.4417   1.7208        2.2994
+     2      1.0265      1.6143   1.5726        1.0660
+     3      1.0135      1.3691   1.3509        0.8762
+  market (n,k)   groups   plants   largest group share   group HHI   price index
+  (1,1)             9       14           0.300             0.203       0.6990
+  (1,2)             8       11           0.394             0.269       0.8013
+  (2,1)             9       14           0.336             0.201       0.7063
+  (2,2)             7       12           0.332             0.200       0.8118
+  (3,1)             9       13           0.313             0.195       0.7280
+  (3,2)             8       12           0.302             0.202       0.8384
+  active plant-market pairs: 76 of 84 potential   outer iterations: 6
+  groups that wish to change their plant set: 0 (an entry equilibrium in every market)
+
+  Checks at the solution (largest relative error):
+    income identity                      1.6e-16
+    labor cost formula                   5.9e-15
+    price index                          3.3e-15
+    profit closed form                   5.6e-15
+    revenue = labor + tariff + profit    2.6e-16
+    shares add to one                    3.8e-15
+    spending = revenue                   3.4e-15
+    labor markets clear                  5.8e-14
+    Walras' law off equilibrium          4.7e-16   (5 random wage vectors)
+    smallest X_n/(w_n L_n)               1.3509   (Proposition 3: >= 1 without fixed costs)
+
+  Theorem 1 hypotheses on points of the box |ln w_n - ln w*_n| <= 0.2:
+    point    max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)   |row sum - 1|
+    w*           0.3936           +0.2229         +0.6050         +0.3784        8.2e-11
+    worst of 20 points 0.4189         +0.1146         +0.5544         +0.2710
+    (M - Ebar >= 0 is the bound of Theorem 1; it is computed by finite differences,
+     so values of order -1e-6 are numerical error. Checking points proves nothing
+     between them.)

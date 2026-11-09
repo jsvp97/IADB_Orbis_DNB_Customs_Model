@@ -78,6 +78,8 @@ and the guide shows both, dose by dose.
 Base Julia (≥ 1.9), **no packages**. Run the programs one at a time.
 
 ```bash
+julia solve_model_simple.jl     # the paper's model (docs/model_section_simple), ~20 s
+julia solve_model_simple.jl entry   # the same, plus the entry extension (~1 min)
 julia mne_model.jl              # everything: theorems, GE audit, facts (~10 min)
 julia mne_model.jl lambda       # the six-fact configuration (outside supplier on)
 julia mne_model.jl quick        # the same on a smaller world (~4 min)
@@ -97,6 +99,10 @@ The documents rebuild with `pdflatex` (three passes) in `docs/`; check
 ## Repository map
 
 ```
+solve_model_simple.jl     Solver for the paper's model section
+                          (docs/model_section_simple.tex), written step by
+                          step after docs/model_solution_simple.tex, with the
+                          entry extension and the equilibrium checks.
 mne_model.jl              THE model: 3,000 lines, one file, no dependencies.
                           Calibration in one CALIB block at the top.
 wage_uniqueness.jl        Theorem 4 (gross substitutes under two checked
