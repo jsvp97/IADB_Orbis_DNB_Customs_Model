@@ -1,4 +1,4 @@
-Example economy: 3 countries, 2 sectors, 18 groups, 28 plants
+Example economy: 3 countries, 2 sectors, 18 groups (6 multinationals), 28 plants
 
 BASELINE (plants given)
   labor-market gap max|z_n|/L_n = 2.7e-14   converged: true
@@ -15,26 +15,31 @@ BASELINE (plants given)
   (3,2)             9       14           0.299             0.201       0.8308
 
   Checks at the solution (largest relative error):
-    income identity                      3.8e-16
-    labor cost formula                   4.3e-15
-    price index                          3.3e-15
-    profit closed form                   4.6e-15
-    revenue = labor + tariff + profit    2.3e-16
     shares add to one                    3.8e-15
+    price index                          3.3e-15
     spending = revenue                   3.0e-15
+    first-order conditions               1.8e-08   (finite differences)
+    revenue = labor + tariff + profit    2.3e-16
+    labor cost formula                   4.3e-15
+    profit closed form                   4.6e-15
+    income identity                      3.8e-16
     labor markets clear                  2.7e-14
     Walras' law off equilibrium          3.0e-16   (5 random wage vectors)
     smallest X_n/(w_n L_n)               1.4100   (Proposition 3: >= 1 without fixed costs)
 
-  Theorem 1 hypotheses on points of the box |ln w_n - ln w*_n| <= 0.2:
-    point    max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)   |row sum - 1|
-    w*           0.3926           +0.2381         +0.6733         +0.4346        9.1e-11
-    worst of 20 points 0.4183         +0.1181         +0.5844         +0.2815
-    (M - Ebar >= 0 is the bound of Theorem 1; it is computed by finite differences,
-     so values of order -1e-6 are numerical error. Checking points proves nothing
-     between them.)
+  Theorem 1 hypotheses at w* and at 20 random points with w_1 = 1 and
+  |ln w_n - ln w*_n| <= 0.2 for n >= 2:
+    point          max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)
+    w*                   0.3926           +0.2381         +0.6733         +0.4346
+    worst of all 21       0.4057           +0.1541         +0.5135         +0.2552
+    (M - Ebar >= 0 is the bound of Theorem 1. M is computed by finite differences,
+     so values of order -1e-6 would be numerical error. Checking points proves
+     nothing between them.)
+  Rows of M sum to one (homogeneity): largest error 9.1e-11
+  Damping: min M_nn = -1.882 at w*, so the update needs lambda < 0.347; the solver uses 0.25
 
-  Solved again from 5 random starting wages: largest difference in ln w = 1.9e-14
+  Solved again from 5 random starting wages (0 did not converge):
+  largest difference in ln w from the solution above = 1.9e-14
 
 EXTENSION: ENDOGENOUS ENTRY (f_k = 0.001)
   labor-market gap max|z_n|/L_n = 5.8e-14   converged: true
@@ -53,21 +58,25 @@ EXTENSION: ENDOGENOUS ENTRY (f_k = 0.001)
   groups that wish to change their plant set: 0 (an entry equilibrium in every market)
 
   Checks at the solution (largest relative error):
-    income identity                      1.6e-16
-    labor cost formula                   5.9e-15
-    price index                          3.3e-15
-    profit closed form                   5.6e-15
-    revenue = labor + tariff + profit    2.6e-16
     shares add to one                    3.8e-15
+    price index                          3.3e-15
     spending = revenue                   3.4e-15
+    first-order conditions               4.3e-09   (finite differences)
+    revenue = labor + tariff + profit    2.6e-16
+    labor cost formula                   5.9e-15
+    profit closed form                   5.6e-15
+    income identity                      1.6e-16
     labor markets clear                  5.8e-14
     Walras' law off equilibrium          4.7e-16   (5 random wage vectors)
     smallest X_n/(w_n L_n)               1.3509   (Proposition 3: >= 1 without fixed costs)
 
-  Theorem 1 hypotheses on points of the box |ln w_n - ln w*_n| <= 0.2:
-    point    max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)   |row sum - 1|
-    w*           0.3936           +0.2229         +0.6050         +0.3784        8.2e-11
-    worst of 20 points 0.4189         +0.1146         +0.5544         +0.2710
-    (M - Ebar >= 0 is the bound of Theorem 1; it is computed by finite differences,
-     so values of order -1e-6 are numerical error. Checking points proves nothing
-     between them.)
+  Theorem 1 hypotheses at w* and at 20 random points with w_1 = 1 and
+  |ln w_n - ln w*_n| <= 0.2 for n >= 2:
+    point          max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)
+    w*                   0.3936           +0.2229         +0.6050         +0.3784
+    worst of all 21       0.4066           +0.1304         +0.4678         +0.2224
+    (M - Ebar >= 0 is the bound of Theorem 1. M is computed by finite differences,
+     so values of order -1e-6 would be numerical error. Checking points proves
+     nothing between them.)
+  Rows of M sum to one (homogeneity): largest error 8.2e-11
+  Damping: min M_nn = -1.754 at w*, so the update needs lambda < 0.363; the solver uses 0.25

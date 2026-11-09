@@ -3655,6 +3655,19 @@ none of the four configurations of the two marginal firms is stable; best has 1 
 returns 2 because it cycles between two of them. The one-market entry bisection (solution doc
 7.1) is not implemented: the GE outer loop does not use it. Share solver loses accuracy only when
 1 - S nears machine precision (S ~ 0.9999999), not reached with two or more groups.
+Solver review (2026-11-09, later): no formula changed; same equilibrium. Fixed: (1) the Theorem 1
+box label was wrong, perturbing all wages then renormalizing w_1 = 1 moved relative wages by up
+to 2x the stated box, now only n >= 2 are perturbed; (2) share solver stopped on an ABSOLUTE
+bracket width of 1e-16, wrong for shares below 1e-16, now relative (4 eps(S)); (3) the identity
+is written LinearAlgebra.I, because a user variable named I (the plant count, as in the docs)
+silently replaced it and broke the income solve. Added: validate(eco, serves) (sizes, beta,
+sigma, d, t, theta, phi, fixed costs, two groups per market: errors; Proposition 4's condition
+via reachability on plant links: warning), the first-order-condition check from inverse demand
+(1.8e-8; a 1% wrong markup gives 6e-2, so it bites), the damping bound 1/(1 - min M_nn) = 0.347
+vs lambda 0.25, the multinational count, a usage block in the header, checks printed in the
+solution doc's order, M and dlnX from the same evaluations. Theorem 1 box now: worst max share
+0.41, min Ebar +0.15, min (M - Ebar) +0.26. Robustness: 6 more economies (N 2-5, K 1-4,
+tariffs 0-0.6) all converge, every check <= 9e-15, Walras <= 1e-15.
 
 
 ---

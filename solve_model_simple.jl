@@ -11,7 +11,7 @@
 # Only the Julia standard library is used (LinearAlgebra, Printf, Random).
 #
 # Contents
-#   0. Primitives                     the Economy and an example economy
+#   0. Primitives                     the Economy, input checks, an example
 #   1-3. Demand, costs, one market    shares, markups and prices in a market
 #   4. Market sizes and incomes       one linear system
 #   5. The labor market               wage bills and excess demand
@@ -20,9 +20,19 @@
 #                                     solution document, and Theorem 1
 #   8. Extension: endogenous entry    ladders, best responses, outer loop
 #   9. Main                           runs the example and prints the results
+#
+# Using it with your own economy
+#   eco    = Economy(N, K, L, beta, sigma, d, t, hq, gsec, theta,
+#                    pgroup, ploc, phi, fk, fd)     # fields described in Part 0
+#   serves = trues(nplants(eco), eco.N)  # or any true/false matrix: who sells where
+#   validate(eco, serves)                # the assumptions of the model section
+#   sol    = solve_wages(eco, serves)    # sol.w wages (w_1 = 1), sol.r the rest:
+#   sol.r.X, sol.r.E, sol.r.mk[n, k]     # incomes, market sizes, market (n, k)
+#   check_equilibrium(eco, serves, sol.w)
 ###############################################################################
 
-using LinearAlgebra, Printf, Random
+using LinearAlgebra, Printf, Random     # the identity is written LinearAlgebra.I below,
+                                         # so a user variable named I cannot break it
 
 ###############################################################################
 # 0. PRIMITIVES
@@ -38,7 +48,7 @@ struct Economy
     N::Int
     K::Int
     L::Vector{Float64}        # labor endowment L_n
-    beta::Vector{Float64}     # spending share beta_k, sums to one
+    beta::Vector{Float64}     # spending share beta_k > 0, sums to one
     sigma::Vector{Float64}    # elasticity of substitution sigma_k > 1
     d::Matrix{Float64}        # iceberg trade cost d[l, n] >= 1, d[n, n] = 1
     t::Array{Float64,3}       # tariff t[l, n, k] >= 0 of country n on goods made in l
@@ -52,9 +62,79 @@ struct Economy
     fd::Matrix{Float64}       # entry only: bilateral component f^d[l, n] >= 1
 end
 
+const LAMBDA = 0.25           # damping of the wage update (Step 6)
+
 nplants(eco::Economy) = length(eco.phi)
 ngroups(eco::Economy) = length(eco.hq)
 plant_sector(eco::Economy, i) = eco.gsec[eco.pgroup[i]]
+
+"A multinational: a group with at least one plant outside its headquarters country."
+is_multinational(eco::Economy, g) =
+    any(eco.ploc[i] != eco.hq[g] for i in 1:nplants(eco) if eco.pgroup[i] == g)
+
+"Number of groups with at least one plant serving market (n, k)."
+ngroups_in(eco::Economy, serves, n, k) =
+    length(unique(eco.pgroup[i] for i in 1:nplants(eco) if serves[i, n] && plant_sector(eco, i) == k))
+
+"""
+    validate(eco, serves)
+
+Checks the assumptions of the model section and stops with a message if one fails:
+spending shares positive and summing to one, sigma_k > 1, d >= 1 with d[n, n] = 1,
+tariffs >= 0 with no tariff at home, ownership shares non-negative and summing to
+one for each group, positive productivities, and at least two groups in every
+market. It also checks the condition of Proposition 4 (existence of wages): for
+every non-empty proper subset Z of countries, some plant located in Z serves a
+country outside Z. That condition only guarantees existence, so its failure gives
+a warning, not an error.
+"""
+function validate(eco::Economy, serves::BitMatrix)
+    N, K, G, nP = eco.N, eco.K, ngroups(eco), nplants(eco)
+    require(ok, msg) = ok || error(msg)
+    require(length(eco.L) == N && length(eco.beta) == K && length(eco.sigma) == K &&
+            size(eco.d) == (N, N) && size(eco.t) == (N, N, K) && size(eco.theta) == (G, N) &&
+            length(eco.gsec) == G && length(eco.pgroup) == nP && length(eco.ploc) == nP &&
+            length(eco.fk) == K && size(eco.fd) == (N, N) && size(serves) == (nP, N),
+            "array sizes do not match N, K, the number of groups and the number of plants")
+    require(all(eco.L .> 0), "labor endowments must be positive")
+    require(all(eco.beta .> 0) && isapprox(sum(eco.beta), 1; atol = 1e-12),
+            "spending shares beta_k must be positive and sum to one")
+    require(all(eco.sigma .> 1), "elasticities sigma_k must exceed one")
+    require(all(eco.d .>= 1) && all(eco.d[n, n] == 1 for n in 1:N),
+            "trade costs must satisfy d >= 1 and d[n, n] = 1")
+    require(all(eco.t .>= 0) && all(eco.t[n, n, k] == 0 for n in 1:N, k in 1:K),
+            "tariffs must satisfy t >= 0 and t[n, n, k] = 0")
+    require(all(eco.theta .>= 0) && all(isapprox.(sum(eco.theta, dims = 2), 1; atol = 1e-12)),
+            "ownership shares must be non-negative and sum to one for every group")
+    require(all(eco.phi .> 0), "productivities must be positive")
+    require(all(eco.fk .>= 0) && all(eco.fd .>= 1), "fixed costs: f_k >= 0 and f^d >= 1")
+    for n in 1:N, k in 1:K
+        require(ngroups_in(eco, serves, n, k) >= 2,
+                "market ($n, $k) is served by fewer than two groups")
+    end
+    # Proposition 4's condition holds exactly when every country reaches every other
+    # through links l -> n, where l -> n means that some plant located in l serves n.
+    link = falses(N, N)
+    for i in 1:nP, n in 1:N
+        serves[i, n] && (link[eco.ploc[i], n] = true)
+    end
+    for start in 1:N
+        reached = falses(N); reached[start] = true; frontier = [start]
+        while !isempty(frontier)
+            l = pop!(frontier)
+            for n in 1:N
+                if link[l, n] && !reached[n]
+                    reached[n] = true; push!(frontier, n)
+                end
+            end
+        end
+        if !all(reached)
+            @warn "Proposition 4's condition fails: no plant links country $start to countries $(findall(.!reached)), so wages may not exist"
+            return false
+        end
+    end
+    return true
+end
 
 """
     example_economy(; N, K, seed, tariff, n_local, n_mne, fk)
@@ -141,7 +221,7 @@ function group_share(x, s)
         f > 0 ? (hi = S) : (lo = S)
         Snew = S - f * S * (1 - S) / (1 + (s - 2) * S)   # derivative [1+(s-2)S]/[S(1-S)]
         S = lo < Snew < hi ? Snew : (lo + hi) / 2
-        hi - lo < 1e-16 && break
+        hi - lo <= 4 * eps(S) && break                   # bracket at machine precision
     end
     return S
 end
@@ -155,11 +235,11 @@ plant shares s, the group markups mu and ln A.
 """
 function clear_market(c::Vector{Float64}, gl::Vector{Int}, s::Float64)
     G = maximum(gl)
+    G >= 2 || error("a market needs at least two groups")
     K = zeros(G)
     for j in eachindex(c)
         K[gl[j]] += c[j]^(1 - s)                       # strength (strength)
     end
-    G >= 2 || error("a market needs at least two groups")
     shares(lnA) = [group_share(log(K[h]) - lnA - lnpsi0(s), s) for h in 1:G]
 
     # Bracket. At A_hi = mu(0)^(1-s) sum_g K_g shares add up to at most one;
@@ -265,7 +345,7 @@ function evaluate(eco::Economy, serves::BitMatrix, w::Vector{Float64})
         Wfix[eco.ploc[i]] += F
     end
 
-    X = (I - Gam) \ (w .* eco.L .- eco.theta' * Phi)       # (XofW)
+    X = (LinearAlgebra.I - Gam) \ (w .* eco.L .- eco.theta' * Phi)       # (XofW)
     E = X * eco.beta'                                       # E[n, k] = beta_k X_n  (spending)
 
     # Step 5: wage bills and excess demand
@@ -292,27 +372,34 @@ end
 
 maxgap(r, eco) = maximum(abs.(r.z) ./ eco.L)
 
-"M[n, j] = d ln W_n / d ln w_j, by central differences, column by column."
-function elasticity_matrix(eco::Economy, serves::BitMatrix, w; h = 1e-5)
+"""
+    log_responses(eco, serves, w; h)
+
+By central differences, one country's wage at a time:
+M[n, j] = d ln W_n / d ln w_j  and  dX[n, j] = d ln X_n / d ln w_j.
+"""
+function log_responses(eco::Economy, serves::BitMatrix, w; h = 1e-5)
     N = eco.N
-    M = zeros(N, N)
+    M = zeros(N, N); dX = zeros(N, N)
     for j in 1:N
         up = copy(w); up[j] *= exp(h)
         dn = copy(w); dn[j] *= exp(-h)
-        M[:, j] = (log.(evaluate(eco, serves, up).W) .- log.(evaluate(eco, serves, dn).W)) ./ (2h)
+        ru, rd = evaluate(eco, serves, up), evaluate(eco, serves, dn)
+        M[:, j]  = (log.(ru.W) .- log.(rd.W)) ./ (2h)
+        dX[:, j] = (log.(ru.X) .- log.(rd.X)) ./ (2h)
     end
-    return M
+    return (M = M, dX = dX)
 end
 
 """
     solve_wages(eco, serves; w0, lambda, tol)
 
-Equilibrium wages with w_1 = 1, for given plant sets. Returns the wages, the
-evaluation of the model at those wages, the largest |z_n|/L_n, and whether the
-tolerance was reached.
+Equilibrium wages with w_1 = 1, for given plant sets. Returns the wages `w`, the
+evaluation `r` of the model at those wages, the largest |z_n|/L_n (`gap`), and
+whether the tolerance was reached (`converged`).
 """
 function solve_wages(eco::Economy, serves::BitMatrix; w0 = ones(eco.N),
-                     lambda = 0.25, tol = 1e-12)
+                     lambda = LAMBDA, tol = 1e-12)
     w = w0 ./ w0[1]
     # (a) damped tatonnement, until close to the solution
     for _ in 1:5000
@@ -326,9 +413,9 @@ function solve_wages(eco::Economy, serves::BitMatrix; w0 = ones(eco.N),
     for _ in 1:50
         gap = maxgap(r, eco)
         gap < tol && return (w = w, r = r, gap = gap, converged = true)
-        M = elasticity_matrix(eco, serves, w)
+        M = log_responses(eco, serves, w).M
         F = log.(r.W[2:end]) .- log.(w[2:end]) .- log.(eco.L[2:end])
-        dlnw = -((M[2:end, 2:end] - I) \ F)
+        dlnw = -((M[2:end, 2:end] - LinearAlgebra.I) \ F)
         step, moved = 1.0, false
         for _ in 1:30
             wn = copy(w); wn[2:end] .*= exp.(step .* dlnw)
@@ -348,9 +435,10 @@ end
 ###############################################################################
 # 7. CHECKS
 #
-# check_equilibrium: the first four checks of the solution document, computed
-#   from the primitives (prices, quantities, costs), not from the closed forms the
-#   solver uses, so they test the implementation.
+# check_equilibrium: the first four checks of the solution document, plus the
+#   first-order conditions, computed from the primitives (prices, quantities,
+#   costs, inverse demand) rather than from the closed forms the solver uses, so
+#   they test the implementation.
 # theorem1_check: the hypotheses of Theorem 1 at one wage vector. Theorem 1 needs
 #   them at EVERY point of a set D; checking points of a box tests them there and
 #   proves nothing between the points.
@@ -359,13 +447,15 @@ end
 "Consumer price index P_n = prod_k (P_nk / beta_k)^beta_k; welfare is X_n / P_n."
 cpi(eco::Economy, r, n) = prod((r.mk[n, k].P / eco.beta[k])^eco.beta[k] for k in 1:eco.K)
 
+const CHECKS = ["shares add to one", "price index", "spending = revenue",
+                "first-order conditions", "revenue = labor + tariff + profit",
+                "labor cost formula", "profit closed form", "income identity"]
+
 function check_equilibrium(eco::Economy, serves::BitMatrix, w; seed = 7)
     N, K, G = eco.N, eco.K, ngroups(eco)
     r = evaluate(eco, serves, w)
-    e = Dict(k => 0.0 for k in ("shares add to one", "price index", "spending = revenue",
-             "revenue = labor + tariff + profit", "labor cost formula",
-             "profit closed form", "income identity"))
-    upd!(key, x) = (e[key] = max(e[key], abs(x)))
+    err = Dict(name => 0.0 for name in CHECKS)
+    upd!(name, x) = (err[name] = max(err[name], abs(x)))
     profit = zeros(G); TR = zeros(N)
     for n in 1:N, k in 1:K
         m = r.mk[n, k]; s = eco.sigma[k]; E = r.E[n, k]; A = exp(m.lnA)
@@ -375,6 +465,22 @@ function check_equilibrium(eco::Economy, serves::BitMatrix, w; seed = 7)
         q = p .^ (-s) .* m.P^(s - 1) .* E                       # demand (demand)
         rev = p .* q
         upd!("spending = revenue", (sum(rev) - E) / E)
+
+        # First-order conditions (Proposition 1), from the primitive inverse demand:
+        # group revenue is E sum_own q^gam / sum_all q^gam, gam = (sigma-1)/sigma, and
+        # the derivative of group profit in each own quantity, rivals fixed, is zero.
+        gam = (s - 1) / s
+        for j in eachindex(q)
+            own = findall(==(m.gl[j]), m.gl)
+            gprofit(qj) = begin
+                qq = copy(q); qq[j] = qj
+                E * sum(qq[own] .^ gam) / sum(qq .^ gam) - sum(m.c[own] .* qq[own])
+            end
+            bump = 1e-6 * q[j]
+            upd!("first-order conditions",
+                 (gprofit(q[j] + bump) - gprofit(q[j] - bump)) / (2bump * m.c[j]))
+        end
+
         a = [w[eco.ploc[i]] / eco.phi[i] for i in m.plants]     # unit cost (unitcost)
         V = a .* [eco.d[eco.ploc[i], n] for i in m.plants] .* q # labor cost (V)
         tariff = m.tar .* V
@@ -398,7 +504,7 @@ function check_equilibrium(eco::Economy, serves::BitMatrix, w; seed = 7)
         rr = evaluate(eco, serves, wr)
         walras = max(walras, abs(sum(wr .* rr.z)) / sum(wr .* eco.L))
     end
-    return (errors = e, walras = walras, labor = maxgap(r, eco),
+    return (errors = err, walras = walras, labor = maxgap(r, eco),
             min_X_over_wL = minimum(r.X ./ (w .* eco.L)))
 end
 
@@ -413,7 +519,7 @@ Ebar[n, j] = sum over n' of (share of W_n paid out of sales in n') * d ln X_n'/d
 since E_n'k = beta_k X_n'. Fixed costs, in the entry extension, count in W_n with
 a zero response.
 """
-function theorem1_check(eco::Economy, serves::BitMatrix, w; h = 1e-5)
+function theorem1_check(eco::Economy, serves::BitMatrix, w)
     N, K = eco.N, eco.K
     r = evaluate(eco, serves, w)
     maxS = maximum(maximum(r.mk[n, k].S) for n in 1:N, k in 1:K)
@@ -425,14 +531,8 @@ function theorem1_check(eco::Economy, serves::BitMatrix, w; h = 1e-5)
         end
     end
     b ./= r.W
-    dlnX = zeros(N, N)                 # dlnX[n', j] = d ln X_n' / d ln w_j
-    for j in 1:N
-        up = copy(w); up[j] *= exp(h)
-        dn = copy(w); dn[j] *= exp(-h)
-        dlnX[:, j] = (log.(evaluate(eco, serves, up).X) .- log.(evaluate(eco, serves, dn).X)) ./ (2h)
-    end
-    Ebar = b * dlnX
-    M = elasticity_matrix(eco, serves, w; h = h)
+    M, dX = log_responses(eco, serves, w)
+    Ebar = b * dX                      # demand term (demandterm)
     off = [(n, j) for n in 1:N, j in 1:N if n != j]
     return (maxS = maxS,
             minEbar = minimum(Ebar[n, j] for (n, j) in off),
@@ -452,7 +552,8 @@ end
 # The ladder keeps the sets no other set beats on both strength and fixed cost,
 # ordered by strength. The best response is the rung with the highest payoff.
 # An entry equilibrium of a market: every group's set is a best response at A,
-# and A clears the market with those sets.
+# and A clears the market with those sets. (The properties of Theorem 2 hold for
+# sigma >= 2; the algorithm below does not rely on them.)
 #
 # General equilibrium with entry (outer loop of the solution document):
 #   1. start with every potential plant serving every market of its sector;
@@ -525,13 +626,8 @@ function entry_deviations(eco::Economy, serves::BitMatrix, w, r; reltol = 1e-10)
     return devs
 end
 
-"Number of groups with at least one plant serving market (n, k)."
-ngroups_in(eco::Economy, serves, n, k) =
-    length(unique(eco.pgroup[i] for i in 1:nplants(eco) if serves[i, n] && plant_sector(eco, i) == k))
-
 function solve_with_entry(eco::Economy; frac = 0.25, maxouter = 60, maxstalls = 8)
-    serves = falses(nplants(eco), eco.N)
-    serves .= true                                   # 1. every potential plant active
+    serves = trues(nplants(eco), eco.N)              # 1. every potential plant active
     w = ones(eco.N)
     best = (nwant = typemax(Int), serves = copy(serves), w = copy(w))
     stalls, iters = 0, 0
@@ -560,8 +656,8 @@ function solve_with_entry(eco::Economy; frac = 0.25, maxouter = 60, maxstalls = 
     serves = best.serves
     sol = solve_wages(eco, serves; w0 = best.w)
     devs = entry_deviations(eco, serves, sol.w, sol.r)
-    return (w = sol.w, r = sol.r, gap = sol.gap, serves = serves,
-            nwant = length(devs), outer = iters)
+    return (w = sol.w, r = sol.r, gap = sol.gap, converged = sol.converged,
+            serves = serves, nwant = length(devs), outer = iters)
 end
 
 ###############################################################################
@@ -588,45 +684,54 @@ end
 function report_checks(eco::Economy, serves::BitMatrix, w; box = 0.2, npts = 20, seed = 3)
     ch = check_equilibrium(eco, serves, w)
     println("\n  Checks at the solution (largest relative error):")
-    for (k, v) in sort(collect(ch.errors), by = first)
-        @printf("    %-36s %.1e\n", k, v)
+    for name in CHECKS
+        @printf("    %-36s %.1e%s\n", name, ch.errors[name],
+                name == "first-order conditions" ? "   (finite differences)" : "")
     end
     @printf("    %-36s %.1e\n", "labor markets clear", ch.labor)
     @printf("    %-36s %.1e   (5 random wage vectors)\n", "Walras' law off equilibrium", ch.walras)
     @printf("    %-36s %.4f   (Proposition 3: >= 1 without fixed costs)\n",
             "smallest X_n/(w_n L_n)", ch.min_X_over_wL)
 
-    println("\n  Theorem 1 hypotheses on points of the box |ln w_n - ln w*_n| <= $box:")
-    println("    point    max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)   |row sum - 1|")
+    println("\n  Theorem 1 hypotheses at w* and at $npts random points with w_1 = 1 and")
+    println("  |ln w_n - ln w*_n| <= $box for n >= 2:")
+    println("    point          max share (<=1/2)   min Ebar (>0)   min M offdiag   min(M - Ebar)")
     rng = MersenneTwister(seed)
     worst = (maxS = 0.0, minEbar = Inf, minM = Inf, minbound = Inf)
+    Mnn, rowsum = 0.0, 0.0
     for p in 0:npts
-        wp = p == 0 ? copy(w) : w .* exp.(box .* (2 .* rand(rng, eco.N) .- 1))
-        wp ./= wp[1]
+        wp = copy(w)
+        p > 0 && (wp[2:end] .*= exp.(box .* (2 .* rand(rng, eco.N - 1) .- 1)))
         t1 = theorem1_check(eco, serves, wp)
         worst = (maxS = max(worst.maxS, t1.maxS), minEbar = min(worst.minEbar, t1.minEbar),
                  minM = min(worst.minM, t1.minM), minbound = min(worst.minbound, t1.minbound))
         if p == 0
-            @printf("    w*         %8.4f          %+8.4f        %+8.4f        %+8.4f        %.1e\n",
-                    t1.maxS, t1.minEbar, t1.minM, t1.minbound, t1.rowsum)
+            @printf("    w*                 %8.4f          %+8.4f        %+8.4f        %+8.4f\n",
+                    t1.maxS, t1.minEbar, t1.minM, t1.minbound)
+            Mnn = minimum(t1.M[n, n] for n in 1:eco.N)
+            rowsum = t1.rowsum
         end
     end
-    @printf("    worst of %d points %6.4f        %+8.4f        %+8.4f        %+8.4f\n",
-            npts, worst.maxS, worst.minEbar, worst.minM, worst.minbound)
-    println("    (M - Ebar >= 0 is the bound of Theorem 1; it is computed by finite differences,")
-    println("     so values of order -1e-6 are numerical error. Checking points proves nothing")
-    println("     between them.)")
+    @printf("    worst of all %2d     %8.4f          %+8.4f        %+8.4f        %+8.4f\n",
+            npts + 1, worst.maxS, worst.minEbar, worst.minM, worst.minbound)
+    println("    (M - Ebar >= 0 is the bound of Theorem 1. M is computed by finite differences,")
+    println("     so values of order -1e-6 would be numerical error. Checking points proves")
+    println("     nothing between them.)")
+    @printf("  Rows of M sum to one (homogeneity): largest error %.1e\n", rowsum)
+    @printf("  Damping: min M_nn = %+.3f at w*, so the update needs lambda < %.3f; the solver uses %.2f\n",
+            Mnn, min(1.0, 1 / (1 - Mnn)), LAMBDA)
 end
 
 function multistart(eco::Economy, serves::BitMatrix, w; nstarts = 5, seed = 11)
-    rng = MersenneTwister(seed); gap = 0.0
+    rng = MersenneTwister(seed); gap = 0.0; failed = 0
     for _ in 1:nstarts
         w0 = exp.(1.0 .* randn(rng, eco.N))
         sol = solve_wages(eco, serves; w0 = w0)
+        sol.converged || (failed += 1)
         gap = max(gap, maximum(abs.(log.(sol.w) .- log.(w))))
     end
-    @printf("\n  Solved again from %d random starting wages: largest difference in ln w = %.1e\n",
-            nstarts, gap)
+    @printf("\n  Solved again from %d random starting wages (%d did not converge):\n", nstarts, failed)
+    @printf("  largest difference in ln w from the solution above = %.1e\n", gap)
 end
 
 function main(args)
@@ -634,8 +739,10 @@ function main(args)
     # serves every country of the world, as an export platform.
     eco = example_economy()
     serves = trues(nplants(eco), eco.N)
-    @printf("Example economy: %d countries, %d sectors, %d groups, %d plants\n",
-            eco.N, eco.K, ngroups(eco), nplants(eco))
+    validate(eco, serves)
+    @printf("Example economy: %d countries, %d sectors, %d groups (%d multinationals), %d plants\n",
+            eco.N, eco.K, ngroups(eco), count(g -> is_multinational(eco, g), 1:ngroups(eco)),
+            nplants(eco))
     sol = solve_wages(eco, serves)
     report(eco, serves, sol; title = "BASELINE (plants given)")
     report_checks(eco, serves, sol.w)
@@ -645,8 +752,8 @@ function main(args)
         # With few firms per market each plant is large, so larger fixed costs
         # often leave one or two groups wishing to move: the integer problem.
         eco_e = example_economy(fk = 0.001)
+        validate(eco_e, trues(nplants(eco_e), eco_e.N))
         sol_e = solve_with_entry(eco_e)
-        sol_e = merge(sol_e, (converged = sol_e.gap < 1e-12,))
         report(eco_e, sol_e.serves, sol_e;
                title = "EXTENSION: ENDOGENOUS ENTRY (f_k = $(eco_e.fk[1]))")
         @printf("  active plant-market pairs: %d of %d potential   outer iterations: %d\n",
